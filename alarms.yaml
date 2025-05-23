@@ -1,0 +1,85 @@
+alarms:
+- code: 12
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  severity: 1
+  status: Acknowledged
+  time: 4/29/2025, 4:12:22 PM
+- code: 13
+  message: Return Air Fan-2 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: null
+- code: 14
+  message: Supply Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_SAFan1_TRIP
+  severity: 1
+  status: Acknowledged
+  time: null
+- code: 15
+  message: Supply Air Fan-2 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_SAFan2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: null
+- code: 16
+  message: Washer Pump-1  VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_WasherPump1_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null
+- code: 17
+  message: Washer Pump-2  VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_WasherPump2_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null
+- code: 18
+  message: Rotary Drum Filter-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF1_TRIP
+  severity: 1
+  status: null
+  time: null
+- code: 19
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: null
+- code: 20
+  message: Dust Collector-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_DCF1_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null
+- code: 21
+  message: Dust Collector-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_DCF2_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null
+- code: 22
+  message: Cyclone with Screw Compactor-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor1_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null
+- code: 23
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  severity: 1
+  status: Not Acknowledged
+  time: null

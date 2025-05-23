@@ -1,0 +1,189 @@
+{% extends "iot/tse.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="static\css\font.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        /* .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding-top: 60px;
+            background-color: #e3f4ff;
+        }
+
+        .common-container {
+            border: 1px solid black;
+            border-radius: 15px;
+            width: 30%;
+            height: 260px;
+            padding: 7px;
+            background: linear-gradient(#0076CE 0%, #ADD8E6 58%);
+            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            box-sizing: border-box;
+        } */
+
+        .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns based on your layout */
+    gap: 10px; /* Space between the containers */
+    padding-top: 60px;
+    background-color: #e3f4ff;
+}
+
+.common-container {
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 260px;
+    width: 96%;
+    padding: 10px;
+    background: linear-gradient(#0076CE 0%, #ADD8E6 58%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    box-sizing: border-box;
+}
+
+
+        .common-container h2 {
+            font-size: 24px;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .sensor-data {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 160px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #002366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        {% for name, template in submodules.items() %}
+        <div class="common-container">
+            <h2>{{ name }}</h2>
+            <div class="sensor-data">
+                <div style="display: flex; justify-content: space-between; width: 100%; font-weight: bold;">
+                    <div><span id="temperature{{ loop.index }}">0.00</span> °C</div>
+                    <div><span id="humidity{{ loop.index }}">0.00</span> %RH</div>
+                </div>
+            </div>
+
+            <!-- Graph Section -->
+            <div class="chart-container">
+                <canvas id="myChart{{ loop.index }}"></canvas>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function getNodeIds(departmentName) {
+            const nodeIds = {
+                'Preparatory 1': { temperature: "Preparatory 1_Temp", humidity: "Preparatory 1_RH" },
+                'Preparatory 2': { temperature: "Preparatory 2_Temp", humidity: "Preparatory 2_RH" },
+                'Spinning 1': { temperature: "Spinning 1_Temp", humidity: "Spinning 1_RH" },
+                'Spinning 2': { temperature: "Spinning 2_Temp", humidity: "Spinning 2_RH" },
+                'Link Coner': { temperature: "Linkconer_Temp", humidity: "Linkconer_RH" },
+                'Link Coner2': { temperature: "Linkconer_Temp", humidity: "Linkconer_RH" }
+            };
+            return nodeIds[departmentName];
+        }
+
+        function setupDepartment(departmentName, departmentIndex) {
+            const nodeIds = getNodeIds(departmentName);
+            const chartCtx = document.getElementById('myChart' + departmentIndex).getContext('2d');
+
+            const chart = new Chart(chartCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        { label: 'Temperature', data: [], backgroundColor: 'rgba(255, 148, 112)', borderColor: 'rgba(255, 148, 112)' },
+                        { label: 'Humidity', data: [], backgroundColor: 'rgba(40, 67, 135)', borderColor: 'rgba(40, 67, 135)' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { type: 'time', time: { unit: 'second' },
+                            ticks: {
+                                font: { size: 10 },
+                                maxTicksLimit: 6
+                            }
+                        },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            const socket = io.connect('http://127.0.0.1:7005');
+
+            socket.on('update', function (data) {
+                const temp = data[nodeIds.temperature];
+                const hum = data[nodeIds.humidity];
+                const formattedTemp = parseFloat(temp.toFixed(2));
+                const formattedHum = parseFloat(hum.toFixed(2));
+
+                document.getElementById('temperature' + departmentIndex).textContent = formattedTemp.toFixed(2);
+                document.getElementById('humidity' + departmentIndex).textContent = formattedHum.toFixed(2);
+
+                chart.data.labels.push(new Date());
+                chart.data.datasets[0].data.push(formattedTemp);
+                chart.data.datasets[1].data.push(formattedHum);
+                if (chart.data.labels.length > 20) chart.data.labels.shift();
+
+                chart.update();
+            });
+        }
+
+        {% for name, template in submodules.items() %}
+        setupDepartment('{{ name }}', {{ loop.index }});
+        {% endfor %}
+    </script>
+
+</body>
+
+</html>
+
+{% endblock %}

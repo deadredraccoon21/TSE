@@ -1,0 +1,51 @@
+alarms:
+- acknowledged: true
+  code: 19
+  id: 8a35537c-3fe2-46d0-a0ed-e50577914ceg
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: '2025-05-07 16:11:59'
+  trip: true
+- acknowledged: true
+  code: 19
+  id: 8a35537c-3fe2-46d0-a0ed-e50577914cef
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: '2025-05-07 16:11:54'
+  trip: true
+- acknowledged: true
+  code: 19
+  id: 9001e9d2-77d4-4c95-a787-690eec7d5270
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: '2025-05-07 16:12:48'
+  trip: true
+- acknowledged: true
+  code: 19
+  id: 9487bd18-fc35-444e-afe2-e2e1497c7790
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: '2025-05-07 16:12:50'
+  trip: true
+- acknowledged: true
+  code: 19
+  id: 55877efd-d645-450d-b1ed-38c2f9471785
+  message: Rotary Drum Filter-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RDF2_TRIP
+  severity: 1
+  status: Acknowledged
+  time: '2025-05-07 16:12:54'
+  trip: true

@@ -1,0 +1,292 @@
+{% extends "iot/tse.html" %}
+
+{% block title %}Alarms{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/font.css">
+    <title>Alarm List</title>
+    <style>
+     body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        margin-top: 80px;
+    }
+    h1 {
+        text-align: center;
+        color: #0c609d;
+    }
+    .alarm-table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: separate;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid #0c609d;
+    }
+    .alarm-table th, .alarm-table td {
+        padding: 12px;
+        text-align: left;
+    }
+    .alarm-table th {
+        background-color: #0c609d;
+        color: white;
+        text-transform: uppercase;
+    }
+    .alarm-table tr.even {
+        background-color: #e3f4ff;
+    }
+    .alarm-table tr.odd {
+        background-color: white;
+    }
+    .alert-icon {
+        font-weight: bold;
+        color: red;
+        font-size: 22px;
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .pagination button {
+        margin: 0 5px;
+        padding: 8px 12px;
+        border: 1px solid #0c609d;
+        background-color: white;
+        color: #0c609d;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+    }
+    .pagination button:hover {
+        background-color: #e3f4ff;
+    }
+    .pagination button.active {
+        background-color: #0c609d;
+        color: white;
+    }
+    .pagination button:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        cursor: not-allowed;
+        border-color: #cccccc;
+    }
+    .page-info {
+        text-align: center;
+        color: #555;
+        margin-bottom: 10px;
+    }
+    .storage-info {
+        text-align: center;
+        padding: 10px;
+        background-color: #e7f3ff;
+        margin: 10px auto;
+        width: 80%;
+        border-radius: 5px;
+        color: #0c609d;
+        font-weight: bold;
+    }
+    .acknowledge-button {
+    background: #fdd;
+    border: 1px solid #f88;
+    color: #a00;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .acknowledge-button:hover {
+        background: #faa;
+        /* transform: scale(1.1); */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .acknowledge-button:active {
+        transform: scale(0.95);
+    }
+
+    .acknowledged-span {
+        color: green;
+        font-weight: bold;
+        /* transition: transform 0.2s; */
+    }
+
+    /* .acknowledged-span:hover {
+        transform: scale(1.1);
+    } */
+
+</style>
+</head>
+
+<body>
+    <h1>Alarms List</h1>
+    <div class="storage-info">Alarms are stored in server file: alarmList.yaml</div>
+    <table class="alarm-table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Message</th>
+                <th>Code</th>
+                <th>Severity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="alarm-list-body"></tbody>
+    </table>
+    
+    <div class="page-info" id="page-info"></div>
+    <div class="pagination" id="pagination-controls"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+        const ITEMS_PER_PAGE = 10;
+        let currentPage = 1;
+        let alarmHistory = [];
+
+        const socket = io();
+
+        function addToAlarmHistory(alarm) {
+            if (!alarm.id) {
+                alarm.id = Date.now() + Math.random().toString(36).substr(2, 9);
+            }
+            const existing = alarmHistory.find(a => a.id === alarm.id);
+            if (!existing) {
+                alarmHistory.unshift(alarm);
+                if (alarmHistory.length > 100) alarmHistory.pop();
+            }
+        }
+
+        function renderPagination() {
+            const paginationDiv = document.getElementById('pagination-controls');
+            paginationDiv.innerHTML = '';
+            const totalPages = Math.ceil(alarmHistory.length / ITEMS_PER_PAGE);
+            if (totalPages <= 1) return;
+
+            const prevButton = document.createElement('button');
+            prevButton.innerText = '← Previous';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderAlarmHistory();
+                }
+            });
+            paginationDiv.appendChild(prevButton);
+
+            const maxButtons = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+            let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+            if (endPage - startPage + 1 < maxButtons && startPage > 1) {
+                startPage = Math.max(1, endPage - maxButtons + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.innerText = i;
+                if (i === currentPage) pageButton.classList.add('active');
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    renderAlarmHistory();
+                });
+                paginationDiv.appendChild(pageButton);
+            }
+
+            const nextButton = document.createElement('button');
+            nextButton.innerText = 'Next →';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderAlarmHistory();
+                }
+            });
+            paginationDiv.appendChild(nextButton);
+
+            const pageInfo = document.getElementById('page-info');
+            const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+            const endItem = Math.min(currentPage * ITEMS_PER_PAGE, alarmHistory.length);
+            pageInfo.innerText = `Showing ${startItem} to ${endItem} of ${alarmHistory.length} alarms`;
+        }
+
+        function renderAlarmHistory() {
+            const tbody = document.getElementById('alarm-list-body');
+            tbody.innerHTML = "";
+
+            if (alarmHistory.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No active alarms</td></tr>`;
+                document.getElementById('pagination-controls').innerHTML = '';
+                document.getElementById('page-info').innerText = '';
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, alarmHistory.length);
+            const currentPageAlarms = alarmHistory.slice(startIndex, endIndex);
+
+            currentPageAlarms.forEach((alarm, index) => {
+                const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'even' : 'odd';
+                const status = alarm.status || "Unacknowledged";
+
+                row.innerHTML = `
+                    <td>${alarm.time || 'N/A'}</td>
+                    <td>${alarm.message}</td>
+                    <td>${alarm.code}</td>
+                    <td>${alarm.severity}</td>
+                    <td>
+                        ${status !== "Acknowledged" 
+                            ? `<button onclick="acknowledgeAlarm('${alarm.id}', this)" class="acknowledge-button">${status}</button>` 
+                            : `<span class="acknowledged-span">Acknowledged ✓</span>`}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            renderPagination();
+        }
+
+        function acknowledgeAlarm(alarmId, btn) {
+            const alarmIndex = alarmHistory.findIndex(alarm => alarm.id === alarmId);
+            if (alarmIndex === -1) return;
+
+            fetch("/acknowledge", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: alarmId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alarmHistory[alarmIndex].status = "Acknowledged";
+                    renderAlarmHistory();
+                } else {
+                    alert("Failed to acknowledge alarm.");
+                }
+            })
+            .catch(error => console.error("Error acknowledging alarm:", error));
+        }
+
+        socket.on('alarm_update', function (alarms) {
+            alarms.forEach(alarm => {
+                if (alarm.hasOwnProperty("trip")) {
+                    addToAlarmHistory(alarm);
+                }
+            });
+            renderAlarmHistory();
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
