@@ -6,3 +6,5 @@ pyodbc
 flask_wtf
 bcrypt
 cryptography
+asyncua
+asyncio
