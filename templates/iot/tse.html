@@ -857,10 +857,15 @@
         </div>
         {% endif %}
     </div>
-
+    {% if session['role'] == 'Tse' %}
+    <div>
+        <iframe id="reportIframe" src="http://127.0.0.1:5001/admin" style="display: none;"></iframe>
+    </div>
+    {% else %}
     <div>
         <iframe id="reportIframe" src="http://127.0.0.1:5001/report" style="display: none;"></iframe>
     </div>
+    {%endif %}
 
     <div>
         <iframe id="trendsIframe"

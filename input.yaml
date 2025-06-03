@@ -12,9 +12,6 @@ roles:
   - UPSS
   Operator:
   - Set Point
-  - Digital Input
-  - Timer
-  - UPSS
   Tse:
   - Set Point
   - Digital Input
@@ -27,7 +24,4 @@ roles:
   - UPSS
   - Pump Min Set
 submodules:
-  Link Coner: linkconer.html
-  Preparatory 1: preparatory1.html
-  Spinning 1: spinning1.html
   Spinning 2: spinning2.html

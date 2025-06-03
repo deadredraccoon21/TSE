@@ -1,3 +1,5 @@
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file
 from opcua import Client, ua
 import os
@@ -908,4 +910,4 @@ if __name__ == '__main__':
     alarm_thread.start()
     
     # app.run(host="127.0.0.1", port=7005)
-    socketio.run(app, host='127.0.0.1', port=7005, debug=True)
+    socketio.run(app, host='127.0.0.1', port=7005, debug=False)
