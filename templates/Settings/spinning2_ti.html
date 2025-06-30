@@ -52,8 +52,9 @@
             }
 
         .dialog-box {
-            max-width: 25%;
-            width: auto;
+            /* max-width: 25%; */
+            width: 150%;
+            transform: translate(130%, 60%);
             border: 1px solid #333;
             border-radius: 10px;
             background-color: #e3f4ff;
@@ -252,27 +253,30 @@
        //         }
        //     });
        // });
-
        socket.on('update', function (data) {
-           Object.keys(data).forEach((key) => {
-               const element = document.getElementById(key);
-               if (element) {
-                   if (element.classList.contains('value')) {
-                       element.innerText = data[key]; // Ensure real-time update for blue box values
-                   } else if (element.tagName === 'INPUT' && element.type === 'number') {
-                       if (document.activeElement !== element) {
-                           element.value = data[key]; // Update set-box inputs
-                       }
-                   } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
-                       element.checked = data[key]; // Ensure real-time update for auto/manual switch
-                       const textElement = document.getElementById(element.id + '-text');
-                       if (textElement) {
-                           textElement.textContent = data[key] ? 'Manual' : 'Auto';
-                       }
-                   }
-               }
-           });
-       });
+    Object.keys(data).forEach((key) => {
+        const element = document.getElementById(key);
+        if (!element) return;
+
+        if (element.classList.contains('value')) {
+            // Always update blue box values (readonly)
+            element.innerText = data[key];
+        } else if (element.tagName === 'INPUT' && element.type === 'number') {
+            // Only update if input is not focused
+            if (document.activeElement !== element) {
+                element.value = data[key];
+            }
+        } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+            // Always update checkbox state
+            element.checked = data[key];
+            const textElement = document.getElementById(element.id + '-text');
+            if (textElement) {
+                textElement.textContent = data[key] ? 'Manual' : 'Auto';
+            }
+        }
+    });
+});
+
 
        function updateSettings() {
            const setpoints = {

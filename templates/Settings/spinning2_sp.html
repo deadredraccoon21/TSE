@@ -50,9 +50,9 @@
             background-color: #c9302c;
             border-color: #ac2925;
             }
-
-            .dialog-container {
-                        width: 300px;
+ .dialog-container {
+            width: 120%;
+            transform: translate(200%, 80%);
             margin: auto;
             background: #e3f4ff;
             border: 1px solid #0c609d;
@@ -60,7 +60,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-
         .dialog-header {
             background: #0c609d;
             color: white;
@@ -165,26 +164,28 @@
             const socket = io();
     
             socket.on('update', function (data) {
-                Object.keys(data).forEach((key) => {
-                    const element = document.getElementById(key);
-                    if (element) {
-                        if (element.classList.contains('value')) {
-                            element.innerText = data[key]; // Ensure real-time update for blue box values
-                        } else if (element.tagName === 'INPUT' && element.type === 'number') {
-                            if (document.activeElement !== element) {
-                                element.value = data[key]; // Update set-box inputs
-                            }
-                        } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
-                            element.checked = data[key]; // Ensure real-time update for auto/manual switch
-                            const textElement = document.getElementById(element.id + '-text');
-                            if (textElement) {
-                                textElement.textContent = data[key] ? 'Manual' : 'Auto';
-                            }
-                        }
-                    }
-                });
-            });
-    
+    Object.keys(data).forEach((key) => {
+        const element = document.getElementById(key);
+        if (!element) return;
+
+        if (element.classList.contains('value')) {
+            // Blue box values – always update
+            element.innerText = data[key];
+        } else if (element.tagName === 'INPUT' && element.type === 'number') {
+            // 🔒 Only update input if it's NOT focused
+            if (document.activeElement !== element) {
+                element.value = data[key];
+            }
+        } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+            element.checked = data[key];
+            const textElement = document.getElementById(element.id + '-text');
+            if (textElement) {
+                textElement.textContent = data[key] ? 'Manual' : 'Auto';
+            }
+        }
+    });
+});
+
     
     
     

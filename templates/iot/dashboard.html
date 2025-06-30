@@ -116,7 +116,8 @@
         {% endfor %}
     </div>
 
-    <script>
+   <script>
+        // This function remains the same as it maps department names to Node IDs.
         function getNodeIds(departmentName) {
             const nodeIds = {
                 'Preparatory 1': { temperature: "Preparatory 1_Temp", humidity: "Preparatory 1_RH" },
@@ -128,11 +129,34 @@
             };
             return nodeIds[departmentName];
         }
-
-        function setupDepartment(departmentName, departmentIndex) {
-            const nodeIds = getNodeIds(departmentName);
+    
+        // Updated helper function to get the exact display name you described
+        function getDepartmentDisplayName(templateName) {
+            // 1. Remove '.html' from the end
+            let displayName = templateName.replace('.html', '');
+    
+            // 2. Replace a common pattern like 'spinning1' with 'spinning 1'
+            // This handles cases like 'spinning1', 'preparatory2', 'linkconer2'
+            displayName = displayName.replace(/([a-zA-Z]+)(\d+)/, '$1 $2');
+    
+            // 3. Capitalize the first letter of the *entire* string
+            displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+    
+            return displayName;
+        }
+    
+        function setupDepartment(templateName, departmentIndex) {
+            // Convert the templateName to the actual department display name
+            const departmentDisplayName = getDepartmentDisplayName(templateName);
+    
+            const nodeIds = getNodeIds(departmentDisplayName); // Use the display name here
+            if (!nodeIds) {
+                console.error(`Error: Node IDs not found for department: ${departmentDisplayName}`);
+                return; // Exit if department name doesn't map to node IDs
+            }
+    
             const chartCtx = document.getElementById('myChart' + departmentIndex).getContext('2d');
-
+    
             const chart = new Chart(chartCtx, {
                 type: 'line',
                 data: {
@@ -156,32 +180,51 @@
                     }
                 }
             });
-
+    
             const socket = io.connect('http://127.0.0.1:7005');
-
+    
             socket.on('update', function (data) {
-                const temp = data[nodeIds.temperature];
-                const hum = data[nodeIds.humidity];
-                const formattedTemp = parseFloat(temp.toFixed(2));
-                const formattedHum = parseFloat(hum.toFixed(2));
-
-                document.getElementById('temperature' + departmentIndex).textContent = formattedTemp.toFixed(2);
-                document.getElementById('humidity' + departmentIndex).textContent = formattedHum.toFixed(2);
-
-                chart.data.labels.push(new Date());
-                chart.data.datasets[0].data.push(formattedTemp);
-                chart.data.datasets[1].data.push(formattedHum);
-                if (chart.data.labels.length > 20) chart.data.labels.shift();
-
-                chart.update();
+                // Check if nodeIds are valid for the department and data exists
+                if (nodeIds && data[nodeIds.temperature] !== undefined && data[nodeIds.humidity] !== undefined) {
+                    const temp = data[nodeIds.temperature];
+                    const hum = data[nodeIds.humidity];
+                    const formattedTemp = parseFloat(temp.toFixed(2));
+                    const formattedHum = parseFloat(hum.toFixed(2));
+    
+                    // Update the elements with the actual data (assuming they use `departmentIndex`)
+                    const tempElement = document.getElementById('temperature' + departmentIndex);
+                    const humElement = document.getElementById('humidity' + departmentIndex);
+    
+                    if (tempElement) tempElement.textContent = formattedTemp.toFixed(2);
+                    if (humElement) humElement.textContent = formattedHum.toFixed(2);
+    
+                    chart.data.labels.push(new Date());
+                    chart.data.datasets[0].data.push(formattedTemp);
+                    chart.data.datasets[1].data.push(formattedHum);
+    
+                    // Keep only the last 20 data points
+                    const maxDataPoints = 20;
+                    if (chart.data.labels.length > maxDataPoints) {
+                        chart.data.labels.shift();
+                        chart.data.datasets[0].data.shift();
+                        chart.data.datasets[1].data.shift();
+                    }
+    
+                    chart.update();
+                } else {
+                    console.warn(`Data not found or node IDs are undefined for department: ${departmentDisplayName}. Skipping update.`);
+                }
             });
         }
-
-        {% for name, template in submodules.items() %}
-        setupDepartment('{{ name }}', {{ loop.index }});
+    
+        // Loop through submodules to set up charts for relevant templates
+        {% for name, template_file in submodules.items() %}
+            {# CORRECTED Jinja2 conditional: using 'in' operator and 'endswith' filter #}
+            {% if '.html' in template_file and (template_file.startswith('spinning') or template_file.startswith('preparatory') or template_file.startswith('linkconer')) %}
+                setupDepartment('{{ template_file }}', {{ loop.index }});
+            {% endif %}
         {% endfor %}
     </script>
-
 </body>
 
 </html>

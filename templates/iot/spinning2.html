@@ -154,7 +154,7 @@
                 style="position:absolute; left:739.5px; top:286px; width:27px; height:44px; border: 1px solid black; padding: -2px;">
 
             <div style="position:absolute; left:1180px; top:50px; color:#00508a; font-size:30px;">
-                <b><u>Spinning-2</u></b>
+                <b><u>{{ dept_name }}</u></b>
             </div>
             <p style="position:absolute; left:527px; top:170px; color:black;"><b>Fan</b></p>
             <p style="position:absolute; left:529px; top:372px; color:black;"><b>Fan</b></p>
@@ -271,20 +271,20 @@
                 <span id="spg2_iVa_Act_Temp">0</span>
             </div>
 
-            <!-- <div
+            <div
                 style="position:absolute; left:630px; top:166px; border:2px solid black; padding: 4px; border-radius:5px">
-                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+                <span id="Spg2_iVa_Damper_Output">{{ msg.payload['Spg2_iVa_Damper_Output'] }}</span>
             </div>
 
             <div
                 style="position:absolute; left:823px; top:166px; border:2px solid black; padding: 4px; border-radius:5px">
-                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+                <span id="Spg2_iVa_Damper_Output2">{{ msg.payload['Spg2_iVa_Damper_Output'] }}</span>
             </div>
 
             <div
                 style="position:absolute; left:736px; top:356px; border:2px solid black; padding: 4px; border-radius:5px">
-                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
-            </div> -->
+                <span id="Spg2_iVa_Ret_Damper_Output">{{ msg.payload['Spg2_iVa_Ret_Damper_Output'] }}</span>
+            </div>
 
             <p style="position:absolute; left:1224px; top:533px;"><b>%R.H</b></p>
             <p style="position:absolute; left:1238px; top:580px;"><b>°C</b></p>
@@ -306,6 +306,9 @@
                 document.getElementById('spg2_iVa_UPSS_Output_SAF').textContent = data['Spg2_iVa_UPSS_Output_SAF'] || '0';
                 document.getElementById('spg2_iVa_Act_RH').textContent = data['Spg2_iVa_Act_RH'] || '0';
                 document.getElementById('spg2_iVa_Act_Temp').textContent = data['Spg2_iVa_Act_Temp'] || '0';
+                document.getElementById('Spg2_iVa_Damper_Output').textContent = data['Spg2_iVa_Damper_Output'] || '0';
+                document.getElementById('Spg2_iVa_Damper_Output2').textContent = data['Spg2_iVa_Damper_Output'] || '0';
+                document.getElementById('Spg2_iVa_Ret_Damper_Output').textContent = data['Spg2_iVa_Ret_Damper_Output'] || '0';
             });
             
 

@@ -68,8 +68,9 @@
             opacity: 0.4;
         }
         .dialog-box {
-            max-width: 35%;
-            width: auto;
+            /* max-width: 35%; */
+            width: 300%;
+            transform: translate(80%, 70%);
             border: 1px solid #333;
             border-radius: 8px;
             background-color: #e3f4ff;
@@ -287,25 +288,29 @@
         const socket = io();
 
         socket.on('update', function (data) {
-            Object.keys(data).forEach((key) => {
-                const element = document.getElementById(key);
-                if (element) {
-                    if (element.classList.contains('value')) {
-                        element.innerText = data[key];
-                    } else if (element.tagName === 'INPUT' && element.type === 'number') {
-                        if (document.activeElement !== element) {
-                            element.value = data[key];
-                        }
-                    } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
-                        element.checked = data[key];
-                        const textElement = document.getElementById(element.id + '-text');
-                        if (textElement) {
-                            textElement.textContent = data[key] ? 'Manual' : 'Auto';
-                        }
-                    }
-                }
-            });
-        });
+    Object.keys(data).forEach((key) => {
+        const element = document.getElementById(key);
+        if (!element) return;
+
+        if (element.classList.contains('value')) {
+            // Blue box values – always update
+            element.innerText = data[key];
+        } else if (element.tagName === 'INPUT' && element.type === 'number') {
+            // Only update if the user is not currently editing
+            if (document.activeElement !== element) {
+                element.value = data[key];
+            }
+        } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+            // Always update checkboxes
+            element.checked = data[key];
+            const textElement = document.getElementById(element.id + '-text');
+            if (textElement) {
+                textElement.textContent = data[key] ? 'Manual' : 'Auto';
+            }
+        }
+    });
+});
+
 
         function updateModeText(checkbox, textId, key) {
             const textElement = document.getElementById(textId);
