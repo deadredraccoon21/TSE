@@ -2,7 +2,7 @@ from opcua import Client
 import os
 import yaml
 
-OPC_UA_URL = "opc.tcp://127.0.0.1:4840"  # Replace with your OPC UA server URL
+OPC_UA_URL = "opc.tcp://192.168.0.18:4840"  # Replace with your OPC UA server URL
 OUTPUT_FILE = "getNodeids.yaml"
 
 def fetch_and_store_node_ids(url=OPC_UA_URL, output_file=OUTPUT_FILE):

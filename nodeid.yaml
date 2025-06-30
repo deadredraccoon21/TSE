@@ -11,22 +11,23 @@
 #   Linkconer_iVa_Act_Temp: "ns=6;s=::Linkconer:iVa_Act_Temp"
 
 node_ids:
-  Preparatory 1_RH: "ns=6;s=::Prep_1:iVa_Act_RH"                      #Dashboard
-  Preparatory 1_Temp: "ns=6;s=::Prep_1:iVa_Act_Temp"
-  Preparatory 2_RH: "ns=6;s=::Prep_2:iVa_Act_RH"                     
-  Preparatory 2_Temp: "ns=6;s=::Prep_2:iVa_Act_Temp" 
-  Spinning 1_RH: "ns=6;s=::Spg1:iVa_Act_RH"                     
-  Spinning 1_Temp: "ns=6;s=::Spg1:iVa_Act_Temp"
+  # Preparatory 1_RH: "ns=6;s=::Prep_1:iVa_Act_RH"                      #Dashboard
+  # Preparatory 1_Temp: "ns=6;s=::Prep_1:iVa_Act_Temp"
+  # Preparatory 2_RH: "ns=6;s=::Prep_2:iVa_Act_RH"                     
+  # Preparatory 2_Temp: "ns=6;s=::Prep_2:iVa_Act_Temp" s
+  # Spinning 1_RH: "ns=6;s=::Spg1:iVa_Act_RH"                     
+  # Spinning 1_Temp: "ns=6;s=::Spg1:iVa_Act_Temp"
   Spinning 2_RH: "ns=6;s=::Spg2:iVa_Act_RH"                     
   Spinning 2_Temp: "ns=6;s=::Spg2:iVa_Act_Temp"
-  Linkconer_RH: "ns=6;s=::Linkconer:iVa_Act_RH"                     
-  Linkconer_Temp: "ns=6;s=::Linkconer:iVa_Act_Temp"
+  # Linkconer_RH: "ns=6;s=::Linkconer:iVa_Act_RH"                     
+  # Linkconer_Temp: "ns=6;s=::Linkconer:iVa_Act_Temp"
 
   Spg2_iVa_DPG_RDF: "ns=6;s=::Spg2:iVa_DPG_RDF"                       #Diagram
   Spg2_iVa_UPSS_Output_RAF: "ns=6;s=::Spg2:iVa_UPSS_Output_RAF"
   Spg2_iVa_WTC_Output: "ns=6;s=::Spg2:iVa_WTC_Output"
   Spg2_iVa_Act_WoT: "ns=6;s=::Spg2:iVa_Act_WoT"
   Spg2_iVa_UPSS_Output_SAF: "ns=6;s=::Spg2:iVa_UPSS_Output_SAF"
+  Spg2_iVa_Ret_Damper_Output: "ns=6;s=::Spg2:iVa_Ret_Damper_Output"
 
   Spg2_iVa_Act_RH: "ns=6;s=::Spg2:iVa_Act_RH"                          #Setpoint           
   Spg2_iVa_Act_Temp: "ns=6;s=::Spg2:iVa_Act_Temp"

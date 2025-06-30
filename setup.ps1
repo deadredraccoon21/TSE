@@ -114,3 +114,39 @@ function create_shortcut {
 
 # Check and install Python if needed
 if (command_exists "python") {
+    Write-Output "Python is already installed."
+} else {
+    install_python_windows
+}
+
+ensure_pip_installed
+install_pip_modules
+install_requirements_file
+run_python_scripts
+
+# Install Grafana Enterprise
+Write-Output "Downloading Grafana Enterprise installer..."
+$grafanaEnterpriseUrl = "https://dl.grafana.com/enterprise/release/grafana-enterprise-10.0.0.windows-amd64.msi"
+$installerPath = "C:\temp\grafana_enterprise_installer.msi"
+
+if (-not (Test-Path -Path (Split-Path -Path $installerPath -Parent))) {
+    New-Item -Path (Split-Path -Path $installerPath -Parent) -ItemType Directory
+}
+
+Invoke-WebRequest -Uri $grafanaEnterpriseUrl -OutFile $installerPath
+Write-Output "Installing Grafana..."
+Start-Process -FilePath "msiexec.exe" -ArgumentList "/i `"$installerPath`" /quiet /norestart" -NoNewWindow -Wait
+Start-Service -Name "grafana"
+Write-Output "Grafana service started."
+
+# Paths
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$batFilePath = Join-Path $scriptDir "start_flask_app.bat"
+$startupFolder = [Environment]::GetFolderPath("Startup")
+$shortcutPath = Join-Path $startupFolder "StartFlaskApp.lnk"
+
+# Create .bat file and shortcut
+create_startup_bat -batPath $batFilePath -scriptDir $scriptDir
+create_shortcut -targetPath $batFilePath -shortcutPath $shortcutPath
+
+Write-Host "Setup completed successfully. Flask app will auto-start at login."

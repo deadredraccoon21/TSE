@@ -31,11 +31,15 @@ socketio = SocketIO(app)
 SECRET_KEY = Fernet.generate_key()  # Save this securely, use the same key across app runs
 cipher = Fernet(SECRET_KEY)
 
-# Database configuration
-DB_SERVER = 'localhost\\SQLEXPRESS'
-DB_DATABASE = 'tse_data'
-DB_USER = 'tse'
-DB_PASSWORD = 'tse@123'
+with open('input.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+# Extract values from config
+DB_SERVER = config.get('DB_SERVER')
+DB_DATABASE = config.get('DB_DATABASE')
+DB_USER = config.get('DB_USER')
+DB_PASSWORD = config.get('DB_PASSWORD')
+OPC_UA_URL = config.get('OPC_UA_URL')
 # Connection string
 connection_string = f'DRIVER={{ODBC Driver 11 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USER};PWD={DB_PASSWORD}'
 
@@ -92,10 +96,7 @@ def validate_user(username, password):
     return None
 
 
-# OPC UA server URL
-OPC_UA_URL = "opc.tcp://127.0.0.1:4840"
-
-# Create an OPC UA client instance
+# OPC UA Client Initialization
 client = Client(OPC_UA_URL)
 
 # Global variable to hold the latest values
@@ -140,10 +141,10 @@ def read_values_periodically():
                 yaml.dump(latest_values, yaml_file)
 
             client.disconnect()  # Disconnect from the server
-            time.sleep(1)  # Wait for 1 second before the next read
+            time.sleep(0.5)  # Wait for 1 second before the next read
         except Exception as e:
             print(f"Error reading values: {str(e)}")
-            time.sleep(1)  # Wait before retrying in case of error
+            time.sleep(0.5)  # Wait before retrying in case of error
 
 
 
@@ -377,7 +378,7 @@ def write():
 
     print(f"Received data: {data}")  # Debugging step
 
-    opcua_client = Client("opc.tcp://127.0.0.1:4840")  # Replace with your OPC UA server URL
+    opcua_client = Client("opc.tcp://192.168.0.18:4840")  # Replace with your OPC UA server URL
 
     try:
         opcua_client.connect()  # Ensure connection is established
@@ -419,7 +420,7 @@ def writes():
     if not data:
         return jsonify({"success": False, "error": "No data provided"}), 400
 
-    opcua_client = Client("opc.tcp://127.0.0.1:4840")  # Replace with your OPC UA server URL
+    opcua_client = Client("opc.tcp://192.168.0.18:4840")  # Replace with your OPC UA server URL
 
     try:
         opcua_client.connect()  # Ensure connection is established
@@ -556,7 +557,7 @@ def render_submodule(submodule):
     seen = set()
     ROLE_SUBMODULES = load_role_submodules(role)  # Load roles dynamically
     allowed_submodules = ROLE_SUBMODULES
-
+    
     session['allowed_submodules'] = allowed_submodules
 
     # Find the template associated with the submodule
@@ -566,7 +567,8 @@ def render_submodule(submodule):
         if os.path.exists(template_path):
             # Pass the latest values from the OPC UA server (or other data)
             msg = {"payload": latest_values}  # Replace latest_values with your data
-            return render_template(f"iot/{template_name}", msg=msg, allowed_submodules=allowed_submodules)
+            dept_name = submodule
+            return render_template(f"iot/{template_name}", msg=msg, allowed_submodules=allowed_submodules, dept_name=dept_name)
 
     return "Page not found", 404
 

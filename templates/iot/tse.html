@@ -598,7 +598,7 @@
             /* No blur on modal */
             pointer-events: all;
             /* Allow interaction with the modal */
-            z-index: 2000;
+            z-index: 10001;
             /* Ensure the modal appears above the blurred background */
         }
 
@@ -632,10 +632,10 @@
 
         #main-content {
             position: absolute;
-            z-index: 999;
-            width: 100%;
+            z-index: 10000;
+            /* width: 100%;
             margin-top: 7%;
-            margin-left: 5%;
+            margin-left: 5%; */
         }
 
         /* body.blur-active::before {

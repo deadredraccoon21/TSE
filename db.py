@@ -2,7 +2,7 @@ import pyodbc
 import bcrypt
 # Database configuration
 # DB_SERVER = 'DESKTOP-SQ1S6QN'
-DB_SERVER = 'localhost\\SQLEXPRESS'
+DB_SERVER = 'DESKTOP-SQ1S6QN'
 DB_DATABASE = 'tse_data'
 DB_USER = 'tse'
 DB_PASSWORD = 'tse@123'
