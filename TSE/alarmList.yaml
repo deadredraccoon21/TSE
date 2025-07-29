@@ -1,0 +1,1839 @@
+alarms:
+- acknowledged: true
+  code: 22
+  id: bf5388f6-d3c4-45c4-a5d1-0e38d7c56435
+  message: Cyclone with Screw Compactor-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor1_TRIP
+  resolved_time: 07/11/2025, 12:09:11 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:08:22 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: 89bfea05-5b88-493c-9f77-ed35f631195b
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:09:47 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:09:42 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: 48a7c197-f76d-42aa-ae3e-3f7c1930e57b
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:09:57 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:09:52 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: ebecec35-48b1-4f7c-9a02-4ce827b75de0
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:01 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:09:59 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: d7f1a181-f468-477f-969d-4ab934922ca3
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:05 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:03 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: 101cd4a9-3859-43df-aaea-a771fc8937c4
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:09 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:07 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: 5fc12c0b-fd37-4393-8ab8-113267fc8c38
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:19 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:15 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: cef93ef0-dfcf-49a9-9719-5ebc1d8580e3
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:25 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:22 PM
+  trip: true
+- acknowledged: false
+  code: 23
+  id: 4e545bad-6fde-4972-a5bd-ccd936d826c7
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:10:36 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:34 PM
+  trip: true
+- acknowledged: false
+  code: 22
+  id: a1613b25-81d2-4002-b944-e9debb2aedfb
+  message: Cyclone with Screw Compactor-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor1_TRIP
+  resolved_time: 07/11/2025, 12:10:51 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:10:49 PM
+  trip: true
+- acknowledged: true
+  code: 23
+  id: 188e6bc2-9267-484b-be4d-2d52dc623c97
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/11/2025, 12:11:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:11:01 PM
+  trip: true
+- acknowledged: true
+  code: 22
+  id: 0e331763-6bc9-49bb-8fa8-3b23869bcbd0
+  message: Cyclone with Screw Compactor-1 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor1_TRIP
+  resolved_time: 07/11/2025, 12:11:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:11:09 PM
+  trip: true
+- acknowledged: true
+  code: 23
+  id: c4ddd071-edc4-477e-a6eb-9a5c5266882e
+  message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  resolved_time: 07/15/2025, 05:16:55 PM
+  severity: 1
+  status: Resolved
+  time: 07/11/2025, 12:11:40 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f2794266-4c82-4f63-8c4a-e6a23ce404b1
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:13:27 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:25 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 160685b6-7062-4d53-83f7-bfbb9f7bf947
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:13:30 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:29 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 807f21e5-fd2a-4de3-884f-ace261d5eb67
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:13:35 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:33 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 4c6b590b-7824-4d9e-9e23-30a8726a4b84
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:13:41 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:36 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 4b47b255-c595-447b-afea-479cf6b151a1
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:13:52 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:47 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 632beb35-ca21-498c-8288-913eb77a732e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:02 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:13:54 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9c0b0257-1886-43ec-a5c6-ea03cb48236c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:07 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:06 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 5837e330-c4cd-42c4-afe6-444b1c1126ea
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:10 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:09 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 075d97b8-e7e9-40a0-9f7a-6c0fcae5dc3e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:14 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:12 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8000af5b-8d64-431d-88d2-8f1e54fae8f9
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:21 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:16 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7d627fb3-c67d-472c-8930-04df6a840e90
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:26 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:23 PM
+  trip: true
+- acknowledged: true
+  code: 12
+  id: ff6a6588-0f37-46d9-8c08-82a608038259
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:27 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7627abb5-faf6-4b30-b345-ddf7d0c45e0f
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:41 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:37 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2db4e640-332c-495d-b4c1-62a155b3e12f
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:49 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:43 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 50587d2d-3919-41b3-8f5e-564ce2148f1b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:14:58 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:14:55 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 85a157a2-b967-4c57-97ba-33eb9c1230d6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:07 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:05 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8882f94e-9342-402c-af6c-6dd3b736ef64
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:16 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:13 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6b201d56-6bbf-42e6-af71-9cd0025fe89a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:20 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:17 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 0159b9d3-96d3-4f16-9309-796a25f83ad3
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:26 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:23 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 81560d41-d011-4695-a3f9-43657a81879c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:27 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 918e0aff-9749-4223-a899-2292d1d9dcf9
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:46 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:37 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 958f83f3-cfa9-4c20-9f59-74778626f97f
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:50 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:48 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 33bea676-4bbf-4fed-8e07-37d8b5215845
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:15:55 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:15:51 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 23cb26c0-cf6f-42b1-a63f-f5fd4f76df22
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:10 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:01 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7738751f-8e0c-4084-9768-a9373db075f3
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:22 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:13 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: e75831e9-70b0-4e84-99e5-71cef03d754a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:24 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:22 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8e6c9148-84aa-447b-90ca-81811fad520b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:32 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:27 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 32018c73-4bfa-4a57-a49b-367f94328988
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:41 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:39 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 89d68020-5c8c-44ff-ab11-d4205a40294c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:16:49 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:43 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: aa98c027-55b7-403e-b9f3-75a3504451bd
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:00 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:16:57 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7ca371dc-b99c-4db5-a125-c5bd4284940c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:12 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:03 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: c3147d64-9333-491b-a15d-defd9570457a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:15 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:13 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 75bc02e3-4088-473a-87ef-81512fe89965
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:20 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:17 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f23c37da-e3f7-43f3-b136-e870c34e6d15
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:23 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:21 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: ae837515-620a-437e-acc7-cd8dd6baff81
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:27 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:25 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 17803a62-1fde-466f-8fa0-562fee36a4a1
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:32 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:31 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: eb60a196-c3c0-41f0-84e0-0b9468e162ef
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:35 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:33 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 4bf0d742-5435-4ce4-a1a9-002310dd965f
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:51 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:37 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: bf347158-be16-4056-bc77-6d75c79c54dd
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:17:55 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:17:53 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 5e78a7b4-7f34-4172-8f46-e85cda91698c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:18:12 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:18:07 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2fd89a7a-d6cf-4de0-b006-694f4f7e93b2
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:18:19 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:18:14 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 838289ca-713f-48a9-bb06-c7c4394380cd
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:18:24 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:18:21 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a40ea02b-d160-4aa9-b181-7464a07f1926
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:18:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:18:32 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 72fb09fe-82f9-440a-9b3a-0ca50b8ea247
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:18:40 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:18:35 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 0a1ac641-cef3-4e66-946e-de2bd20b075e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:21 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:12 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8b783062-bff5-4c26-a182-3f07fec804a9
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:26 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:23 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8a86d49e-788e-4631-af71-45d89642a8ce
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:35 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:28 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 1595b523-2d03-49dd-b940-eecc11fa63bc
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:40 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:37 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 20a57c1b-2cb4-4d29-919d-450434fdd8c1
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:49 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:43 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 09fc1b98-106c-4403-ad05-c718df69de98
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:20:55 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:20:53 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 654eba41-16e1-4329-9fe0-970bd37c135d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:21:15 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:21:09 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 193a6e03-9379-4c0e-82cc-abab6564e3e0
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:21:25 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:21:17 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 595e2d8f-8579-4535-885a-787dca1ac3e6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:21:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:21:27 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2d9a65ea-6c90-419e-9002-08036af0e738
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:22:28 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:21:35 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 32b6e3ca-b20c-4cd5-9605-f623214e03dd
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:22:40 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:22:35 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: e0282ee9-fb31-4745-a484-141bd37d6da3
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:22:50 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:22:47 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 456f14d2-119f-48c1-9b52-ded6f7d76264
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:22:59 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:22:57 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 71b3c798-8ca4-4af5-8486-90ad68208f20
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:09 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:01 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 0a51964e-8543-4362-ae99-816b439f9e24
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:13 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:12 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6b0a8570-61a8-4d5d-8614-1935e70bc2c2
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:25 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:23 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: c8e9a70f-3679-4513-986a-f868d23db64d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:38 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:36 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8b80afe9-2867-4c32-aba1-4f0401d141cf
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:52 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:39 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a117181d-fa74-46e2-9e01-c58d0403d2b7
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:23:59 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:23:55 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a05d49f6-8d65-47d1-a4db-64a28dfebf8c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:03 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:01 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: faa98e11-ccec-406e-b8fe-0f1205738e05
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:07 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:06 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9ada8fd5-791b-48f3-a91f-a08cd17ec9f2
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:15 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:11 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: acacbe2c-68d4-436b-b5d5-7fb6205f36c8
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:25 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:21 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6315b0e7-0819-4fe6-8cc0-be4d901cb635
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:30 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:27 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 83760fef-429a-4f80-836b-4dab61b785f7
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:33 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:31 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7965ff4f-49e4-4a1a-b0f6-25e6254ef55b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:39 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:37 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 0b87e566-42ad-4ed3-a1af-2fe32d2d5cbb
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:43 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:41 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: d8c7d425-7e46-4a28-8a33-abb94e5fceda
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:50 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:47 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: bc84bbf7-4392-43a4-9300-9845da4fa225
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:24:53 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:51 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: eea3851d-12f8-43b6-bc4c-d97a92533a4d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:25:02 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:24:55 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 04730174-a40d-40ca-8bf2-91e0b97b9487
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:25:20 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:25:05 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f84d2e94-cc1e-442c-93c8-2c6e9408e0b2
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:25:24 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:25:21 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 718f03da-aae7-4426-9b25-71f9a0fcab7e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:25:34 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:25:31 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 98cc8c4a-db7f-4697-b1bb-a9e4e2dddba2
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:25:56 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:25:35 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 38bec03a-6a3c-455e-829e-46d4110bbaf7
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:09 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:01 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 519f4b08-d1e9-4cc2-922f-cd15e47fac7b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:14 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:11 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 39857164-49dd-4aa4-a754-4dda89e8daac
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:25 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:20 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7642b33b-17a3-4a44-af29-60856dd88ccb
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:28 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:26 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: ed0acc76-f178-4060-aad9-fe40e8788ec6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:35 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:29 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: d7811945-267c-4a7b-9691-58c749de25b9
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:43 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:35 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: d913063a-c487-45e0-b9af-5db252262347
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:47 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:45 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6426a18c-3030-46e6-90ab-19d8837d3de6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:26:52 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:49 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9a4831d2-b930-4862-893d-b68641a83960
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:00 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:26:54 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 88476258-6e42-4587-9e14-a5124e71bc21
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:03 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:01 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 97ce8f57-8c15-454b-9ee6-6d148e507c0d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:06 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:04 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: e7e4cfc3-9504-498f-9496-9ef035f8c902
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:13 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:09 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 77a9d193-11d3-4ba0-8a12-5fc9bddccec8
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:22 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:20 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: fff1006f-367a-4658-be12-44f76bf37a96
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:29 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:26 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 995693bf-232a-4224-9714-0f7f39b5c55e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:32 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:29 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2196da44-c5ae-4739-a84b-665bad024d50
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/28/2025, 09:27:44 PM
+  severity: 1
+  status: Resolved
+  time: 07/28/2025, 09:27:39 PM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 75dbaf9e-fe3c-42b2-8e3c-7a574893de91
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:10:32 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:10:26 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: b5ef83ee-c743-4465-a516-0397cfea3861
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:10:44 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:10:37 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 09efb7fe-b735-42e5-a05b-8d629e951c3b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:10:50 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:10:47 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f4a3408c-d9e1-4674-ac0a-8a17863eb670
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:10:56 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:10:53 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7387deed-d060-4df4-9a90-e6e8ac83754b
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:05 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:01 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: e74e019e-817c-4507-9c4e-9ad3bff41aac
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:16 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:10 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: cb897f66-1cc4-46b3-8062-3814a20e48c5
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:20 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:17 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 1762cf8f-1ce2-49e9-8c3a-7fe1da53a4d5
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:30 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:24 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 07310bb9-30ed-4700-a1a8-2a88c896f948
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:40 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:37 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 14cab2f2-13d2-4ff7-831e-75e863bab7a1
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:50 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:41 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 76827cac-45de-448e-9fcd-68d131df6b4a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:11:54 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:11:52 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: cc2037d9-eaf5-43ee-9b51-0862bfd688e6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:02 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:01 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 10601030-f082-41b6-ac79-ffc7c683b95e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:10 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:03 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 195ed10b-4609-4429-b5c8-42786775c53d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:15 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:12 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: d26696b9-579f-46c0-8953-2a0726897942
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:20 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:17 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 5d86832c-c2b5-41f1-9bd8-6eb87183ae5f
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:24 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:22 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 3e16be8f-9e23-4a04-aa64-b9c505ed7c2d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:44 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:25 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6e9aad0a-b632-485d-999d-d5cc24527fa0
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:12:51 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:48 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f44af28e-f8e1-45cb-a9e0-f4a5c8558292
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:13:00 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:12:55 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2106d3f3-a7b8-4bc7-9c4b-0c485d7b253e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:13:20 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:13:15 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: d5a43f6f-2db3-4d6c-8e04-a964f8ce4ff8
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:13:25 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:13:23 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 53b58e99-7858-49df-b508-b2a05d2e5b53
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:25:54 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:25:52 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8ff1656f-a2a0-4217-8e5e-9d3979a27a1e
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:25:58 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:25:55 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 5c47d3bc-ea96-4480-91a3-d5ffaf051ee6
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:03 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:25:59 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: dde2607a-6f69-4869-99cc-9f8ef95392d8
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:08 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:05 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: dc274f10-a301-4229-be19-d6cefc18b88a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:12 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:09 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 79c13ab4-f353-4ef3-a29f-e33c69093a32
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:16 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:13 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 63ae4aa9-8867-4ccd-98dd-292623e9e78d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:22 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:19 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 1255ed39-31ec-4579-a86e-8e27af17a629
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:32 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:27 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 28899b72-c25c-44d0-b2fd-3a3498e30203
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:38 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:33 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 7fd6980d-9dc2-47a9-90d4-9bbb524e6489
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:26:56 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:47 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: f5d50553-e780-440c-81e7-be2437cedc04
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:02 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:26:58 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 43618951-a823-4e5c-bbe9-8e30aa288767
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:08 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:27:05 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 53c06909-063b-4788-8d73-0ad4f68661ea
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:20 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:27:09 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 808037eb-b8b0-41ff-a73e-0714c74b734c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:28 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:27:23 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 55f687cb-9537-473f-a8f9-43faf21344fb
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:43 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:27:42 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 0f8a38ca-d2d5-4d2a-98f5-cab030738a87
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:27:53 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:27:49 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 2c45d1ea-041a-48b6-8bf7-267008b81021
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:11 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:03 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 67e5aedc-0020-4a51-b280-a9dcb76090e8
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:15 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:13 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a158c1a4-0d15-44ae-9c80-fe84cfee8eb4
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:23 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:17 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 747af503-2f4d-49d9-9d38-feb680d3bed5
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:27 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:26 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 98ba2046-1a08-453e-883d-deba26fab482
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:36 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:34 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9496ac39-b157-419d-8767-b14d561fb158
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:42 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:37 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: df5048b7-a165-4ea0-8140-1d3376c1bde0
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:47 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:46 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: ac57dcd3-9d0a-432c-9f7b-e5788ba02ad0
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:54 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:52 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 873c5049-18d7-4fda-9180-fc2fbd0a3a5a
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:28:58 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:28:55 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 8660e950-e99f-4667-94dd-7422a3725f44
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:29:30 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:29:24 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 86a8adba-7090-4c34-9d53-f4513845792d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:29:37 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:29:31 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9ec8ac08-72a8-4088-8a4b-006b5f8d0a36
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:29:45 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:29:43 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 9221566f-07c0-4f36-bed1-5749922c8ed4
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:03 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:29:53 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 51a67df0-b494-48c4-a780-d09cbd0453d7
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:09 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:04 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a98b417a-1c55-4f8d-bd8a-96e291d0971d
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:12 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:10 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 44c5b961-79e0-428d-8e21-e10521b67b33
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:25 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:21 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 16160993-87bd-40e4-b68e-266adac5274c
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:33 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:25 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 83b98301-f152-48e8-93cc-634a882a38aa
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:36 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:34 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 6765fd2a-8f63-45da-a4ca-fc5999d7b927
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:52 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:38 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: a10e29d7-3218-48b1-881f-5d3f64872d14
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:30:59 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:30:54 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: 5a561fe9-aaac-4990-8086-e914294a2dab
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  resolved_time: 07/29/2025, 11:31:04 AM
+  severity: 1
+  status: Resolved
+  time: 07/29/2025, 11:31:02 AM
+  trip: true
+- acknowledged: false
+  code: 12
+  id: db3273e9-783f-4eb1-82c9-7a3163642318
+  message: Return Air Fan-1 VFD Fault - Spinning 2
+  nodeids:
+  - DI_Spg2_iFl_RetAFan1_TRIP
+  severity: 1
+  status: Not acknowledged
+  time: 07/29/2025, 11:31:05 AM
+  trip: true
+lastTripStates:
+  '12': true
+  '13': false
+  '14': false
+  '15': false
+  '16': false
+  '17': false
+  '18': false
+  '19': false
+  '20': false
+  '21': false
+  '22': false
+  '23': false

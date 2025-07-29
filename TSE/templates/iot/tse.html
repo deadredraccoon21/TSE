@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TSE Control System{% endblock %}</title>
+    <link rel="stylesheet" href="static\css\font.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 168px;
+            height: 90%;
+            top: 60px;
+            left: -2px;
+            background-color: #3273a1;
+            padding-top: 2px;
+            color: white;
+            border-right: 3px solid rgba(173, 216, 230, 0.6);
+            overflow-y: scroll;
+            /* Enable scrolling */
+            -ms-overflow-style: none;
+            /* Hide scrollbar in IE 10+ */
+            scrollbar-width: none;
+            /* Hide scrollbar in Firefox */
+        }
+
+        .sidebar::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar in Chrome, Safari, and Edge */
+        }
+
+
+
+        .module-button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%);
+            color: rgb(238, 238, 255);
+            padding-left: 15px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-bottom: 0.2px solid black;
+            position: relative;
+            font-style: Roboto Mono;
+        }
+
+        .module-buttons {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%);
+            color: rgb(238, 238, 255);
+            padding-left: 15px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-bottom: 0.2px solid black;
+            position: relative;
+            font-style: Roboto Mono;
+        }
+
+        .module-button:hover {
+            background-color: #005fa3;
+        }
+
+
+
+        .submodule-container {
+
+            display: none;
+            background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%);
+            text-align: left !important;
+        }
+
+
+        .submodule-button {
+            width: 100%;
+            background-color: rgba(0, 99, 132, 0.6);
+            color: white;
+            padding-left: 32px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-weight: 600;
+            border: none;
+            outline: none;
+            font-size: 12px;
+            margin-bottom: 0px;
+            text-align: left;
+            /* cursor: pointer; */
+            border-bottom: 1px solid black;
+            position: relative;
+        }
+
+        .submodule-button:hover {
+            background-color: #3273a1;
+        }
+
+        .dropdown-icon {
+            position: absolute;
+            right: 12px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-left: 160px;
+            padding: 20px;
+        }
+
+        .fa-house,
+        .fa-building,
+        .fa-triangle-exclamation,
+        .fa-gear,
+        .fa-file,
+        .fa-user-cog {
+            font-size: 11px;
+            padding-right: 7px;
+        }
+
+        .fa-user-plus,
+        .fa-user-pen {
+            font-size: 10px;
+            padding-right: 6px;
+        }
+
+        .active {
+            background-color: #003e6d;
+            /* Darker background for the active button */
+        }
+
+        .module-button.active,
+        .submodule-button.active {
+            background-color: #003e6d;
+            /* Darker background for the active button */
+        }
+
+
+        .title-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%);
+            background-color: #005fa3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 3px solid rgba(173, 216, 230, 0.6);
+            z-index: 10000;
+        }
+
+        .company-logo {
+            margin-top: 8px;
+            height: 40px;
+            width: 40px;
+            margin-left: 28px;
+            background-color: white;
+            border-radius: 50px;
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+            color: white;
+            margin-left: 10%;
+        }
+
+        .client-name {
+            font-size: 15px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .left-section {
+            display: flex;
+            border-right: 2px solid rgba(173, 216, 230, 0.6);
+            top: 0px;
+            padding-right: 78px;
+            width: fit-content;
+            height: 60px;
+        }
+
+        .login-button {
+            font-size: 14px;
+            color: #fff;
+            background-color: #005fa3;
+            margin-top: 6px;
+            padding: 8px 18px;
+            border: 1px solid black;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 8px;
+            text-decoration: none;
+        }
+
+        .login-button:hover {
+            background-color: #003e6d;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: auto;
+        }
+
+        .last-login-info {
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 20px;
+            text-align: right;
+        }
+
+        .last-login-info .label {
+            display: block;
+            font-size: 10px;
+            opacity: 0.8;
+        }
+        .profile-icon-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .profile-icon-button:hover {
+            color: #003e6d;
+            cursor: pointer;
+        }
+
+        /* Circle profile icon styles */
+        .profile-icon {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #005fa3;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+            border: 2px solid #005591;
+            margin-top: 6px;
+            cursor: pointer;
+        }
+
+        /* Tooltip content style */
+        .tooltip-content {
+            position: absolute;
+            top: 9%;
+            /* Position it just below the profile icon */
+            left: 87%;
+            /* Center it horizontally */
+            transform: translateX(-50%);
+            /* Adjust for perfect centering */
+            width: 180px;
+            /* Set the desired width */
+            height: 40px;
+            /* Set the desired height */
+            background-color: rgba(129, 183, 201, 0.6);
+            color: black;
+            padding: 6px;
+            /* Add some padding inside */
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 2;
+            display: none;
+            /* Initially hidden */
+            overflow: hidden;
+            /* Ensures content does not overflow outside the tooltip */
+            text-overflow: ellipsis;
+            /* Adds ellipsis if the text overflows */
+            white-space: nowrap;
+            /* Prevents text from breaking into multiple lines */
+            border: 1px solid rgba(95, 149, 167, 0.6);
+            /* text-align: center; */
+
+        }
+
+        .tooltip-content p {
+            margin: 0;
+            /* Remove any default margins */
+            overflow: hidden;
+            /* Prevent content overflow */
+            text-overflow: ellipsis;
+            /* Add ellipsis for overflowing text */
+            line-height: 24px;
+            /* Adjust line height for better readability */
+            font-size: 12px;
+            /* Adjust font size if needed */
+            word-wrap: break-word;
+            /* Ensures content breaks correctly if needed */
+            font-weight: bold;
+        }
+
+
+        /* Show the tooltip when hovering over the profile icon */
+        .profile-icon:hover+#profile-tooltip {
+            display: block;
+        }
+
+
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 58px;
+            /* Adjust this to position the dropdown below the profile icon */
+            left: 35%;
+            transform: translateX(-50%);
+            /* Centers the dropdown content horizontally */
+            background-color: rgba(129, 183, 201, 0.6);
+            min-width: 100px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+            border: 1px solid rgba(95, 149, 167, 0.6);
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 7px 8px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(64, 142, 169, 0.6);
+            color: white;
+        }
+
+        .bg {
+            background-color: rgba(64, 142, 169, 0.6) !important;
+            color: white;
+            /* Optional: ensures text is visible on a red background */
+        }
+
+        .submodule-button .settings-icon {
+            font-size: 9px;
+            /* Adjust icon size */
+            color: white;
+            margin-left: 5px;
+            margin-right: 1px;
+            /* Adds space between the icon and text */
+            cursor: pointer;
+        }
+
+        iframe {
+            position: fixed;
+            top: 61px;
+            /* Matches the height of the title bar */
+            left: 167px;
+            /* Matches the width of the sidebar */
+            width: calc(100% - 167px);
+            /* Full width minus the sidebar width */
+            height: calc(100% - 61px);
+            /* Full height minus the title bar height */
+            border: none;
+            z-index: 1;
+            /* iframe overlaps other content */
+        }
+
+        .submodule-button a {
+            color: white;
+            /* Set text color to white */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        .submodule-button a:hover {
+            color: lightgray;
+            /* Optional: Change color on hover */
+        }
+
+        /* Bell icon container */
+        .bell-container {
+            position: relative;
+        }
+
+        .bell-button {
+            background-color: #0c609d;
+            margin-top: 6px;
+            margin-right: 18px;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 1px solid black;
+        }
+
+        .bell-button i {
+            font-size: 20px;
+        }
+
+        /* Notification badge */
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 3px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            display: none;
+            /* Hidden by default */
+        }
+
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-40%, -50%);
+            /* This ensures the modal is centered */
+            background-color: #0c609d;
+            border-radius: 6px;
+            /* Transparent background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+            width: 50%;
+            /* Increase the modal width */
+            max-width: 1200px;
+            /* Optional: Set a maximum width */
+            left: 53%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #0c609d;
+            /* Add a red outer border */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content {
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            /* Apply 5px rounded corners to the outer modal container */
+            overflow: hidden;
+            /* Ensures child elements respect the border radius */
+            /* border: 2px solid red; */
+        }
+
+        /* Modal header with blue background */
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #0c609d;
+            /* Blue background */
+            color: white;
+            /* White text */
+            padding: 15px;
+            margin: 0;
+            border-radius: 10px 10px 0 0;
+            /* Rounded top corners */
+            text-align: center;
+        }
+
+        /* Modal body - Remove spacing and set consistent background */
+        .modal-body {
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .modal-body p:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .modal-body p:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        /* Style for the alarm time */
+        .alarm-time {
+            /* font-weight: bold; */
+            margin-right: 50px;
+            color: #0c609d;
+            /* Change the color of the time if needed */
+        }
+
+        /* Optional: Style the rest of the alarm message */
+        .modal-body p {
+            margin: 0;
+            padding: 15px;
+            background-color: #e3f4ff;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+
+        /* Alternate background color for even items */
+        .modal-body p:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        /* Red circle with white X */
+        .modal-close-circle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .modal-close-circle:hover {
+            background-color: darkred;
+        }
+
+        /* Apply blur effect to the whole page when modal is open */
+        body.modal-open {
+            position: relative;
+            /* Ensures the modal can be layered above */
+        }
+
+        /* Apply the blur to the background when the modal is open */
+        body.modal-open::before {
+            content: '';
+            position: fixed;
+            /* Changed to fixed to cover the whole screen */
+            top: 61px;
+            left: 167px;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent background */
+            backdrop-filter: blur(5px);
+            /* Blur effect */
+            pointer-events: none;
+            /* Prevent interaction with the background */
+            z-index: 1;
+            /* Place the blur layer behind the modal */
+        }
+
+        /* Ensure the modal stays unaffected by the blur */
+        body.modal-open .modal {
+            filter: none;
+            /* No blur on modal */
+            pointer-events: all;
+            /* Allow interaction with the modal */
+            z-index: 10001;
+            /* Ensure the modal appears above the blurred background */
+        }
+
+        /* Optional: Style for the modal content */
+
+
+        /* Simple popup styling */
+        /* .simple-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(148, 0, 0);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            font-size: 16px;
+            min-width: 250px;
+            text-align: left;
+            font-weight: bold; */
+        /* } */
+
+        /* Popup with an icon */
+        /* .simple-popup i {
+            margin-right: 15px;
+            font-size: 20px;
+        } */
+
+        #main-content {
+            position: absolute;
+            z-index: 10000;
+            /* width: 100%;
+            margin-top: 7%;
+            margin-left: 5%; */
+        }
+
+        /* body.blur-active::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(0px);
+            z-index: 998;
+        } */
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body style="background-color: #e3f4ff;">
+    <div class="title-bar">
+        <div class="left-section">
+            <img src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Company Logo" class="company-logo">
+        </div>
+        <div class="company-name">
+            TSE Control System<br>
+            <div class="client-name" style="margin-top: 5px;">
+                {{ client_name }}
+            </div>
+        </div>
+        <div class="right-section">
+            <!-- Alarm Notification Icon -->
+            <!-- Button to trigger the alarm modal -->
+            <!-- <div class="bell-container">
+                <button class="bell-button" onclick="showAlarmslist()">
+                    <i class="fa fa-bell"></i>
+                    <span id="alarm-count" class="badge">0</span>
+                </button>
+            </div> -->
+            {% if session['userloggedin'] %}
+            <div class="last-login-info">
+                <span class="label">Last Login</span>
+                <span>{{ session.get('last_login', 'N/A') }}</span>
+            </div>
+            {% endif %}
+            <div class="bell-container">
+                <button class="bell-button" onclick="showAlarmslist()">
+                    <i class="fa fa-bell"></i>
+                    <span id="alarm-count" class="badge">0</span>
+                </button>
+            </div>
+
+            <!-- Simple popup for automatic alerts -->
+            <!-- <div id="simplePopup" class="simple-popup">
+                <i class="fa fa-exclamation-circle"></i>
+                <span id="simplePopupMessage">Alarm!</span>
+            </div> -->
+
+
+            {% if session['userloggedin'] %}
+            <div class="dropdown">
+                <button class="profile-icon" onclick="toggleDropdown()">
+                    {{ session['username'][0]|upper }}
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+
+            <!-- Tooltip for profile information -->
+            <div id="profile-tooltip" class="tooltip-content">
+                <p><strong style="color: #003054;">User Name:</strong> {{ session['username'] }}</p>
+                <p><strong style="color: #003054;">Last Login:</strong> {{ session['last_login'] }}</p>
+            </div>
+
+            {% else %}
+            <a href="{{ url_for('user_login') }}" class="login-button">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="modal" id="alarmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                Alarm Notifications
+                <span class="modal-close-circle" onclick="closeModal()">✕</span>
+            </div>
+            <div class="modal-body" id="alarm-modal-body">
+                <!-- Alarm messages will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="sidebar">
+        <button id="home" class="module-button" onclick="window.location.href = 'dashboard';closeDropdown()">
+            <i class="fa-solid fa-house"></i> Home
+        </button>
+        <div id="homeSubmodules" class="submodule-container"></div>
+
+        <button id="departments" class="module-button">
+            <i class="fa-solid fa-building"></i> Departments
+        </button>
+
+        <div id="departmentsSubmodules" class="submodule-container">
+            {% for submodule, template in submodules.items() %}
+            <button class="submodule-button">
+                <a href="{{ url_for('render_submodule', submodule=submodule) }}"
+                    onclick="toggleSubmodules('{{ submodule | replace(' ', '_') }}Submodules', '{{ submodule }}', this)">
+                    {{ submodule }}
+                </a>
+                <i class="fa-solid fa-chevron-down dropdown-icon"
+                    onclick="toggleSubmodules('{{ submodule | replace(' ', '_') }}Submodules', '{{ submodule }}', this)"
+                    style="display: none;" data-submodule="{{ submodule }}"></i>
+            </button>
+
+            <div id="{{ submodule | replace(' ', '_') }}Submodules" class="submodule-container">
+                {% if dashboard_name %}
+                <button class="submodule-button bg">
+                    <i class="fa-solid fa-home" style="font-size: 9px; margin-left: 5px; padding-right: 5px;"></i>
+                    {{ dashboard_name }}
+                </button>
+                {% endif %}
+
+
+
+
+<!--
+                <div >
+             testing if db not working
+                <button class="submodule-button bg" onclick="loadTemplate('Set Point')">
+                       <i class="fa-solid fa-gear settings-icon"></i> Set Point
+                </button>
+                <button class="submodule-button bg" onclick="loadTemplate('Analog Input')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Analog Input
+                </button><button class="submodule-button bg" onclick="loadTemplate('Digital Input')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Digital Input
+                </button><button class="submodule-button bg" onclick="loadTemplate('Analog Output')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Analog Output
+                </button><button class="submodule-button bg" onclick="loadTemplate('Controllers')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Controllers
+                </button><button class="submodule-button bg" onclick="loadTemplate('Digital Output')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Digital Output
+                </button>
+                <button class="submodule-button bg" onclick="loadTemplate('Pump Min Set')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Pump Min Set
+                </button>
+                <button class="submodule-button bg" onclick="loadTemplate('Preset Values')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Preset Values
+                </button><button class="submodule-button bg" onclick="loadTemplate('Timer')">
+                        <i class="fa-solid fa-gear settings-icon"></i> Timer
+                </button>
+                <button class="submodule-button bg" onclick="loadTemplate('UPSS')">
+                        <i class="fa-solid fa-gear settings-icon"></i> UPSS
+                </button>
+            </div>
+                  testing as db not working -->
+
+
+
+
+
+
+                {% if session['role'] == 'Operator' %}
+                {% for submodule_option in session['allowed_submodules'] %}
+                <button class="submodule-button bg" onclick="loadTemplate('{{ submodule_option }}')">
+                    <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option }}
+                </button>
+                {% endfor %}
+                
+                {% elif session['role'] == 'Manager' %}
+                {% for submodule_option in session['allowed_submodules'] %}
+                <button class="submodule-button bg" onclick="loadTemplate('{{ submodule_option }}')">
+                    <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option }}
+                </button>
+                {% endfor %}
+
+                {% elif session['role'] %}
+                {% for submodule_option in session['allowed_submodules'] %}
+                <button class="submodule-button bg" onclick="loadTemplate('{{ submodule_option }}')">
+                    <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option }}
+                </button>
+                {% endfor %}
+
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+        <button id="alarms" class="module-button" onclick="window.location.href='/alarmslist';closeDropdown()">
+            <i class="fa-solid fa-triangle-exclamation"></i> Alarms
+        </button>
+        <div id="alarmsSubmodules" class="submodule-container"></div>
+
+
+        <button id="reports" class="module-button">
+            <i class="fa-solid fa-file"></i> Analytics
+        </button>
+        <div id="reportsSubmodules" class="submodule-container">
+            <button class="submodule-button" onclick="showIframe('trendsIframe');closeTemplate()">Trends</button>
+            <button class="submodule-button" onclick="showIframe('reportIframe');closeTemplate()">Reports</button>
+        </div>
+
+        {% if session['role'] == 'Tse' %}
+        <button id="inputs" class="module-button" onclick="window.location.href='/input';closeDropdown()">
+            <i class="fa-solid fa-file"></i> Input
+        </button>
+
+        <button id="usermanagement" class="module-buttons">
+            <i class="fa-solid fa-user-cog"></i> User Management
+        </button>
+        <div id="usermanagementSubmodules" class="submodule-container">
+            <!-- <button class="submodule-button">Add User</button> -->
+            <button class="submodule-button" onclick="window.location.href='/add_user'">
+                <i class="fa-solid fa-user-plus"></i> Add User
+            </button>
+
+            <!-- <button class="submodule-button">Edit & Delete</button> -->
+            <button class="submodule-button" onclick="window.location.href='/user_management'">
+                <i class="fa-solid fa-user-pen"></i> Update user
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    {% if session['role'] == 'Tse' %}
+    <div>
+        <iframe id="reportIframe" src="http://127.0.0.1:5001/admin" style="display: none;"></iframe>
+    </div>
+    {% else %}
+    <div>
+        <iframe id="reportIframe" src="http://127.0.0.1:5001/report" style="display: none;"></iframe>
+    </div>
+    {%endif %}
+
+    <div>
+        <iframe id="trendsIframe"
+            src="http://127.0.0.1:3000/dashboards"
+            style="display: none;"></iframe>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        <!-- Default content (if any) -->
+        {% endblock %}
+    </div>
+
+    <div id="main-content">
+        <!-- The content will be dynamically inserted here -->
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <script>
+         const userRole = "{{ session['role'] }}";
+    console.log("User role:", userRole);
+        function closeTemplate() {
+            // Remove the blur effect from the background
+            document.body.classList.remove('blur-active');
+
+            // Clear the template content
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = '';
+
+            // Clean up any socket listeners to prevent memory leaks
+            // This assumes you want to remove the 'update' listener when closing the template
+            if (socket && socket.off) {
+                socket.off('update');
+            }
+
+            // Notify the server that the template was closed (if needed)
+            fetch('/close_template', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .catch(error => console.error('Error notifying server about template closure:', error));
+
+            // Return to the main view or perform other necessary actions
+            // For example, you might want to show a different view or reset some state
+            console.log('Template closed successfully');
+        }
+
+        function loadTemplate(submoduleOption) {
+
+            socket.on('update', function (data) {
+                Object.keys(data).forEach((key) => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        if (element.classList.contains('value')) {
+                            element.innerText = data[key]; // Ensure real-time update for blue box values
+                        } else if (element.tagName === 'INPUT' && element.type === 'number') {
+                            if (document.activeElement !== element) {
+                                element.value = data[key]; // Update set-box inputs
+                            }
+                        } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+                            element.checked = data[key]; // Ensure real-time update for auto/manual switch
+                            const textElement = document.getElementById(element.id + '-text');
+                            if (textElement) {
+                                textElement.textContent = data[key] ? 'Manual' : 'Auto';
+                            }
+                        }
+                    }
+                });
+            });
+
+
+
+            fetch(`/load_template/${submoduleOption}`)
+                .then(response => response.text())
+                .then(data => {
+                    const mainContent = document.getElementById('main-content');
+                    mainContent.innerHTML = data;
+                    document.body.classList.add('blur-active'); // Add blur to the background
+                    bindDynamicEvents(); // Rebind events to dynamically loaded content
+                })
+                .catch(error => console.error('Error loading template:', error));
+        }
+
+
+
+        function bindDynamicEvents() {
+            const successButton = document.querySelector('.btn-success');
+            if (successButton) {
+                successButton.replaceWith(successButton.cloneNode(true));
+                document.querySelector('.btn-success').addEventListener('click', updateSettings);
+            }
+
+            if (dangerButton) {
+                dangerButton.removeEventListener('click', closeDialog);
+                dangerButton.addEventListener('click', closeDialog);
+            }
+
+            // Bind the mode toggle event (specific for spinning2_do)
+            const modeInputs = document.querySelectorAll('input[type="checkbox"]');
+            modeInputs.forEach(input => {
+                input.removeEventListener('change', updateModeText);
+                input.addEventListener('change', function () {
+                    updateModeText(this, this.id + '-text', this.dataset.nodeid);
+                });
+            });
+
+            // Bind input validation (for manual input fields)
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                input.removeEventListener('input', validateInput);
+                input.addEventListener('input', validateInput);
+            });
+        }
+
+        function updateSettings(event) {
+            event.preventDefault();  // Prevent any default form submission behavior
+
+            const setpoints = {};
+            let isValid = true; // Flag to check if all inputs are valid
+
+            document.querySelectorAll("input[data-nodeid]").forEach(input => {
+                const nodeid = input.getAttribute("data-nodeid");
+                const datatype = input.getAttribute("data-datatype");
+                let value = input.value;
+
+                // Find the row/column name for the parameter
+                const row = input.closest('.row-container'); // Find the closest row container
+                const parameter = row?.querySelector('.parameter')?.innerText || 'Unknown parameter';
+                const parameters = row?.querySelector('.parameters')?.innerText || 'Unknown parameters';
+
+                // Check if it's an "INTEGRAL TN" input and apply different validation
+                if (parameter.includes("Integration Time")) {
+                    // Validate input to be between 0 and 1000 for INTEGRAL TN inputs
+                    if (value < 0 || value > 1000) {
+                        showErrorMessage(`❌ Invalid input for ${parameter}! Please enter a value between 0 and 1000.`);
+                        isValid = false; // Set the flag to false when validation fails
+                        return;  // Exit function if input is invalid
+                    }
+                } else if (parameters.includes("M VALUE")) {
+                    // Validate input to be 0 or 1 for "M VALUE"
+                    if (value < 0 || value > 1) {
+                        showErrorMessage(`❌ Invalid input for ${parameters}! Please enter a value of 0 or 1.`);
+                        isValid = false; // Set the flag to false when validation fails
+                        return;  // Exit function if input is invalid
+                    }
+                } else {
+                    // Validate input to be between 0 and 100 for other inputs
+                    if (value < 0 || value > 100) {
+                        showErrorMessage(`❌ Invalid input for ${parameter}! Please enter a value between 0 and 100.`);
+                        isValid = false; // Set the flag to false when validation fails
+                        return;  // Exit function if input is invalid
+                    }
+                    console.log(isValid);
+                }
+
+                if (nodeid) {
+                    if (datatype === "boolean") {
+                        if (value !== "0" && value !== "1") {
+                            showErrorMessage(`❌ Invalid boolean input for ${parameter}! Please enter either 0 or 1.`);
+                            isValid = false; // Set the flag to false when validation fails
+                            return;
+                        }
+                        value = value === "1";
+                    } else {
+                        value = parseFloat(value);
+                    }
+                    setpoints[nodeid] = value;
+                }
+            });
+
+            // If validation fails, stop the rest of the function
+            if (!isValid) return;
+
+            // Continue with the fetch only if inputs are valid
+            fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(setpoints),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (!document.getElementById('update-popup')) {
+                            const popup = document.createElement('div');
+                            popup.id = 'update-popup';
+                            popup.innerText = '✅ Updated Successfully!';
+
+                            // Styled Popup
+                            popup.style.position = 'fixed';
+                            popup.style.top = '13%';
+                            popup.style.left = '55%';
+                            popup.style.transform = 'translate(-50%, -50%)';
+                            popup.style.background = '#005fa3';
+                            popup.style.color = 'white'; // White text
+                            popup.style.padding = '8px 28px';
+                            popup.style.borderRadius = '4px'; // Rounded corners
+                            popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'; // Subtle shadow
+                            popup.style.fontSize = '12px';
+                            popup.style.fontWeight = 'bold';
+                            popup.style.textAlign = 'center';
+                            popup.style.zIndex = '1000';
+                            popup.style.opacity = '0';
+                            popup.style.transition = 'opacity 0.5s ease-in-out';
+
+                            document.body.appendChild(popup);
+
+                            // Fade in effect
+                            setTimeout(() => {
+                                popup.style.opacity = '1';
+                            }, 10);
+
+                            // Fade out effect and remove
+                            setTimeout(() => {
+                                popup.style.opacity = '0';
+                                setTimeout(() => popup.remove(), 500);
+                            }, 2000);
+                        }
+                    } else {
+                        showErrorMessage(`❌ Failed to update settings: ${data.error}`);
+                    }
+                })
+                .catch(error => console.error('Error updating settings:', error));
+        }
+
+
+        function showErrorMessage(message) {
+            const errorPopup = document.createElement('div');
+            errorPopup.id = 'error-popup';
+            errorPopup.innerText = message;
+
+            // Styled error message
+            errorPopup.style.position = 'fixed';
+            errorPopup.style.top = '13%';
+            errorPopup.style.left = '55%';
+            errorPopup.style.transform = 'translate(-50%, -50%)';
+            errorPopup.style.background = '#ff4d4d'; // Red background for error
+            errorPopup.style.color = 'white';
+            errorPopup.style.padding = '8px 28px';
+            errorPopup.style.borderRadius = '4px';
+            errorPopup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            errorPopup.style.fontSize = '12px';
+            errorPopup.style.fontWeight = 'bold';
+            errorPopup.style.textAlign = 'center';
+            errorPopup.style.zIndex = '1000';
+            errorPopup.style.opacity = '0';
+            errorPopup.style.transition = 'opacity 0.5s ease-in-out';
+
+            document.body.appendChild(errorPopup);
+
+            // Fade in effect
+            setTimeout(() => {
+                errorPopup.style.opacity = '1';
+            }, 10);
+
+            // Fade out effect and remove after 3 seconds
+            setTimeout(() => {
+                errorPopup.style.opacity = '0';
+                setTimeout(() => errorPopup.remove(), 500);
+            }, 3000);
+        }
+
+
+        function closeDialog() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = ''; // Clear the content
+            document.body.classList.remove('blur-active'); // Remove blur from the background
+        }
+
+        function updateModeText(toggle, textId, nodeId) {
+            var isManual = toggle.checked; // If checked, it's Manual (true); else, Auto (false)
+            var text = isManual ? 'Manual' : 'Auto';
+            document.getElementById(textId).textContent = text;
+
+            // Prepare the data payload for the Flask server
+            var payload = {};
+            payload[nodeId] = isManual; // Set 'true' for Manual, 'false' for Auto
+
+            // Send the data to the server
+            fetch('/writes', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+                // .then(response => response.json())
+                // .then(data => {
+                //     if (data.success) {
+                //         console.log("Value updated successfully for:", nodeId);
+                //     } else {
+                //         console.error("Failed to update value:", data.error);
+                //         alert("Error updating OPC UA server: " + data.error);
+                //     }
+                // })
+                .catch(error => {
+                    console.error("Error in fetch:", error);
+                    alert("Network error: " + error.message);
+                });
+        }
+
+
+        function makeDraggable(element) {
+            let offsetX = 0, offsetY = 0, isDragging = false;
+
+            element.addEventListener('mousedown', function (e) {
+                isDragging = true;
+                offsetX = e.clientX - element.offsetLeft;
+                offsetY = e.clientY - element.offsetTop;
+                document.body.style.cursor = 'move';
+            });
+
+            document.addEventListener('mousemove', function (e) {
+                if (isDragging) {
+                    element.style.left = `${e.clientX - offsetX}px`;
+                    element.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', function () {
+                isDragging = false;
+                document.body.style.cursor = 'default';
+            });
+        }
+
+        // Initialize draggable functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainContent = document.getElementById('main-content');
+            makeDraggable(mainContent);
+        });
+
+
+        // let previousAlarms = [];
+
+        // function fetchAlarmCount() {
+        //     fetch("/alarms")
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const alarmCountElement = document.getElementById("alarm-count");
+        //             const alarmCount = data.length;
+
+        //             if (alarmCount > 0) {
+        //                 // Show the badge and update the count
+        //                 alarmCountElement.style.display = "inline-block";
+        //                 alarmCountElement.innerText = alarmCount;
+        //             } else {
+        //                 // Hide the badge
+        //                 alarmCountElement.style.display = "none";
+        //             }
+
+        //             // Check for new alarms and display simple popups
+        //             const newAlarms = data.filter(alarm => !previousAlarms.some(a => a.alarm === alarm.alarm));
+        //             if (newAlarms.length > 0) {
+        //                 // Show simple popup for each new alarm
+        //                 showSimplePopups(newAlarms);
+        //             }
+
+        //             previousAlarms = data;
+        //         });
+        // }
+
+        // function showAlarmslist() {
+        //     // Reset alarm count to 0 when modal is opened
+        //     document.getElementById("alarm-count").innerText = 0;
+
+        //     // Fetch alarms and update the modal body
+        //     fetch("/alarms")
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             let alarmMessage = "";
+
+        //             if (data.length === 0) {
+        //                 alarmMessage = "<p>No alarm notifications yet.</p>";
+        //             } else {
+        //                 // Loop through data and format each alarm with alternating styles
+        //                 alarmMessage = data.map((a, index) => {
+        //                     const className = (index % 2 === 0) ? 'even' : 'odd';
+        //                     return `
+        //                 <p class="${className}">
+        //                     <span class="alarm-time">${a.time}</span>
+        //                     ${a.message} (${a.name})
+        //                 </p>
+        //             `;
+        //                 }).join("");
+        //             }
+
+        //             // Update modal body with alarm messages
+        //             document.getElementById("alarm-modal-body").innerHTML = alarmMessage;
+
+        //             // Show the modal
+        //             document.getElementById("alarmModal").style.display = "flex";
+
+        //             // Add the modal-open class to the body
+        //             document.body.classList.add("modal-open");
+        //         });
+        // }
+
+        // function closeModal() {
+        //     // Hide the modal
+        //     document.getElementById("alarmModal").style.display = "none";
+
+        //     // Remove the modal-open class from the body
+        //     document.body.classList.remove("modal-open");
+
+        //     // Reset the alarm count and hide the badge when the modal is closed
+        //     const alarmCountElement = document.getElementById("alarm-count");
+        //     alarmCountElement.style.display = "none"; // Hide the badge
+        //     alarmCountElement.innerText = "0"; // Reset the count to 0
+        // }
+
+        // // Call the function periodically to check for new alarms
+        // setInterval(fetchAlarmCount, 5000);
+
+        // alarm Notification
+
+        // Fetch and update alarm count
+        let previousAlarmCount = 0; // Track the previous alarm count
+let alarmCountVisible = false; // Track if the alarm count is currently visible
+let alarmModalOpen = false;  // Track if modal is open
+let refreshInterval = null;  // To store the interval ID
+
+// Fetch alarm count (for red badge)
+function fetchAlarmCount() {
+    fetch("/alarms")
+    fetch("/notifyAlarms")
+        .then(response => response.json())
+        .then(data => {
+            const alarmCount = data.filter(a => a.status === "Not acknowledged").length;
+            const alarmCountElement = document.getElementById("alarm-count");
+
+            if (alarmCount > 0) {
+                alarmCountElement.style.display = "inline-block";
+                alarmCountElement.innerText = alarmCount;
+                alarmCountVisible = true;
+            } else {
+                alarmCountElement.style.display = "none";
+                alarmCountVisible = false;
+            }
+
+            previousAlarmCount = alarmCount;
+        })
+        .catch(error => {
+            console.error("Error fetching alarms:", error);
+        });
+}
+
+// Refresh every 1 second
+setInterval(fetchAlarmCount, 1000);
+
+// Show alarm list in modal
+function showAlarmslist() {
+    if (!alarmModalOpen) {
+        document.getElementById("alarm-modal-body").innerHTML = "<p>Loading alarms...</p>";
+        alarmModalOpen = true;
+    }
+    
+    fetch("/notifyAlarms")
+        .then(response => response.json())
+        .then(data => {
+            let alarmMessage = "";
+
+            if (data.length === 0) {
+                alarmMessage = "<p>No alarms yet.</p>";
+                startAutoRefresh();
+            } else {
+                alarmMessage = data.slice(0, 10).map((a, index) => {
+                    const className = (index % 2 === 0) ? 'even' : 'odd';
+                    return `
+                        <p class="${className}">
+                            <span class="alarm-time">${a.time}</span>
+                            ${a.message}        
+                            ${a.status}
+                        </p>`;
+                }).join("");
+                startAutoRefresh(); // Keep refreshing while modal is open
+            }
+
+            document.getElementById("alarm-modal-body").innerHTML = alarmMessage;
+            document.getElementById("alarmModal").style.display = "flex";
+            document.body.classList.add("modal-open");
+        })
+        .catch(error => {
+            document.getElementById("alarm-modal-body").innerHTML = "<p>Error loading alarms.</p>";
+            console.error("Error fetching alarms:", error);
+        });
+}
+
+// Auto-refresh while modal is open
+function startAutoRefresh() {
+    if (!refreshInterval) {
+        refreshInterval = setInterval(() => {
+            if (alarmModalOpen) {
+                showAlarmslist();
+            }
+        }, 1000); // 1 second refresh rate
+    }
+}
+
+// Stop refresh
+function stopAutoRefresh() {
+    clearInterval(refreshInterval);
+    refreshInterval = null;
+}
+
+// Close modal
+function closeModal() {
+    document.getElementById("alarmModal").style.display = "none";
+    document.body.classList.remove("modal-open");
+    alarmModalOpen = false;
+    stopAutoRefresh();
+}
+
+        
+
+        var iframe = document.getElementById('reportIframe');
+        iframe.style.display = 'none';
+
+        var iframe = document.getElementById('trendsIframe');
+        iframe.style.display = 'none';
+
+        function showIframe(iframeId) {
+            // Hide all iframes
+            document.querySelectorAll('iframe').forEach(iframe => {
+                iframe.style.display = 'none';
+            });
+
+            // Show the selected iframe
+            document.getElementById(iframeId).style.display = 'block';
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {                  //changes
+            const moduleButtons = document.querySelectorAll(".module-button");
+            const submoduleButtons = document.querySelectorAll(".submodule-button");
+            const submoduleContainers = document.querySelectorAll(".submodule-container");
+            const sidebarOptions = document.querySelectorAll('.sidebar-option');
+
+            // Add event listener to module buttons
+            moduleButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    // Prevent the dropdown from closing when clicked
+                    event.stopPropagation();
+
+                    // Remove 'active' class from all module buttons
+                    moduleButtons.forEach(btn => btn.classList.remove("active"));
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add("active");
+
+                    // Toggle dropdown visibility
+                    const associatedDropdown = this.nextElementSibling;
+
+                    // Close other dropdowns except the current one
+                    submoduleContainers.forEach(container => {
+                        if (container !== associatedDropdown) {
+                            container.style.display = "none";
+                        }
+                    });
+
+                    // Toggle visibility of the current dropdown
+                    if (associatedDropdown) {
+                        associatedDropdown.style.display =
+                            associatedDropdown.style.display === "block" ? "none" : "block";
+                    }
+                });
+            });
+
+            // Add event listener to submodule buttons
+            submoduleButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    // Remove 'active' class from all submodule buttons
+                    submoduleButtons.forEach(btn => btn.classList.remove("active"));
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add("active");
+                });
+            });
+
+            // Prevent closing dropdown when clicking inside it
+            submoduleContainers.forEach(container => {
+                container.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Ensure clicks inside the container don't propagate
+                });
+            });
+
+            // Prevent closing dropdown when navigating to a new route
+            document.querySelectorAll("a").forEach(anchor => {
+                anchor.addEventListener("click", function () {
+                    const associatedDropdown = this.closest(".submodule-container");
+                    if (associatedDropdown) {
+                        associatedDropdown.style.display = "block"; // Keep the dropdown open
+                    }
+                });
+            });
+
+            // Handle sidebar option clicks with AJAX to load content
+            sidebarOptions.forEach(option => {
+                option.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const submoduleOption = this.getAttribute('data-submodule');
+
+                    // AJAX call to fetch and load the template
+                    fetch(`/load_template/${submoduleOption}`)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.text();
+                            } else {
+                                throw new Error("Failed to load template");
+                            }
+                        })
+                        .then(html => {
+                            const container = document.getElementById('main-content');
+                            container.innerHTML = html; // Replace the main content with the new template
+                        })
+                        .catch(error => {
+                            console.error("Error loading template:", error);
+                        });
+                });
+            });
+
+        });
+
+
+
+        function showTooltip() {
+            var tooltip = document.getElementById('profile-tooltip');
+            tooltip.style.display = 'block'; // Show tooltip
+        }
+
+        function hideTooltip() {
+            var tooltip = document.getElementById('profile-tooltip');
+            tooltip.style.display = 'none'; // Hide tooltip
+        }
+
+        function toggleDropdown() {
+            var dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+        }
+
+        $(document).ready(function () {
+            // Toggle dropdown for module buttons
+            $(".module-button").on("click", function (event) {
+                // Prevent the event from propagating to the document
+                event.stopPropagation();
+
+                // Get the associated submodule container
+                var associatedDropdown = $(this).next(".submodule-container");
+
+                // Close all other open dropdowns except the clicked one
+                $(".submodule-container").not(associatedDropdown).slideUp();
+
+                // Toggle the visibility of the associated dropdown
+                associatedDropdown.slideToggle();
+            });
+
+            // Prevent closing when clicking inside the submodule container
+            $(".submodule-container").on("click", function (event) {
+                event.stopPropagation();
+            });
+
+            // Close the dropdown when clicking outside of it
+            // $(document).on("click", function () {
+            //     $(".submodule-container").slideUp();
+            // });
+
+            // Check if the URL matches 127.0.0.1:7005 and hide all submodule containers
+            if (window.location.href === "http://127.0.0.1:7005/") {
+                $(".submodule-container").css("display", "none");
+            }
+
+            // Show tooltip on hover over the profile icon
+            $('.profile-icon').hover(
+                function () {
+                    $('#profile-tooltip').show();
+                },
+                function () {
+                    $('#profile-tooltip').hide();
+                }
+            );
+        });
+
+        function toggleSubmodules(submoduleId, submoduleName, iconElement) {                     //changes
+            const submodule = document.getElementById(submoduleId);
+            const isVisible = submodule.style.display === "block";
+            submoduleName = submoduleName;
+            // console.log(submoduleName);
+            // console.log(iconElement);
+            sessionStorage.setItem("submoduleSettingsId", submoduleId);
+            // Store ID, not the element
+            sessionStorage.setItem("isSettings", isVisible);
+            sessionStorage.setItem("submoduleName", isVisible);
+            sessionStorage.setItem("iconElement", iconElement);
+
+            // const oo = sessionStorage.getItem("iconElement");
+            // console.log(oo)
+
+            // Toggle visibility only when clicking on the icon
+            submodule.style.display = !isVisible ? "block" : "none";
+            const icons = document.getElementsByClassName('fa-solid fa-chevron-down dropdown-icon');
+
+
+
+            // Toggle the icon based on visibility
+            // iconElement.classList.toggle("fa-chevron-down", isVisible);
+            iconElement.classList.toggle("fa-chevron-up", !isVisible);
+
+        }
+
+
+
+        // Preserve dropdown state on page reload
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log(window.location.href);
+
+            settingsId = sessionStorage.getItem("submoduleSettingsId");
+            set = sessionStorage.getItem("isSettings");
+            
+            const settingsElement = document.getElementById(settingsId);
+        
+            // console.log("Settings Element:", settingsElement);
+            // console.log(sessionStorage.getItem('allowed_submodules'));
+            // console.log(set);
+            
+            if (set == "false") {
+                settingsElement.style.display = "block";
+            }
+            else if (set == "true") {
+                settingsElement.style.display = "none";
+            }
+
+
+            //changes
+            document.querySelectorAll(".dropdown-icon").forEach(icon => {
+                const submoduleId = icon.getAttribute("onclick").match(/'([^']+)'/)[1];
+                const submoduleContainer = document.getElementById(submoduleId);
+
+                if (sessionStorage.getItem(submoduleId) === "open") {
+                    submoduleContainer.style.display = "block";
+                    icon.classList.remove("fa-chevron-down");
+                    icon.classList.add("fa-chevron-up");
+                }
+            });
+
+        });
+
+
+        // Restore dropdown visibility from localStorage on page load
+        // window.onload = function () {
+        //     const submoduleContainers = document.querySelectorAll('.submodule-container');
+        //     submoduleContainers.forEach(container => {
+        //         const submoduleId = container.id;
+        //         const savedState = localStorage.getItem(submoduleId);
+        //         if (savedState) {
+        //             container.style.display = savedState;
+        //         }
+        //     });
+
+        //     // Update icons based on saved visibility states
+        //     const icons = document.querySelectorAll('.dropdown-icon');
+        //     icons.forEach(icon => {
+        //         const submoduleId = icon.parentElement.nextElementSibling.id;
+        //         const isVisible = localStorage.getItem(submoduleId) === "block";
+        //         icon.classList.toggle("fa-chevron-down", !isVisible);
+        //         icon.classList.toggle("fa-chevron-up", isVisible);
+        //     });
+        // };
+
+        // Load submodule states from localStorage on page load
+        // function loadSubmoduleStates() {
+        //     const submodules = document.querySelectorAll('.submodule-container');
+        //     submodules.forEach(submodule => {
+        //         const submoduleId = submodule.id;
+        //         const savedState = localStorage.getItem(submoduleId);
+        //         if (savedState) {
+        //             submodule.style.display = savedState;
+        //         }
+        //     });
+        // }
+
+        // Call the function to load states on page load
+        // loadSubmoduleStates();
+
+        // // Add event listeners for the modules
+        // document.getElementById("departments").addEventListener("click", function (event) {
+        //     event.preventDefault(); // Prevent page reload
+        //     const submoduleContainer = document.getElementById("departmentsSubmodules");
+
+        //     // Toggle visibility
+        //     const isVisible = submoduleContainer.style.display === "block";
+        //     submoduleContainer.style.display = isVisible ? "none" : "block";
+
+        //     // Store state in localStorage
+        //     localStorage.setItem("departmentsSubmodulesOpen", !isVisible);
+        // });
+
+        // // Restore state on page load
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const submoduleContainer = document.getElementById("departmentsSubmodules");
+        //     if (localStorage.getItem("departmentsSubmodulesOpen") === "true") {
+        //         submoduleContainer.style.display = "block";
+        //     }
+        // });
+
+        // Add event listeners for the modules
+        document.getElementById("departments").addEventListener("click", function (event) {          //changes
+            event.preventDefault(); // Prevent page reload
+            const submoduleContainer = document.getElementById("departmentsSubmodules");
+
+            // Toggle visibility
+            const isVisible = submoduleContainer.style.display === "block";
+            submoduleContainer.style.display = isVisible ? "none" : "block";
+
+            // Store state in sessionStorage
+            sessionStorage.setItem("departmentsSubmodulesOpen", !isVisible);
+        });
+
+        function closeDropdown(url) {
+
+            sessionStorage.setItem("departmentsSubmodulesOpen", false);
+            const submoduleContainer = document.getElementById("departmentsSubmodules");
+            if (sessionStorage.getItem("departmentsSubmodulesOpen") === "true") {
+                submoduleContainer.style.display = "block";
+            }
+        }
+
+
+        // Restore state on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const submoduleContainer = document.getElementById("departmentsSubmodules");
+            if (sessionStorage.getItem("departmentsSubmodulesOpen") === "true") {
+                submoduleContainer.style.display = "block";
+            }
+        });
+
+
+
+
+
+        document.getElementById("alarms").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent page reload
+            toggleSubmodules("alarmsSubmodules", this.querySelector(".dropdown-icon"));
+        });
+
+        document.getElementById("reports").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent page reload
+            toggleSubmodules("reportsSubmodules", this.querySelector(".dropdown-icon"));
+        });
+
+        document.getElementById("usermanagement").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent page reload
+            toggleSubmodules("usermanagementSubmodules", this.querySelector(".dropdown-icon"));
+        });
+
+        document.getElementById("spinning2").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent page reload
+            toggleSubmodules("spinning2Submodules", this.querySelector(".dropdown-icon"));
+        });
+
+        // Automatically hide submodules initially
+        document.querySelectorAll('.submodule-container').forEach(function (submodule) {
+            submodule.style.display = 'none';
+        });
+
+        // Run this on page load to retain the states
+        document.addEventListener('DOMContentLoaded', loadSubmoduleStates);
+
+    </script>
+
+    <!-- ================================================================= -->
+    <!-- ===   NEW: AUTOMATIC LOGOUT SCRIPT ADDED BELOW              === -->
+    <!-- ================================================================= -->
+    {% if session.userloggedin %}
+    <script>
+        (function() {
+            let inactivityTimer;
+            const inactivityTime = 2 * 60 * 1000; // 2 minutes in milliseconds
+
+            function logoutUser() {
+                // Redirect to the logout endpoint to clear the server session
+                window.location.href = "{{ url_for('logout') }}";
+            }
+
+            function resetTimer() {
+                // Clear the previous timer
+                clearTimeout(inactivityTimer);
+                // Start a new timer
+                inactivityTimer = setTimeout(logoutUser, inactivityTime);
+            }
+
+            // Events that count as user activity
+            const activityEvents = [
+                'mousemove', 'mousedown', 'keypress', 
+                'scroll', 'touchstart'
+            ];
+
+            // Add event listeners to reset the timer on any activity
+            activityEvents.forEach(function(eventName) {
+                document.addEventListener(eventName, resetTimer, true);
+            });
+
+            // Initialize the timer when the page loads
+            resetTimer();
+        })();
+    </script>
+    {% endif %}
+
+</body>
+
+</html>

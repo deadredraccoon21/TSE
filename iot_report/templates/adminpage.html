@@ -1,0 +1,269 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Account</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e3f4ff;
+            /* Light grey background */
+            font-family: sans-serif;
+            /* Set font to sans-serif */
+        }
+
+        .top-buttons-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .top-buttons-container button {
+			position: relative;
+            font-size: 16px;
+			top: 20px;
+			right: 115px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-buttons-container button:hover {
+            opacity: 0.8;
+        }
+
+        .add-user-button {
+            background-color: rgb(26, 26, 255);
+        }
+
+        .add-admin-button {
+            background-color: green;
+        }
+
+        .logout-button {
+            background-color: #f44336;
+        }
+
+        .report-button-left {
+            position: absolute;
+            top: 40px;
+            left: 135px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            /* Bootstrap primary blue */
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        .report-button-left:hover {
+            opacity: 0.8;
+        }
+
+        h1,
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        .checkbox-section {
+            background-color: #f3fbff;
+            /* Slightly darker grey for the checkbox section */
+            padding: 20px;
+            margin: 20px 10%;
+            border-radius: 8px;
+        }
+
+        .checkbox-section label {
+            font-size: large;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <a href="/report">
+        <button type="button" class="report-button-left"><b>Back to Report</b></button>
+    </a> -->
+
+    <div class="top-buttons-container">
+        <a href="{{ url_for('index') }}">
+            <button type="button" class="add-user-button"><b>Add User</b></button>
+        </a>
+        <a href="{{ url_for('addadmin') }}">
+            <button type="button" class="add-admin-button"><b>Add Admin</b></button>
+        </a>
+        <!-- <a href="{{ url_for('logout') }}">
+            <button type="submit" class="logout-button"><b>Logout</b></button>
+        </a> -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h1></h1>
+        </div>
+        <br>
+        <div class="row">
+            <h1 style="width: 100%; text-align: center;"><u>TSE Admin</u></h1>
+        </div>
+        <br>
+        <div class="row">
+            <h2></h2>
+        </div>
+    </div>
+
+    <div class="checkbox-section to-hide-print">
+        <label><b>Select Fields :</b></label><br>
+        <input type="checkbox" id="select_all" onclick="toggleAllOptions()">
+        <label for="select_all">All</label><br>
+        <input type="checkbox" class="field-checkbox" id="Set_RH" value="Set_RH">
+        <label for="Set_RH">Set_RH</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="Act_RH" value="Act_RH">
+        <label for="Act_RH">Act_RH</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="WTC_Output" value="WTC_Output">
+        <label for="WTC_Output">WTC_Output</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="WP_Status" value="WP_Status">
+        <label for="WP_Status">WP_Status</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="SAF_Speed" value="SAF_Speed">
+        <label for="SAF_Speed">SAF_Speed</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="RetAF_Speed" value="RetAF_Speed">
+        <label for="RetAF_Speed">RetAF_Speed</label><br>
+        <input type="checkbox" class="field-checkbox" id="Set_Temp" value="Set_Temp">
+        <label for="Set_Temp">Set_Temp</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="Act_temp" value="Act_temp">
+        <label for="Act_temp">Act_temp</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="Act_WoT" value="Act_WoT">
+        <label for="Act_WoT">Act_WoT</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="Set_WoT" value="Set_WoT">
+        <label for="Set_WoT">Set_WoT</label><br>
+
+        <input type="checkbox" class="field-checkbox" id="Damper_Output" value="Damper_Output">
+        <label for="Damper_Output">Damper_Output</label><br>
+    </div>
+
+
+    <div class="selected-columns" style="display: none;">
+        <h2>Selected Data Names:</h2>
+        <ul id="selected-columns-list"></ul>
+    </div>
+
+    <button onclick="submitSelectedColumns()" style="display: none;">Submit Selected Columns</button>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve selected columns from sessionStorage and mark checkboxes as checked
+            var selected_columns = localStorage.getItem('selected_columns');
+            if (selected_columns) {
+                selected_columns = JSON.parse(selected_columns); // Parse JSON string
+                selected_columns.forEach(function (column) {
+                    var checkbox = document.getElementById(column);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+
+            // Add event listener to field checkboxes
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateSelectedColumnsList);
+            });
+        });
+
+        function toggleAllOptions() {
+            var selectAllCheckbox = document.getElementById('select_all');
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+
+            if (selectAllCheckbox.checked) {
+                fieldCheckboxes.forEach(function (checkbox) {
+                    checkbox.checked = true;
+                });
+            } else {
+                fieldCheckboxes.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                });
+            }
+
+            // Store selected columns in sessionStorage
+            updateSelectedColumnsList();
+        }
+
+        function updateSelectedColumnsList() {
+            var selectedColumnsList = document.getElementById('selected-columns-list');
+            selectedColumnsList.innerHTML = ''; // Clear existing list items
+
+            var selected_columns = [];
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selected_columns.push(checkbox.value);
+                    var listItem = document.createElement('li');
+                    listItem.textContent = checkbox.value;
+                    selectedColumnsList.appendChild(listItem);
+                }
+            });
+
+            // Store selected columns in sessionStorage for access in index.html
+            localStorage.setItem('selected_columns', JSON.stringify(selected_columns));
+            console.log(localStorage.getItem('selected_columns'));
+        }
+
+        function submitSelectedColumns() {
+            // Submit form with selected columns data (implementation depends on your form setup)
+            var form = document.getElementById('admin-form'); // Replace with your form ID
+            if (form) {
+                form.submit();
+            } else {
+                console.error('Form not found');
+            }
+        }
+
+        function updateSelectedNamesDropdown() {
+            var selectedNamesDropdown = document.getElementById('selected-names-dropdown');
+            selectedNamesDropdown.innerHTML = ''; // Clear previous options
+
+            // Add the default "Selected data names list" option
+            var defaultOption = document.createElement('option');
+            defaultOption.text = 'Selected data names list';
+            selectedNamesDropdown.add(defaultOption);
+
+            var selected_columns = [];
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox:checked');
+            fieldCheckboxes.forEach(function (checkbox) {
+                selected_columns.push(checkbox.value);
+            });
+
+            // If columns are selected, update the dropdown options
+            if (selected_columns.length !== 0) {
+                selected_columns.forEach(function (column) {
+                    var option = document.createElement('option');
+                    option.text = column;
+                    selectedNamesDropdown.add(option);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
