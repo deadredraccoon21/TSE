@@ -1,0 +1,99 @@
+/* static/print.css */
+
+@page {
+    size: A4; /* Consider landscape for wide tables */
+    margin: 1cm; /* Adjust margins as needed for printing */
+}
+
+body {
+    -webkit-print-color-adjust: exact !important; /* Ensure colors print as seen (if desired) */
+    print-color-adjust: exact !important;
+}
+
+/* Hide elements not needed for print */
+.to-hide-print,
+.button-container {
+    display: none !important;
+}
+
+/* Adjust heading margins for print */
+h2 {
+    margin-bottom: -20px !important; /* Adjust as needed */
+    margin-top: 5px !important;
+}
+
+/* Ensure the main content wrapper expands for print */
+.border-wrapper {
+    border: none !important; /* Remove border for cleaner print */
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important; /* Ensure it takes full width */
+}
+
+/* Reset table scaling if applied for screen */
+div[style*="transform: scale"] {
+    transform: none !important; /* Remove any scaling */
+}
+
+
+#table-report {
+    width: 100% !important; /* Make table use full print width */
+    table-layout: fixed; /* Crucial: Fixes column widths */
+    font-size: 9pt; /* Smaller font for print to fit more content */
+}
+
+#table-report th,
+#table-report td {
+    padding: 4px 2px; /* Smaller padding for tighter fit */
+    white-space: nowrap; /* Prevent text wrapping in cells if possible */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    vertical-align: top; /* Align text to top */
+}
+
+#table-report th {
+    font-size: 10pt; /* Slightly larger header font */
+    font-weight: bold;
+}
+
+/* Column Widths - Adjust these percentages based on your data and number of columns */
+#table-report th:nth-child(1),
+#table-report td:nth-child(1) {
+    width: 5%; /* Serial No. */
+}
+
+#table-report th:nth-child(2),
+#table-report td:nth-child(2) {
+    width: 10%; /* Date */
+}
+
+#table-report th:nth-child(3),
+#table-report td:nth-child(3) {
+    width: 8%; /* Time */
+}
+
+/* Assign approximate equal width for remaining data columns */
+/* You'll need to count your *maximum* possible data columns and divide 77% (100 - 5 - 10 - 8) accordingly */
+/* For example, if you have 8 data columns, each would be roughly 77% / 8 = 9.625% */
+/* It's often easier to give a min-width and let them distribute, or target specific columns if needed. */
+
+/* Example for the remaining columns, assuming roughly 8-10 more columns for the image provided */
+/* The key is that the sum of all column widths should be 100% */
+#table-report th:nth-child(n+4), /* Applies to 4th column and beyond */
+#table-report td:nth-child(n+4) {
+    width: auto; /* Let remaining space distribute, or set a specific percentage */
+    /* If you have 'n' columns, and first 3 are 5%, 10%, 8%, then remaining (100 - 5 - 10 - 8)/ (n-3) */
+    /* For the image, there are about 8 data columns (Set_RH to Damper_Output) */
+    /* So, remaining width = 77%. 77% / 8 columns = 9.625% each */
+    width: 9.625%; /* This is an approximation for the image provided */
+}
+
+
+/* If you have too many columns to fit portrait, consider landscape */
+/* You might want to remove this if portrait works after width adjustments */
+/* @page { size: A4 landscape; } */
+
+/* Hide unwanted elements during print */
+.to-hide-print {
+    display: none;
+}

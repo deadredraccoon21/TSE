@@ -1,0 +1,21 @@
+# input.yaml
+
+# --- Database Connection Configuration ---
+# Stores the credentials for connecting to the SQL Server database.
+database:
+  server: "DESKTOP-SQ1S6QN"
+  name: "tse_data"
+  user: "tse"
+  password: "tse@123"
+  driver: "ODBC Driver 11 for SQL Server"
+
+# --- Application-Specific Configuration ---
+# Defines the departments and their corresponding table names for RH and Temperature data.
+app_config:
+  departments:
+    Spinning2:
+      rh_table: "Spg2_RH"
+      temp_table: "Spg2_T"
+    Autoconer:
+      rh_table: "Autoconer_RH"
+      temp_table: "Autoconer_T"

@@ -1,0 +1,292 @@
+# node_ids:
+#   Prep_1_iVa_Act_RH: "ns=6;s=::Prep_1:iVa_Act_RH"                      #Dashboard
+#   Prep_1_iVa_Act_Temp: "ns=6;s=::Prep_1:iVa_Act_Temp"
+#   Prep_2_iVa_Act_RH: "ns=6;s=::Prep_2:iVa_Act_RH"
+#   Prep_2_iVa_Act_Temp: "ns=6;s=::Prep_2:iVa_Act_Temp"
+#   Spg1_iVa_Act_RH: "ns=6;s=::Spg:iVa_Act_RH"
+#   Spg1_iVa_Act_Temp: "ns=6;s=::Spg:iVa_Act_Temp"
+#   Spg1_iVa_Act_RH: "ns=6;s=::Spg:iVa_Act_RH"
+#   Spg1_iVa_Act_Temp: "ns=6;s=::Spg:iVa_Act_Temp"
+#   Linkconer_iVa_Act_RH: "ns=6;s=::Linkconer:iVa_Act_RH"
+#   Linkconer_iVa_Act_Temp: "ns=6;s=::Linkconer:iVa_Act_Temp"
+
+node_ids:
+  # Preparatory 1_RH: "ns=6;s=::Prep_1:iVa_Act_RH"                      #Dashboard
+  # Preparatory 1_Temp: "ns=6;s=::Prep_1:iVa_Act_Temp"
+  # Preparatory 2_RH: "ns=6;s=::Prep_2:iVa_Act_RH"
+  # Preparatory 2_Temp: "ns=6;s=::Prep_2:iVa_Act_Temp" s
+  Spinning 1_RH: "ns=6;s=::Spg:iVa_Act_RH"
+  Spinning 1_Temp: "ns=6;s=::Spg:iVa_Act_Temp"
+  Autoconer_RH: "ns=6;s=::Autoconer:iVa_Act_RH"
+  Autoconer_Temp: "ns=6;s=::Autoconer:iVa_Act_Temp"
+  #Spinning 2_RH: "ns=6;s=::Spg2:iVa_Act_RH"
+  #Spinning 2_Temp: "ns=6;s=::Spg2:iVa_Act_Temp"
+  # Linkconer_RH: "ns=6;s=::Linkconer:iVa_Act_RH"
+  # Linkconer_Temp: "ns=6;s=::Linkconer:iVa_Act_Temp"
+
+  Spg1_iVa_Act_RH: "ns=6;s=::Spg:iVa_Act_RH" #Setpoint
+  Spg1_iVa_Act_Temp: "ns=6;s=::Spg:iVa_Act_Temp"
+  Spg1_iMi_Set_RH: "ns=6;s=::Spg:iMi_Set_RH"
+  Spg1_iMi_Set_Temp: "ns=6;s=::Spg:iMi_Set_Temp"
+
+  DI_Spg1_iFl_RDF1_ON: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter1_ON" #Digital input
+  DI_Spg1_iFl_RDF2_ON: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter2_ON"
+  DI_Spg1_iFl_DCF1_ON: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan1_ON"
+  DI_Spg1_iFl_DCF2_ON: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan2_ON"
+  DI_Spg1_iFl_ScrewCompactor1_ON: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor1_ON"
+  DI_Spg1_iFl_ScrewCompactor2_ON: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor2_ON"
+  DI_Spg1_iFl_RetAFan1_ON: "ns=6;s=::DI_Spg1:iFl_RetAFan1_ON"
+  DI_Spg1_iFl_RetAFan2_ON: "ns=6;s=::DI_Spg1:iFl_RetAFan2_ON"
+  DI_Spg1_iFl_SAFan1_ON: "ns=6;s=::DI_Spg1:iFl_SAFan1_ON"
+  DI_Spg1_iFl_SAFan2_ON: "ns=6;s=::DI_Spg1:iFl_SAFan2_ON"
+  DI_Spg1_iFl_RetAFan3_ON: "ns=6;s=::DI_Spg1:iFl_RetAFan3_ON"
+  DI_Spg1_iFl_RetAFan4_ON: "ns=6;s=::DI_Spg1:iFl_RetAFan4_ON"
+  DI_Spg1_iFl_SAFan3_ON: "ns=6;s=::DI_Spg1:iFl_SAFan3_ON"
+  DI_Spg1_iFl_SAFan4_ON: "ns=6;s=::DI_Spg1:iFl_SAFan4_ON"
+  DI_Spg1_iFl_WasherPump1_ON: "ns=6;s=::DI_Spg1:iFl_WasherPump1_ON"
+  DI_Spg1_iFl_WasherPump2_ON: "ns=6;s=::DI_Spg1:iFl_WasherPump2_ON"
+
+  Spg1_DO_Pump_Act: "ns=6;s=::Spg:DO_Pump_Act" #Digital output
+  Spg1_DO_Pump_Act2: "ns=6;s=::Spg:DO_Pump_Act2"
+  Spg1_iMi_DO_Man: "ns=6;s=::Spg:iMi_DO_Man"
+  Spg1_iMi_DO_Man2: "ns=6;s=::Spg:iMi_DO_Man2"
+  Spg1_iFl_Start_DO_B: "ns=6;s=::Spg:iFl_Start_DO_B" #manual auto
+  Spg1_iFl_Start_DO_B2: "ns=6;s=::Spg:iFl_Start_DO_B2"
+    #Analog input
+  Spg1_iMi_Set_RH_Man_Ref: "ns=6;s=::Spg:iMi_Set_RH_Man_Ref"
+  Spg1_iMi_Set_Temp_Man_Ref: "ns=6;s=::Spg:iMi_Set_Temp_Man_Ref"
+  Spg1_iMi_Set_WoT_Man_Ref: "ns=6;s=::Spg:iMi_Set_WoT_Man_Ref"
+  Spg1_iMi_Set_DPG_Man_REF: "ns=6;s=::Spg:iMi_Set_DPG_Man_REF"
+  Spg1_iFl_Set_Humidity_Man_B: "ns=6;s=::Spg:iFl_Set_Humidity_Man_B" #manual auto
+  Spg1_iMi_Set_Temp_Man_B: "ns=6;s=::Spg:iMi_Set_Temp_Man_B"
+  Spg1_iMi_Set_WoT_Man_B: "ns=6;s=::Spg:iMi_Set_WoT_Man_B"
+  Spg1_iFl_Set_DPG_RDF_Man_B: "ns=6;s=::Spg:iFl_Set_DPG_RDF_Man_B"
+
+  Spg1_iVa_WTC_Output: "ns=6;s=::Spg:iVa_WTC_Output" #Analog output
+  Spg1_iVa_Damper_Output: "ns=6;s=::Spg:iVa_Damper_Output"
+  Spg1_iVa_Min_Humd_Output1: "ns=6;s=::Spg:iVa_Min_Humd_Output"
+  Spg1_iVa_Min_Damper_Output: "ns=6;s=::Spg:iVa_Min_Damper_Output"
+  Spg1_iVa_Max_Humid_Output1: "ns=6;s=::Spg:iVa_Max_Humid_Output"
+  Spg1_iVa_Max_Damper_Output: "ns=6;s=::Spg:iVa_Max_Damper_Output"
+  Spg1_iVa_Humid_Output_Man_Ref: "ns=6;s=::Spg:iVa_Humid_Output_Man_Ref"
+  Spg1_iVa_Humid_Output_Man_Ref2: "ns=6;s=::Spg:iVa_Humid_Output_Man_Ref2"
+  Spg1_iVa_Damper_Output_Man_Ref: "ns=6;s=::Spg:iVa_Damper_Output_Man_Ref"
+  Spg1_iFl_Humid_Output_Man_B: "ns=6;s=::Spg:iFl_Humid_Output_Man_B" #manual auto
+  Spg1_iFl_Humid_Output_Man_B2: "ns=6;s=::Spg:iFl_Humid_Output_Man_B2"
+  Spg1_iFl_Damper_Output_Man_B: "ns=6;s=::Spg:iFl_Damper_Output_Man_B"
+
+  Spg1_iVa_Pump_Start_REF: "ns=6;s=::Spg:iVa_Pump_Start_REF" #Preset values
+  Spg1_iVa_Pump_Stop_REF: "ns=6;s=::Spg:iVa_Pump_Stop_REF"
+
+  Spg1_iTime_Start_Pump: "ns=6;s=::Spg:iTime_Start_Pump" #Timers
+  Spg1_iTime_Stop_Pump:
+    "ns=6;s=::Spg:iTime_Stop_Pump"
+    #Controllers
+  Spg1_iVa_Set_Temp_WoT: "ns=6;s=::Spg:iVa_Set_Temp_WoT"
+  Spg1_Humidity_Pid_Para_Gain: "ns=6;s=::Spg:Humidity_Pid_Para.Gain"
+  Spg1_Temp_Pid_Para_Gain: "ns=6;s=::Spg:Temp_Pid_Para.Gain"
+  Spg1_Damper_Pid_Para_Gain: "ns=6;s=::Spg:Damper_Pid_Para.Gain"
+  Spg1_Humidity_Pid_Para_IntegrationTime: "ns=6;s=::Spg:Humidity_Pid_Para.IntegrationTime"
+  Spg1_Temp_Pid_Para_IntegrationTime: "ns=6;s=::Spg:Temp_Pid_Para.IntegrationTime"
+  Spg1_Damper_Pid_Para_IntegrationTime: "ns=6;s=::Spg:Damper_Pid_Para.IntegrationTime"
+  Spg1_iVa_Humid_Pid_Out: "ns=6;s=::Spg:iVa_Humid_Pid_Out"
+  Spg1_iVa_Temp_Pid_Output: "ns=6;s=::Spg:iVa_Temp_Pid_Output"
+  Spg1_iVa_Damper_Pid_Output:
+    "ns=6;s=::Spg:iVa_Damper_Pid_Output"
+    #UPSS
+  Spg1_iVa_Min_SAF_UPSS: "ns=6;s=::Spg:iVa_Min_SAF_UPSS"
+  Spg1_UPSS_Pid_Para_Gain: "ns=6;s=::Spg:UPSS_Pid_Para.Gain"
+  Spg1_iVa_Max_SAF_UPSS: "ns=6;s=::Spg:iVa_Max_SAF_UPSS"
+  Spg1_UPSS_Pid_Para_IntegrationTime: "ns=6;s=::Spg:UPSS_Pid_Para.IntegrationTime"
+  Spg1_iVa_Pid_Output_UPSS: "ns=6;s=::Spg:iVa_Pid_Output_UPSS"
+  Spg1_iVa_Min_RAF_UPSS: "ns=6;s=::Spg:iVa_Min_RAF_UPSS"
+  Spg1_iVa_Max_RAF_UPSS: "ns=6;s=::Spg:iVa_Max_RAF_UPSS"
+
+  Spg1_iVa_Min_Pump_Output: "ns=6;s=::Spg:iVa_Min_Pump_Output" #Pump Setting UPSS
+
+  DI_Spg1_iFl_RetAFan1_OFF: "ns=6;s=::DI_Spg1:iFl_RetAFan1_OFF" #Spinning 2
+  DI_Spg1_iFl_RetAFan1_TRIP: "ns=6;s=::DI_Spg1:iFl_RetAFan1_Trip"
+
+  DI_Spg1_iFl_RetAFan2_OFF: "ns=6;s=::DI_Spg1:iFl_RetAFan2_OFF"
+  DI_Spg1_iFl_RetAFan2_TRIP: "ns=6;s=::DI_Spg1:iFl_RetAFan2_Trip"
+
+  DI_Spg1_iFl_RetAFan3_OFF: "ns=6;s=::DI_Spg1:iFl_RetAFan3_OFF" #Spinning 2
+  DI_Spg1_iFl_RetAFan3_TRIP: "ns=6;s=::DI_Spg1:iFl_RetAFan3_Trip"
+
+  DI_Spg1_iFl_RetAFan4_OFF: "ns=6;s=::DI_Spg1:iFl_RetAFan4_OFF" #Spinning 2
+  DI_Spg1_iFl_RetAFan4_TRIP: "ns=6;s=::DI_Spg1:iFl_RetAFan4_Trip"
+
+  DI_Spg1_iFl_SAFan1_OFF: "ns=6;s=::DI_Spg1:iFl_SAFan1_OFF"
+  DI_Spg1_iFl_SAFan1_TRIP: "ns=6;s=::DI_Spg1:iFl_SAFan1_Trip"
+
+  DI_Spg1_iFl_SAFan2_OFF: "ns=6;s=::DI_Spg1:iFl_SAFan2_OFF"
+  DI_Spg1_iFl_SAFan2_TRIP: "ns=6;s=::DI_Spg1:iFl_SAFan2_Trip"
+
+  DI_Spg1_iFl_SAFan3_OFF: "ns=6;s=::DI_Spg1:iFl_SAFan3_OFF"
+  DI_Spg1_iFl_SAFan3_TRIP: "ns=6;s=::DI_Spg1:iFl_SAFan3_Trip"
+
+  DI_Spg1_iFl_SAFan4_OFF: "ns=6;s=::DI_Spg1:iFl_SAFan4_OFF"
+  DI_Spg1_iFl_SAFan4_TRIP: "ns=6;s=::DI_Spg1:iFl_SAFan4_Trip"
+
+  DI_Spg1_iFl_RDF1_OFF: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter1_OFF"
+  DI_Spg1_iFl_RDF1_TRIP: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter1_Trip"
+  DI_Spg1_iFl_RDF2_OFF: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter2_OFF"
+  DI_Spg1_iFl_RDF2_TRIP: "ns=6;s=::DI_Spg1:iFl_RotaryDrumFilter2_Trip"
+
+  DI_Spg1_iFl_DCF1_OFF: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan1_OFF"
+  DI_Spg1_iFl_DCF2_OFF: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan2_OFF"
+  DI_Spg1_iFl_DCF1_TRIP: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan1_Trip"
+
+  DI_Spg1_iFl_DCF2_TRIP: "ns=6;s=::DI_Spg1:iFl_DustCollectorFan2_Trip"
+
+  DI_Spg1_iFl_ScrewCompactor1_OFF: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor1_OFF"
+  DI_Spg1_iFl_ScrewCompactor1_TRIP: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor1_Trip"
+  DI_Spg1_iFl_ScrewCompactor2_OFF: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor2_OFF"
+  DI_Spg1_iFl_ScrewCompactor2_TRIP: "ns=6;s=::DI_Spg1:iFl_ScrewCompactor2_Trip"
+
+  DI_Spg1_iFl_WasherPump1_OFF: "ns=6;s=::DI_Spg1:iFl_WasherPump1_OFF"
+  DI_Spg1_iFl_WasherPump1_TRIP: "ns=6;s=::DI_Spg1:iFl_WasherPump1_Trip"
+
+  DI_Spg1_iFl_WasherPump2_OFF: "ns=6;s=::DI_Spg1:iFl_WasherPump2_OFF"
+  DI_Spg1_iFl_WasherPump2_TRIP: "ns=6;s=::DI_Spg1:iFl_WasherPump2_Trip"
+
+  Spg1_iVa_DPG_RDF: "ns=6;s=::Spg:iVa_DPG_RDF" #Diagram
+  Spg1_iVa_UPSS_Output_RAF: "ns=6;s=::Spg:iVa_UPSS_Output_RAF"
+  Spg1_iVa_WTC_Output1: "ns=6;s=::Spg:iVa_WTC_Output1"
+  Spg1_iVa_WTC_Output2: "ns=6;s=::Spg:iVa_WTC_Output2"
+  Spg1_iVa_Act_WoT: "ns=6;s=::Spg:iVa_Act_WoT"
+  Spg1_iVa_UPSS_Output_SAF: "ns=6;s=::Spg:iVa_UPSS_Output_SAF"
+  Spg1_iVa_Ret_Damper_Output: "ns=6;s=::Spg:iVa_Ret_Damper_Output"
+
+  Autoconer_iVa_DPG_RDF: "ns=6;s=::Autoconer:iVa_DPG_RDF" #Diagram
+  Autoconer_iVa_UPSS_Output_RAF: "ns=6;s=::Autoconer:iVa_UPSS_Output_RAF"
+  Autoconer_iVa_WTC_Output: "ns=6;s=::Autoconer:iVa_WTC_Output"
+  Autoconer_iVa_Act_WoT: "ns=6;s=::Autoconer:iVa_Act_WoT"
+  Autoconer_iVa_UPSS_Output_SAF: "ns=6;s=::Autoconer:iVa_UPSS_Output_SAF"
+  Autoconer_iVa_Ret_Damper_Output: "ns=6;s=::Autoconer:iVa_Ret_Damper_Output"
+
+  Autoconer_iVa_Act_RH: "ns=6;s=::Autoconer:iVa_Act_RH" #Setpoint
+  Autoconer_iVa_Act_Temp: "ns=6;s=::Autoconer:iVa_Act_Temp"
+  Autoconer_iMi_Set_RH: "ns=6;s=::Autoconer:iMi_Set_RH"
+  Autoconer_iMi_Set_Temp: "ns=6;s=::Autoconer:iMi_Set_Temp"
+
+  DI_Autocon_iFl_RDF1_ON: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter1_ON" #Digital input
+  DI_Autocon_iFl_RDF2_ON: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter2_ON"
+  DI_Autocon_iFl_DCF1_ON: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan1_ON"
+  DI_Autocon_iFl_DCF2_ON: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan2_ON"
+  DI_Autocon_iFl_ScrewCompactor1_ON: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor1_ON"
+  DI_Autocon_iFl_ScrewCompactor2_ON: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor2_ON"
+  DI_Autocon_iFl_RetAFan1_ON: "ns=6;s=::DI_Autocon:iFl_RetAFan1_ON"
+  DI_Autocon_iFl_RetAFan2_ON: "ns=6;s=::DI_Autocon:iFl_RetAFan2_ON"
+  DI_Autocon_iFl_SAFan1_ON: "ns=6;s=::DI_Autocon:iFl_SAFan1_ON"
+  DI_Autocon_iFl_SAFan2_ON: "ns=6;s=::DI_Autocon:iFl_SAFan2_ON"
+  DI_Autocon_iFl_RetAFan3_ON: "ns=6;s=::DI_Autocon:iFl_RetAFan3_ON"
+  DI_Autocon_iFl_RetAFan4_ON: "ns=6;s=::DI_Autocon:iFl_RetAFan4_ON"
+  DI_Autocon_iFl_SAFan3_ON: "ns=6;s=::DI_Autocon:iFl_SAFan3_ON"
+  DI_Autocon_iFl_SAFan4_ON: "ns=6;s=::DI_Autocon:iFl_SAFan4_ON"
+  DI_Autocon_iFl_WasherPump1_ON: "ns=6;s=::DI_Autocon:iFl_WasherPump1_ON"
+  DI_Autocon_iFl_WasherPump2_ON: "ns=6;s=::DI_Autocon:iFl_WasherPump2_ON"
+
+  Autoconer_DO_Pump_Act: "ns=6;s=::Autoconer:DO_Pump_Act" #Digital output
+  Autoconer_DO_Pump_Act2: "ns=6;s=::Autoconer:DO_Pump_Act2"
+  Autoconer_iMi_DO_Man: "ns=6;s=::Autoconer:iMi_DO_Man"
+  Autoconer_iMi_DO_Man2: "ns=6;s=::Autoconer:iMi_DO_Man2"
+  Autoconer_iFl_Start_DO_B: "ns=6;s=::Autoconer:iFl_Start_DO_B" #manual auto
+  Autoconer_iFl_Start_DO_B2:
+    "ns=6;s=::Autoconer:iFl_Start_DO_B2"
+    #Analog input
+  Autoconer_iMi_Set_RH_Man_Ref: "ns=6;s=::Autoconer:iMi_Set_RH_Man_Ref"
+  Autoconer_iMi_Set_Temp_Man_Ref: "ns=6;s=::Autoconer:iMi_Set_Temp_Man_Ref"
+  Autoconer_iMi_Set_WoT_Man_Ref: "ns=6;s=::Autoconer:iMi_Set_WoT_Man_Ref"
+  Autoconer_iMi_Set_DPG_Man_REF: "ns=6;s=::Autoconer:iMi_Set_DPG_Man_REF"
+  Autoconer_iFl_Set_Humidity_Man_B: "ns=6;s=::Autoconer:iFl_Set_Humidity_Man_B" #manual auto
+  Autoconer_iMi_Set_Temp_Man_B: "ns=6;s=::Autoconer:iMi_Set_Temp_Man_B"
+  Autoconer_iMi_Set_WoT_Man_B: "ns=6;s=::Autoconer:iMi_Set_WoT_Man_B"
+  Autoconer_iFl_Set_DPG_RDF_Man_B:
+    "ns=6;s=::Autoconer:iFl_Set_DPG_RDF_Man_B"
+    #Analog output
+  Autoconer_iVa_WTC_Output2: "ns=6;s=::Autoconer:iVa_WTC_Output2"
+  Autoconer_iVa_Damper_Output: "ns=6;s=::Autoconer:iVa_Damper_Output"
+  Autoconer_iVa_Min_Humd_Output1: "ns=6;s=::Autoconer:iVa_Min_Humd_Output"
+  Autoconer_iVa_Min_Damper_Output: "ns=6;s=::Autoconer:iVa_Min_Damper_Output"
+  Autoconer_iVa_Max_Humid_Output1: "ns=6;s=::Autoconer:iVa_Max_Humid_Output"
+  Autoconer_iVa_Max_Damper_Output: "ns=6;s=::Autoconer:iVa_Max_Damper_Output"
+  Autoconer_iVa_Humid_Output_Man_Ref: "ns=6;s=::Autoconer:iVa_Humid_Output_Man_Ref"
+  Autoconer_iVa_Humid_Output_Man_Ref2: "ns=6;s=::Autoconer:iVa_Humid_Output_Man_Ref2"
+  Autoconer_iVa_Damper_Output_Man_Ref: "ns=6;s=::Autoconer:iVa_Damper_Output_Man_Ref"
+  Autoconer_iFl_Humid_Output_Man_B: "ns=6;s=::Autoconer:iFl_Humid_Output_Man_B" #manual auto
+  Autoconer_iFl_Humid_Output_Man_B2: "ns=6;s=::Autoconer:iFl_Humid_Output_Man_B2"
+  Autoconer_iFl_Damper_Output_Man_B: "ns=6;s=::Autoconer:iFl_Damper_Output_Man_B"
+
+  Autoconer_iVa_Pump_Start_REF: "ns=6;s=::Autoconer:iVa_Pump_Start_REF" #Preset values
+  Autoconer_iVa_Pump_Stop_REF: "ns=6;s=::Autoconer:iVa_Pump_Stop_REF"
+
+  Autoconer_iTime_Start_Pump: "ns=6;s=::Autoconer:iTime_Start_Pump" #Timers
+  Autoconer_iTime_Stop_Pump:
+    "ns=6;s=::Autoconer:iTime_Stop_Pump"
+    #Controllers
+  Autoconer_iVa_Set_Temp_WoT: "ns=6;s=::Autoconer:iVa_Set_Temp_WoT"
+  Autoconer_Humidity_Pid_Para_Gain: "ns=6;s=::Autoconer:Humidity_Pid_Para.Gain"
+  Autoconer_Temp_Pid_Para_Gain: "ns=6;s=::Autoconer:Temp_Pid_Para.Gain"
+  Autoconer_Damper_Pid_Para_Gain: "ns=6;s=::Autoconer:Damper_Pid_Para.Gain"
+  Autoconer_Humidity_Pid_Para_IntegrationTime: "ns=6;s=::Autoconer:Humidity_Pid_Para.IntegrationTime"
+  Autoconer_Temp_Pid_Para_IntegrationTime: "ns=6;s=::Autoconer:Temp_Pid_Para.IntegrationTime"
+  Autoconer_Damper_Pid_Para_IntegrationTime: "ns=6;s=::Autoconer:Damper_Pid_Para.IntegrationTime"
+  Autoconer_iVa_Humid_Pid_Out: "ns=6;s=::Autoconer:iVa_Humid_Pid_Out"
+  Autoconer_iVa_Temp_Pid_Output: "ns=6;s=::Autoconer:iVa_Temp_Pid_Output"
+  Autoconer_iVa_Damper_Pid_Output:
+    "ns=6;s=::Autoconer:iVa_Damper_Pid_Output"
+    #UPSS
+  Autoconer_iVa_Min_SAF_UPSS: "ns=6;s=::Autoconer:iVa_Min_SAF_UPSS"
+  Autoconer_UPSS_Pid_Para_Gain: "ns=6;s=::Autoconer:UPSS_Pid_Para.Gain"
+  Autoconer_iVa_Max_SAF_UPSS: "ns=6;s=::Autoconer:iVa_Max_SAF_UPSS"
+  Autoconer_UPSS_Pid_Para_IntegrationTime: "ns=6;s=::Autoconer:UPSS_Pid_Para.IntegrationTime"
+  Autoconer_iVa_Pid_Output_UPSS: "ns=6;s=::Autoconer:iVa_Pid_Output_UPSS"
+  Autoconer_iVa_Min_RAF_UPSS: "ns=6;s=::Autoconer:iVa_Min_RAF_UPSS"
+  Autoconer_iVa_Max_RAF_UPSS: "ns=6;s=::Autoconer:iVa_Max_RAF_UPSS"
+
+  Autoconer_iVa_Min_Pump_Output: "ns=6;s=::Autoconer:iVa_Min_Pump_Output" #Pump Setting UPSS
+
+  DI_Autocon_iFl_RetAFan1_OFF: "ns=6;s=::DI_Autocon:iFl_RetAFan1_OFF" #Spinning 2
+  DI_Autocon_iFl_RetAFan1_TRIP: "ns=6;s=::DI_Autocon:iFl_RetAFan1_Trip"
+
+  DI_Autocon_iFl_RetAFan2_OFF: "ns=6;s=::DI_Autocon:iFl_RetAFan2_OFF"
+  DI_Autocon_iFl_RetAFan2_TRIP: "ns=6;s=::DI_Autocon:iFl_RetAFan2_Trip"
+
+  DI_Autocon_iFl_RetAFan3_OFF: "ns=6;s=::DI_Autocon:iFl_RetAFan3_OFF"
+  DI_Autocon_iFl_RetAFan3_TRIP: "ns=6;s=::DI_Autocon:iFl_RetAFan3_Trip"
+
+  DI_Autocon_iFl_RetAFan4_OFF: "ns=6;s=::DI_Autocon:iFl_RetAFan4_OFF"
+  DI_Autocon_iFl_RetAFan4_TRIP: "ns=6;s=::DI_Autocon:iFl_RetAFan4_Trip"
+
+  DI_Autocon_iFl_SAFan1_OFF: "ns=6;s=::DI_Autocon:iFl_SAFan1_OFF"
+  DI_Autocon_iFl_SAFan1_TRIP: "ns=6;s=::DI_Autocon:iFl_SAFan1_Trip"
+
+  DI_Autocon_iFl_SAFan2_OFF: "ns=6;s=::DI_Autocon:iFl_SAFan2_OFF"
+  DI_Autocon_iFl_SAFan2_TRIP: "ns=6;s=::DI_Autocon:iFl_SAFan2_Trip"
+
+  DI_Autocon_iFl_SAFan3_OFF: "ns=6;s=::DI_Autocon:iFl_SAFan3_OFF"
+  DI_Autocon_iFl_SAFan3_TRIP: "ns=6;s=::DI_Autocon:iFl_SAFan3_Trip"
+
+  DI_Autocon_iFl_SAFan4_OFF: "ns=6;s=::DI_Autocon:iFl_SAFan4_OFF"
+  DI_Autocon_iFl_SAFan4_TRIP: "ns=6;s=::DI_Autocon:iFl_SAFan4_Trip"
+
+  DI_Autocon_iFl_RDF1_OFF: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter1_OFF"
+  DI_Autocon_iFl_RDF1_TRIP: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter1_Trip"
+  DI_Autocon_iFl_RDF1_OFF: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter1_OFF"
+  DI_Autocon_iFl_RDF2_TRIP: "ns=6;s=::DI_Autocon:iFl_RotaryDrumFilter2_Trip"
+
+  DI_Autocon_iFl_DCF1_OFF: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan1_OFF"
+  DI_Autocon_iFl_DCF1_TRIP: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan1_Trip"
+  DI_Autocon_iFl_DCF2_OFF: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan2_OFF"
+  DI_Autocon_iFl_DCF2_TRIP: "ns=6;s=::DI_Autocon:iFl_DustCollectorFan2_Trip"
+
+  DI_Autocon_iFl_ScrewCompactor1_OFF: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor1_OFF"
+  DI_Autocon_iFl_ScrewCompactor1_TRIP: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor1_Trip"
+  DI_Autocon_iFl_ScrewCompactor2_OFF: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor2_OFF"
+  DI_Autocon_iFl_ScrewCompactor2_TRIP: "ns=6;s=::DI_Autocon:iFl_ScrewCompactor2_Trip"
+
+  DI_Autocon_iFl_WasherPump1_OFF: "ns=6;s=::DI_Autocon:iFl_WasherPump1_OFF"
+  DI_Autocon_iFl_WasherPump1_TRIP: "ns=6;s=::DI_Autocon:iFl_WasherPump1_Trip"
+
+  DI_Autocon_iFl_WasherPump2_TRIP: "ns=6;s=::DI_Autocon:iFl_WasherPump2_Trip"

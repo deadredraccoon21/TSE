@@ -1,0 +1,167 @@
+alarms:
+- acknowledged: true
+  code: 28
+  id: e10047ed-a253-4153-992c-2b00b92254e5
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  nodeids:
+  - DI_Spg1_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:31'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:36:45'
+  trip: true
+- acknowledged: true
+  code: 38
+  id: 6c15b979-2c6b-43d4-a1fa-77331cea3d44
+  message: Supply Air Fan-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_SAFan1_TRIP
+  resolved_time: '2025-08-18 01:37:31'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:36:45'
+  trip: true
+- acknowledged: true
+  code: 40
+  id: a6eb2888-7e7c-4927-92d5-684b4842038b
+  message: Washer Pump-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:31'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:36:45'
+  trip: true
+- acknowledged: false
+  code: 28
+  id: 901fb8d5-93c6-40b3-bd79-a8f27ec9253d
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  nodeids:
+  - DI_Spg1_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:32'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:31'
+  trip: true
+- acknowledged: false
+  code: 38
+  id: 30714378-9c76-4d44-97cd-5e5f9132b2dc
+  message: Supply Air Fan-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_SAFan1_TRIP
+  resolved_time: '2025-08-18 01:37:32'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:31'
+  trip: true
+- acknowledged: false
+  code: 40
+  id: 5f3c9415-a9d8-455a-ab32-94e0215a87ee
+  message: Washer Pump-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:32'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:31'
+  trip: true
+- acknowledged: false
+  code: 28
+  id: d6e2526b-4257-4ed6-9be0-4d6410953aa1
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  nodeids:
+  - DI_Spg1_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:35'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:32'
+  trip: true
+- acknowledged: false
+  code: 38
+  id: 607de684-fc22-4a01-b251-45e8aa016a15
+  message: Supply Air Fan-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_SAFan1_TRIP
+  resolved_time: '2025-08-18 01:37:35'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:32'
+  trip: true
+- acknowledged: false
+  code: 40
+  id: dc0daceb-f0eb-4606-abae-869bad8d1108
+  message: Washer Pump-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_WasherPump1_TRIP
+  resolved_time: '2025-08-18 01:37:35'
+  severity: 1
+  status: Resolved
+  time: '2025-08-18 01:37:32'
+  trip: true
+- acknowledged: false
+  code: 28
+  id: dd87b54f-1cd5-42a2-9ffc-733ba055a18c
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  nodeids:
+  - DI_Spg1_iFl_WasherPump1_TRIP
+  severity: 1
+  status: Not acknowledged
+  time: '2025-08-18 01:37:35'
+  trip: true
+- acknowledged: false
+  code: 38
+  id: 08ae2394-ddf6-495f-ae6c-ffc5b3a3c2db
+  message: Supply Air Fan-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_SAFan1_TRIP
+  severity: 1
+  status: Not acknowledged
+  time: '2025-08-18 01:37:35'
+  trip: true
+- acknowledged: false
+  code: 40
+  id: 736c8e91-3602-477c-8f4a-0d125dcf84f2
+  message: Washer Pump-1 VFD Fault - Autoconer
+  nodeids:
+  - DI_Autocon_iFl_WasherPump1_TRIP
+  severity: 1
+  status: Not acknowledged
+  time: '2025-08-18 01:37:35'
+  trip: true
+lastTripStates:
+  '12': false
+  '13': false
+  '14': false
+  '15': false
+  '16': false
+  '17': false
+  '18': false
+  '19': false
+  '20': false
+  '21': false
+  '22': false
+  '23': false
+  '24': false
+  '25': false
+  '26': false
+  '27': false
+  '28': true
+  '29': false
+  '30': false
+  '31': false
+  '32': false
+  '33': false
+  '34': false
+  '35': false
+  '36': false
+  '37': false
+  '38': true
+  '39': false
+  '40': true
+  '41': false
+  '42': false
+  '43': false
+  '44': false
+  '45': false
+  '46': false
+  '47': false

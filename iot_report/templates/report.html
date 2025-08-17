@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="text-align: center;">Report Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="static/print.css" media="print">
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F5F5F5;
+            /* Gray for even rows */
+        }
+
+        tr:nth-child(odd) {
+            background-color: white;
+            /* White for odd rows */
+        }
+
+
+        th {
+            background-color: #DCDCDC;
+            color: #006A4E;
+            /* Ensure text is visible with white color */
+        }
+
+
+        /* Adjust the width of the first column */
+        th:first-child,
+        td:first-child {
+            width: 6%;
+            /* Adjust the percentage as needed */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Underline the text */
+        h1::after {
+            content: "";
+            display: block;
+            margin: auto;
+            width: 30%;
+            padding-top: 5px;
+        }
+
+        @media print {
+
+            button.print-button,
+            button.generate-button,
+            button.toggle-names-button, /* Added for new button */
+            .to-hide-print {
+                display: none;
+            }
+
+            h2 {
+                margin-bottom: -40px;
+                /* Adjust the margin to reduce distance */
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 15px;
+            /* Adjust the margin to reduce distance */
+        }
+
+        .inline-group {
+            display: inline-block;
+            margin-right: 20px;
+            /* Add more space between elements */
+        }
+
+        .inline-group label {
+            margin-right: 5px;
+        }
+
+        .inline-group select,
+        .inline-group input[type="date"],
+        .inline-group button {
+            vertical-align: middle;
+        }
+
+        .border-wrapper {
+            border: 1px solid #C8C8C8;
+            /* padding: 2px; */
+            /* margin: 5px; */
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-bottom: 10px;
+            border-radius: 20px;
+        }
+
+        button[type="button"]:hover {
+            background-color: #c9302c;
+            /* Slightly darker red for hover effect */
+            transform: scale(1.05);
+            /* Slight zoom-in effect */
+        }
+
+        /* Container to hold the buttons in place */
+        .button-container {
+            position: absolute;
+            top: 96px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            /* Adds spacing between the buttons */
+        }
+
+        /* Styling for all buttons in the container */
+        .generate-button,
+        .print-button,
+        .toggle-names-button { /* Added for new button */
+            padding: 7px 14px;
+            border: none;
+            border-radius: 8px;
+            background-color: #101010;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Hover effects for buttons */
+        .generate-button:hover,
+        .print-button:hover,
+        .toggle-names-button:hover { /* Added for new button */
+            background-color: #333333;
+            /* Slightly lighter color for hover effect */
+            transform: scale(1.05);
+        }
+
+        /* Styles to prevent disabled select from looking greyed out */
+        select[disabled] {
+            opacity: 1;
+            /* Keep normal opacity */
+            cursor: default;
+            /* Change cursor to default */
+            background-color: #F0F0F0;
+            /* Keep original background color */
+            color: #333;
+            /* Keep original text color */
+            -webkit-appearance: none;
+            /* Remove default browser styling for disabled selects */
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* For options within a disabled select, ensure they retain their color */
+        select[disabled] option {
+            color: #333;
+            /* Ensure option text color is normal */
+        }
+
+        @media print {
+
+            /* These rules will be applied during print */
+            button.print-button,
+            button.generate-button,
+            button.toggle-names-button, /* Ensure new button is hidden for print */
+            .to-hide-print {
+                display: none !important;
+                /* Use !important to ensure override */
+            }
+
+            h2 {
+                margin-bottom: -40px;
+                /* Adjust the margin to reduce distance */
+            }
+        }
+
+        /* Styles to prevent disabled select from looking greyed out */
+        select[disabled] {
+            opacity: 1;
+            cursor: default;
+            background-color: #F0F0F0;
+            color: #333;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        select[disabled] option {
+            color: #333;
+        }
+
+        .admin-login-button-wrapper {
+            position: absolute;
+            top: 50px; /* Adjust as needed */
+            right: 60px; /* Adjust as needed */
+            z-index: 1000;
+        }
+
+        .report-buttons-wrapper {
+            position: relative; 
+            margin-top: 20px; 
+            text-align: right; 
+            margin-right: 20px; 
+            display: flex; /* Added for better button alignment */
+            justify-content: flex-end; /* Align buttons to the right */
+            gap: 10px; /* Space between buttons */
+        }
+    </style>
+</head>
+
+
+<body style="background-color: #e3f4ff; margin-top: 2%; font-family: sans-serif; ">
+
+    <h1><u>Shristi Cotspinn (P) Ltd</u></h1>
+    <h2 id="department-heading"></h2> <br>
+
+    <div style="transform: scale(0.95); transform-origin: top; ">
+
+        <div class="form-container"
+            style="display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 50px; align-items: center;">
+            <!-- <div class="select-data-names inline-group to-hide-print" style="flex: 1; text-align: center;">
+                <label for="data-names-dropdown"
+                    style="display: block; font-size: large; font-weight: bold; margin-bottom: 5px;"><b>Available
+                        Fields</b></label>
+                <select id="data-names-dropdown" multiple disabled
+                    style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 10px; font-size: large; font-weight: bold; background-color: #F0F0F0; border-color: black; color: #333;">
+                </select>
+            </div> -->
+
+            <div class="inline-group to-hide-print" style="flex: 1; text-align: center;">
+                <label for="department"
+                    style="display: block; font-size: large; font-weight: bold; margin-bottom: 5px;"><b>
+                        Department</b></label>
+                <select id="department" onchange="getTables()"
+                    style="padding: 8px; width: 100%; border: 1px solid black; border-radius: 10px; background-color: #F0F0F0; color: #333; font-size: 16px; text-align: center;">
+                    {% for department_option in department_options %}
+                    <option value="{{ department_option }}">{{ department_option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="inline-group to-hide-print" style="flex: 1; text-align: center;">
+                <label for="from_date"
+                    style="display: block; font-size: large; font-weight: bold; margin-bottom: 5px; text-align: center;"><b>From
+                        Date</b></label>
+                <input type="date" id="from_date"
+                    style="padding: 8px; width: 100%; border: 1px solid black; border-radius: 10px; background-color: #F0F0F0; color: #333; font-size: 16px;text-align: center;">
+            </div>
+
+            <div class="inline-group to-hide-print" style="flex: 1; text-align: center;">
+                <label for="to_date" style="display: block; font-size: large; font-weight: bold; margin-bottom: 5px;"><b>To
+                        Date</b></label>
+                <input type="date" id="to_date"
+                    style="padding: 8px; width: 100%; border: 1px solid black; border-radius: 10px; background-color: #F0F0F0; color: #333; font-size: 16px;text-align: center;">
+            </div>
+
+            <div class="inline-group to-hide-print" style="flex: 1; text-align: center;">
+                <label for="time_difference"
+                    style="display: block; font-size: large; font-weight: bold; margin-bottom: 5px;"><b>Time
+                        Duration</b></label>
+                <select id="time_difference"
+                    style="padding: 8px; width: 100%; border: 1px solid black; border-radius: 10px; background-color: #F0F0F0; color: #333; font-size: 16px;text-align: center;">
+                    <option></option>
+                    <!-- <option value="10 minutes">10 minutes</option>
+                    <option value="30 minutes">30 minutes</option> -->
+                    <option value="1 hour">1 hour</option>
+                    <option value="2 hours">2 hours</option>
+                    <option value="5 hours">5 hours</option>
+                    <option value="1 Day">1 Day</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="report-buttons-wrapper to-hide-print">
+            <button class="generate-button" onclick="getData()">
+                <b>Generate Report</b>
+            </button>
+            <button id="toggleColumnNameButton" class="toggle-names-button" onclick="toggleColumnNames()">
+                <b>Expand Names</b>
+            </button>
+            <button class="print-button" onclick="prepareAndPrintReport()">
+                <i class="fas fa-print"></i>
+            </button>
+        </div>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div style="transform: scale(0.95); transform-origin: top; ">
+        <table id="table-report"></table>
+    </div>
+
+    <script>
+        // Map for column name translations (used for display in dropdown and initial table header)
+        const columnMap = { // Maps backend keys to initial/short display names
+            'act_rh': 'Act_RH', // Changed to match user's short name format
+            'set_rh': 'Set_RH', // Changed to match user's short name format
+            'act_temp': 'Act_temp', // Changed to match user's short name format
+            'set_temp': 'Set_Temp', // Changed to match user's short name format
+            'wtc_output': 'WTC_Output',
+            'wp_status': 'WP_Status',
+            'saf_speed': 'SAF_Speed',
+            'retaf_speed': 'RetAF_Speed',
+            'act_wot': 'Act_WoT',
+            'set_wot':'Set_WoT',
+            'damper_output': 'Damper_Output'
+            // Add other backend_key to Short_Display_Name mappings as needed
+        };
+
+        // Map for toggling column names from short display name to long display name
+      const shortToLongColumnNames = {
+    'Set_RH': 'Relative Humidity Set Point',
+    'Act_RH': 'Actual Relative Humidity',
+    'WTC_Output': 'Pump Output',
+    'WP_Status': 'Pump Status',
+    'SAF_Speed': 'Supply Air Fan Speed',
+    'RetAF_Speed': 'Return Air Fan Speed',
+    'Set_Temp': 'Relative Temperature Set Point °C',
+    'Act_Temp': 'Actual Temperature °C',
+    'Act_WoT': 'Supply Air Temperature °C',
+    'Set_WoT': 'Supply Air Temperature Set Point °C',
+    'Damper_Output': 'Damper Output'
+};
+
+
+        // To store the reverse mapping (Long to Short)
+        let longToShortColumnNames = {};
+        for (const key in shortToLongColumnNames) {
+            longToShortColumnNames[shortToLongColumnNames[key]] = key;
+        }
+
+        let areColumnNamesExtended = false; // Tracks the current state of column names
+
+        function getTables() {
+            var department = document.getElementById('department').value;
+            document.getElementById('department-heading').innerText = department;
+
+            fetch('/getTables', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded', },
+                body: 'department=' + encodeURIComponent(department)
+            })
+            .then(response => response.json())
+            .then(data => {
+                let availableColumns = data.columns;
+                localStorage.setItem('available_columns_for_department', JSON.stringify(availableColumns));
+                populateDataNamesDropdown(); 
+            })
+            .catch(error => {
+                console.error('Error fetching table columns:', error);
+            });
+        }
+
+        function getData() {
+            var department = document.getElementById('department').value;
+            var from_date = document.getElementById('from_date').value;
+            var to_date = document.getElementById('to_date').value;
+            var time_difference = document.getElementById('time_difference').value;
+            let selected_fields = JSON.parse(localStorage.getItem('selected_columns') || '[]');
+
+            if (!selected_fields.includes('date')) selected_fields.unshift('date');
+            if (!selected_fields.includes('time')) selected_fields.unshift('time');
+
+            fetch('/data', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded', },
+                body: 'department=' + encodeURIComponent(department) +
+                    '&from_date=' + encodeURIComponent(from_date) +
+                    '&to_date=' + encodeURIComponent(to_date) +
+                    '&time_difference=' + encodeURIComponent(time_difference) +
+                    '&selected_fields=' + encodeURIComponent(selected_fields.join(','))
+            })
+            .then(response => response.json())
+            .then(data => {
+                let displayColumns = data.rh_columns; 
+                let rh_data = data.rh_data;
+                let temp_data = data.temp_data;
+                displayData(displayColumns, rh_data, temp_data);
+                // Reset column name state when new data is loaded
+                areColumnNamesExtended = false;
+                document.getElementById('toggleColumnNameButton').innerHTML = '<b>Expand Names</b>';
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                alert('Error fetching data. Please check console for details.');
+            });
+        }
+
+function displayData(selected_columns, rh_data, temp_data) {
+  const table       = document.getElementById('table-report');
+  let   table_html  = '<thead><tr>';
+
+  /* ---------- HEADERS ---------- */
+  table_html += '<th style="text-align:center;">Serial No.</th>';
+  table_html += '<th style="text-align:center;">Date</th>';
+  table_html += '<th style="text-align:center;">Time</th>';
+
+  selected_columns.forEach(key => {
+    if (key !== 'date' && key !== 'time') {
+      const label = columnMap[key.toLowerCase()] || key;
+      table_html +=
+        '<th style="text-align:center;" data-backend-key="' +
+        key +
+        '">' + label + '</th>';
+    }
+  });
+
+  table_html += '</tr></thead><tbody>';
+
+  /* ---------- MERGE RH + TEMP DATA ---------- */
+  const combined = new Map();
+
+  const addRow = (row) => {
+    const key        = `${row.date}-${row.time}`;
+    const stripped   = { ...row };
+    delete stripped.date; delete stripped.time; delete stripped.idx;
+    const merged     = combined.get(key) || { date: row.date, time: row.time };
+    combined.set(key, { ...merged, ...stripped });
+  };
+
+  rh_data.forEach(addRow);
+  temp_data.forEach(addRow);
+
+  const sortedCombinedData = Array.from(combined.values()).sort(
+    (a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)
+  );
+
+  /* ---------- BUILD ROWS ---------- */
+  sortedCombinedData.forEach((row, i) => {
+    /* strip seconds from HH:MM:SS ➜ HH:MM  */
+    const timeNoSeconds =
+      row.time && row.time.includes(':')
+        ? row.time.split(':').slice(0, 2).join(':')
+        : (row.time || '');
+
+    table_html += '<tr>';
+    table_html += '<td style="text-align:center;">' + (i + 1)  + '</td>';
+    table_html += '<td style="text-align:center;">' + (row.date || '') + '</td>';
+    table_html += '<td style="text-align:center;">' + timeNoSeconds    + '</td>';
+
+    selected_columns.forEach(key => {
+      if (key !== 'date' && key !== 'time') {
+        const val = row[key] !== undefined ? row[key] : '';
+        table_html += '<td style="text-align:center;">' + val + '</td>';
+      }
+    });
+
+    table_html += '</tr>';
+  });
+
+  table_html += '</tbody>';
+  table.innerHTML = table_html;
+
+  /* ---------- OPTIONAL: KEEP LONG COLUMN NAMES TOGGLED ---------- */
+  if (areColumnNamesExtended) {
+    applyNameToggle(true);
+  }
+}
+
+
+        function toggleColumnNames() {
+            areColumnNamesExtended = !areColumnNamesExtended;
+            applyNameToggle(areColumnNamesExtended);
+            document.getElementById('toggleColumnNameButton').innerHTML = areColumnNamesExtended ? '<b>Shorten Names</b>' : '<b>Expand Names</b>';
+        }
+
+        function applyNameToggle(extend) {
+            const table = document.getElementById('table-report');
+            if (!table) return;
+            const headers = table.querySelectorAll('thead th');
+            headers.forEach(th => {
+                const currentText = th.textContent;
+                // Skip non-data columns by checking against maps or specific text
+                if (currentText === 'Serial No.' || currentText === 'Date' || currentText === 'Time') {
+                    return;
+                }
+
+                if (extend) { // Extend names
+                    if (shortToLongColumnNames[currentText]) {
+                        th.textContent = shortToLongColumnNames[currentText];
+                    }
+                } else { // Shorten names
+                    if (longToShortColumnNames[currentText]) {
+                        th.textContent = longToShortColumnNames[currentText];
+                    }
+                }
+            });
+        }
+
+
+        function populateDataNamesDropdown() {
+            var dataNamesDropdown = document.getElementById('data-names-dropdown');
+            dataNamesDropdown.innerHTML = ''; 
+
+            const availableColumnsString = localStorage.getItem('available_columns_for_department');
+            let availableColumns = availableColumnsString ? JSON.parse(availableColumnsString) : [];
+            const filterableColumns = availableColumns.filter(column => column !== 'idx' && column !== 'date' && column !== 'time');
+            const previouslySelected = JSON.parse(localStorage.getItem('selected_columns') || '[]');
+            let displayOrderColumns = [];
+
+            previouslySelected.forEach(column => {
+                if (filterableColumns.includes(column)) { 
+                    displayOrderColumns.push(column);
+                }
+            });
+
+            filterableColumns.forEach(column => {
+                if (!displayOrderColumns.includes(column)) {
+                    displayOrderColumns.push(column);
+                }
+            });
+
+            displayOrderColumns.forEach(function (backendKey) {
+                // For dropdown, we use the mapped initial display name (short name)
+                var option = document.createElement('option');
+                option.value = backendKey; // The value is the backend key
+                // Display text in dropdown is from columnMap (short name) or backendKey itself
+                option.textContent = columnMap[backendKey.toLowerCase()] || backendKey; 
+
+                if (previouslySelected.includes(backendKey)) {
+                    option.selected = true;
+                }
+                dataNamesDropdown.appendChild(option);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const initialDepartment = document.getElementById('department').value;
+            if (initialDepartment) {
+                document.getElementById('department-heading').innerText = initialDepartment;
+                getTables();
+            }
+
+            const savedDepartment = localStorage.getItem('selected_department');
+            if (savedDepartment) {
+                document.getElementById('department').value = savedDepartment;
+                document.getElementById('department-heading').innerText = savedDepartment;
+                getTables(); 
+            }
+
+            const savedFromDate = localStorage.getItem('from_date');
+            const savedToDate = localStorage.getItem('to_date');
+            if (savedFromDate) document.getElementById('from_date').value = savedFromDate;
+            if (savedToDate) document.getElementById('to_date').value = savedToDate;
+
+            const savedTimeDiff = localStorage.getItem('time_difference');
+            if (savedTimeDiff) document.getElementById('time_difference').value = savedTimeDiff;
+
+            document.getElementById('department').addEventListener('change', function () {
+                localStorage.setItem('selected_department', this.value);
+                // When department changes, reset column name toggle state
+                areColumnNamesExtended = false;
+                document.getElementById('toggleColumnNameButton').innerHTML = '<b>Expand Names</b>';
+            });
+            document.getElementById('from_date').addEventListener('change', function () {
+                localStorage.setItem('from_date', this.value);
+            });
+            document.getElementById('to_date').addEventListener('change', function () {
+                localStorage.setItem('to_date', this.value);
+            });
+            document.getElementById('time_difference').addEventListener('change', function () {
+                localStorage.setItem('time_difference', this.value);
+            });
+        });
+
+        function prepareAndPrintReport() {
+            // Optionally, ensure names are in short form for printing, or respect current view
+            // if (areColumnNamesExtended) {
+            //    toggleColumnNames(); // Temporarily shorten for print
+            // }
+            // The @media print CSS will hide the button anyway.
+
+            var toHideElements = document.querySelectorAll('.to-hide-print');
+            toHideElements.forEach(element => { element.style.display = 'none'; });
+            window.print();
+            toHideElements.forEach(element => { element.style.display = ''; });
+
+            // if names were temporarily shortened, restore them
+            // if (document.getElementById('toggleColumnNameButton').innerHTML.includes('Expand')) {
+            //     // This implies they were shortened, so if original state was extended, re-extend
+            //     // This logic needs careful thought if print state should differ from view state
+            // }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Inputs Dialog</title>
+    <!-- Include Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="static\css\font.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+  <style>
+    
+    .btn-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+            border-radius: 3px;
+            border-style:solid;
+            box-shadow: none;
+            }
+            .btn-success:focus,
+            .btn-success.focus {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #255625;
+            }
+            .btn-success:hover {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #398439;
+            }
+
+            .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+            border-style: solid;
+            box-shadow: none;
+            border-radius: 3px;
+            }
+            .btn-danger:focus,
+            .btn-danger.focus {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #761c19;
+            }
+            .btn-danger:hover {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #ac2925;
+            }
+
+  .dialog-box {
+    /* max-width: 36%; */
+    width: 200%;
+    transform: translate(120%, 50%);
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #e3f4ff;
+    padding: 12px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+    top: -60px;
+    left: -15px;
+}
+
+.header {
+    background-color: #0c609d;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 98%;
+}
+
+.row-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.parameter {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 10px;
+    font-weight: bold;
+     background-color: rgb(0, 86, 128); color:white;
+    border: 1px solid #333;
+    border-radius: 4px;
+    /* background-color: #c9f6ff; */
+    color: white;
+}
+
+.value {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 4px;
+    line-height: 30px;
+    padding-right: 6px;
+}
+
+.set-box input {
+    width: 96%;
+    height: 30px;
+    background: #4caf50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 4px;
+    line-height: 30px;
+}
+
+.m-value-row .value {
+    background-color: #28a745;
+    color: white;
+}
+
+.close-icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dc3545;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.close-icon:hover {
+    background-color: #a71d2a;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .dialog-box {
+        max-width: 85%;
+        top: -40px;
+        left: -10px;
+    }
+    .header {
+        font-size: 14px;
+    }
+    .parameter,
+    .value {
+        font-size: 9px;
+        height: 28px;
+        line-height: 28px;
+    }
+}
+
+.set-box input:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(76,175,80,0.8);
+}
+
+.dialog-footer {
+    text-align: right;
+    background: #e3f4ff;
+}
+
+.dialog-footer button {
+    margin-left: 6px;
+}
+  </style>
+
+</head>
+<body>
+    <div class="dialog-box mt-5">
+
+        <!-- Header -->
+        <div class="header">UPSS</div>
+
+        <!-- Headers -->
+        <div class="row-container">
+            <div class="parameter">PARAMETER</div>
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">VALUES</div>
+            <div class="parameter">PARAMETER</div>
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">VALUES</div>
+        </div>
+        <!-- Row 1 -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">Act RH</div>
+            <div class="value" id="{{ prefix }}_iVa_Act_RH">{{ msg.payload[prefix ~ '_iVa_Act_RH'] | round(1) }}</div>
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">SAF Act Output</div>
+            <div class="value" id="{{ prefix }}_iVa_UPSS_Output_SAF">{{ msg.payload[prefix ~ '_iVa_UPSS_Output_SAF'] | round(1) }}</div>
+        </div>
+        <!-- Row 2 -->
+        <div class="row-container m-value-row">
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">Set RH</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_iMi_Set_RH"
+                    value="{{ msg.payload[prefix ~ '_iMi_Set_RH'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_RH'] }}" /></div>
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">SAF Min - Set</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_iVa_Min_SAF_UPSS"
+                    value="{{ msg.payload[prefix ~ '_iVa_Min_SAF_UPSS'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Min_SAF_UPSS'] }}" /></div>
+        </div>
+        <!-- Row 3 -->
+        <div class="row-container m-value-row">
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">P Gain</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_UPSS_Pid_Para_Gain"
+                    value="{{ msg.payload[prefix ~ '_UPSS_Pid_Para_Gain'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_UPSS_Pid_Para_Gain'] }}" /></div>
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">SAF Max - Set</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_iVa_Max_SAF_UPSS"
+                    value="{{ msg.payload[prefix ~ '_iVa_Max_SAF_UPSS'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Max_SAF_UPSS'] }}" /></div>
+        </div>
+        <!-- Row 4 -->
+        <div class="row-container m-value-row">
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">Integration Time</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_UPSS_Pid_Para_IntegrationTime"
+                    value="{{ msg.payload[prefix ~ '_UPSS_Pid_Para_IntegrationTime'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_UPSS_Pid_Para_IntegrationTime'] }}" /></div>
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">RetAF Act Output</div>
+            <div class="value" id="{{ prefix }}_iVa_UPSS_Output_RAF">{{ msg.payload[prefix ~ '_iVa_UPSS_Output_RAF'] | round(1) }}</div>
+        </div>
+        <!-- Row 5 -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">Output(Y)</div>
+            <div class="value" id="{{ prefix }}_iVa_Pid_Output_UPSS">{{ msg.payload[prefix ~ '_iVa_Pid_Output_UPSS'] | round(1) }}</div>
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">RetAF Min - Set</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_iVa_Min_RAF_UPSS"
+                    value="{{ msg.payload[prefix ~ '_iVa_Min_RAF_UPSS'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Min_RAF_UPSS'] }}" /></div>
+        </div>
+        <!-- Row 6 -->
+        <div class="row-container m-value-row">
+            <div></div> <!-- Empty placeholder for alignment -->
+            <div></div> <!-- Empty placeholder for alignment -->
+            <div class="parameter" style="background-color: #c9f6ff; color: black;">RetAF Max - Set</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="{{ prefix }}_iVa_Max_RAF_UPSS"
+                    value="{{ msg.payload[prefix ~ '_iVa_Max_RAF_UPSS'] | round(1) }}" data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Max_RAF_UPSS'] }}" /></div>
+        </div>
+
+        <div class="dialog-footer">
+            <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+            <button class="btn btn-success" onclick="updateSettings()">Update</button>
+        </div>
+
+    </div>
+
+    <script>
+        const socket = io();
+
+        // This listener handles all real-time updates from the server
+        socket.on('update', function (data) {
+            Object.keys(data).forEach((key) => {
+                const element = document.getElementById(key);
+                if (!element) return;
+
+                if (element.classList.contains('value')) {
+                    // Update blue value boxes
+                    element.innerText = data[key];
+                } else if (element.tagName === 'INPUT' && element.type === 'number') {
+                    // Update number input boxes only if not focused
+                    if (document.activeElement !== element) {
+                        element.value = data[key];
+                    }
+                }
+            });
+        });
+
+        /**
+         * Sends updates for all setpoints when the 'Update' button is clicked.
+         * It reads Node IDs from the data attributes of elements with class 'setpoint-input'.
+         */
+        function updateSettings() {
+            const payload = {};
+            const inputs = document.querySelectorAll('.setpoint-input');
+
+            inputs.forEach(input => {
+                const nodeId = input.dataset.nodeid;
+                if (nodeId) {
+                    payload[nodeId] = input.value;
+                }
+            });
+
+            if (Object.keys(payload).length === 0) {
+                alert("No settings found to update.");
+                return;
+            }
+
+            fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Settings updated successfully!');
+                } else {
+                    alert('Failed to update settings: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during the update.');
+            });
+        }
+
+        function closeDialog() {
+            const dialogBox = document.querySelector('.dialog-box');
+            if (dialogBox) {
+                dialogBox.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
