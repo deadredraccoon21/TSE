@@ -1,0 +1,30 @@
+# input.yaml
+
+# --- Database Connection Configuration ---
+# Stores the credentials for connecting to the SQL Server database.
+database:
+  server: 'FRONTOFFICE'
+  name: "tse_data"
+  user: "tse"
+  password: "tse@123"
+  driver: "ODBC Driver 11 for SQL Server"
+
+# --- Application-Specific Configuration ---
+# Defines the departments and their corresponding table names for RH and Temperature data.
+app_config:
+  departments:
+    Blowroom:
+      rh_table: "BR_RH"
+      temp_table: "BR_T"
+    Preparatory:
+      rh_table: "Prep_RH"
+      temp_table: "Prep_T"
+    Spinning1:
+      rh_table: "Spg1_RH"
+      temp_table: "Spg1_T"
+    Spinning2:
+      rh_table: "Spg2_RH"
+      temp_table: "Spg2_T"
+    Linkconer:
+      rh_table: "Linkconer_RH"
+      temp_table: "Linkconer_T"

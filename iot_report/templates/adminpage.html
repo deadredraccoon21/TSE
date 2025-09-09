@@ -1,0 +1,222 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e3f4ff;
+            font-family: sans-serif;
+        }
+
+        .top-buttons-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        .top-buttons-container button {
+            position: relative;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .top-buttons-container button:hover {
+            opacity: 0.8;
+        }
+
+        .add-user-button {
+            background-color: rgb(26, 26, 255);
+        }
+
+        .add-admin-button {
+            background-color: green;
+        }
+
+        .logout-button {
+            background-color: #f44336;
+        }
+        
+        h1,
+        h2 {
+            color: black;
+            text-align: center;
+        }
+
+        .checkbox-section {
+            background-color: #f3fbff;
+            padding: 20px;
+            margin: 20px 10%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .checkbox-section label {
+            font-size: large;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .checkbox-item {
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-buttons-container">
+        <!-- Corrected: url_for points to the user management page function -->
+        <a href="{{ url_for('manage_users') }}">
+            <button type="button" class="add-user-button"><b>Manage Users</b></button>
+        </a>
+        <!-- Corrected: url_for points to the admin management page function -->
+        <a href="{{ url_for('manage_admins') }}">
+            <button type="button" class="add-admin-button"><b>Manage Admins</b></button>
+        </a>
+        <!-- Corrected: url_for points to the admin logout function -->
+        <a href="{{ url_for('admin_logout') }}">
+            <button type="submit" class="logout-button"><b>Logout</b></button>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h1></h1>
+        </div>
+        <br>
+        <div class="row">
+            <h1 style="width: 100%; text-align: center; margin-top: 50px;"><u>Admin Dashboard</u></h1>
+        </div>
+        <br>
+        <div class="row">
+            <h2></h2>
+        </div>
+    </div>
+
+    <div class="checkbox-section to-hide-print">
+        <label><b>Select Report Fields :</b></label><br>
+        <div class="checkbox-item">
+            <input type="checkbox" id="select_all" onclick="toggleAllOptions()">
+            <label for="select_all">All</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Set_RH" value="Set_RH">
+            <label for="Set_RH">Set_RH</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Act_RH" value="Act_RH">
+            <label for="Act_RH">Act_RH</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Pump_Output" value="Pump_Output">
+            <label for="Pump_Output">Pump_Output</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="WP_Status" value="WP_Status">
+            <label for="WP_Status">WP_Status</label>
+        </div>
+        <!-- <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="SAF_Speed" value="SAF_Speed">
+            <label for="SAF_Speed">SAF_Speed</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="RetAF_Speed" value="RetAF_Speed">
+            <label for="RetAF_Speed">RetAF_Speed</label>
+        </div> -->
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Set_Temp" value="Set_Temp">
+            <label for="Set_Temp">Set_Temp</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Act_temp" value="Act_temp">
+            <label for="Act_temp">Act_temp</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Act_SA_Temp" value="Act_SA_Temp">
+            <label for="Act_SA_Temp">Act_SA_Temp</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Set_SA_Temp" value="Set_SA_Temp">
+            <label for="Set_SA_Temp">Set_SA_Temp</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" class="field-checkbox" id="Damper_Output" value="Damper_Output">
+            <label for="Damper_Output">Damper_Output</label>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve selected columns from localStorage and check the corresponding checkboxes
+            var selected_columns = localStorage.getItem('selected_columns');
+            if (selected_columns) {
+                try {
+                    selected_columns = JSON.parse(selected_columns); // Parse JSON string
+                    selected_columns.forEach(function (column) {
+                        // The value of the checkbox is the column name
+                        var checkbox = document.querySelector('.field-checkbox[value="' + column + '"]');
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+                } catch (e) {
+                    console.error("Error parsing selected_columns from localStorage", e);
+                }
+            }
+
+            // Add event listener to all field checkboxes
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateSelectedColumnsList);
+            });
+            // Also update when "All" is clicked
+            document.getElementById('select_all').addEventListener('change', updateSelectedColumnsList);
+        });
+
+        function toggleAllOptions() {
+            var selectAllCheckbox = document.getElementById('select_all');
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+
+            fieldCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+
+            // After changing all checkboxes, update the stored list
+            updateSelectedColumnsList();
+        }
+
+        function updateSelectedColumnsList() {
+            var selected_columns = [];
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            
+            fieldCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selected_columns.push(checkbox.value);
+                }
+            });
+
+            // Store the array of selected columns as a JSON string in localStorage
+            localStorage.setItem('selected_columns', JSON.stringify(selected_columns));
+            console.log('Saved columns to localStorage:', localStorage.getItem('selected_columns'));
+            
+            // Also update the state of the "All" checkbox
+            var allChecked = selected_columns.length === fieldCheckboxes.length;
+            document.getElementById('select_all').checked = allChecked;
+        }
+
+    </script>
+</body>
+
+</html>

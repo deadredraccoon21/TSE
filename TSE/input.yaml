@@ -1,0 +1,41 @@
+DB_DATABASE: tse_data
+DB_PASSWORD: tse@123
+DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
+DB_USER: tse
+OPC_UA_URL: opc.tcp://192.1.200.112:4840
+client_name: Tribhuvan Spinning Mills
+node_prefixes:
+  AUTOCONER: Autoconer
+  BLOWROOM: BR
+  LINKCONER: Linkconer
+  PREPARATORY: Prep
+  SPINNING 1: Spg1
+  SPINNING 2: Spg2
+roles:
+  Manager:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Timer
+    - Controllers
+  Operator:
+    - Set Point
+  Tse:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Controllers
+    - Timer
+    - DeHumidity
+submodules:
+  BLOWROOM: blowroom.html
+  PREPARATORY: preparatory.html
+  SPINNING 1: spinning1.html
+  SPINNING 2: spinning2.html
+  AUTOCONER: autoconer.html

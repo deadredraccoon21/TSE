@@ -1,0 +1,5 @@
+pyodbc
+PyYAML
+Flask
+PyYAML
+flask_cors

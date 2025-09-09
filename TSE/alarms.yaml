@@ -1,0 +1,35 @@
+alarms:
+  # Blowroom
+  - code: 1
+    message: Washer Pump-1 VFD Fault - Blowroom
+    nodeids:
+      - DI_BR_iFl_WasherPump1_TRIP
+    severity: 1
+
+  # Preparatory
+  - code: 2
+    message: Washer Pump-1 VFD Fault - Preparatory
+    nodeids:
+      - DI_Prep_iFl_WasherPump1_TRIP
+    severity: 1
+
+  # Spinning 1
+  - code: 3
+    message: Washer Pump-1 VFD Fault - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_WasherPump1_TRIP
+    severity: 1
+
+  # Spinning 2
+  - code: 4
+    message: Washer Pump-1 VFD Fault - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_WasherPump1_TRIP
+    severity: 1
+
+  # Autoconer
+  - code: 5
+    message: Washer Pump-1 VFD Fault - Autoconer
+    nodeids:
+      - DI_Autoconer_iFl_WasherPump1_TRIP
+    severity: 1

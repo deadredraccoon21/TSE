@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Inputs Dialog</title>
+    <!-- Include Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="static\css\font.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        .btn-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+            border-radius: 3px;
+            border-style: solid;
+            box-shadow: none;
+        }
+
+        .btn-success:focus,
+        .btn-success.focus {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #255625;
+        }
+
+        .btn-success:hover {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #398439;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d43f3a;
+            border-style: solid;
+            box-shadow: none;
+            border-radius: 3px;
+        }
+
+        .btn-danger:focus,
+        .btn-danger.focus {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #761c19;
+        }
+
+        .btn-danger:hover {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #ac2925;
+        }
+
+        .dialog-box {
+            /* max-width: 50%; */
+            width: 400%;
+            height: 50%;
+            transform: translate(60%, 50%);
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #e3f4ff;
+            padding: 20px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            position: relative;
+            /* top: -60px;
+            left : -30px; */
+            /* Needed for absolute positioning of the close icon */
+        }
+
+
+        .header {
+            background-color: #0c609d;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            width: 99%;
+        }
+
+
+        .row-container {
+            display: grid;
+            /* grid-template-columns: repeat(6, 1fr); */
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            /* Dynamic columns */
+            /* Adjust column width dynamically */
+            gap: 8px;
+            /* Space between the columns */
+            margin-bottom: 8px;
+        }
+
+        .parameter {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 11px;
+            font-weight: bold;
+
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #c9f6ff;
+            color: black;
+        }
+
+
+        .value {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #333;
+            border-radius: 5px;
+            line-height: 40px;
+            padding-right: 10px;
+        }
+
+
+        .set-box input {
+            width: 98%;
+            height: 40px;
+            /* padding: 10px; */
+            background: #4caf50;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #333;
+            border-radius: 5px;
+            line-height: 40px;
+        }
+
+        /* New rule to change the background color of M VALUE row */
+        .m-value-row .value {
+            background-color: #28a745;
+            /* Green background */
+            color: white;
+            /* White text for visibility */
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 18px;
+            height: 18px;
+            padding: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .close-icon:hover {
+            background-color: #a71d2a;
+            /* Darker red when hovered */
+            transform: scale(1.1);
+            /* Slightly enlarge on hover */
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 18px;
+            }
+
+            .parameter,
+            .value {
+                font-size: 10px;
+                height: 35px;
+            }
+        }
+
+
+        .set-box input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.8);
+        }
+
+        .dialog-footer {
+            text-align: right;
+            background: #e3f4ff;
+        }
+
+        .dialog-footer button {
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="dialog-box mt-6">
+
+        <!-- Header -->
+        <div class="header">CONTROLLERS</div>
+
+        <!-- Row 1: Parameter Headers -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">PARAMETER</div>
+            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">CL Room Humidity</div>
+            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">CL Room Temp</div>
+            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">CL SA Temp</div>
+            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">DeHumidity</div>
+        </div>
+        <!-- Row 2: Dynamic Process Values -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">PROCESS VALUE</div>
+            <div class="value" id="BR_iVa_Act_RH">{{ msg.payload['BR_iVa_Act_RH'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Act_Temp">{{ msg.payload['BR_iVa_Act_Temp'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Act_SA_Temp">{{ msg.payload['BR_iVa_Act_SA_Temp'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Act_RH">{{ msg.payload['BR_iVa_Act_RH'] | round(1) }}</div>
+        </div>
+
+        <!-- Row 3: Dynamic Set Point Inputs -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">SET POINT</div>
+            <div class="value" id="BR_iMi_Set_RH">{{ msg.payload['BR_iMi_Set_RH'] | round(1) }}</div>
+            <div class="value" id="BR_iMi_Set_Temp">{{ msg.payload['BR_iMi_Set_Temp'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Set_Temp_WoT">{{ msg.payload['BR_iVa_Act_SA_Temp'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Max_RH_Ref">{{ msg.payload['BR_iVa_Max_RH_Ref'] | round(1) }}</div>
+        </div>
+
+        <!-- Row 4: Dynamic P.GAIN Inputs -->
+        <div class="row-container m-value-row">
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">P.GAIN</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Humidity_Pid_Para_Gain"
+                    value="{{ msg.payload['BR_Humidity_Pid_Para_Gain'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Humidity_Pid_Para_Gain'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Temp_Pid_Para_Gain"
+                    value="{{ msg.payload['BR_Temp_Pid_Para_Gain'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Temp_Pid_Para_Gain'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Damper_Pid_Para_Gain"
+                    value="{{ msg.payload['BR_Damper_Pid_Para_Gain'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Damper_Pid_Para_Gain'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_DeHumidity.Gain"
+                    value="{{ msg.payload['BR_DeHumidity.Gain'] }}" data-nodeid="{{ msg.node_ids['BR_DeHumidity.Gain'] }}" /></div>
+        </div>
+
+        <!-- Row 5: Dynamic Integration Time Inputs -->
+        <div class="row-container m-value-row">
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">Integration Time</div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Humidity_Pid_Para_IntegrationTime"
+                    value="{{ msg.payload['BR_Humidity_Pid_Para_IntegrationTime'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Humidity_Pid_Para_IntegrationTime'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Temp_Pid_Para_IntegrationTime"
+                    value="{{ msg.payload['BR_Temp_Pid_Para_IntegrationTime'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Temp_Pid_Para_IntegrationTime'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_Damper_Pid_Para_IntegrationTime"
+                    value="{{ msg.payload['BR_Damper_Pid_Para_IntegrationTime'] | round(1) }}"
+                    data-nodeid="{{ msg.node_ids['BR_Damper_Pid_Para_IntegrationTime'] }}" /></div>
+            <div class="set-box"><input type="number" class="setpoint-input" id="BR_DeHumidity.IntegrationTime"
+                    value="{{ msg.payload['BR_DeHumidity.IntegrationTime'] }}" data-nodeid="{{ msg.node_ids['c'] }}" /></div>
+        </div>
+
+        <!-- Row 6: Dynamic OUTPUT(Y) Values -->
+        <div class="row-container">
+            <div class="parameter" style="background-color: rgb(20,105,46); color:white">OUTPUT(Y)</div>
+            <div class="value" id="BR_iVa_Humid_Pid_Out">{{ msg.payload['BR_iVa_Humid_Pid_Out'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Temp_Pid_Output">{{ msg.payload['BR_iVa_Temp_Pid_Output'] | round(1) }}</div>
+            <div class="value" id="BR_iVa_Damper_Pid_Output">{{ msg.payload['BR_iVa_Damper_Pid_Output'] | round(1) }}</div>
+            <div class="value" id="BR_iVA_Dehumid_Pid_Out">{{ msg.payload['BR_iVA_Dehumid_Pid_Out'] | round(1) }}</div>
+        </div>
+
+        <div class="dialog-footer">
+            <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+            <button class="btn btn-success" onclick="updateSettings()">Update</button>
+        </div>
+
+    </div>
+
+    <script>
+        const socket = io();
+
+        // This listener handles all real-time updates from the server
+        socket.on('update', function (data) {
+            Object.keys(data).forEach((key) => {
+                const element = document.getElementById(key);
+                if (!element) return;
+
+                if (element.classList.contains('value')) {
+                    // Update blue/green value boxes
+                    element.innerText = data[key];
+                } else if (element.tagName === 'INPUT' && element.type === 'number') {
+                    // Update number input boxes only if not focused
+                    if (document.activeElement !== element) {
+                        element.value = data[key];
+                    }
+                }
+            });
+        });
+
+        /**
+         * Sends updates for all setpoints, gains, and integration times when 'Update' is clicked.
+         * It reads Node IDs from the data attributes of elements with class 'setpoint-input'.
+         */
+        function updateSettings() {
+            const payload = {};
+            // Select all number inputs that need to be sent on update
+            const inputs = document.querySelectorAll('.setpoint-input');
+
+            inputs.forEach(input => {
+                const nodeId = input.dataset.nodeid;
+                if (nodeId) {
+                    payload[nodeId] = input.value;
+                }
+            });
+
+            if (Object.keys(payload).length === 0) {
+                alert("No settings found to update.");
+                return;
+            }
+
+            fetch('/write', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Settings updated successfully!');
+                    } else {
+                        alert('Failed to update settings: ' + (data.error || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred during the update.');
+                });
+        }
+
+        function closeDialog() {
+            const dialogBox = document.querySelector('.dialog-box');
+            if (dialogBox) {
+                dialogBox.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
