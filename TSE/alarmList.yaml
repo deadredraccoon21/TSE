@@ -1,0 +1,113 @@
+alarms:
+- acknowledged: true
+  code: '24'
+  id: 3973463d-9c68-48b5-b22a-39d90928b8e0
+  message: Return Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 11:48:59'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 11:30:30'
+- acknowledged: true
+  code: '25'
+  id: d397cba5-e00b-4143-b0cd-dc66398b4b02
+  message: Return Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:04:23'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 11:30:56'
+- acknowledged: true
+  code: '26'
+  id: 787aadd1-31f4-4b44-a359-a8aa0b728cef
+  message: Supply Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:04:23'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 11:32:23'
+- acknowledged: true
+  code: '27'
+  id: 99a88f89-4dd5-42be-a201-7a0d8ed62305
+  message: Supply Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:04:23'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 11:48:59'
+- acknowledged: true
+  code: '28'
+  id: d02af375-c42e-42ae-b0b6-230bf790b6bd
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:04:23'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 11:48:59'
+- acknowledged: false
+  code: '25'
+  id: afa6b59f-94aa-46fa-9d42-e4c22052167e
+  message: Return Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:36:21'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 15:31:03'
+- acknowledged: false
+  code: '26'
+  id: 85d8a706-6ab8-4be6-a36f-4fcc2a3b57a0
+  message: Supply Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:36:21'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 15:31:03'
+- acknowledged: false
+  code: '27'
+  id: 2e000478-13fd-4369-9b62-ab16ae7a36a5
+  message: Supply Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:36:21'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 15:31:03'
+- acknowledged: false
+  code: '28'
+  id: dbd93388-cdab-4480-a1bf-ee8eb5c127a7
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  resolved_time: '2025-08-21 15:36:21'
+  severity: 1
+  status: Resolved
+  time: '2025-08-21 15:31:03'
+- acknowledged: false
+  code: '51'
+  id: ba400748-6945-4f67-a1b3-56ef14327458
+  message: Supply Air Fan-4 VFD Fault - Spinning 1
+  resolved_time: '2025-08-23 18:19:33'
+  severity: 1
+  status: Resolved
+  time: '2025-08-23 18:19:32'
+- acknowledged: false
+  code: '37'
+  id: 7fd1a19a-443a-4a54-a7bf-25f26305902c
+  message: Return Air Fan-2 VFD Fault - Autoconer
+  resolved_time: '2025-09-08 11:40:45'
+  severity: 1
+  status: Resolved
+  time: '2025-09-08 09:04:28'
+- acknowledged: false
+  code: '37'
+  id: 49f50800-4c4e-4fb2-868d-5ea1d494dd6a
+  message: Return Air Fan-2 VFD Fault - Autoconer
+  resolved_time: '2025-09-08 11:41:18'
+  severity: 1
+  status: Resolved
+  time: '2025-09-08 11:40:58'
+- acknowledged: false
+  code: '37'
+  id: 1772efea-58d1-4f59-9770-e6928cb6287b
+  message: Return Air Fan-2 VFD Fault - Autoconer
+  resolved_time: '2025-09-08 11:42:20'
+  severity: 1
+  status: Resolved
+  time: '2025-09-08 11:42:10'
+lastTripStates:
+  '24': false
+  '25': false
+  '26': false
+  '27': false
+  '28': false
+  '37': false
+  '51': false

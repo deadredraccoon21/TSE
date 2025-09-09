@@ -1,0 +1,36 @@
+DB_DATABASE: tse_data
+DB_PASSWORD: tse@123
+DB_SERVER: DESKTOP-JCJD4OG\SQLEXPRESS
+DB_USER: tse
+OPC_UA_URL: opc.tcp://192.168.106.186:4840
+client_name: Garg Acrylics (P) Ltd
+node_prefixes:
+  Linkconer(6A): Autoconer
+  Spinning(6A): Spg1
+roles:
+  Manager:
+  - Set Point
+  - Digital Input
+  - Digital Output
+  - Analog Input
+  - Analog Output
+  - Preset Values
+  - Timer
+  - Controllers
+  - UPSS
+  Operator:
+  - Set Point
+  Tse:
+  - Set Point
+  - Digital Input
+  - Digital Output
+  - Analog Input
+  - Analog Output
+  - Preset Values
+  - Controllers
+  - UPSS
+  - Pump Min Set
+  - Timer
+submodules:
+  SPINNING(6A): spinning.html
+  LINKCONER(6A): autoconer.html
