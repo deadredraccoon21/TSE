@@ -1,0 +1,38 @@
+DB_DATABASE: tse_data
+DB_PASSWORD: tse@123
+DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
+DB_USER: tse
+OPC_UA_URL: opc.tcp://127.0.0.1:4840/freeopcua/server/
+client_name: Garg Acrylics (P) Ltd
+node_prefixes:
+  H-Plant-1: Spg1
+  H-Plant-5: Spg1
+  H-Plant-6: Spg1
+roles:
+  Manager:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Timer
+    - Controllers
+    - UPSS
+  Operator:
+    - Set Point
+  Tse:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Controllers
+    - UPSS
+    - Pump Min Set
+    - Timer
+submodules:
+  H-Plant-1: h-plant-1.html
+  H-Plant-6: h-plant-6.html
+  H-Plant-5: h-plant-5.html

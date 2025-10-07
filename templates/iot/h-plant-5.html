@@ -1,0 +1,1401 @@
+{% extends "iot/tse.html" %} {% block title %}Spinning 1{% endblock %} {% block
+content %}
+<head>
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/font.css') }}"
+  />
+  <style>
+    /* General page styles */
+    body {
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -webkit-touch-callout: none;
+      context-menu: none;
+    }
+
+    /* --- CSS Classes for Button Status --- */
+    .status-button {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      outline: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease,
+        border 0.3s ease;
+      border: 1px solid black;
+    }
+
+    .status-on {
+      background-color: #28a745; /* Green */
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.8);
+    }
+
+    .status-off {
+      background-color: #dc3545; /* Red */
+    }
+
+    .status-trip {
+      background-color: #ffc107; /* Yellow */
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.8);
+      border: 1px solid black;
+    }
+
+    /* MODIFIED: Normal state for trip buttons is now invisible */
+    .status-normal {
+      background-color: white;
+      border-color: transparent;
+    }
+
+    /* Class for when neither ON nor OFF is active */
+    .status-indeterminate {
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    /* Class to hide buttons before the first data update */
+    .initially-hidden {
+      visibility: hidden;
+    }
+
+    /* Class for the Manual Mode 'M' Symbol */
+    .manual-mode-symbol {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #dc3545; /* Red */
+      color: white;
+      border: 1.5px solid black;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      display: none; /* Hidden by default */
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+  </style>
+</head>
+
+<body>
+  <div
+    id="spinning1Div"
+    style="
+      transform: scale(0.8);
+      left: -5px;
+      margin-top: 20px;
+      top: 5px;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+    "
+  >
+    <div
+      style="
+        position: absolute;
+        top: 15px;
+        left: 140px;
+        width: 1350px;
+        height: 645px;
+        border: 2px dotted #c5c6d0;
+        border-radius: 20px;
+        background-color: white;
+      "
+    ></div>
+
+    <!-- ===== Manual Mode 'M' Symbols ===== -->
+    <div
+      id="m-symbol-rdf"
+      class="manual-mode-symbol"
+      style="left: 345px; top: 295px"
+    >
+      M
+    </div>
+    <div
+      id="m-symbol-recirculation"
+      class="manual-mode-symbol"
+      style="left: 785px; top: 358px"
+    >
+      M
+    </div>
+    <div
+      id="m-symbol-wot"
+      class="manual-mode-symbol"
+      style="left: 1295px; top: 217px"
+    >
+      M
+    </div>
+    <div
+      id="m-symbol-rh"
+      class="manual-mode-symbol"
+      style="left: 1362px; top: 541px"
+    >
+      M
+    </div>
+    <div
+      id="m-symbol-temp"
+      class="manual-mode-symbol"
+      style="left: 1362px; top: 585px"
+    >
+      M
+    </div>
+
+    <!-- Return Air Fan 1 -->
+    <img
+      id="RAFan1"
+      src="{{ url_for('static', filename='images/fan_stopped.png') }}"
+      style="
+        position: absolute;
+        left: 511px;
+        top: 238px;
+        width: 42px;
+        height: 42px;
+        border-radius: 60px;
+        border: 2.5px solid black;
+        padding: 8px;
+      "
+    />
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 576px;
+        top: 238px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="RAFan1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 596px;
+        top: 238px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="RAFan1-trip" class="status-button"></button>
+    </div>
+
+    <!-- Return Air Fan 2 -->
+    <img
+      id="RAFan2"
+      src="{{ url_for('static', filename='images/fan_stopped.png') }}"
+      style="
+        position: absolute;
+        left: 511px;
+        top: 350px;
+        width: 42px;
+        height: 42px;
+        border-radius: 60px;
+        border: 2.5px solid black;
+        padding: 8px;
+      "
+    />
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 576px;
+        top: 350px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="RAFan2-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 596px;
+        top: 350px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="RAFan2-trip" class="status-button"></button>
+    </div>
+
+    <!-- Supply Air Fan 1 -->
+    <img
+      id="SAFan1"
+      src="{{ url_for('static', filename='images/fan_stopped.png') }}"
+      style="
+        position: absolute;
+        left: 1213px;
+        top: 391px;
+        width: 42px;
+        height: 42px;
+        border-radius: 60px;
+        border: 2.5px solid black;
+        padding: 8px;
+      "
+    />
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1205px;
+        top: 455px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="SAFan1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1225px;
+        top: 455px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="SAFan1-trip" class="status-button"></button>
+    </div>
+
+    <!-- Supply Air Fan 2 -->
+    <img
+      id="SAFan2"
+      src="{{ url_for('static', filename='images/fan_stopped.png') }}"
+      style="
+        position: absolute;
+        left: 1330px;
+        top: 391px;
+        width: 42px;
+        height: 42px;
+        border-radius: 60px;
+        border: 2.5px solid black;
+        padding: 8px;
+      "
+    />
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1380px;
+        top: 455px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="SAFan2-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1400px;
+        top: 455px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="SAFan2-trip" class="status-button"></button>
+    </div>
+
+    <!-- Static Images and Layout -->
+    <img
+      src="{{ url_for('static', filename='images/redline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 232px;
+        top: 226px;
+        width: 150px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 232px;
+        top: 387px;
+        width: 150px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/rdf000.png') }}"
+      style="
+        position: absolute;
+        left: 260px;
+        top: 200px;
+        width: 95px;
+        height: 60px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/rdf000.png') }}"
+      style="
+        position: absolute;
+        left: 260px;
+        top: 360px;
+        width: 95px;
+        height: 60px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 195px;
+        top: 305px;
+        width: 40px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/sf000.png') }}"
+      style="
+        position: absolute;
+        left: 380px;
+        top: 518px;
+        width: 51px;
+        height: 51px;
+        border-radius: 50px;
+        border: 1px solid black;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/sf000.png') }}"
+      style="
+        position: absolute;
+        left: 380px;
+        top: 48px;
+        width: 51px;
+        height: 51px;
+        border-radius: 50px;
+        border: 1px solid black;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 305px;
+        top: 420px;
+        width: 3px;
+        height: 123px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 306px;
+        top: 78px;
+        width: 3px;
+        height: 123px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 307px;
+        top: 539px;
+        width: 73px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 306px;
+        top: 73px;
+        width: 73px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/cyclone00.png') }}"
+      style="
+        position: absolute;
+        left: 502px;
+        top: 518px;
+        width: 93px;
+        height: 140px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/cyclone00.png') }}"
+      style="
+        position: absolute;
+        left: 502px;
+        top: 45px;
+        width: 93px;
+        height: 140px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 432px;
+        top: 539px;
+        width: 70px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 433px;
+        top: 68px;
+        width: 70px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 386px;
+        top: 305px;
+        width: 90px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 440px;
+        top: 305px;
+        width: 415px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/exhaust000.gif') }}"
+      style="
+        position: absolute;
+        left: 657px;
+        top: 103px;
+        width: 45px;
+        height: 25px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/intake000.gif') }}"
+      style="
+        position: absolute;
+        left: 795px;
+        top: 95px;
+        width: 35px;
+        height: 30px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 230px;
+        top: 226px;
+        width: 3px;
+        height: 167px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 380px;
+        top: 226px;
+        width: 3px;
+        height: 167px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 678px;
+        top: 129px;
+        width: 3px;
+        height: 175px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 809px;
+        top: 130px;
+        width: 3px;
+        height: 176px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/airwasher1000.png') }}"
+      style="
+        position: absolute;
+        left: 900px;
+        top: 200px;
+        width: 300px;
+        height: 200px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 809px;
+        top: 305px;
+        width: 135px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 1200px;
+        top: 295px;
+        width: 104px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 1245px;
+        top: 370px;
+        width: 120px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+      style="
+        position: absolute;
+        left: 1245px;
+        top: 470px;
+        width: 120px;
+        height: 3px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1302px;
+        top: 295px;
+        width: 3px;
+        height: 75px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1245px;
+        top: 370px;
+        width: 3px;
+        height: 23px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1245px;
+        top: 453px;
+        width: 3px;
+        height: 23px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1365px;
+        top: 370px;
+        width: 3px;
+        height: 23px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1365px;
+        top: 453px;
+        width: 3px;
+        height: 23px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1302px;
+        top: 476px;
+        width: 3px;
+        height: 50px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+      style="
+        position: absolute;
+        left: 1253px;
+        top: 238px;
+        width: 3px;
+        height: 63px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/recirculation00.gif') }}"
+      style="
+        position: absolute;
+        left: 715px;
+        top: 266px;
+        width: 78px;
+        height: 85px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/circleline000_x.png') }}"
+      style="
+        position: absolute;
+        left: 782px;
+        top: 130px;
+        width: 60px;
+        height: 27px;
+        border: 1px solid black;
+        padding: -2px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/circleline000_x.png') }}"
+      style="
+        position: absolute;
+        left: 652px;
+        top: 128px;
+        width: 60px;
+        height: 27px;
+        border: 1px solid black;
+        padding: -2px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/circleline000_y.png') }}"
+      style="
+        position: absolute;
+        left: 739.5px;
+        top: 286px;
+        width: 27px;
+        height: 44px;
+        border: 1px solid black;
+        padding: -2px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 214px;
+        top: 299.5px;
+        width: 18px;
+        height: 19px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 430px;
+        top: 299.5px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 610px;
+        top: 299.5px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 695px;
+        top: 299.5px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 855px;
+        top: 299.5px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenarrow00_b.png') }}"
+      style="
+        position: absolute;
+        left: 300px;
+        top: 455px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenarrow00_t.png') }}"
+      style="
+        position: absolute;
+        left: 301px;
+        top: 125px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 458px;
+        top: 534px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/greenarrow00_r.png') }}"
+      style="
+        position: absolute;
+        left: 458px;
+        top: 62px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/bluearrow00_b.png')}}"
+      style="
+        position: absolute;
+        left: 1297px;
+        top: 340px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+    <img
+      src="{{ url_for('static', filename='images/bluearrow00_b.png') }}"
+      style="
+        position: absolute;
+        left: 1297px;
+        top: 495px;
+        width: 16px;
+        height: 17px;
+      "
+    />
+
+    <!-- Labels -->
+    <div
+      style="
+        position: absolute;
+        left: 1180px;
+        top: 50px;
+        color: #00508a;
+        font-size: 30px;
+      "
+    >
+      <b><u>{{ dept_name }}</u></b>
+    </div>
+    <p style="position: absolute; left: 517px; top: 200px; color: black">
+      RAFan1
+    </p>
+    <p style="position: absolute; left: 517px; top: 402px; color: black">
+      RAFan2
+    </p>
+    <p style="position: absolute; left: 657px; top: 65px; color: black">
+      Exhaust
+    </p>
+    <p style="position: absolute; left: 765px; top: 62px; color: black">
+      Fresh Intake
+    </p>
+    <p style="position: absolute; left: 701px; top: 230px; color: black">
+      Recirculation
+    </p>
+    <p style="position: absolute; left: 1162px; top: 370px; color: black">
+      SAFan1
+    </p>
+    <p style="position: absolute; left: 1279px; top: 370px; color: black">
+      SAFan2
+    </p>
+    <p style="position: absolute; left: 956px; top: 387px; color: black">
+      <b>Air Washer</b>
+    </p>
+    <p style="position: absolute; left: 1037px; top: 523px">Set %RH</p>
+    <p style="position: absolute; left: 1013px; top: 568px">Set Temp °C</p>
+    <p style="position: absolute; left: 1224px; top: 523px">%R.H</p>
+    <p style="position: absolute; left: 1238px; top: 568px">°C</p>
+
+    <!-- RDF, DCF, Screw Compactor, and Washer Pump Buttons -->
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 318px;
+        top: 166px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="rdf1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 338px;
+        top: 166px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="rdf1-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 318px;
+        top: 330px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="rdf2-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 338px;
+        top: 330px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="rdf2-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 430px;
+        top: 37px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="dcf1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 450px;
+        top: 37px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="dcf1-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 418px;
+        top: 500px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="dcf2-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 438px;
+        top: 500px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="dcf2-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 570px;
+        top: 37px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="screwcompactor1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 590px;
+        top: 37px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="screwcompactor1-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 575px;
+        top: 540px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="screwcompactor2-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 595px;
+        top: 540px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="screwcompactor2-trip" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1000px;
+        top: 353px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="washerpump1-on-off" class="status-button"></button>
+    </div>
+    <div
+      class="initially-hidden"
+      style="
+        position: absolute;
+        left: 1023px;
+        top: 353px;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="washerpump1-trip" class="status-button"></button>
+    </div>
+
+    <!-- Value Displays -->
+    <div
+      style="
+        position: absolute;
+        left: 1215px;
+        top: 526px;
+        border: 3px solid skyblue;
+        width: 150px;
+        height: 90px;
+        border-radius: 7px;
+      "
+    ></div>
+    <div
+      style="
+        position: absolute;
+        left: 268px;
+        top: 293px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_DPG_RDF">0</span> Pa
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1095px;
+        top: 355px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Pump_Output">0</span> %
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1215px;
+        top: 215px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Act_SA_Temp">0</span> °C
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1122px;
+        top: 539px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iMi_Set_RH">0</span>
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1122px;
+        top: 583px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iMi_Set_Temp">0</span>
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1282px;
+        top: 539px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Act_RH">0</span>
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 1282px;
+        top: 583px;
+        border: 2px solid black;
+        padding: 0px 15px 0px 20px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Act_Temp">0</span>
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 630px;
+        top: 166px;
+        border: 2px solid black;
+        padding: 4px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Damper_Output">0</span> %
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 823px;
+        top: 166px;
+        border: 2px solid black;
+        padding: 4px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Damper_Output2">0</span> %
+    </div>
+    <div
+      style="
+        position: absolute;
+        left: 736px;
+        top: 356px;
+        border: 2px solid black;
+        padding: 4px;
+        border-radius: 5px;
+      "
+    >
+      <span id="Spg1_iVa_Ret_Damper_Output">0</span> %
+    </div>
+  </div>
+
+  <script>
+    const socket = io();
+    let isFirstUpdate = true;
+
+    // --- Mappings ---
+    const onOffNodePairs = {
+      "RAFan1-on-off": {
+        on: "DI_Spg1_iFl_RetAFan1_ON",
+        off: "DI_Spg1_iFl_RetAFan1_OFF",
+      },
+      "RAFan2-on-off": {
+        on: "DI_Spg1_iFl_RetAFan2_ON",
+        off: "DI_Spg1_iFl_RetAFan2_OFF",
+      },
+      "SAFan1-on-off": {
+        on: "DI_Spg1_iFl_SAFan1_ON",
+        off: "DI_Spg1_iFl_SAFan1_OFF",
+      },
+      "SAFan2-on-off": {
+        on: "DI_Spg1_iFl_SAFan2_ON",
+        off: "DI_Spg1_iFl_SAFan2_OFF",
+      },
+      "rdf1-on-off": { on: "DI_Spg1_iFl_RDF1_ON", off: "DI_Spg1_iFl_RDF1_OFF" },
+      "rdf2-on-off": { on: "DI_Spg1_iFl_RDF2_ON", off: "DI_Spg1_iFl_RDF2_OFF" },
+      "dcf1-on-off": { on: "DI_Spg1_iFl_DCF1_ON", off: "DI_Spg1_iFl_DCF1_OFF" },
+      "dcf2-on-off": { on: "DI_Spg1_iFl_DCF2_ON", off: "DI_Spg1_iFl_DCF2_OFF" },
+      "screwcompactor1-on-off": {
+        on: "DI_Spg1_iFl_ScrewCompactor1_ON",
+        off: "DI_Spg1_iFl_ScrewCompactor1_OFF",
+      },
+      "screwcompactor2-on-off": {
+        on: "DI_Spg1_iFl_ScrewCompactor2_ON",
+        off: "DI_Spg1_iFl_ScrewCompactor2_OFF",
+      },
+      "washerpump1-on-off": {
+        on: "DI_Spg1_iFl_WasherPump1_ON",
+        off: "DI_Spg1_iFl_WasherPump1_OFF",
+      },
+    };
+
+    const tripNodeMappings = {
+      DI_Spg1_iFl_RetAFan1_TRIP: "RAFan1-trip",
+      DI_Spg1_iFl_RetAFan2_TRIP: "RAFan2-trip",
+      DI_Spg1_iFl_SAFan1_TRIP: "SAFan1-trip",
+      DI_Spg1_iFl_SAFan2_TRIP: "SAFan2-trip",
+      DI_Spg1_iFl_RDF1_TRIP: "rdf1-trip",
+      DI_Spg1_iFl_RDF2_TRIP: "rdf2-trip",
+      DI_Spg1_iFl_DCF1_TRIP: "dcf1-trip",
+      DI_Spg1_iFl_DCF2_TRIP: "dcf2-trip",
+      DI_Spg1_iFl_ScrewCompactor1_TRIP: "screwcompactor1-trip",
+      DI_Spg1_iFl_ScrewCompactor2_TRIP: "screwcompactor2-trip",
+      DI_Spg1_iFl_WasherPump1_TRIP: "washerpump1-trip",
+    };
+
+    socket.on("update", function (data) {
+      if (isFirstUpdate) {
+        document.querySelectorAll(".initially-hidden").forEach((el) => {
+          el.classList.remove("initially-hidden");
+        });
+        isFirstUpdate = false;
+      }
+
+      // Part 1: Update numerical values
+      const valueIds = [
+        "Spg1_iVa_DPG_RDF",
+        "Spg1_iVa_Pump_Output",
+        "Spg1_iVa_Act_SA_Temp",
+        "Spg1_iMi_Set_RH",
+        "Spg1_iMi_Set_Temp",
+        "Spg1_iVa_Act_RH",
+        "Spg1_iVa_Act_Temp",
+        "Spg1_iVa_Damper_Output",
+        "Spg1_iVa_Ret_Damper_Output",
+      ];
+      valueIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = data[id] || "0";
+      });
+      const damper2 = document.getElementById("Spg1_iVa_Damper_Output2");
+      if (damper2) damper2.textContent = data["Spg1_iVa_Damper_Output"] || "0";
+
+      // Part 2: Update button statuses
+      for (const buttonId in onOffNodePairs) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+          const { on: onNode, off: offNode } = onOffNodePairs[buttonId];
+          const isOn = data[onNode];
+          const isOff = data[offNode];
+          button.classList.remove(
+            "status-on",
+            "status-off",
+            "status-indeterminate"
+          );
+          if (isOn) {
+            button.classList.add("status-on");
+          } else if (isOff) {
+            button.classList.add("status-off");
+          } else {
+            button.classList.add("status-indeterminate");
+          }
+        }
+      }
+      for (const nodeId in tripNodeMappings) {
+        const buttonId = tripNodeMappings[nodeId];
+        const button = document.getElementById(buttonId);
+        if (button) {
+          const isTripped = data[nodeId];
+          button.classList.remove("status-trip", "status-normal");
+          button.classList.add(isTripped ? "status-trip" : "status-normal");
+        }
+      }
+
+      // Part 3: Update Manual Mode 'M' Symbol Visibility
+      updateManualSymbolVisibility(
+        "m-symbol-rdf",
+        data["Spg1_iFl_Set_DPG_RDF_Man_B"]
+      );
+      updateManualSymbolVisibility(
+        "m-symbol-recirculation",
+        data["Spg1_iFl_Damper_Output_Man_B"]
+      );
+      updateManualSymbolVisibility(
+        "m-symbol-wot",
+        data["Spg1_iMi_Set_WoT_Man_B"]
+      );
+      updateManualSymbolVisibility(
+        "m-symbol-rh",
+        data["Spg1_iFl_Set_Humidity_Man_B"]
+      );
+      updateManualSymbolVisibility(
+        "m-symbol-temp",
+        data["Spg1_iMi_Set_Temp_Man_B"]
+      );
+
+      // Part 4: Update fan images
+      updateFanImage("RAFan1", "RAFan1-on-off", "RAFan1-trip");
+      updateFanImage("RAFan2", "RAFan2-on-off", "RAFan2-trip");
+      updateFanImage("SAFan1", "SAFan1-on-off", "SAFan1-trip");
+      updateFanImage("SAFan2", "SAFan2-on-off", "SAFan2-trip");
+    });
+
+    function updateManualSymbolVisibility(elementId, isManual) {
+      const symbol = document.getElementById(elementId);
+      if (symbol) {
+        symbol.style.display = isManual ? "flex" : "none";
+      }
+    }
+
+    function updateFanImage(fanId, onOffButtonId, tripButtonId) {
+      const fanImage = document.getElementById(fanId);
+      const onOffButton = document.getElementById(onOffButtonId);
+      const tripButton = document.getElementById(tripButtonId);
+      if (!fanImage || !onOffButton || !tripButton) return;
+
+      const onOffColor = window.getComputedStyle(onOffButton).backgroundColor;
+      const tripColor = window.getComputedStyle(tripButton).backgroundColor;
+
+      if (
+        onOffColor === "rgb(220, 53, 69)" ||
+        tripColor === "rgb(255, 193, 7)" ||
+        onOffColor === "rgba(0, 0, 0, 0)"
+      ) {
+        fanImage.src =
+          "{{ url_for('static', filename='images/fan_stopped.png') }}";
+      } else {
+        fanImage.src = "{{ url_for('static', filename='images/fan000.gif') }}";
+      }
+    }
+
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
+  </script>
+</body>
+{% endblock %}

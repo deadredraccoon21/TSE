@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}TSE Control System{% endblock %}</title>
+    <link rel="stylesheet" href="static\css\font.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/favicon.png') }}"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body style="background-color: #e3f4ff">
+    <div class="title-bar">
+      <div class="left-section">
+        <img
+          src="{{ url_for('static', filename='images/LOGO.png') }}"
+          alt="Company Logo"
+          class="company-logo"
+        />
+      </div>
+      <div class="company-name">
+        TSE Control System<br />
+        <div class="client-name" style="margin-top: 5px">{{ client_name }}</div>
+      </div>
+      <div class="right-section">
+        {% if session['userloggedin'] %}
+        <div class="last-login-info">
+          <span class="label">Last Login</span>
+          <span>{{ session.get('last_login', 'N/A') }}</span>
+        </div>
+        {% endif %}
+        <div class="bell-container">
+          <button class="bell-button" onclick="showAlarmslist()">
+            <i class="fa fa-bell"></i>
+            <span id="alarm-count" class="badge">0</span>
+          </button>
+        </div>
+
+        {% if session['userloggedin'] %}
+        <div class="dropdown">
+          <button class="profile-icon">
+            {{ session['username'][0]|upper }}
+          </button>
+          <div class="dropdown-content">
+            <a href="{{ url_for('logout') }}">Logout</a>
+          </div>
+        </div>
+
+        <!-- Tooltip for profile information -->
+        <div id="profile-tooltip" class="tooltip-content">
+          <p>
+            <strong style="color: #003054">User Name:</strong> {{
+            session['username'] }}
+          </p>
+          <p>
+            <strong style="color: #003054">Last Login:</strong> {{
+            session['last_login'] }}
+          </p>
+        </div>
+
+        {% else %}
+        <a href="{{ url_for('user_login') }}" class="login-button">Login</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="modal" id="alarmModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          Alarm Notifications
+          <button
+            class="modal-close-btn"
+            onclick="closeModal()"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="alarm-modal-body">
+          <!-- Alarm messages will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <button id="home" class="module-button">
+        <i class="fa-solid fa-house"></i> Home
+      </button>
+      <div id="homeSubmodules" class="submodule-container"></div>
+
+      <button id="departments" class="module-button">
+        <i class="fa-solid fa-building"></i> Departments
+      </button>
+
+      <div id="departmentsSubmodules" class="submodule-container">
+        {% for submodule, template in submodules.items() %}
+        <button
+          class="submodule-button department-link"
+          data-url="{{ url_for('render_submodule', submodule=submodule) }}"
+          data-submodule-id="{{ submodule | slugify }}Submodules"
+        >
+          {{ submodule }}
+          <!-- <i class="fa-solid fa-chevron-down dropdown-icon"></i> -->
+        </button>
+
+        <div
+          id="{{ submodule | slugify }}Submodules"
+          class="submodule-container"
+        >
+          {% if dashboard_name %}
+          <button class="submodule-button bg">
+            <i
+              class="fa-solid fa-home"
+              style="font-size: 9px; margin-left: 5px; padding-right: 5px"
+            ></i>
+            {{ dashboard_name }}
+          </button>
+          {% endif %} {% if session['role'] == 'Operator' %} {% for
+          submodule_option in session['allowed_submodules'] %}
+          <button
+            class="submodule-button bg"
+            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
+          >
+            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+            }}
+          </button>
+          {% endfor %} {% elif session['role'] == 'Manager' %} {% for
+          submodule_option in session['allowed_submodules'] %}
+          <button
+            class="submodule-button bg"
+            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
+          >
+            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+            }}
+          </button>
+          {% endfor %} {% elif session['role'] %} {% for submodule_option in
+          session['allowed_submodules'] %}
+          <button
+            class="submodule-button bg"
+            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
+          >
+            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+            }}
+          </button>
+          {% endfor %} {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <button id="alarms" class="module-button">
+        <i class="fa-solid fa-triangle-exclamation"></i> Alarms
+      </button>
+      <div id="alarmsSubmodules" class="submodule-container"></div>
+
+      <button id="reports" class="module-button">
+        <i class="fa-solid fa-file"></i> Analytics
+      </button>
+      <div id="reportsSubmodules" class="submodule-container">
+        <button
+          class="submodule-button"
+          onclick="showIframe('trendsIframe');closeTemplate()"
+        >
+          Trends
+        </button>
+        <button
+          class="submodule-button"
+          onclick="showIframe('reportIframe');closeTemplate()"
+        >
+          Reports
+        </button>
+      </div>
+
+      {% if session['role'] == 'Tse' %}
+      <button id="inputs" class="module-button">
+        <i class="fa-solid fa-wrench" style="margin-right: 6px"></i> Input
+      </button>
+
+      <button id="usermanagement" class="module-button">
+        <i class="fa-solid fa-user-cog"></i> User Management
+      </button>
+      <div id="usermanagementSubmodules" class="submodule-container">
+        <!-- <button class="submodule-button">Add User</button> -->
+        <button
+          class="submodule-button"
+          onclick="window.location.href='/add_user'"
+        >
+          <i class="fa-solid fa-user-plus"></i> Add User
+        </button>
+
+        <!-- <button class="submodule-button">Edit & Delete</button> -->
+        <button
+          class="submodule-button"
+          onclick="window.location.href='/user_management'"
+        >
+          <i class="fa-solid fa-user-pen"></i> Update user
+        </button>
+      </div>
+      {% endif %}
+    </div>
+    {% if session['role'] == 'Tse' %}
+    <div>
+      <iframe
+        id="reportIframe"
+        src="http://127.0.0.1:5001/admin"
+        style="display: none"
+      ></iframe>
+    </div>
+    {% else %}
+    <div>
+      <iframe
+        id="reportIframe"
+        src="http://127.0.0.1:5001/report"
+        style="display: none"
+      ></iframe>
+    </div>
+    {%endif %}
+
+    <div>
+      <iframe
+        id="trendsIframe"
+        src="http://127.0.0.1:3000/dashboards"
+        style="display: none"
+      ></iframe>
+    </div>
+
+    <div class="content">
+      {% block content %}
+      <!-- Default content (if any) -->
+      {% endblock %}
+    </div>
+
+    <div id="main-content">
+      <!-- The content will be dynamically inserted here -->
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <script>
+      // Pass server-side variables to a global JavaScript scope
+      const USER_ROLE = "{{ session.get('role', 'Guest') }}";
+    </script>
+
+    <!-- Load your custom JavaScript file -->
+    <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
+
+    <!-- ================================================================= -->
+    <!-- ===   NEW: AUTOMATIC LOGOUT SCRIPT ADDED BELOW              === -->
+    <!-- ================================================================= -->
+    {% if session.userloggedin %}
+    <script>
+      (function () {
+        let inactivityTimer;
+        const inactivityTime = 20 * 60 * 1000; // 10 minutes in milliseconds
+
+        function logoutUser() {
+          // Redirect to the logout endpoint to clear the server session
+          window.location.href = "{{ url_for('logout') }}";
+        }
+
+        function resetTimer() {
+          // Clear the previous timer
+          clearTimeout(inactivityTimer);
+          // Start a new timer
+          inactivityTimer = setTimeout(logoutUser, inactivityTime);
+        }
+
+        // Events that count as user activity
+        const activityEvents = [
+          "mousemove",
+          "mousedown",
+          "keypress",
+          "scroll",
+          "touchstart",
+        ];
+
+        // Add event listeners to reset the timer on any activity
+        activityEvents.forEach(function (eventName) {
+          document.addEventListener(eventName, resetTimer, true);
+        });
+
+        // Initialize the timer when the page loads
+        resetTimer();
+      })();
+    </script>
+    {% endif %}
+  </body>
+</html>

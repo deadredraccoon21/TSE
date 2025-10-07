@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+         body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(3px);
+            z-index: -1;
+        }
+        
+        .container {
+            background-image: url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: fit-content;
+            border-radius: 15px;
+            border: 1px solid #00ffff;
+            padding: 50px;
+            max-width: 450px;
+            width: 100%;
+            padding-bottom: 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .form-group label {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            margin-top: 30px;
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .text-center a {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .text-center a:hover {
+            color: #00ffff;
+        }
+
+        .password-toggle {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            color: #495057;
+        }
+
+        .input-group-text {
+            background-color: #e9ecef;
+            border-left: none;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                margin: 20px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+        <form action="{{ url_for('user_login') }}" method="post">
+            <div class="form-group">
+                <label for="username"><h6>Username:</h6></label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            </div>
+            
+            <div class="form-group">
+                <label for="pwd"><h6>Password:</h6></label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        
+        <div class="text-center mt-3">
+            <a href="http://192.168.106.187:7005">Home</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            let passwordInput = document.getElementById("password");
+            let toggleIcon = document.getElementById("toggleIcon");
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+
+</html>

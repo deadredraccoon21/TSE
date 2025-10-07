@@ -1,0 +1,58 @@
+alarms:
+- acknowledged: true
+  code: '36'
+  id: f24d4c11-4ecf-4393-a006-dc3a79267f85
+  message: Return Air Fan-1 VFD Fault - Autoconer
+  resolved_time: '2025-10-04 09:55:33'
+  severity: 1
+  status: Resolved
+  time: '2025-09-30 13:53:46'
+- acknowledged: true
+  code: '24'
+  id: 9f0c9543-9dfd-46c4-990e-cafee478e67e
+  message: Return Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-10-06 23:58:06'
+  severity: 1
+  status: Resolved
+  time: '2025-10-06 23:57:07'
+- acknowledged: true
+  code: '25'
+  id: f00f2e6e-4f54-48b0-be55-0392af44a4b6
+  message: Return Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-10-06 23:58:06'
+  severity: 1
+  status: Resolved
+  time: '2025-10-06 23:57:07'
+- acknowledged: true
+  code: '26'
+  id: c267f3e5-897c-4c84-91af-4e4a837c4851
+  message: Supply Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-10-06 23:58:06'
+  severity: 1
+  status: Resolved
+  time: '2025-10-06 23:57:07'
+- acknowledged: true
+  code: '27'
+  id: 8a9c05d5-9f2f-4921-81b2-fc7d36597f2f
+  message: Supply Air Fan-2 VFD Fault - Spinning 1
+  resolved_time: '2025-10-06 23:58:06'
+  severity: 1
+  status: Resolved
+  time: '2025-10-06 23:57:07'
+- acknowledged: true
+  code: '28'
+  id: a1eac0f9-699f-4b3a-ad70-e3b5679b6dc7
+  message: Washer Pump-1 VFD Fault - Spinning 1
+  resolved_time: '2025-10-06 23:58:06'
+  severity: 1
+  status: Resolved
+  time: '2025-10-06 23:57:07'
+lastTripStates:
+  '24': false
+  '25': false
+  '26': false
+  '27': false
+  '28': false
+  '36': false
+  '37': false
+  '51': false
