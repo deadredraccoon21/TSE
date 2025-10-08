@@ -113,7 +113,7 @@ content %}
       <div
         id="m-symbol-rdf"
         class="manual-mode-symbol"
-        style="left: 345px; top: 250px"
+        style="left: 355px; top: 250px"
       >
         M
       </div>
@@ -127,21 +127,21 @@ content %}
       <div
         id="m-symbol-wot"
         class="manual-mode-symbol"
-        style="left: 1285px; top: 217px"
+        style="left: 1305px; top: 214px"
       >
         M
       </div>
       <div
         id="m-symbol-rh"
         class="manual-mode-symbol"
-        style="left: 1362px; top: 541px"
+        style="left: 1382px; top: 541px"
       >
         M
       </div>
       <div
         id="m-symbol-temp"
         class="manual-mode-symbol"
-        style="left: 1362px; top: 585px"
+        style="left: 1382px; top: 585px"
       >
         M
       </div>
@@ -165,6 +165,7 @@ content %}
           "
         />
       </div>
+
       <div
         class="initially-hidden"
         style="
@@ -211,13 +212,13 @@ content %}
         <button id="fan2-trip" class="status-button"></button>
       </div>
 
-      <!-- Fan 3 -->
+      <!-- SAF -->
       <img
         id="fan3"
         src="{{ url_for('static', filename='images/fan_stopped.png') }}"
         style="
           position: absolute;
-          left: 1273px;
+          left: 1193px;
           top: 391px;
           width: 42px;
           height: 42px;
@@ -226,6 +227,68 @@ content %}
           padding: 8px;
         "
       />
+
+      <!-- SAF2 -->
+      <img
+        id="fan3"
+        src="{{ url_for('static', filename='images/fan_stopped.png') }}"
+        style="
+          position: absolute;
+          left: 1333px;
+          top: 391px;
+          width: 42px;
+          height: 42px;
+          border-radius: 60px;
+          border: 2.5px solid black;
+          padding: 8px;
+        "
+      />
+      <div
+        style="
+          position: absolute;
+          left: 1270px;
+          top: 410px;
+          border: 2px solid black;
+          padding: 0px 15px 0px 20px;
+          border-radius: 5px;
+        "
+      >
+        <span id="Spg1_iVa_UPSS_Output_SAF">0</span> %
+      </div>
+
+      <!--Blue line horizontal-->
+      <img
+        src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1250px;
+          top: 380px;
+          width: 104px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1250px;
+          top: 480px;
+          width: 104px;
+          height: 3px;
+        "
+      />
+
+      <img
+        src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 1250px;
+          top: 355px;
+          width: 3px;
+          height: 97px;
+        "
+      />
+
       <div
         class="initially-hidden"
         style="
@@ -775,7 +838,7 @@ content %}
       <div
         style="
           position: absolute;
-          left: 268px;
+          left: 248px;
           top: 248px;
           border: 2px solid black;
           padding: 0px 15px 0px 20px;
@@ -820,18 +883,7 @@ content %}
       >
         <span id="Spg1_iVa_Act_WoT">0</span> °C
       </div>
-      <div
-        style="
-          position: absolute;
-          left: 1200px;
-          top: 410px;
-          border: 2px solid black;
-          padding: 0px 15px 0px 20px;
-          border-radius: 5px;
-        "
-      >
-        <span id="Spg1_iVa_UPSS_Output_SAF">0</span> %
-      </div>
+
       <div
         style="
           position: absolute;

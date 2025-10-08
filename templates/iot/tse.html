@@ -24,10 +24,94 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- ======================================================= -->
+    <!-- === MODIFIED CSS FOR OUTSIDE CONDITIONS             === -->
+    <!-- ======================================================= -->
+    <style>
+      .outside-conditions-box {
+        margin: 20px auto 10px auto; /* Centered with top margin */
+        width: 85%;
+        border-radius: 8px;
+        overflow: hidden; /* Ensures child corners are clipped */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border: 1px solid #003054;
+      }
+      .outside-conditions-header {
+        background-color: #0c609d; /* Dark blue from module buttons */
+        color: white;
+        padding: 6px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+      }
+      .outside-conditions-body {
+        background-color: #e3f4ff; /* Lighter blue */
+        padding: 10px;
+        color: #003054; /* Dark text for contrast */
+      }
+      .condition-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .condition-row:last-child {
+        margin-bottom: 0;
+      }
+      .condition-value {
+        background-color: white;
+        color: black;
+        border: 1px solid #9ca3af;
+        border-radius: 4px;
+        padding: 3px 8px;
+        min-width: 60px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .condition-unit {
+        width: 35px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: bold;
+        color: #0c609d;
+      }
+    </style>
+
+    <script>
+      // Initialize one global socket instance.
+      const socket = io();
+
+      // Dedicated listener ONLY for the sidebar conditions.
+      socket.on("update", function (data) {
+        if (data.hasOwnProperty("Autoconer_RH")) {
+          const rhElement = document.getElementById("Autoconer_RH");
+          if (rhElement) {
+            const value = data["Autoconer_RH"];
+            rhElement.textContent =
+              value !== null && value !== undefined
+                ? Number(value).toFixed(1)
+                : "0.0";
+          }
+        }
+        if (data.hasOwnProperty("Autoconer_Temp")) {
+          const tempElement = document.getElementById("Autoconer_Temp");
+          if (tempElement) {
+            const value = data["Autoconer_Temp"];
+            tempElement.textContent =
+              value !== null && value !== undefined
+                ? Number(value).toFixed(1)
+                : "0.0";
+          }
+        }
+      });
+    </script>
   </head>
 
   <body style="background-color: #e3f4ff">
     <div class="title-bar">
+      <!-- ... Title bar content ... -->
       <div class="left-section">
         <img
           src="{{ url_for('static', filename='images/LOGO.png') }}"
@@ -62,8 +146,6 @@
             <a href="{{ url_for('logout') }}">Logout</a>
           </div>
         </div>
-
-        <!-- Tooltip for profile information -->
         <div id="profile-tooltip" class="tooltip-content">
           <p>
             <strong style="color: #003054">User Name:</strong> {{
@@ -74,7 +156,6 @@
             session['last_login'] }}
           </p>
         </div>
-
         {% else %}
         <a href="{{ url_for('user_login') }}" class="login-button">Login</a>
         {% endif %}
@@ -82,6 +163,7 @@
     </div>
 
     <div class="modal" id="alarmModal">
+      <!-- ... Modal content ... -->
       <div class="modal-content">
         <div class="modal-header">
           Alarm Notifications
@@ -93,22 +175,19 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <div class="modal-body" id="alarm-modal-body">
-          <!-- Alarm messages will be dynamically inserted here -->
-        </div>
+        <div class="modal-body" id="alarm-modal-body"></div>
       </div>
     </div>
 
     <div class="sidebar">
+      <!-- ... Sidebar buttons ... -->
       <button id="home" class="module-button">
         <i class="fa-solid fa-house"></i> Home
       </button>
       <div id="homeSubmodules" class="submodule-container"></div>
-
       <button id="departments" class="module-button">
         <i class="fa-solid fa-building"></i> Departments
       </button>
-
       <div id="departmentsSubmodules" class="submodule-container">
         {% for submodule, template in submodules.items() %}
         <button
@@ -117,9 +196,7 @@
           data-submodule-id="{{ submodule | slugify }}Submodules"
         >
           {{ submodule }}
-          <!-- <i class="fa-solid fa-chevron-down dropdown-icon"></i> -->
         </button>
-
         <div
           id="{{ submodule | slugify }}Submodules"
           class="submodule-container"
@@ -132,8 +209,8 @@
             ></i>
             {{ dashboard_name }}
           </button>
-          {% endif %} {% if session['role'] == 'Operator' %} {% for
-          submodule_option in session['allowed_submodules'] %}
+          {% endif %} {% for submodule_option in session['allowed_submodules']
+          %}
           <button
             class="submodule-button bg"
             onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
@@ -141,34 +218,14 @@
             <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
             }}
           </button>
-          {% endfor %} {% elif session['role'] == 'Manager' %} {% for
-          submodule_option in session['allowed_submodules'] %}
-          <button
-            class="submodule-button bg"
-            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
-          >
-            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
-            }}
-          </button>
-          {% endfor %} {% elif session['role'] %} {% for submodule_option in
-          session['allowed_submodules'] %}
-          <button
-            class="submodule-button bg"
-            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
-          >
-            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
-            }}
-          </button>
-          {% endfor %} {% endif %}
+          {% endfor %}
         </div>
         {% endfor %}
       </div>
-
       <button id="alarms" class="module-button">
         <i class="fa-solid fa-triangle-exclamation"></i> Alarms
       </button>
       <div id="alarmsSubmodules" class="submodule-container"></div>
-
       <button id="reports" class="module-button">
         <i class="fa-solid fa-file"></i> Analytics
       </button>
@@ -191,20 +248,16 @@
       <button id="inputs" class="module-button">
         <i class="fa-solid fa-wrench" style="margin-right: 6px"></i> Input
       </button>
-
       <button id="usermanagement" class="module-button">
         <i class="fa-solid fa-user-cog"></i> User Management
       </button>
       <div id="usermanagementSubmodules" class="submodule-container">
-        <!-- <button class="submodule-button">Add User</button> -->
         <button
           class="submodule-button"
           onclick="window.location.href='/add_user'"
         >
           <i class="fa-solid fa-user-plus"></i> Add User
         </button>
-
-        <!-- <button class="submodule-button">Edit & Delete</button> -->
         <button
           class="submodule-button"
           onclick="window.location.href='/user_management'"
@@ -213,7 +266,26 @@
         </button>
       </div>
       {% endif %}
+
+      <!-- ======================================================= -->
+      <!-- === MODIFIED AND RELOCATED "OUTSIDE CONDITIONS"     === -->
+      <!-- ======================================================= -->
+      <div class="outside-conditions-box">
+        <div class="outside-conditions-header">OUTSIDE CONDITIONS</div>
+        <div class="outside-conditions-body">
+          <div class="condition-row">
+            <span id="Autoconer_RH" class="condition-value">0.0</span>
+            <span class="condition-unit">%RH</span>
+          </div>
+          <div class="condition-row">
+            <span id="Autoconer_Temp" class="condition-value">0.0</span>
+            <span class="condition-unit">°C</span>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- ... iFrames and other content divs ... -->
     {% if session['role'] == 'Tse' %}
     <div>
       <iframe
@@ -230,8 +302,7 @@
         style="display: none"
       ></iframe>
     </div>
-    {%endif %}
-
+    {% endif %}
     <div>
       <iframe
         id="trendsIframe"
@@ -240,49 +311,27 @@
       ></iframe>
     </div>
 
-    <div class="content">
-      {% block content %}
-      <!-- Default content (if any) -->
-      {% endblock %}
-    </div>
-
-    <div id="main-content">
-      <!-- The content will be dynamically inserted here -->
-    </div>
-
-    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <div class="content">{% block content %}{% endblock %}</div>
+    <div id="main-content"></div>
 
     <script>
-      // Pass server-side variables to a global JavaScript scope
       const USER_ROLE = "{{ session.get('role', 'Guest') }}";
     </script>
-
-    <!-- Load your custom JavaScript file -->
     <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
 
-    <!-- ================================================================= -->
-    <!-- ===   NEW: AUTOMATIC LOGOUT SCRIPT ADDED BELOW              === -->
-    <!-- ================================================================= -->
     {% if session.userloggedin %}
     <script>
+      // ... Automatic logout script ...
       (function () {
         let inactivityTimer;
-        const inactivityTime = 20 * 60 * 1000; // 10 minutes in milliseconds
-
+        const inactivityTime = 20 * 60 * 1000;
         function logoutUser() {
-          // Redirect to the logout endpoint to clear the server session
           window.location.href = "{{ url_for('logout') }}";
         }
-
         function resetTimer() {
-          // Clear the previous timer
           clearTimeout(inactivityTimer);
-          // Start a new timer
           inactivityTimer = setTimeout(logoutUser, inactivityTime);
         }
-
-        // Events that count as user activity
         const activityEvents = [
           "mousemove",
           "mousedown",
@@ -290,13 +339,9 @@
           "scroll",
           "touchstart",
         ];
-
-        // Add event listeners to reset the timer on any activity
         activityEvents.forEach(function (eventName) {
           document.addEventListener(eventName, resetTimer, true);
         });
-
-        // Initialize the timer when the page loads
         resetTimer();
       })();
     </script>

@@ -1,6 +1,5 @@
 {% extends "iot/tse.html" %} {% block title %}Dashboard{% endblock %} {% block
 content %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,45 +7,17 @@ content %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="static\css\font.css" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <style>
-      /* .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            padding-top: 60px;
-            background-color: #e3f4ff;
-        }
-
-        .common-container {
-            border: 1px solid black;
-            border-radius: 15px;
-            width: 30%;
-            height: 260px;
-            padding: 7px;
-            background: linear-gradient(#0076CE 0%, #ADD8E6 58%);
-            margin: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            color: white;
-            box-sizing: border-box;
-        } */
-
       .container {
         display: grid;
-        grid-template-columns: repeat(
-          3,
-          1fr
-        ); /* Adjust the number of columns based on your layout */
-        gap: 10px; /* Space between the containers */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
         padding-top: 60px;
         background-color: #e3f4ff;
       }
-
       .common-container {
         border: 1px solid black;
         border-radius: 15px;
@@ -58,20 +29,17 @@ content %}
         color: white;
         box-sizing: border-box;
       }
-
       .common-container h2 {
         font-size: 24px;
         margin: 5px 0;
         text-align: center;
       }
-
       .sensor-data {
         font-family: "Times New Roman", Times, serif;
         font-size: 15px;
         text-align: center;
         margin-bottom: 10px;
       }
-
       .chart-container {
         width: 100%;
         height: 160px;
@@ -79,25 +47,15 @@ content %}
         border-radius: 10px;
         margin-top: 10px;
       }
-
-      header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #002366;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        z-index: 100;
-      }
     </style>
   </head>
 
   <body>
     <div class="container">
-      {% for name, template in submodules.items() %}
+      <!-- This loop is now driven by the 'dashboard_items' list from input.yaml -->
+      {% for item in dashboard_items %}
       <div class="common-container">
-        <h2>{{ name }}</h2>
+        <h2>{{ item.name }}</h2>
         <div class="sensor-data">
           <div
             style="
@@ -107,128 +65,103 @@ content %}
               font-weight: bold;
             "
           >
-            <div><span id="temperature{{ loop.index }}">0.00</span> °C</div>
-            <div><span id="humidity{{ loop.index }}">0.00</span> %RH</div>
+            <!-- IDs are now generated from the item name to be unique and meaningful -->
+            <div><span id="{{ item.name|slugify }}_temp">0.00</span> °C</div>
+            <div><span id="{{ item.name|slugify }}_hum">0.00</span> %RH</div>
           </div>
         </div>
-
-        <!-- Graph Section -->
         <div class="chart-container">
-          <canvas id="myChart{{ loop.index }}"></canvas>
+          <!-- The canvas ID is also made unique -->
+          <canvas id="chart_{{ item.name|slugify }}"></canvas>
         </div>
       </div>
       {% endfor %}
     </div>
 
     <script>
-      // This function remains the same as it maps department names to Node IDs.
-      function getNodeIds(departmentName) {
-          const nodeIds = {
-              'Preparatory 1': { temperature: "Preparatory 1_Temp", humidity: "Preparatory 1_RH" },
-              'Preparatory 2': { temperature: "Preparatory 2_Temp", humidity: "Preparatory 2_RH" },
-              'Spinning': { temperature: "Spinning 1_Temp", humidity: "Spinning 1_RH" },
-              'Autoconer': { temperature: "Autoconer_Temp", humidity: "Autoconer_RH" }
-          };
-          return nodeIds[departmentName];
-      }
+        // A single, global socket instance for the dashboard
+      //  const socket = io();
 
-      // Updated helper function to get the exact display name you described
-      function getDepartmentDisplayName(templateName) {
-          // 1. Remove '.html' from the end
-          console.log(`Processing template: ${templateName}`);
-          let displayName = templateName.replace('.html', '');
+        /**
+         * Sets up a single department card with its chart and data updates.
+         * @param {string} name - The display name of the department.
+         * @param {string} slug - A URL-safe version of the name, used for element IDs.
+         * @param {string} tempNodeKey - The key for the temperature value from the socket data.
+         * @param {string} humNodeKey - The key for the humidity value from the socket data.
+         */
+        function setupDepartment(name, slug, tempNodeKey, humNodeKey) {
+            const tempElement = document.getElementById(`${slug}_temp`);
+            const humElement = document.getElementById(`${slug}_hum`);
+            const chartCtx = document.getElementById(`chart_${slug}`).getContext('2d');
 
-          // 2. Replace a common pattern like 'spinning1' with 'spinning 1'
-          // This handles cases like 'spinning1', 'preparatory2', 'linkconer2'
-          displayName = displayName.replace(/([a-zA-Z]+)(\d+)/, '$1 $2');
+            if (!tempElement || !humElement || !chartCtx) {
+                console.error(`Initialization failed: Missing elements for department "${name}"`);
+                return;
+            }
 
-          // 3. Capitalize the first letter of the *entire* string
-          displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+            const chart = new Chart(chartCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        { label: 'Temperature', data: [], backgroundColor: 'rgba(255, 148, 112)', borderColor: 'rgba(255, 148, 112)' },
+                        { label: 'Humidity', data: [], backgroundColor: 'rgba(40, 67, 135)', borderColor: 'rgba(40, 67, 135)' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { type: 'time', time: { unit: 'second' }, ticks: { font: { size: 10 }, maxTicksLimit: 6 }},
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: { display: false } // Hide legend to save space
+                    }
+                }
+            });
 
-          return displayName;
-      }
+            // This shared listener will update all charts
+            socket.on('update', function (data) {
+                const tempValue = data[tempNodeKey];
+                const humValue = data[humNodeKey];
 
-      function setupDepartment(templateName, departmentIndex) {
-          // Convert the templateName to the actual department display name
-          const departmentDisplayName = getDepartmentDisplayName(templateName);
+                // Only update if both values are present
+                if (tempValue !== undefined && humValue !== undefined) {
+                    const formattedTemp = parseFloat(tempValue).toFixed(2);
+                    const formattedHum = parseFloat(humValue).toFixed(2);
 
-          const nodeIds = getNodeIds(departmentDisplayName); // Use the display name here
-          if (!nodeIds) {
-              console.error(`Error: Node IDs not found for department: ${departmentDisplayName}`);
-              return; // Exit if department name doesn't map to node IDs
-          }
+                    tempElement.textContent = formattedTemp;
+                    humElement.textContent = formattedHum;
 
-          const chartCtx = document.getElementById('myChart' + departmentIndex).getContext('2d');
+                    // Update chart data
+                    chart.data.labels.push(new Date());
+                    chart.data.datasets[0].data.push(formattedTemp);
+                    chart.data.datasets[1].data.push(formattedHum);
 
-          const chart = new Chart(chartCtx, {
-              type: 'line',
-              data: {
-                  labels: [],
-                  datasets: [
-                      { label: 'Temperature', data: [], backgroundColor: 'rgba(255, 148, 112)', borderColor: 'rgba(255, 148, 112)' },
-                      { label: 'Humidity', data: [], backgroundColor: 'rgba(40, 67, 135)', borderColor: 'rgba(40, 67, 135)' }
-                  ]
-              },
-              options: {
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  scales: {
-                      x: { type: 'time', time: { unit: 'second' },
-                          ticks: {
-                              font: { size: 10 },
-                              maxTicksLimit: 6
-                          }
-                      },
-                      y: { beginAtZero: true }
-                  }
-              }
-          });
+                    // Keep only the last 20 data points for performance
+                    const maxDataPoints = 20;
+                    if (chart.data.labels.length > maxDataPoints) {
+                        chart.data.labels.shift();
+                        chart.data.datasets.forEach(dataset => dataset.data.shift());
+                    }
 
-          const socket = io.connect('http://127.0.0.1:7005');
+                    chart.update(); // Use 'none' for smoother animation
+                }
+            });
+        }
 
-          socket.on('update', function (data) {
-              // Check if nodeIds are valid for the department and data exists
-              if (nodeIds && data[nodeIds.temperature] !== undefined && data[nodeIds.humidity] !== undefined) {
-                  const temp = data[nodeIds.temperature];
-                  const hum = data[nodeIds.humidity];
-                  const formattedTemp = parseFloat(temp.toFixed(2));
-                  const formattedHum = parseFloat(hum.toFixed(2));
-
-                  // Update the elements with the actual data (assuming they use `departmentIndex`)
-                  const tempElement = document.getElementById('temperature' + departmentIndex);
-                  const humElement = document.getElementById('humidity' + departmentIndex);
-
-                  if (tempElement) tempElement.textContent = formattedTemp.toFixed(2);
-                  if (humElement) humElement.textContent = formattedHum.toFixed(2);
-
-                  chart.data.labels.push(new Date());
-                  chart.data.datasets[0].data.push(formattedTemp);
-                  chart.data.datasets[1].data.push(formattedHum);
-
-                  // Keep only the last 20 data points
-                  const maxDataPoints = 20;
-                  if (chart.data.labels.length > maxDataPoints) {
-                      chart.data.labels.shift();
-                      chart.data.datasets[0].data.shift();
-                      chart.data.datasets[1].data.shift();
-                  }
-
-                  chart.update();
-              } else {
-                  console.warn(`Data not found or node IDs are undefined for department: ${departmentDisplayName}. Skipping update.`);
-              }
-          });
-      }
-
-      // Loop through submodules to set up charts for relevant templates
-      {% for name, template_file in submodules.items() %}
-          {# CORRECTED Jinja2 conditional: using 'in' operator and 'endswith' filter #}
-          {% if '.html' in template_file and (template_file.startswith('spinning') or template_file.startswith('preparatory') or template_file.startswith('linkconer')) or template_file.startswith('autoconer') %}
-              setupDepartment('{{ template_file }}', {{ loop.index }});
-          {% endif %}
-      {% endfor %}
+        // This Jinja loop now generates the JavaScript calls needed to set up each card.
+        // All hardcoding is gone.
+        {% for item in dashboard_items %}
+            setupDepartment(
+                "{{ item.name }}",
+                "{{ item.name|slugify }}",
+                "{{ item.temperature_node_key }}",
+                "{{ item.humidity_node_key }}"
+            );
+        {% endfor %}
     </script>
   </body>
 </html>
-
 {% endblock %}

@@ -580,9 +580,14 @@ def dashboard():
     #     return redirect(url_for('user_login'))
     role = session.get('role')
     allowed_submodules = load_role_submodules(role)
-    with open('nodeid.yaml', 'r') as file:
-        node_ids = yaml.safe_load(file)
-    return render_template('iot/dashboard.html', node_ids=node_ids, allowed_submodules=allowed_submodules)
+
+    # Load the entire config to get the new dashboard_items list
+    config_data = load_data()
+    dashboard_items = config_data.get('dashboard_items', []) # Default to empty list if not found
+
+    return render_template('iot/dashboard.html', 
+                           dashboard_items=dashboard_items, 
+                           allowed_submodules=allowed_submodules)
 
 def load_data():
     yaml_path = os.path.join(os.path.dirname(__file__), "input.yaml")

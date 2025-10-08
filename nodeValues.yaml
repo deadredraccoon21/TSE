@@ -1,7 +1,7 @@
 Autoconer_RH: 62.5
-Autoconer_Temp: 32340.6
+Autoconer_Temp: 17162.4
 Autoconer_iVa_Act_RH: 62.5
-Autoconer_iVa_Act_Temp: 32340.6
+Autoconer_iVa_Act_Temp: 17162.4
 DI_Spg1_iFl_DCF1_OFF: 0
 DI_Spg1_iFl_DCF1_ON: 1
 DI_Spg1_iFl_DCF2_OFF: 0
@@ -56,7 +56,7 @@ Spg1_iMi_Set_WoT_Man_B: 1
 Spg1_iMi_Set_WoT_Man_Ref: 0.0
 Spg1_iTime_Start_Pump: 15
 Spg1_iTime_Stop_Pump: 5
-Spg1_iVa_Act_RH: 31933.5
+Spg1_iVa_Act_RH: 17519.8
 Spg1_iVa_Act_Temp: 38.2
 Spg1_iVa_Act_WoT: 35.1
 Spg1_iVa_DPG_RDF: -625.8
@@ -85,5 +85,5 @@ Spg1_iVa_UPSS_Output_RAF: 90.0
 Spg1_iVa_UPSS_Output_SAF: 70.0
 Spg1_iVa_WTC_Output: 12.9
 Spg1_iVa_WTC_Output2: 13.0
-Spinning 1_RH: 31933.5
+Spinning 1_RH: 17519.8
 Spinning 1_Temp: 38.2

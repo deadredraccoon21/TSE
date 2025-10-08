@@ -47,6 +47,14 @@ alarms:
   severity: 1
   status: Resolved
   time: '2025-10-06 23:57:07'
+- acknowledged: true
+  code: '24'
+  id: 71c4ac9c-77e7-4174-867e-6bd9dd8471eb
+  message: Return Air Fan-1 VFD Fault - Spinning 1
+  resolved_time: '2025-10-08 19:02:11'
+  severity: 1
+  status: Resolved
+  time: '2025-10-07 17:21:11'
 lastTripStates:
   '24': false
   '25': false

@@ -1,4 +1,4 @@
-{% extends "iot/tse.html" %} {% block title %}Spinning 2{% endblock %} {% block
+﻿{% extends "iot/tse.html" %} {% block title %}Spinning 2{% endblock %} {% block
 content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -505,7 +505,7 @@ content %}
           font-size: 30px;
         "
       >
-        <b><u>{{ dept_name }}</u></b>
+        <b><u>Preparatory2</u></b>
       </div>
       <p style="position: absolute; left: 1346px; top: 395px; color: black">
         <b>SAF</b>
@@ -535,7 +535,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iMi_Set_RH">0</span>
+        <span id="Prep2_iMi_Set_RH">0</span>
       </div>
       <div
         style="
@@ -547,10 +547,10 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iMi_Set_Temp">0</span>
+        <span id="Prep2_iMi_Set_Temp">0</span>
       </div>
       <p style="position: absolute; left: 1037px; top: 520px">Set %RH</p>
-      <p style="position: absolute; left: 1013px; top: 566px">Set Temp °C</p>
+      <p style="position: absolute; left: 1013px; top: 566px">Set Temp Â°C</p>
       <img
         src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
         style="
@@ -782,7 +782,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_DPG_RDF">0</span> Pa
+        <span id="Prep2_iVa_DPG_RDF">0</span> Pa
       </div>
       <div
         style="
@@ -794,7 +794,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_UPSS_Output_RAF">0</span> %
+        <span id="Prep2_iVa_UPSS_Output_RAF">0</span> %
       </div>
       <div
         style="
@@ -806,7 +806,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Pump_Output">0</span> %
+        <span id="Prep2_iVa_Pump_Output">0</span> %
       </div>
       <div
         style="
@@ -818,7 +818,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Act_WoT">0</span> °C
+        <span id="Prep2_iVa_Act_WoT">0</span> Â°C
       </div>
       <div
         style="
@@ -830,7 +830,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_UPSS_Output_SAF">0</span> %
+        <span id="Prep2_iVa_UPSS_Output_SAF">0</span> %
       </div>
       <div
         style="
@@ -842,7 +842,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Act_RH">0</span>
+        <span id="Prep2_iVa_Act_RH">0</span>
       </div>
       <div
         style="
@@ -854,7 +854,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Act_Temp">0</span>
+        <span id="Prep2_iVa_Act_Temp">0</span>
       </div>
       <div
         style="
@@ -866,7 +866,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Damper_Output">0</span> %
+        <span id="Prep2_iVa_Damper_Output">0</span> %
       </div>
       <div
         style="
@@ -878,7 +878,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Damper_Output2">0</span> %
+        <span id="Prep2_iVa_Damper_Output2">0</span> %
       </div>
       <div
         style="
@@ -890,10 +890,10 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_Ret_Damper_Output">0</span> %
+        <span id="Prep2_iVa_Ret_Damper_Output">0</span> %
       </div>
       <p style="position: absolute; left: 1224px; top: 523px"><b>%R.H</b></p>
-      <p style="position: absolute; left: 1238px; top: 570px"><b>°C</b></p>
+      <p style="position: absolute; left: 1238px; top: 570px"><b>Â°C</b></p>
     </div>
 
     <script>
@@ -902,39 +902,39 @@ content %}
 
       const onOffNodePairs = {
         "fan1-on-off": {
-          on: "DI_Spg1_iFl_RetAFan1_ON",
-          off: "DI_Spg1_iFl_RetAFan1_OFF",
+          on: "DI_Prep2_iFl_RetAFan1_ON",
+          off: "DI_Prep2_iFl_RetAFan1_OFF",
         },
         "fan3-on-off": {
-          on: "DI_Spg1_iFl_SAFan1_ON",
-          off: "DI_Spg1_iFl_SAFan1_OFF",
+          on: "DI_Prep2_iFl_SAFan1_ON",
+          off: "DI_Prep2_iFl_SAFan1_OFF",
         },
         "rdf1-on-off": {
-          on: "DI_Spg1_iFl_RDF1_ON",
-          off: "DI_Spg1_iFl_RDF1_OFF",
+          on: "DI_Prep2_iFl_RDF1_ON",
+          off: "DI_Prep2_iFl_RDF1_OFF",
         },
         "dcf1-on-off": {
-          on: "DI_Spg1_iFl_DCF1_ON",
-          off: "DI_Spg1_iFl_DCF1_OFF",
+          on: "DI_Prep2_iFl_DCF1_ON",
+          off: "DI_Prep2_iFl_DCF1_OFF",
         },
         "screwcompactor1-on-off": {
-          on: "DI_Spg1_iFl_ScrewCompactor1_ON",
-          off: "DI_Spg1_iFl_ScrewCompactor1_OFF",
+          on: "DI_Prep2_iFl_ScrewCompactor1_ON",
+          off: "DI_Prep2_iFl_ScrewCompactor1_OFF",
         },
         "washerpump1-on-off": {
-          on: "DI_Spg1_iFl_WasherPump1_ON",
-          off: "DI_Spg1_iFl_WasherPump1_OFF",
+          on: "DI_Prep2_iFl_WasherPump1_ON",
+          off: "DI_Prep2_iFl_WasherPump1_OFF",
         },
       };
 
       const tripNodeMappings = {
-        DI_Spg1_iFl_RetAFan1_TRIP: "fan1-trip",
-        DI_Spg1_iFl_RetAFan2_TRIP: "fan2-trip",
-        DI_Spg1_iFl_SAFan1_TRIP: "fan3-trip",
-        DI_Spg1_iFl_RDF1_TRIP: "rdf1-trip",
-        DI_Spg1_iFl_DCF1_TRIP: "dcf1-trip",
-        DI_Spg1_iFl_ScrewCompactor1_TRIP: "screwcompactor1-trip",
-        DI_Spg1_iFl_WasherPump1_TRIP: "washerpump1-trip",
+        DI_Prep2_iFl_RetAFan1_TRIP: "fan1-trip",
+        DI_Prep2_iFl_RetAFan2_TRIP: "fan2-trip",
+        DI_Prep2_iFl_SAFan1_TRIP: "fan3-trip",
+        DI_Prep2_iFl_RDF1_TRIP: "rdf1-trip",
+        DI_Prep2_iFl_DCF1_TRIP: "dcf1-trip",
+        DI_Prep2_iFl_ScrewCompactor1_TRIP: "screwcompactor1-trip",
+        DI_Prep2_iFl_WasherPump1_TRIP: "washerpump1-trip",
       };
 
       socket.on("update", function (data) {
@@ -946,30 +946,30 @@ content %}
         }
 
         // Part 1: Update numerical values
-        document.getElementById("Spg1_iMi_Set_RH").textContent =
-          data["Spg1_iMi_Set_RH"] || "0";
-        document.getElementById("Spg1_iMi_Set_Temp").textContent =
-          data["Spg1_iMi_Set_Temp"] || "0";
-        document.getElementById("Spg1_iVa_DPG_RDF").textContent =
-          data["Spg1_iVa_DPG_RDF"] || "0";
-        document.getElementById("Spg1_iVa_UPSS_Output_RAF").textContent =
-          data["Spg1_iVa_UPSS_Output_RAF"] || "0";
-        document.getElementById("Spg1_iVa_Pump_Output").textContent =
-          data["Spg1_iVa_Pump_Output"] || "0";
-        document.getElementById("Spg1_iVa_Act_WoT").textContent =
-          data["Spg1_iVa_Act_WoT"] || "0";
-        document.getElementById("Spg1_iVa_UPSS_Output_SAF").textContent =
-          data["Spg1_iVa_UPSS_Output_SAF"] || "0";
-        document.getElementById("Spg1_iVa_Act_RH").textContent =
-          data["Spg1_iVa_Act_RH"] || "0";
-        document.getElementById("Spg1_iVa_Act_Temp").textContent =
-          data["Spg1_iVa_Act_Temp"] || "0";
-        document.getElementById("Spg1_iVa_Damper_Output").textContent =
-          data["Spg1_iVa_Damper_Output"] || "0";
-        document.getElementById("Spg1_iVa_Damper_Output2").textContent =
-          data["Spg1_iVa_Damper_Output"] || "0";
-        document.getElementById("Spg1_iVa_Ret_Damper_Output").textContent =
-          data["Spg1_iVa_Ret_Damper_Output"] || "0";
+        document.getElementById("Prep2_iMi_Set_RH").textContent =
+          data["Prep2_iMi_Set_RH"] || "0";
+        document.getElementById("Prep2_iMi_Set_Temp").textContent =
+          data["Prep2_iMi_Set_Temp"] || "0";
+        document.getElementById("Prep2_iVa_DPG_RDF").textContent =
+          data["Prep2_iVa_DPG_RDF"] || "0";
+        document.getElementById("Prep2_iVa_UPSS_Output_RAF").textContent =
+          data["Prep2_iVa_UPSS_Output_RAF"] || "0";
+        document.getElementById("Prep2_iVa_Pump_Output").textContent =
+          data["Prep2_iVa_Pump_Output"] || "0";
+        document.getElementById("Prep2_iVa_Act_WoT").textContent =
+          data["Prep2_iVa_Act_WoT"] || "0";
+        document.getElementById("Prep2_iVa_UPSS_Output_SAF").textContent =
+          data["Prep2_iVa_UPSS_Output_SAF"] || "0";
+        document.getElementById("Prep2_iVa_Act_RH").textContent =
+          data["Prep2_iVa_Act_RH"] || "0";
+        document.getElementById("Prep2_iVa_Act_Temp").textContent =
+          data["Prep2_iVa_Act_Temp"] || "0";
+        document.getElementById("Prep2_iVa_Damper_Output").textContent =
+          data["Prep2_iVa_Damper_Output"] || "0";
+        document.getElementById("Prep2_iVa_Damper_Output2").textContent =
+          data["Prep2_iVa_Damper_Output"] || "0";
+        document.getElementById("Prep2_iVa_Ret_Damper_Output").textContent =
+          data["Prep2_iVa_Ret_Damper_Output"] || "0";
 
         // Part 2: Update button statuses
         for (const buttonId in onOffNodePairs) {
@@ -1006,23 +1006,23 @@ content %}
         // Part 3: Update Manual Mode 'M' Symbol Visibility
         updateManualSymbolVisibility(
           "m-symbol-rdf",
-          data["Spg1_iFl_Set_DPG_RDF_Man_B"]
+          data["Prep2_iFl_Set_DPG_RDF_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-recirculation",
-          data["Spg1_iFl_Damper_Output_Man_B"]
+          data["Prep2_iFl_Damper_Output_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-wot",
-          data["Spg1_iMi_Set_WoT_Man_B"]
+          data["Prep2_iMi_Set_WoT_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-rh",
-          data["Spg1_iFl_Set_Humidity_Man_B"]
+          data["Prep2_iFl_Set_Humidity_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-temp",
-          data["Spg1_iMi_Set_Temp_Man_B"]
+          data["Prep2_iMi_Set_Temp_Man_B"]
         );
 
         // Part 4: Update fan images
@@ -1065,3 +1065,4 @@ content %}
   </body>
 </html>
 {% endblock %}
+
