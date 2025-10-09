@@ -3,6 +3,7 @@ eventlet.monkey_patch()
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file
 from flask_cors import CORS
 from opcua import Client, ua
+from collections import defaultdict # Add this import at the top of your file
 import os
 import json
 import yaml
@@ -609,36 +610,49 @@ def inject_context():
     allowed_submodules = []
     if 'userloggedin' in session:
         allowed_submodules = session.get('allowed_submodules', load_role_submodules(session.get('role')))
-
+        # Group submodules by category
+    categorized_submodules = defaultdict(list)
+    submodules_list = data.get("submodules", [])
+    for submodule in submodules_list:
+        category = submodule.get("category", "Uncategorized")
+        categorized_submodules[category].append(submodule)
     dashboard_name = data.get("Dashboard")
     
     return {
-        'submodules': data["submodules"],
+        'submodules': submodules_list,  # Pass the original list for the input page
+        'categorized_submodules': categorized_submodules, # Pass the grouped dict for the sidebar
         'client_name': data.get("client_name", "Default Client Name"),
         'allowed_submodules': allowed_submodules,
         'dashboard_name': dashboard_name
     }
-
+# THIS IS THE NEW, CORRECTED FUNCTION
 @app.route('/<submodule>')
 def render_submodule(submodule):
     # if 'userloggedin' not in session:
     #     return redirect(url_for('user_login'))
     
-    submodules = load_data()["submodules"]
+    # CORRECTED LOGIC: Find the submodule in the list of dictionaries
+    submodules_list = load_data().get("submodules", [])
+    target_submodule = next((s for s in submodules_list if s['name'] == submodule), None)
+
+    # Handle case where the submodule name from the URL is not found
+    if not target_submodule:
+        return "Page not found", 404
+
     role = session.get('role')
     allowed_submodules = load_role_submodules(role)
-    
     session['allowed_submodules'] = allowed_submodules
 
-    template_name = submodules.get(submodule)
-    if template_name:
-        template_path = os.path.join("templates", "iot", template_name)
-        if os.path.exists(template_path):
-            msg = {"payload": latest_values}
-            dept_name = submodule
-            return render_template(f"iot/{template_name}", msg=msg, allowed_submodules=allowed_submodules, dept_name=dept_name)
+    template_name = target_submodule['template'] # Get template from the found dictionary
+    template_path = os.path.join("templates", "iot", template_name)
+    
+    if os.path.exists(template_path):
+        msg = {"payload": latest_values}
+        dept_name = submodule
+        return render_template(f"iot/{template_name}", msg=msg, allowed_submodules=allowed_submodules, dept_name=dept_name)
 
-    return "Page not found", 404
+    # This part might be reached if the template file is missing, but it's good practice
+    return "Template file not found", 404
 
 
 
@@ -821,28 +835,36 @@ def input_page():
         elif 'opc_ua_url' in request.form:
             data['OPC_UA_URL'] = request.form['opc_ua_url']
             msg = "OPC UA URL updated"
-        elif 'submodule_name' in request.form and 'submodule_file' in request.form:
+        # CORRECTED LOGIC: Handle adding a categorized submodule to a list
+        elif 'submodule_name' in request.form and 'submodule_file' in request.form and 'submodule_category' in request.form:
             new_submodule = {
-                request.form['submodule_name']: request.form['submodule_file']
+                'category': request.form['submodule_category'],
+                'name': request.form['submodule_name'],
+                'template': request.form['submodule_file']
             }
-            data['submodules'].update(new_submodule)
+            # Ensure 'submodules' exists as a list and append the new item
+            if 'submodules' not in data or not isinstance(data['submodules'], list):
+                data['submodules'] = []
+            data['submodules'].append(new_submodule)
             msg = "Submodule added"
         save_yaml(data)
         return jsonify(success=True, message=msg)
 
     return render_template(
         'iot/input.html',
-        client_name=data['client_name'],
+        client_name=data.get('client_name', ''),
         opc_ua_url=data.get('OPC_UA_URL', ''),
-        submodules=data['submodules'],
-        roles=data['roles']
+        submodules=data.get('submodules', []),  # Pass the list to the template
+        roles=data.get('roles', {})
     )
 
 @app.route('/remove_submodule', methods=['POST'])
 def remove_submodule():
     data = load_yaml()
     submodule_name = request.form['submodule_name']
-    del data['submodules'][submodule_name]
+    # CORRECTED LOGIC: Use a list comprehension to filter out the item to be deleted
+    if 'submodules' in data:
+        data['submodules'] = [s for s in data['submodules'] if s.get('name') != submodule_name]
     save_yaml(data)
     return jsonify({'success': True})
 
@@ -852,9 +874,17 @@ def edit_submodule():
     old_name = request.form['submodule_name']
     new_name = request.form['new_submodule_name']
     new_file = request.form['submodule_file']
-    if old_name in data['submodules']:
-        del data['submodules'][old_name]
-    data['submodules'][new_name] = new_file
+    new_category = request.form['submodule_category']
+    
+    # CORRECTED LOGIC: Find the dictionary in the list and update its values
+    if 'submodules' in data:
+        for submodule in data['submodules']:
+            if submodule.get('name') == old_name:
+                submodule['name'] = new_name
+                submodule['template'] = new_file
+                submodule['category'] = new_category
+                break  # Stop after finding and updating
+            
     save_yaml(data)
     return jsonify({'success': True})
 
@@ -864,15 +894,21 @@ def update_order():
         new_order = request.json.get('new_order', [])
         if not new_order:
             return jsonify({'error': 'No new order provided'}), 400
-        submodules = {item['name']: item['file'] for item in new_order}
+        
         yaml_file_path = 'input.yaml'
         with open(yaml_file_path, 'r') as yaml_file:
             data = yaml.safe_load(yaml_file) or {}
-        data['submodules'] = submodules
+
+        # CORRECTED LOGIC: Directly replace the old list with the new ordered list
+        data['submodules'] = new_order
+
         with open(yaml_file_path, 'w') as yaml_file:
             yaml.dump(data, yaml_file, default_flow_style=False, sort_keys=False)
+            
         return jsonify({'message': 'Order updated successfully!'}), 200
     except Exception as e:
+        # It's good practice to log the actual error for debugging
+        print(f"Error in /update-order: {e}") 
         return jsonify({'error': str(e)}), 500
     
 @app.route('/add_setting', methods=['POST'])

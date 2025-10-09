@@ -24,10 +24,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <!-- ======================================================= -->
-    <!-- === MODIFIED CSS FOR OUTSIDE CONDITIONS             === -->
-    <!-- ======================================================= -->
     <style>
       .outside-conditions-box {
         margin: 20px auto 10px auto; /* Centered with top margin */
@@ -111,7 +107,6 @@
 
   <body style="background-color: #e3f4ff">
     <div class="title-bar">
-      <!-- ... Title bar content ... -->
       <div class="left-section">
         <img
           src="{{ url_for('static', filename='images/LOGO.png') }}"
@@ -163,7 +158,6 @@
     </div>
 
     <div class="modal" id="alarmModal">
-      <!-- ... Modal content ... -->
       <div class="modal-content">
         <div class="modal-header">
           Alarm Notifications
@@ -180,7 +174,6 @@
     </div>
 
     <div class="sidebar">
-      <!-- ... Sidebar buttons ... -->
       <button id="home" class="module-button">
         <i class="fa-solid fa-house"></i> Home
       </button>
@@ -189,35 +182,40 @@
         <i class="fa-solid fa-building"></i> Departments
       </button>
       <div id="departmentsSubmodules" class="submodule-container">
-        {% for submodule, template in submodules.items() %}
-        <button
-          class="submodule-button department-link"
-          data-url="{{ url_for('render_submodule', submodule=submodule) }}"
-          data-submodule-id="{{ submodule | slugify }}Submodules"
-        >
-          {{ submodule }}
+        {% for category, departments_in_category in
+        categorized_submodules.items() %}
+        <button class="submodule-button category-toggle">
+          <i class="fa-solid fa-folder"></i>
+          {{ category }}
         </button>
+
+        <!-- THIS DIV NOW HAS A UNIQUE ID FOR JAVASCRIPT TO FIND -->
         <div
-          id="{{ submodule | slugify }}Submodules"
-          class="submodule-container"
+          id="category-{{ category | slugify }}"
+          class="submodule-container department-group"
         >
-          {% if dashboard_name %}
-          <button class="submodule-button bg">
-            <i
-              class="fa-solid fa-home"
-              style="font-size: 9px; margin-left: 5px; padding-right: 5px"
-            ></i>
-            {{ dashboard_name }}
-          </button>
-          {% endif %} {% for submodule_option in session['allowed_submodules']
-          %}
+          {% for dept in departments_in_category %}
           <button
-            class="submodule-button bg"
-            onclick="loadTemplate('{{ submodule }}', '{{ submodule_option }}')"
+            class="submodule-button department-link"
+            data-url="{{ url_for('render_submodule', submodule=dept.name) }}"
+            data-submodule-id="{{ dept.name | slugify }}Submodules"
           >
-            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
-            }}
+            {{ dept.name }}
           </button>
+          <div
+            id="{{ dept.name | slugify }}Submodules"
+            class="submodule-container"
+          >
+            {% for submodule_option in session['allowed_submodules'] %}
+            <button
+              class="submodule-button bg"
+              onclick="loadTemplate('{{ dept.name }}', '{{ submodule_option }}')"
+            >
+              <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+              }}
+            </button>
+            {% endfor %}
+          </div>
           {% endfor %}
         </div>
         {% endfor %}
@@ -267,9 +265,6 @@
       </div>
       {% endif %}
 
-      <!-- ======================================================= -->
-      <!-- === MODIFIED AND RELOCATED "OUTSIDE CONDITIONS"     === -->
-      <!-- ======================================================= -->
       <div class="outside-conditions-box">
         <div class="outside-conditions-header">OUTSIDE CONDITIONS</div>
         <div class="outside-conditions-body">
@@ -285,7 +280,6 @@
       </div>
     </div>
 
-    <!-- ... iFrames and other content divs ... -->
     {% if session['role'] == 'Tse' %}
     <div>
       <iframe
@@ -321,7 +315,6 @@
 
     {% if session.userloggedin %}
     <script>
-      // ... Automatic logout script ...
       (function () {
         let inactivityTimer;
         const inactivityTime = 20 * 60 * 1000;

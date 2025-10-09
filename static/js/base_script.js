@@ -28,32 +28,22 @@ function loadTemplate(parentSubmodule, settingOption) {
         socket.off('update');
     }
 
-    // =========================================================================
-    // ===   START: MODIFIED SOCKET LISTENER                                 ===
-    // =========================================================================
     socket.on('update', function (data) {
         Object.keys(data).forEach((key) => {
-            // FIX: Use querySelectorAll to find ALL elements with this ID, not just the first one.
-            // This is crucial for updating both the main page and the dialog simultaneously.
             const elements = document.querySelectorAll(`[id="${key}"]`); 
-            
             if (elements.length === 0) return;
 
-            // Loop through each found element (e.g., the span on the main page AND the div in the dialog)
             elements.forEach(element => {
-                // UNIVERSAL RULE: Do not update an element the user is actively editing.
                 if (element.classList.contains('user-modified') || document.activeElement === element) {
                     return; 
                 }
 
-                // Update logic for different element types
                 const value = data[key];
-
                 if (element.classList.contains('value')) {
                     if (typeof value === 'number') {
                         element.innerText = value.toFixed(1);
                     } else {
-                        element.innerText = value ? '1' : '0'; // Handles booleans
+                        element.innerText = value ? '1' : '0';
                     }
                 } else if (element.tagName === 'INPUT' && element.type === 'number') {
                     if (typeof value === 'number') {
@@ -68,21 +58,16 @@ function loadTemplate(parentSubmodule, settingOption) {
                         textElement.textContent = value ? 'Manual' : 'Auto';
                     }
                 } 
-                // NEW: Added handling for SPAN tags like those on the spinning2.html page
                 else if (element.tagName === 'SPAN') {
                     if (typeof value === 'number') {
                         element.textContent = value.toFixed(1);
                     } else {
-                        // Handles booleans, strings, and null/undefined gracefully
                         element.textContent = (value !== null && value !== undefined) ? value : 'NA';
                     }
                 }
             });
         });
     });
-    // =========================================================================
-    // ===   END: MODIFIED SOCKET LISTENER                                   ===
-    // =========================================================================
 
     fetch(`/load_template/${parentSubmodule}/${settingOption}`)
     .then(response => response.text())
@@ -100,25 +85,21 @@ function loadTemplate(parentSubmodule, settingOption) {
 }
 
 function bindDynamicEvents() {
-    // Bind the Update button
     const successButton = document.querySelector('.btn-success');
     if (successButton) {
         successButton.addEventListener('click', updateSettings);
     }
 
-    // Bind the Close button
     const dangerButton = document.querySelector('.btn-danger');
     if (dangerButton) {
         dangerButton.addEventListener('click', closeDialog);
     }
 
-    // Bind all mode switches (sliders)
     const modeInputs = document.querySelectorAll('input[type="checkbox"][data-nodeid]');
     modeInputs.forEach(input => {
         input.addEventListener('change', () => updateMode(input));
     });
 
-    // Bind all editable number inputs to mark them when changed by the user
     const numberInputs = document.querySelectorAll('input.setpoint-input');
     numberInputs.forEach(input => {
         input.addEventListener('input', () => {
@@ -131,12 +112,9 @@ function updateSettings(event) {
     event.preventDefault();
     const setpoints = {};
     let isValid = true;
-    // Only select the inputs that the user has actually changed
     const inputsToUpdate = document.querySelectorAll("input.setpoint-input.user-modified[data-nodeid]");
 
     if (inputsToUpdate.length === 0) {
-        // Optional: show a message if nothing was changed
-        // showErrorMessage("No changes to update.");
         return;
     }
 
@@ -147,17 +125,14 @@ function updateSettings(event) {
         const datatype = input.getAttribute("data-datatype");
         let value = input.value;
         const row = input.closest('.row-container');
-        // Find the label for this row to use in error messages
         const parameterLabel = row?.querySelector('.parameter')?.innerText || 'Parameter';
 
-        // Use specific validation from your original function
         if (parameterLabel.includes("Integration Time")) {
             if (value < 0 || value > 1000) {
                 showErrorMessage(`❌ Invalid Integration Time! Please enter a value between 0 and 1000.`);
                 isValid = false;
             }
         }
-        // General validation for other parameters can be added here if needed
 
         if (nodeid && isValid) {
             if (datatype === "boolean") {
@@ -189,7 +164,6 @@ function updateSettings(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Show the custom success pop-up
             if (!document.getElementById('update-popup')) {
                 const popup = document.createElement('div');
                 popup.id = 'update-popup';
@@ -207,7 +181,6 @@ function updateSettings(event) {
                     setTimeout(() => popup.remove(), 500);
                 }, 2000);
             }
-            // IMPORTANT: Un-mark the inputs after a successful save
             inputsToUpdate.forEach(input => input.classList.remove('user-modified'));
         } else {
             showErrorMessage(`❌ Failed to update settings: ${data.error || 'Unknown Error'}`);
@@ -220,7 +193,6 @@ function updateSettings(event) {
 }
 
 function showErrorMessage(message) {
-    // Check if an error popup already exists to avoid stacking them
     if (document.getElementById('error-popup')) return;
 
     const errorPopup = document.createElement('div');
@@ -241,27 +213,17 @@ function showErrorMessage(message) {
 }
 
 function closeDialog() {
-    // When closing, remove any "user-modified" tags to discard changes
     document.querySelectorAll('.user-modified').forEach(el => el.classList.remove('user-modified'));
-    
     const mainContent = document.getElementById('main-content');
     mainContent.innerHTML = '';
     document.body.classList.remove('blur-active');
 }
 
-/**
- * Handles immediate updates for mode switches (sliders).
- */
 function updateMode(checkbox) {
     const nodeId = checkbox.dataset.nodeid;
     const isManual = checkbox.checked;
+    if (!nodeId) return;
 
-    if (!nodeId) {
-        console.error("No nodeid found for switch:", checkbox.id);
-        return;
-    }
-
-    // Optimistically update the UI text
     const textElement = document.getElementById(checkbox.id + '-text');
     if (textElement) {
         textElement.textContent = isManual ? 'Manual' : 'Auto';
@@ -274,7 +236,6 @@ function updateMode(checkbox) {
         body: JSON.stringify(payload)
     }).catch(error => {
         console.error("Error in fetch:", error);
-        // Revert UI on failure
         checkbox.checked = !isManual;
         if (textElement) {
             textElement.textContent = isManual ? 'Auto' : 'Manual';
@@ -285,20 +246,16 @@ function updateMode(checkbox) {
 
 function makeDraggable(element) {
     let offsetX = 0, offsetY = 0, isDragging = false;
-    // Only make draggable by the header
     const header = element.querySelector('.header');
     if (!header) return;
 
     header.style.cursor = 'move';
     header.addEventListener('mousedown', function (e) {
-        // Prevent dragging if the click is on a button inside the header
         if (e.target.tagName === 'BUTTON') return;
-        
         isDragging = true;
-        // Calculate offset relative to the main dialog box, not the header
         offsetX = e.clientX - element.offsetLeft;
         offsetY = e.clientY - element.offsetTop;
-        document.body.style.userSelect = 'none'; // Prevent text selection while dragging
+        document.body.style.userSelect = 'none';
     });
     document.addEventListener('mousemove', function (e) {
         if (isDragging) {
@@ -313,7 +270,7 @@ function makeDraggable(element) {
 }
 
 // =================================================================
-// ===           ALARM & IFRAME LOGIC (UNCHANGED)                ===
+// ===           ALARM & IFRAME LOGIC                ===
 // =================================================================
 
 let alarmModalOpen = false;
@@ -374,7 +331,7 @@ function showIframe(iframeId) {
 }
 
 // =================================================================
-// ===   NEW UNIFIED DROPDOWN AND NAVIGATION LOGIC (UNCHANGED)   ===
+// ===   DOCUMENT READY - UNIFIED DROPDOWN AND NAVIGATION LOGIC  ===
 // =================================================================
 $(document).ready(function() {
 
@@ -391,75 +348,88 @@ $(document).ready(function() {
     $('button[onclick="window.location.href=\'/add_user\'"]').on('click', function() { window.location.href = '/add_user'; });
     $('button[onclick="window.location.href=\'/user_management\'"]').on('click', function() { window.location.href = '/user_management'; });
 
+    // NEW: Handler for the category headers
+    $('.category-toggle').on('click', function(event) {
+        event.stopPropagation(); // Prevent other click handlers from firing
+        $(this).next('.department-group').slideToggle();
+    });
 
-    // 2. Handle module buttons that just toggle a dropdown menu
+    // 2. Handle main module buttons that just toggle a dropdown menu
     $('.module-button').on('click', function(event) {
-        // Only act on buttons that are NOT simple navigation links
         const id = $(this).attr('id');
         if (id && !['home', 'alarms', 'inputs'].includes(id)) {
-            event.stopPropagation(); // Prevent document click from closing it right away
+            event.stopPropagation();
             var $dropdown = $(this).next('.submodule-container');
-            // Close other open submodule dropdowns
             $('.submodule-container').not($dropdown).slideUp();
-            // Toggle the current dropdown
             $dropdown.slideToggle();
         }
     });
 
     // 3. Handle the special "Departments" submodule links to prevent reloads
     $('.department-link').on('click', function(event) {
-        event.preventDefault(); // Always prevent default button action
-        event.stopPropagation(); // Stop the click from bubbling up
+        event.preventDefault(); 
+        event.stopPropagation();
 
         const url = $(this).data('url');
         const submoduleId = $(this).data('submodule-id');
-        const $icon = $(this).find('.dropdown-icon');
         const $submoduleContainer = $('#' + submoduleId);
 
-        // Check if we are already on the target page by comparing paths
         const targetPath = new URL(url, window.location.origin).pathname;
         const isCurrentPage = window.location.pathname === targetPath;
 
         if (isCurrentPage) {
             // If already on the page, just toggle the settings dropdown
-            const isVisible = $submoduleContainer.is(':visible');
             $submoduleContainer.slideToggle();
-            $icon.toggleClass('fa-chevron-up', !isVisible).toggleClass('fa-chevron-down', isVisible);
         } else {
-            // If on a different page, navigate, but first save which dropdown to open
+            // Find the parent category's ID
+            const categoryId = $(this).closest('.department-group').attr('id');
+            // Store both the category and department IDs in sessionStorage
+            sessionStorage.setItem('openCategoryOnLoad', categoryId);
             sessionStorage.setItem('openSubmoduleOnLoad', submoduleId);
+            
+            // Now, navigate to the new page
             window.location.href = url;
         }
     });
 
-    // On page load, check if we need to open a department's settings dropdown
+    // On page load, check if we need to open a specific category and department
+    const categoryToOpen = sessionStorage.getItem('openCategoryOnLoad');
     const submoduleToOpen = sessionStorage.getItem('openSubmoduleOnLoad');
-    if (submoduleToOpen) {
-        const $container = $('#' + submoduleToOpen);
-        if ($container.length) {
-            $container.show();
-            $('#departmentsSubmodules').show(); // Ensure parent is also open
-            const $button = $(`.department-link[data-submodule-id="${submoduleToOpen}"]`);
-            if ($button.length) {
-                $button.find('.dropdown-icon').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-            }
+
+    if (categoryToOpen && submoduleToOpen) {
+        // Ensure the main "Departments" container is open
+        $('#departmentsSubmodules').show();
+        
+        // Find and show the specific category container
+        const $categoryContainer = $('#' + categoryToOpen);
+        if ($categoryContainer.length) {
+            $categoryContainer.show();
         }
-        sessionStorage.removeItem('openSubmoduleOnLoad'); // Clean up
+
+        // Find and show the specific department's settings container
+        const $submoduleContainer = $('#' + submoduleToOpen);
+        if ($submoduleContainer.length) {
+            $submoduleContainer.show();
+        }
+
+        // Clean up sessionStorage so it doesn't happen on the next click
+        sessionStorage.removeItem('openCategoryOnLoad');
+        sessionStorage.removeItem('openSubmoduleOnLoad');
     }
 
-    // --- Profile Dropdown Logic ---
+    // --- Profile Dropdown Logic (Unchanged) ---
     $('.profile-icon').on('click', function(event) {
         event.stopPropagation();
         $('.dropdown-content').toggle();
     });
 
-    // --- Tooltip Logic ---
+    // --- Tooltip Logic (Unchanged) ---
     $('.profile-icon').hover(
         function() { $('#profile-tooltip').show(); },
         function() { $('#profile-tooltip').hide(); }
     );
     
-    // Prevent dropdowns from closing when clicking inside them
+    // Prevent dropdowns from closing when clicking inside them (Unchanged)
     $('.submodule-container, .dropdown').on('click', function(event) {
         event.stopPropagation();
     });

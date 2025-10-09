@@ -3,19 +3,16 @@ DB_PASSWORD: tse@123
 DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
 DB_USER: tse
 OPC_UA_URL: opc.tcp://127.0.0.1:4840/freeopcua/server/
-client_name: Garg Acrylics (P) Ltd
+client_name: Garg Acrylics (P) Ltds
 dashboard_items:
 - humidity_node_key: Autoconer_RH
-  name: H-Plant-1
+  name: H-Plant-1_Prep1
   temperature_node_key: Autoconer_Temp
 - humidity_node_key: Autoconer_RH
-  name: H-Plant-6
+  name: H-Plant-1_Spg1
   temperature_node_key: Autoconer_Temp
 - humidity_node_key: Autoconer_RH
-  name: H-Plant-5
-  temperature_node_key: Autoconer_Temp
-- humidity_node_key: Autoconer_RH
-  name: H-plant-2
+  name: H-Plant-1_Lconer
   temperature_node_key: Autoconer_Temp
 roles:
   Manager:
@@ -42,7 +39,15 @@ roles:
   - Pump Min Set
   - Timer
 submodules:
-  Autoconer: h-plant-1_Aconer.html
-  H-Plant-1: h-plant-1.html
-  H-Plant-5: h-plant-5.html
-  H-Plant-6: h-plant-6.html
+- category: H-Plant-1
+  name: Preparatory 1
+  template: h-plant-1_Prep1.html
+- category: H-Plant-1
+  name: Spinning 1
+  template: h-plant-1_Spg1.html
+- category: H-Plant-1
+  name: Linkconer
+  template: h-plant-1_Lconer.html
+- category: H-Plant-1
+  name: Spinning 2
+  template: h-plant-1_Sp2.html
