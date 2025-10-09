@@ -48,6 +48,3 @@ submodules:
 - category: H-Plant-1
   name: Linkconer
   template: h-plant-1_Lconer.html
-- category: H-Plant-1
-  name: Spinning 2
-  template: h-plant-1_Sp2.html

@@ -785,6 +785,7 @@ content %}
         <span id="Spg_iVa_DPG_RDF">0</span> Pa
       </div>
       <div
+        id="Spg_iVa_UPSS_Output_RAF-container"
         style="
           position: absolute;
           left: 480px;
@@ -821,6 +822,7 @@ content %}
         <span id="Spg_iVa_Act_WoT">0</span> Â°C
       </div>
       <div
+        id="Spg_iVa_UPSS_Output_SAF-container"
         style="
           position: absolute;
           left: 1200px;
@@ -895,9 +897,7 @@ content %}
       <p style="position: absolute; left: 1224px; top: 523px"><b>%R.H</b></p>
       <p style="position: absolute; left: 1238px; top: 570px"><b>Â°C</b></p>
     </div>
-
     <script>
-      // const socket = io();
       let isFirstUpdate = true;
 
       const onOffNodePairs = {
@@ -945,21 +945,46 @@ content %}
           isFirstUpdate = false;
         }
 
-        // Part 1: Update numerical values
+        // --- Part 1: Update numerical values ---
+
+        // Handle the two SPECIAL elements with hide/show logic
+        const rafContainer = document.getElementById(
+          "Spg_iVa_UPSS_Output_RAF-container"
+        );
+        const rafSpan = document.getElementById("Spg_iVa_UPSS_Output_RAF");
+        const rafValue = data["Spg_iVa_UPSS_Output_RAF"];
+
+        if (rafValue === null || typeof rafValue === "undefined") {
+          if (rafContainer) rafContainer.style.display = "none";
+        } else {
+          if (rafContainer) rafContainer.style.display = "";
+          if (rafSpan) rafSpan.textContent = rafValue.toFixed(1);
+        }
+
+        const safContainer = document.getElementById(
+          "Spg_iVa_UPSS_Output_SAF-container"
+        );
+        const safSpan = document.getElementById("Spg_iVa_UPSS_Output_SAF");
+        const safValue = data["Spg_iVa_UPSS_Output_SAF"];
+
+        if (safValue === null || typeof safValue === "undefined") {
+          if (safContainer) safContainer.style.display = "none";
+        } else {
+          if (safContainer) safContainer.style.display = "";
+          if (safSpan) safSpan.textContent = safValue.toFixed(1);
+        }
+
+        // Handle all OTHER elements with the original default-to-zero logic
         document.getElementById("Spg_iMi_Set_RH").textContent =
           data["Spg_iMi_Set_RH"] || "0";
         document.getElementById("Spg_iMi_Set_Temp").textContent =
           data["Spg_iMi_Set_Temp"] || "0";
         document.getElementById("Spg_iVa_DPG_RDF").textContent =
           data["Spg_iVa_DPG_RDF"] || "0";
-        document.getElementById("Spg_iVa_UPSS_Output_RAF").textContent =
-          data["Spg_iVa_UPSS_Output_RAF"] || "0";
         document.getElementById("Spg_iVa_Pump_Output").textContent =
           data["Spg_iVa_Pump_Output"] || "0";
         document.getElementById("Spg_iVa_Act_WoT").textContent =
           data["Spg_iVa_Act_WoT"] || "0";
-        document.getElementById("Spg_iVa_UPSS_Output_SAF").textContent =
-          data["Spg_iVa_UPSS_Output_SAF"] || "0";
         document.getElementById("Spg_iVa_Act_RH").textContent =
           data["Spg_iVa_Act_RH"] || "0";
         document.getElementById("Spg_iVa_Act_Temp").textContent =
@@ -971,21 +996,21 @@ content %}
         document.getElementById("Spg_iVa_Ret_Damper_Output").textContent =
           data["Spg_iVa_Ret_Damper_Output"] || "0";
 
+        // --- UNCHANGED Parts 2, 3, and 4 ---
+
         // Part 2: Update button statuses
         for (const buttonId in onOffNodePairs) {
           const button = document.getElementById(buttonId);
           if (button) {
             const { on: onNode, off: offNode } = onOffNodePairs[buttonId];
-            const isOn = data[onNode];
-            const isOff = data[offNode];
             button.classList.remove(
               "status-on",
               "status-off",
               "status-indeterminate"
             );
-            if (isOn) {
+            if (data[onNode]) {
               button.classList.add("status-on");
-            } else if (isOff) {
+            } else if (data[offNode]) {
               button.classList.add("status-off");
             } else {
               button.classList.add("status-indeterminate");
@@ -997,9 +1022,10 @@ content %}
           const buttonId = tripNodeMappings[nodeId];
           const button = document.getElementById(buttonId);
           if (button) {
-            const isTripped = data[nodeId];
             button.classList.remove("status-trip", "status-normal");
-            button.classList.add(isTripped ? "status-trip" : "status-normal");
+            button.classList.add(
+              data[nodeId] ? "status-trip" : "status-normal"
+            );
           }
         }
 
@@ -1046,7 +1072,6 @@ content %}
         const onOffColor = window.getComputedStyle(onOffButton).backgroundColor;
         const tripColor = window.getComputedStyle(tripButton).backgroundColor;
 
-        // If button is Red, Yellow, or Transparent, show stopped fan
         if (
           onOffColor === "rgb(220, 53, 69)" ||
           tripColor === "rgb(255, 193, 7)" ||
