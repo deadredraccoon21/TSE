@@ -250,11 +250,15 @@
           const element = document.getElementById(key);
           if (!element) return;
 
+          // fallback to 0 if value is undefined or null
+          const value =
+            data[key] !== undefined && data[key] !== null ? data[key] : 0;
+
           // This dialog only has number inputs
           if (element.tagName === "INPUT" && element.type === "number") {
             // Update the number input box only if not focused
             if (document.activeElement !== element) {
-              element.value = data[key];
+              element.value = value;
             }
           }
         });

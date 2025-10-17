@@ -8,6 +8,7 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="static\css\font.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
     <style>
       .btn-success {
         color: #fff;
@@ -50,9 +51,10 @@
       }
 
       .dialog-box {
-        /* max-width: 25%; */
-        width: 150%;
-        transform: translate(130%, 60%);
+        /* max-width: 50%; */
+        width: 400%;
+        height: 50%;
+        transform: translate(60%, 50%);
         border: 1px solid #333;
         border-radius: 10px;
         background-color: #e3f4ff;
@@ -60,7 +62,8 @@
         margin: 0 auto;
         box-sizing: border-box;
         position: relative;
-        /* top: -30px; */
+        /* top: -60px;
+            left : -30px; */
         /* Needed for absolute positioning of the close icon */
       }
 
@@ -73,7 +76,7 @@
         padding: 10px;
         border-radius: 8px;
         margin-bottom: 15px;
-        width: 95%;
+        width: 99%;
       }
 
       .row-container {
@@ -191,9 +194,9 @@
   <body>
     <div class="dialog-box mt-5">
       <!-- Header -->
-      <div class="header">Pump Setting - UPSS</div>
+      <div class="header">CONTROLLERS</div>
 
-      <!-- Row 1: Headers -->
+      <!-- Row 1: Parameter Headers -->
       <div class="row-container">
         <div
           class="parameter"
@@ -203,40 +206,172 @@
         </div>
         <div
           class="parameter"
-          style="background-color: rgb(20, 105, 46); color: white"
+          style="background-color: rgb(0, 86, 128); color: white"
         >
-          VALUES
+          CL Room Humidity
         </div>
-      </div>
-      <!-- Row 2: Dynamic Pump Min Set Input -->
-      <div class="row-container m-value-row">
         <div
           class="parameter"
           style="background-color: rgb(0, 86, 128); color: white"
         >
-          Pump Min Set
+          CL Room Temp
+        </div>
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          CL SA Temp
+        </div>
+      </div>
+      <!-- Row 2: Dynamic Process Values -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          PROCESS VALUE
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Act_RH">
+          {{ msg.payload[prefix ~ '_iVa_Act_RH'] | default(0) | round(1) }}
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Act_Temp">
+          {{ msg.payload[prefix ~ '_iVa_Act_Temp'] | default(0) | round(1) }}
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Act_WoT">
+          {{ msg.payload[prefix ~ '_iVa_Act_WoT'] | default(0) | round(1) }}
+        </div>
+      </div>
+
+      <!-- Row 3: Dynamic Set Point Inputs -->
+      <div class="row-container m-value-row">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          SET POINT
         </div>
         <div class="set-box">
           <input
             type="number"
             class="setpoint-input"
-            id="{{ prefix }}_iVa_Min_Pump_Output"
-            value="{{ msg.payload[prefix ~ '_iVa_Min_Pump_Output'] | default(0) | round(1) }}"
-            data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Min_Pump_Output'] }}"
+            id="{{ prefix }}_iMi_Set_RH"
+            value="{{ msg.payload[prefix ~ '_iMi_Set_RH'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_RH'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iMi_Set_Temp"
+            value="{{ msg.payload[prefix ~ '_iMi_Set_Temp'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_Temp'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iVa_Set_Temp_WoT"
+            value="{{ msg.payload[prefix ~ '_iVa_Set_Temp_WoT'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Set_Temp_WoT'] }}"
           />
         </div>
       </div>
 
-      <!-- Row 3: Dynamic Actual Pump Speed Display -->
+      <!-- Row 4: Dynamic P.GAIN Inputs -->
+      <div class="row-container m-value-row">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          P.GAIN
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Humidity_Pid_Para_Gain"
+            value="{{ msg.payload[prefix ~ '_Humidity_Pid_Para_Gain'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Humidity_Pid_Para_Gain'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Temp_Pid_Para_Gain"
+            value="{{ msg.payload[prefix ~ '_Temp_Pid_Para_Gain'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Temp_Pid_Para_Gain'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Damper_Pid_Para_Gain"
+            value="{{ msg.payload[prefix ~ '_Damper_Pid_Para_Gain'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Damper_Pid_Para_Gain'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 5: Dynamic Integration Time Inputs -->
+      <div class="row-container m-value-row">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          Integration Time
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Humidity_Pid_Para_IntegrationTime"
+            value="{{ msg.payload[prefix ~ '_Humidity_Pid_Para_IntegrationTime'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Humidity_Pid_Para_IntegrationTime'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Temp_Pid_Para_IntegrationTime"
+            value="{{ msg.payload[prefix ~ '_Temp_Pid_Para_IntegrationTime'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Temp_Pid_Para_IntegrationTime'] }}"
+          />
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_Damper_Pid_Para_IntegrationTime"
+            value="{{ msg.payload[prefix ~ '_Damper_Pid_Para_IntegrationTime'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_Damper_Pid_Para_IntegrationTime'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 6: Dynamic OUTPUT(Y) Values -->
       <div class="row-container">
         <div
           class="parameter"
-          style="background-color: rgb(0, 86, 128); color: white"
+          style="background-color: rgb(20, 105, 46); color: white"
         >
-          Act Pump Speed
+          OUTPUT(Y)
         </div>
-        <div class="value" id="{{ prefix }}_iVa_Pump_Output">
-          {{ msg.payload[prefix ~ '_iVa_Pump_Output'] | default(0) | round(1) }}
+        <div class="value" id="{{ prefix }}_iVa_Humid_Pid_Out">
+          {{ msg.payload[prefix ~ '_iVa_Humid_Pid_Out'] | default(0) | round(1)
+          }}
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Temp_Pid_Output">
+          {{ msg.payload[prefix ~ '_iVa_Temp_Pid_Output'] | default(0) |
+          round(1) }}
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Damper_Pid_Output">
+          {{ msg.payload[prefix ~ '_iVa_Damper_Pid_Output'] | default(0) |
+          round(1) }}
         </div>
       </div>
 
@@ -257,20 +392,24 @@
           const element = document.getElementById(key);
           if (!element) return;
 
+          // fallback to 0 if value is undefined or null
+          const value =
+            data[key] !== undefined && data[key] !== null ? data[key] : 0;
+
           if (element.classList.contains("value")) {
-            // Update blue value boxes
-            element.innerText = data[key];
+            // Update blue/green value boxes
+            element.innerText = value;
           } else if (element.tagName === "INPUT" && element.type === "number") {
-            // Update the number input box only if not focused
+            // Update number input boxes only if not focused
             if (document.activeElement !== element) {
-              element.value = data[key];
+              element.value = value;
             }
           }
         });
       });
 
       /**
-       * Sends updates for all setpoints when the 'Update' button is clicked.
+       * Sends updates for all setpoints, gains, and integration times when 'Update' is clicked.
        * It reads Node IDs from the data attributes of elements with class 'setpoint-input'.
        */
       function updateSettings() {

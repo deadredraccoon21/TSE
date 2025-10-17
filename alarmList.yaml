@@ -55,7 +55,24 @@ alarms:
   severity: 1
   status: Resolved
   time: '2025-10-07 17:21:11'
+- acknowledged: true
+  code: 09
+  id: eab42064-68aa-49d6-a10b-864090297505
+  message: Washer Pump-1 VFD Fault - Preparatory
+  resolved_time: '2025-10-17 20:00:34'
+  severity: 1
+  status: Resolved
+  time: '2025-10-17 19:59:33'
+- acknowledged: true
+  code: '65'
+  id: 02ce780d-38b9-4315-940b-c69d396a68ea
+  message: Return Air Fan-1 VFD Fault - Spinning1
+  resolved_time: '2025-10-17 20:00:52'
+  severity: 1
+  status: Resolved
+  time: '2025-10-17 20:00:25'
 lastTripStates:
+  09: false
   '24': false
   '25': false
   '26': false
@@ -64,3 +81,4 @@ lastTripStates:
   '36': false
   '37': false
   '51': false
+  '65': false

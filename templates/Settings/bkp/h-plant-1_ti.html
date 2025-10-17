@@ -50,51 +50,53 @@
       }
 
       .dialog-box {
-        /* max-width: 20%;  Reduced from 50% */
-        width: 200%;
-        transform: translate(60%, 50%); /* Reduced from 80%, 60% */
+        /* max-width: 25%; */
+        width: 150%;
+        transform: translate(130%, 60%);
         border: 1px solid #333;
-        border-radius: 8px; /* Reduced from 10px */
+        border-radius: 10px;
         background-color: #e3f4ff;
-        padding: 15px; /* Reduced from 20px */
+        padding: 20px;
         margin: 0 auto;
         box-sizing: border-box;
         position: relative;
-        top: -30px; /* Reduced from -50px */
-        left: -20px; /* Reduced from -30px */
+        left: -30px;
+        /* Needed for absolute positioning of the close icon */
       }
+
       .header {
         background-color: #0c609d;
         color: white;
         text-align: center;
-        font-size: 16px; /* Reduced from 20px */
+        font-size: 20px;
         font-weight: bold;
-        padding: 8px; /* Reduced from 10px */
-        border-radius: 6px; /* Reduced from 8px */
-        margin-bottom: 10px; /* Reduced from 15px */
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
         width: 95%;
       }
 
       .row-container {
         display: grid;
-        grid-template-columns: repeat(
-          auto-fit,
-          minmax(80px, 1fr)
-        ); /* Reduced from 100px */
-        gap: 6px; /* Reduced from 8px */
-        margin-bottom: 6px; /* Reduced from 8px */
+        /* grid-template-columns: repeat(6, 1fr); */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        /* Dynamic columns */
+        /* Adjust column width dynamically */
+        gap: 8px;
+        /* Space between the columns */
+        margin-bottom: 8px;
       }
 
       .parameter {
         width: 100%;
-        height: 32px; /* Reduced from 40px */
+        height: 40px;
         text-align: center;
-        line-height: 32px; /* Reduced from 40px */
-        font-size: 10px; /* Reduced from 11px */
+        line-height: 40px;
+        font-size: 11px;
         font-weight: bold;
 
-        border: 1px solid #333; /* Reduced from 2px */
-        border-radius: 4px; /* Reduced from 5px */
+        border: 2px solid #333;
+        border-radius: 5px;
         background-color: #c9f6ff;
         color: black;
       }
@@ -104,81 +106,92 @@
         color: white;
         font-weight: bold;
         text-align: center;
-        border: 1px solid #333; /* Reduced from 2px */
-        border-radius: 4px; /* Reduced from 5px */
-        line-height: 32px; /* Reduced from 40px */
-        padding-right: 8px; /* Reduced from 10px */
-      }
-
-      .close-icon {
-        position: absolute;
-        top: 2px; /* Reduced from 3px */
-        right: 2px; /* Reduced from 3px */
-        width: 16px; /* Reduced from 18px */
-        height: 16px; /* Reduced from 18px */
-        padding: 1px; /* Reduced from 2px */
-        font-size: 14px; /* Reduced from 16px */
+        border: 2px solid #333;
+        border-radius: 5px;
+        line-height: 40px;
+        padding-right: 10px;
       }
 
       .set-box input {
-        width: 95%;
-        height: 32px; /* Reduced from 40px */
+        width: 98%;
+        height: 40px;
+        /* padding: 10px; */
         background: #4caf50;
         color: white;
         font-weight: bold;
         text-align: center;
-        border: 1px solid #333; /* Reduced from 2px */
-        border-radius: 4px; /* Reduced from 5px */
-        line-height: 32px; /* Reduced from 40px */
+        border: 2px solid #333;
+        border-radius: 5px;
+        line-height: 40px;
       }
 
-      /* Styling for toggle switch */
-      .switch {
-        margin-top: 4px; /* Reduced from 6px */
-        width: 36px; /* Reduced from 42px */
-        height: 20px; /* Reduced from 24px */
+      /* New rule to change the background color of M VALUE row */
+      .m-value-row .value {
+        background-color: #28a745;
+        /* Green background */
+        color: white;
+        /* White text for visibility */
       }
 
-      .slider:before {
-        height: 14px; /* Reduced from 16px */
-        width: 14px; /* Reduced from 16px */
-        left: 3px; /* Reduced from 4px */
-        bottom: 3px; /* Reduced from 4px */
+      .close-icon {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 18px;
+        height: 18px;
+        padding: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #dc3545;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s, background-color 0.2s;
       }
 
-      input:checked + .slider:before {
-        transform: translateX(14px); /* Reduced from 16px */
+      .close-icon:hover {
+        background-color: #a71d2a;
+        /* Darker red when hovered */
+        transform: scale(1.1);
+        /* Slightly enlarge on hover */
       }
 
       @media (max-width: 768px) {
-        .dialog-box {
-          max-width: 90%; /* Allow more space on small screens */
-        }
-
         .header {
-          font-size: 14px; /* Further reduced for small screens */
+          font-size: 18px;
         }
 
         .parameter,
         .value {
-          font-size: 9px; /* Reduced from 10px */
-          height: 30px; /* Reduced from 35px */
-          line-height: 30px; /* Added to match height */
+          font-size: 10px;
+          height: 35px;
         }
+      }
 
-        .row-container {
-          grid-template-columns: repeat(
-            auto-fit,
-            minmax(60px, 1fr)
-          ); /* Smaller on mobile */
-        }
+      .set-box input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.8);
+      }
+
+      .dialog-footer {
+        text-align: right;
+        background: #e3f4ff;
+      }
+
+      .dialog-footer button {
+        margin-left: 10px;
       }
     </style>
   </head>
   <body>
     <div class="dialog-box mt-5">
       <!-- Header -->
-      <div class="header">PRESET &nbsp; VALUES</div>
+      <div class="header">TIMERS</div>
 
       <!-- Row 1: Headers -->
       <div class="row-container">
@@ -195,13 +208,13 @@
           PUMP
         </div>
       </div>
-      <!-- Row 2: Dynamic ON-REF Input -->
-      <div class="row-container m-value-row">
+      <!-- Row 2: Dynamic ON-DELAY Input -->
+      <div class="row-container">
         <div
           class="parameter"
           style="background-color: rgb(20, 105, 46); color: white"
         >
-          ON-REF
+          ON-DELAY(s)
         </div>
         <div class="set-box">
           <input
@@ -214,26 +227,26 @@
         </div>
       </div>
 
-      <!-- Row 3: Dynamic OFF-REF Input -->
-      <div class="row-container m-value-row">
+      <!-- Row 3: Dynamic OFF-DELAY Input -->
+      <div class="row-container">
         <div
           class="parameter"
           style="background-color: rgb(20, 105, 46); color: white"
         >
-          OFF-REF
+          OFF-DELAY(s)
         </div>
         <div class="set-box">
           <input
             type="number"
             class="setpoint-input"
-            id="{{ prefix }}_iVa_Pump_Stop_REF"
-            value="{{ msg.payload[prefix ~ '_iVa_Pump_Stop_REF'] | default(0) | round(1) }}"
-            data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Pump_Stop_REF'] }}"
+            id="{{ prefix }}_iTime_Stop_Pump"
+            value="{{ msg.payload[prefix ~ '_iTime_Stop_Pump'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iTime_Stop_Pump'] }}"
           />
         </div>
       </div>
 
-      <div class="dialog-footer" style="text-align: right">
+      <div class="dialog-footer">
         <button class="btn btn-danger" onclick="closeDialog()">Close</button>
         <button class="btn btn-success" onclick="updateSettings()">
           Update
@@ -250,11 +263,15 @@
           const element = document.getElementById(key);
           if (!element) return;
 
+          // fallback to 0 if value is undefined or null
+          const value =
+            data[key] !== undefined && data[key] !== null ? data[key] : 0;
+
           // This dialog only has number inputs
           if (element.tagName === "INPUT" && element.type === "number") {
             // Update the number input box only if not focused
             if (document.activeElement !== element) {
-              element.value = data[key];
+              element.value = value;
             }
           }
         });
@@ -266,7 +283,6 @@
        */
       function updateSettings() {
         const payload = {};
-        // Select all number inputs that need to be sent on update
         const inputs = document.querySelectorAll(".setpoint-input");
 
         inputs.forEach((input) => {

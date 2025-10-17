@@ -1,246 +1,792 @@
 alarms:
-  - code: 12
-    message: Return Air Fan-1 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_RetAFan1_TRIP
+  # --- Preparatory (Prep) ---
+  - code: "01"
+    message: "Return Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "02"
+    message: "Return Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "03"
+    message: "Return Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "04"
+    message: "Return Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "05"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "06"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "07"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "08"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "09"
+    message: "Washer Pump-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "10"
+    message: "Washer Pump-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "11"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "12"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "13"
+    message: "Dust Collector-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "14"
+    message: "Dust Collector-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "15"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "16"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-    time: 4/29/2025, 4:12:22 PM
-  - code: 13
-    message: Return Air Fan-2 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_RetAFan2_TRIP
+  # --- Preparatory1 (Prep1) ---
+  - code: "17"
+    message: "Return Air Fan-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "18"
+    message: "Return Air Fan-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "19"
+    message: "Return Air Fan-3 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "20"
+    message: "Return Air Fan-4 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "21"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "22"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "23"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "24"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "25"
+    message: "Washer Pump-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "26"
+    message: "Washer Pump-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "27"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "28"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "29"
+    message: "Dust Collector-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "30"
+    message: "Dust Collector-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "31"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "32"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 14
-    message: Supply Air Fan-1 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_SAFan1_TRIP
+  # --- Preparatory2 (Prep2) ---
+  - code: "33"
+    message: "Return Air Fan-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "34"
+    message: "Return Air Fan-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "35"
+    message: "Return Air Fan-3 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "36"
+    message: "Return Air Fan-4 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "37"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "38"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "39"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "40"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "41"
+    message: "Washer Pump-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "42"
+    message: "Washer Pump-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "43"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "44"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "45"
+    message: "Dust Collector-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "46"
+    message: "Dust Collector-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "47"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "48"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 15
-    message: Supply Air Fan-2 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_SAFan2_TRIP
+  # --- Spinning (Spg) ---
+  - code: "49"
+    message: "Return Air Fan-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "50"
+    message: "Return Air Fan-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "51"
+    message: "Return Air Fan-3 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "52"
+    message: "Return Air Fan-4 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "53"
+    message: "Supply Air Fan-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "54"
+    message: "Supply Air Fan-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "55"
+    message: "Supply Air Fan-3 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "56"
+    message: "Supply Air Fan-4 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "57"
+    message: "Washer Pump-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "58"
+    message: "Washer Pump-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "59"
+    message: "Rotary Drum Filter-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "60"
+    message: "Rotary Drum Filter-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "61"
+    message: "Dust Collector-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "62"
+    message: "Dust Collector-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "63"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "64"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 16
-    message: Washer Pump-1 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_WasherPump1_TRIP
+  # --- Spinning1 (Spg1) ---
+  - code: "65"
+    message: "Return Air Fan-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "66"
+    message: "Return Air Fan-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "67"
+    message: "Return Air Fan-3 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "68"
+    message: "Return Air Fan-4 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "69"
+    message: "Supply Air Fan-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "70"
+    message: "Supply Air Fan-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "71"
+    message: "Supply Air Fan-3 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "72"
+    message: "Supply Air Fan-4 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "73"
+    message: "Washer Pump-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "74"
+    message: "Washer Pump-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "75"
+    message: "Rotary Drum Filter-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "76"
+    message: "Rotary Drum Filter-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "77"
+    message: "Dust Collector-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "78"
+    message: "Dust Collector-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "79"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "80"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 17
-    message: Washer Pump-2 VFD Fault - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_WasherPump2_TRIP
+  # --- Spinning2 (Spg2) ---
+  - code: "81"
+    message: "Return Air Fan-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "82"
+    message: "Return Air Fan-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "83"
+    message: "Return Air Fan-3 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "84"
+    message: "Return Air Fan-4 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "85"
+    message: "Supply Air Fan-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "86"
+    message: "Supply Air Fan-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "87"
+    message: "Supply Air Fan-3 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "88"
+    message: "Supply Air Fan-4 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "89"
+    message: "Washer Pump-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "90"
+    message: "Washer Pump-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "91"
+    message: "Rotary Drum Filter-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "92"
+    message: "Rotary Drum Filter-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "93"
+    message: "Dust Collector-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "94"
+    message: "Dust Collector-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "95"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "96"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 18
-    message: Rotary Drum Filter-1 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_RDF1_TRIP
+  # --- Spinning3 (Spg3) ---
+  - code: "97"
+    message: "Return Air Fan-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan1_TRIP]
     severity: 1
-    status: null
-
-  - code: 19
-    message: Rotary Drum Filter-2 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_RDF2_TRIP
+  - code: "98"
+    message: "Return Air Fan-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan2_TRIP]
     severity: 1
-
-  - code: 20
-    message: Dust Collector-1 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_DCF1_TRIP
+  - code: "99"
+    message: "Return Air Fan-3 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan3_TRIP]
     severity: 1
-
-  - code: 21
-    message: Dust Collector-2 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_DCF2_TRIP
+  - code: "100"
+    message: "Return Air Fan-4 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan4_TRIP]
     severity: 1
-
-  - code: 22
-    message: Cyclone with Screw Compactor-1 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_ScrewCompactor1_TRIP
+  - code: "101"
+    message: "Supply Air Fan-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan1_TRIP]
     severity: 1
-
-  - code: 23
-    message: Cyclone with Screw Compactor-2 TRIP - Spinning 2
-    nodeids:
-      - DI_Spg2_iFl_ScrewCompactor2_TRIP
+  - code: "102"
+    message: "Supply Air Fan-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan2_TRIP]
     severity: 1
-
-  - code: 24
-    message: Return Air Fan-1 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RetAFan1_TRIP
+  - code: "103"
+    message: "Supply Air Fan-3 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan3_TRIP]
     severity: 1
-
-    time: 4/29/2025, 4:12:22 PM
-  - code: 25
-    message: Return Air Fan-2 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RetAFan2_TRIP
+  - code: "104"
+    message: "Supply Air Fan-4 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan4_TRIP]
     severity: 1
-
-  - code: 26
-    message: Supply Air Fan-1 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_SAFan1_TRIP
+  - code: "105"
+    message: "Washer Pump-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_WasherPump1_TRIP]
     severity: 1
-
-  - code: 27
-    message: Supply Air Fan-2 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_SAFan2_TRIP
+  - code: "106"
+    message: "Washer Pump-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_WasherPump2_TRIP]
     severity: 1
-
-  - code: 28
-    message: Washer Pump-1 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_WasherPump1_TRIP
+  - code: "107"
+    message: "Rotary Drum Filter-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "108"
+    message: "Rotary Drum Filter-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "109"
+    message: "Dust Collector-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "110"
+    message: "Dust Collector-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "111"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "112"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 29
-    message: Washer Pump-2 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_WasherPump2_TRIP
+  # --- Winding (Wdg) ---
+  - code: "113"
+    message: "Return Air Fan-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "114"
+    message: "Return Air Fan-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "115"
+    message: "Return Air Fan-3 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "116"
+    message: "Return Air Fan-4 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "117"
+    message: "Supply Air Fan-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "118"
+    message: "Supply Air Fan-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "119"
+    message: "Supply Air Fan-3 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "120"
+    message: "Supply Air Fan-4 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "121"
+    message: "Washer Pump-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "122"
+    message: "Washer Pump-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "123"
+    message: "Rotary Drum Filter-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "124"
+    message: "Rotary Drum Filter-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "125"
+    message: "Dust Collector-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "126"
+    message: "Dust Collector-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "127"
+    message: "Cyclone with Screw Compactor-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "128"
+    message: "Cyclone with Screw Compactor-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 30
-    message: Rotary Drum Filter-1 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RDF1_TRIP
+  # --- Open End (OE) ---
+  - code: "129"
+    message: "Return Air Fan-1 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_RetAFan1_TRIP]
     severity: 1
-    status: null
-
-  - code: 31
-    message: Rotary Drum Filter-2 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RDF2_TRIP
+  - code: "130"
+    message: "Return Air Fan-2 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_RetAFan2_TRIP]
     severity: 1
-
-  - code: 32
-    message: Dust Collector-1 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_DCF1_TRIP
+  - code: "131"
+    message: "Return Air Fan-3 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_RetAFan3_TRIP]
     severity: 1
-
-  - code: 33
-    message: Dust Collector-2 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_DCF2_TRIP
+  - code: "132"
+    message: "Return Air Fan-4 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_RetAFan4_TRIP]
     severity: 1
-
-  - code: 34
-    message: Cyclone with Screw Compactor-1 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_ScrewCompactor1_TRIP
+  - code: "133"
+    message: "Supply Air Fan-1 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_SAFan1_TRIP]
     severity: 1
-
-  - code: 35
-    message: Cyclone with Screw Compactor-2 TRIP - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_ScrewCompactor2_TRIP
+  - code: "134"
+    message: "Supply Air Fan-2 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_SAFan2_TRIP]
     severity: 1
-
-  - code: 36
-    message: Return Air Fan-1 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_RetAFan1_TRIP
+  - code: "135"
+    message: "Supply Air Fan-3 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_SAFan3_TRIP]
     severity: 1
-
-    time: 4/29/2025, 4:12:22 PM
-  - code: 37
-    message: Return Air Fan-2 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_RetAFan2_TRIP
+  - code: "136"
+    message: "Supply Air Fan-4 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_SAFan4_TRIP]
     severity: 1
-
-  - code: 38
-    message: Supply Air Fan-1 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_SAFan1_TRIP
+  - code: "137"
+    message: "Washer Pump-1 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_WasherPump1_TRIP]
     severity: 1
-
-  - code: 39
-    message: Supply Air Fan-2 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_SAFan2_TRIP
+  - code: "138"
+    message: "Washer Pump-2 VFD Fault - Open End"
+    nodeids: [DI_OE_iFl_WasherPump2_TRIP]
     severity: 1
-
-  - code: 40
-    message: Washer Pump-1 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_WasherPump1_TRIP
+  - code: "139"
+    message: "Rotary Drum Filter-1 TRIP - Open End"
+    nodeids: [DI_OE_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "140"
+    message: "Rotary Drum Filter-2 TRIP - Open End"
+    nodeids: [DI_OE_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "141"
+    message: "Dust Collector-1 TRIP - Open End"
+    nodeids: [DI_OE_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "142"
+    message: "Dust Collector-2 TRIP - Open End"
+    nodeids: [DI_OE_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "143"
+    message: "Cyclone with Screw Compactor-1 TRIP - Open End"
+    nodeids: [DI_OE_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "144"
+    message: "Cyclone with Screw Compactor-2 TRIP - Open End"
+    nodeids: [DI_OE_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 41
-    message: Washer Pump-2 VFD Fault - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_WasherPump2_TRIP
+  # --- TFO (TFO) ---
+  - code: "145"
+    message: "Return Air Fan-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "146"
+    message: "Return Air Fan-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "147"
+    message: "Return Air Fan-3 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "148"
+    message: "Return Air Fan-4 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "149"
+    message: "Supply Air Fan-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "150"
+    message: "Supply Air Fan-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "151"
+    message: "Supply Air Fan-3 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "152"
+    message: "Supply Air Fan-4 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "153"
+    message: "Washer Pump-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "154"
+    message: "Washer Pump-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "155"
+    message: "Rotary Drum Filter-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "156"
+    message: "Rotary Drum Filter-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "157"
+    message: "Dust Collector-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "158"
+    message: "Dust Collector-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "159"
+    message: "Cyclone with Screw Compactor-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "160"
+    message: "Cyclone with Screw Compactor-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_ScrewCompactor2_TRIP]
     severity: 1
 
-  - code: 42
-    message: Rotary Drum Filter-1 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_RDF1_TRIP
+  # --- LinkConer (Lconer) ---
+  - code: "161"
+    message: "Return Air Fan-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan1_TRIP]
     severity: 1
-    status: null
+  - code: "162"
+    message: "Return Air Fan-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "163"
+    message: "Return Air Fan-3 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "164"
+    message: "Return Air Fan-4 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "165"
+    message: "Supply Air Fan-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "166"
+    message: "Supply Air Fan-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "167"
+    message: "Supply Air Fan-3 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "168"
+    message: "Supply Air Fan-4 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "169"
+    message: "Washer Pump-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "170"
+    message: "Washer Pump-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "171"
+    message: "Rotary Drum Filter-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "172"
+    message: "Rotary Drum Filter-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "173"
+    message: "Dust Collector-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "174"
+    message: "Dust Collector-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "175"
+    message: "Cyclone with Screw Compactor-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "176"
+    message: "Cyclone with Screw Compactor-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_ScrewCompactor2_TRIP]
+    severity: 1
 
-  - code: 43
-    message: Rotary Drum Filter-2 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_RDF2_TRIP
+  # --- AutoConer (Autocon) ---
+  - code: "177"
+    message: "Return Air Fan-1 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_RetAFan1_TRIP]
     severity: 1
-
-  - code: 44
-    message: Dust Collector-1 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_DCF1_TRIP
+  - code: "178"
+    message: "Return Air Fan-2 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_RetAFan2_TRIP]
     severity: 1
-
-  - code: 45
-    message: Dust Collector-2 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_DCF2_TRIP
+  - code: "179"
+    message: "Return Air Fan-3 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_RetAFan3_TRIP]
     severity: 1
-
-  - code: 46
-    message: Cyclone with Screw Compactor-1 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_ScrewCompactor1_TRIP
+  - code: "180"
+    message: "Return Air Fan-4 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_RetAFan4_TRIP]
     severity: 1
-
-  - code: 47
-    message: Cyclone with Screw Compactor-2 TRIP - Autoconer
-    nodeids:
-      - DI_Autocon_iFl_ScrewCompactor2_TRIP
+  - code: "181"
+    message: "Supply Air Fan-1 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_SAFan1_TRIP]
     severity: 1
-
-  - code: 48
-    message: Return Air Fan-3 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RetAFan3_Trip
+  - code: "182"
+    message: "Supply Air Fan-2 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_SAFan2_TRIP]
     severity: 1
-
-    code: 49
-    message: Return Air Fan-4 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_RetAFan4_Trip
+  - code: "183"
+    message: "Supply Air Fan-3 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_SAFan3_TRIP]
     severity: 1
-
-    code: 50
-    message: Supply Air Fan-3 VFD Fault - Spinning 1cd
-    nodeids:
-      - DI_Spg1_iFl_SAFan3_TRIP
+  - code: "184"
+    message: "Supply Air Fan-4 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_SAFan4_TRIP]
     severity: 1
-    
-    code: 51
-    message: Supply Air Fan-4 VFD Fault - Spinning 1
-    nodeids:
-      - DI_Spg1_iFl_SAFan4_TRIP
+  - code: "185"
+    message: "Washer Pump-1 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "186"
+    message: "Washer Pump-2 VFD Fault - AutoConer"
+    nodeids: [DI_Autocon_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "187"
+    message: "Rotary Drum Filter-1 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "188"
+    message: "Rotary Drum Filter-2 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "189"
+    message: "Dust Collector-1 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "190"
+    message: "Dust Collector-2 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "191"
+    message: "Cyclone with Screw Compactor-1 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "192"
+    message: "Cyclone with Screw Compactor-2 TRIP - AutoConer"
+    nodeids: [DI_Autocon_iFl_ScrewCompactor2_TRIP]
     severity: 1

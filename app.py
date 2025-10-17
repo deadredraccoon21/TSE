@@ -535,24 +535,38 @@ setting_suffix_mapping = {
     "DeHumidity": "_dh.html",
 }
 
+
 @app.route('/load_template/<parent_submodule>/<setting_option>')
 def load_template(parent_submodule, setting_option):
-    # Get the correct template suffix (e.g., "_ai.html") from the global mapping
+    # Step 1: Load the configuration data
+    config = load_data()
+    submodules_list = config.get("submodules", [])
+    
+    # Step 2: Find the specific department that was clicked
+    target_dept = next((s for s in submodules_list if s['name'] == parent_submodule), None)
+
+    if not target_dept:
+        return f"Department '{parent_submodule}' not found in configuration.", 404
+
+    # Step 3: Extract the category and node_prefix from the found department
+    category = target_dept.get('category')
+    prefix = target_dept.get('node_prefix')
+
+    if not category or not prefix:
+        return f"Department '{parent_submodule}' is missing 'category' or 'node_prefix' in input.yaml.", 500
+
+    # Step 4: Get the template suffix (e.g., "_sp.html") from the mapping
     suffix = setting_suffix_mapping.get(setting_option)
     if not suffix:
         return f"Setting option '{setting_option}' not found", 404
 
-    # Format the department name to match the filename convention
-    # e.g., "SPINNING 2" -> "spinning2"
-    department_filename_part = parent_submodule.lower().replace(" ", "")
-
-    # Construct the specific template name, e.g., "spinning2_ai.html"
-    template_name = f"{department_filename_part}{suffix}"
-    
-    # Construct the full path to the template within the templates/Settings/ directory
+    # Step 5: Construct the template name based on the CATEGORY, not the department name
+    # e.g., "H-Plant-1" -> "h-plant-1_sp.html"
+    category_filename_part = slugify(category) # Use the slugify filter
+    template_name = f"{category_filename_part}{suffix}"
     template_path = f"Settings/{template_name}"
     
-    # Prepare data for the template
+    # Step 6: Prepare data for the template
     msg = {
         'payload': latest_values,
         'node_ids': load_node_ids()
@@ -560,9 +574,8 @@ def load_template(parent_submodule, setting_option):
     
     socketio.emit('update', latest_values)
     
-    # Render the specific template. As requested, no prefix is passed.
-    # Flask will automatically handle a 404 if the template is not found.
-    return render_template(template_path, msg=msg)
+    # Step 7: Render the category-specific template and pass the DYNAMIC prefix
+    return render_template(template_path, msg=msg, prefix=prefix)
 
 # --- END: REPLACEMENT BLOCK ---
 @app.route('/')
@@ -578,17 +591,30 @@ def home():
 @app.route('/dashboard')
 def dashboard():
     # if 'userloggedin' not in session:
-    #     return redirect(url_for('user_login'))
+    #     return redirect(for('user_login'))
     role = session.get('role')
     allowed_submodules = load_role_submodules(role)
 
-    # Load the entire config to get the new dashboard_items list
     config_data = load_data()
-    dashboard_items = config_data.get('dashboard_items', []) # Default to empty list if not found
+    submodules_list = config_data.get('submodules', [])
+    
+    # --- NEW LOGIC: Dynamically create dashboard items ---
+    dashboard_items = []
+    for submodule in submodules_list:
+        node_prefix = submodule.get('node_prefix')
+        if node_prefix: # Only add to dashboard if it has a prefix
+            dashboard_items.append({
+                'name': submodule.get('name'),
+                # Automatically generate the node keys based on the prefix
+                'temperature_node_key': f"{node_prefix}_iVa_Act_Temp",
+                'humidity_node_key': f"{node_prefix}_iVa_Act_RH"
+            })
+    # --- END OF NEW LOGIC ---
 
     return render_template('iot/dashboard.html', 
                            dashboard_items=dashboard_items, 
                            allowed_submodules=allowed_submodules)
+
 
 def load_data():
     yaml_path = os.path.join(os.path.dirname(__file__), "input.yaml")
@@ -822,12 +848,17 @@ def save_yaml(data):
     with open("input.yaml", 'w') as file:
         yaml.dump(data, file)
 
+# app.py
+
+# ... (keep all existing code until the input_page route)
+
 @app.route('/input', methods=['GET', 'POST'])
 def input_page():
     if 'userloggedin' not in session:
         return redirect(url_for('user_login'))
     data = load_yaml()
     if request.method == 'POST':
+        # ... (your existing POST logic remains unchanged)
         msg = ""
         if 'client_name' in request.form:
             data['client_name'] = request.form['client_name']
@@ -835,14 +866,13 @@ def input_page():
         elif 'opc_ua_url' in request.form:
             data['OPC_UA_URL'] = request.form['opc_ua_url']
             msg = "OPC UA URL updated"
-        # CORRECTED LOGIC: Handle adding a categorized submodule to a list
-        elif 'submodule_name' in request.form and 'submodule_file' in request.form and 'submodule_category' in request.form:
+        elif 'submodule_name' in request.form and 'submodule_file' in request.form and 'submodule_category' in request.form and 'node_prefix' in request.form:
             new_submodule = {
                 'category': request.form['submodule_category'],
                 'name': request.form['submodule_name'],
-                'template': request.form['submodule_file']
+                'template': request.form['submodule_file'],
+                'node_prefix': request.form['node_prefix']
             }
-            # Ensure 'submodules' exists as a list and append the new item
             if 'submodules' not in data or not isinstance(data['submodules'], list):
                 data['submodules'] = []
             data['submodules'].append(new_submodule)
@@ -850,14 +880,17 @@ def input_page():
         save_yaml(data)
         return jsonify(success=True, message=msg)
 
+    # UPDATED: Pass the new predefined_departments list to the template
     return render_template(
         'iot/input.html',
         client_name=data.get('client_name', ''),
         opc_ua_url=data.get('OPC_UA_URL', ''),
-        submodules=data.get('submodules', []),  # Pass the list to the template
-        roles=data.get('roles', {})
+        submodules=data.get('submodules', []),
+        roles=data.get('roles', {}),
+        predefined_departments=data.get('predefined_departments', []) # <-- ADD THIS LINE
     )
 
+# ... (rest of your app.py remains unchanged)
 @app.route('/remove_submodule', methods=['POST'])
 def remove_submodule():
     data = load_yaml()
@@ -875,15 +908,16 @@ def edit_submodule():
     new_name = request.form['new_submodule_name']
     new_file = request.form['submodule_file']
     new_category = request.form['submodule_category']
+    new_prefix = request.form['node_prefix'] # <-- ADDED
     
-    # CORRECTED LOGIC: Find the dictionary in the list and update its values
     if 'submodules' in data:
         for submodule in data['submodules']:
             if submodule.get('name') == old_name:
                 submodule['name'] = new_name
                 submodule['template'] = new_file
                 submodule['category'] = new_category
-                break  # Stop after finding and updating
+                submodule['node_prefix'] = new_prefix # <-- ADDED
+                break
             
     save_yaml(data)
     return jsonify({'success': True})

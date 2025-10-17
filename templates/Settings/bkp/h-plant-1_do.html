@@ -244,7 +244,12 @@
         >
           Washer Pump-1
         </div>
-        <!-- <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">Washer Pump-2</div> -->
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          Washer Pump-2
+        </div>
       </div>
       <div class="row-container">
         <div
@@ -254,9 +259,13 @@
           VALUE
         </div>
         <div class="value" id="{{ prefix }}_DO_Pump_Act">
-          {{ 1 if msg.payload[prefix ~ '_DO_Pump_Act'] else 0 }}
+          {{ 1 if msg.payload[prefix ~ '_DO_Pump_Act'] | default(False) else 0
+          }}
         </div>
-        <!-- <div class="value" id="{{ prefix }}_DO_Pump_Act2">{{ 1 if msg.payload[prefix ~ '_DO_Pump_Act2'] else 0 }}</div> -->
+        <div class="value" id="{{ prefix }}_DO_Pump_Act2">
+          {{ 1 if msg.payload[prefix ~ '_DO_Pump_Act2'] | default(False) else 0
+          }}
+        </div>
       </div>
 
       <!-- Row 2: Manual Value Inputs -->
@@ -272,7 +281,7 @@
             type="number"
             class="setpoint-input"
             id="{{ prefix }}_iMi_DO_Man"
-            value="{{ 1 if msg.payload[prefix ~ '_iMi_DO_Man'] else 0 }}"
+            value="{{ 1 if msg.payload[prefix ~ '_iMi_DO_Man'] | default(False) else 0 }}"
             min="0"
             max="1"
             step="1"
@@ -280,11 +289,19 @@
             data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_DO_Man'] }}"
           />
         </div>
-        <!-- <div class="set-box">
-                <input type="number" class="setpoint-input" id="{{ prefix }}_iMi_DO_Man2" value="{{ 1 if msg.payload[prefix ~ '_iMi_DO_Man2'] else 0 }}"
-                    min="0" max="1" step="1" oninput="validateInput(this)"
-                    data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_DO_Man2'] }}" />
-            </div> -->
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iMi_DO_Man2"
+            value="{{ 1 if msg.payload[prefix ~ '_iMi_DO_Man2'] | default(False) else 0 }}"
+            min="0"
+            max="1"
+            step="1"
+            oninput="validateInput(this)"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_DO_Man2'] }}"
+          />
+        </div>
       </div>
 
       <!-- Row 3: Dynamic MODE Switches -->
@@ -299,28 +316,33 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="{{ prefix }}_iFl_Start_DO_B" {{
-              'checked' if msg.payload[prefix ~ '_iFl_Start_DO_B'] else '' }}
-              data-nodeid="{{ msg.node_ids[prefix ~ '_iFl_Start_DO_B'] }}"
-              onchange="updateMode(this)">
+              'checked' if msg.payload[prefix ~ '_iFl_Start_DO_B'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              '_iFl_Start_DO_B'] }}" onchange="updateMode(this)">
               <span class="slider"></span>
             </label>
             <span id="{{ prefix }}_iFl_Start_DO_B-text" class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Start_DO_B'] else
-              'Auto' }}</span
+              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Start_DO_B'] |
+              default(False) else 'Auto' }}</span
             >
           </div>
         </div>
 
-        <!-- <div class="parameter">
-                <div class="switch-container">
-                    <label class="switch">
-                        <input type="checkbox" id="{{ prefix }}_iFl_Start_DO_B2" {{ 'checked' if msg.payload[prefix ~ '_iFl_Start_DO_B2'] else '' }}
-                               data-nodeid="{{ msg.node_ids[prefix ~ '_iFl_Start_DO_B2'] }}" onchange="updateMode(this)">
-                        <span class="slider"></span>
-                    </label>
-                    <span id="{{ prefix }}_iFl_Start_DO_B2-text" class="mode-text">{{ 'Manual' if msg.payload[prefix ~ '_iFl_Start_DO_B2'] else 'Auto' }}</span>
-                </div>
-            </div> -->
+        <div class="parameter">
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="{{ prefix }}_iFl_Start_DO_B2" {{
+              'checked' if msg.payload[prefix ~ '_iFl_Start_DO_B2'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              '_iFl_Start_DO_B2'] }}" onchange="updateMode(this)">
+              <span class="slider"></span>
+            </label>
+            <span id="{{ prefix }}_iFl_Start_DO_B2-text" class="mode-text"
+              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Start_DO_B2'] |
+              default(False) else 'Auto' }}</span
+            >
+          </div>
+        </div>
       </div>
 
       <div class="dialog-footer">
@@ -334,32 +356,46 @@
     <script>
       const socket = io();
 
-      // This listener handles all real-time updates from the server
+      // Track which elements should NOT be updated by socket (user is interacting with them)
+      const userControlledElements = new Set();
+
+      // This listener handles real-time updates from the server
       socket.on("update", function (data) {
         Object.keys(data).forEach((key) => {
           const element = document.getElementById(key);
           if (!element) return;
 
+          // fallback to false if value is undefined or null
+          const value =
+            data[key] !== undefined && data[key] !== null ? data[key] : false;
+
+          // ONLY update elements with the 'value' class (blue VALUE boxes)
+          // Do NOT update M VALUE inputs or MODE switches to preserve user changes
           if (element.classList.contains("value")) {
             // Update blue value boxes (display 1 or 0)
-            element.innerText = data[key] ? "1" : "0";
-          } else if (element.tagName === "INPUT" && element.type === "number") {
-            // Update green number inputs if not focused (display 1 or 0)
-            if (document.activeElement !== element) {
-              element.value = data[key] ? "1" : "0";
-            }
-          } else if (
-            element.tagName === "INPUT" &&
-            element.type === "checkbox"
-          ) {
-            // Update checkboxes and their associated text
-            element.checked = data[key];
-            const textElement = document.getElementById(element.id + "-text");
-            if (textElement) {
-              textElement.textContent = data[key] ? "Manual" : "Auto";
-            }
+            element.innerText = value ? "1" : "0";
           }
+
+          // All other elements (inputs, checkboxes) are NOT updated automatically
+          // They retain their current values as set by the user
         });
+      });
+
+      // Track when user starts interacting with inputs
+      document.addEventListener("focusin", function (e) {
+        if (e.target.classList.contains("setpoint-input")) {
+          userControlledElements.add(e.target.id);
+        }
+      });
+
+      // Track when user stops interacting with inputs
+      document.addEventListener("focusout", function (e) {
+        if (e.target.classList.contains("setpoint-input")) {
+          // Keep tracking for a short time to avoid immediate overwrite
+          setTimeout(() => {
+            userControlledElements.delete(e.target.id);
+          }, 1000);
+        }
       });
 
       /**

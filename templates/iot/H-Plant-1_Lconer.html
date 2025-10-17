@@ -505,7 +505,7 @@ content %}
           font-size: 30px;
         "
       >
-        <b><u>LinkConer</u></b>
+        <b><u>Linkconer</u></b>
       </div>
       <p style="position: absolute; left: 1346px; top: 395px; color: black">
         <b>SAF</b>
@@ -535,7 +535,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iMi_Set_RH">0</span>
+        <span id="Linkconer_iMi_Set_RH">0</span>
       </div>
       <div
         style="
@@ -547,10 +547,10 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iMi_Set_Temp">0</span>
+        <span id="Linkconer_iMi_Set_Temp">0</span>
       </div>
       <p style="position: absolute; left: 1037px; top: 520px">Set %RH</p>
-      <p style="position: absolute; left: 1013px; top: 566px">Set Temp Â°C</p>
+      <p style="position: absolute; left: 1013px; top: 566px">Set Temp °C</p>
       <img
         src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
         style="
@@ -782,10 +782,10 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_DPG_RDF">0</span> Pa
+        <span id="Linkconer_iVa_DPG_RDF">0</span> Pa
       </div>
       <div
-        id="Lconer_iVa_UPSS_Output_RAF-container"
+        id="Linkconer_iVa_UPSS_Output_RAF-container"
         style="
           position: absolute;
           left: 480px;
@@ -795,7 +795,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_UPSS_Output_RAF">0</span> %
+        <span id="Linkconer_iVa_UPSS_Output_RAF">0</span> %
       </div>
       <div
         style="
@@ -807,7 +807,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Pump_Output">0</span> %
+        <span id="Linkconer_iVa_Pump_Output">0</span> %
       </div>
       <div
         style="
@@ -819,10 +819,10 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Act_WoT">0</span> Â°C
+        <span id="Linkconer_iVa_Act_WoT">0</span> °C
       </div>
       <div
-        id="Lconer_iVa_UPSS_Output_SAF-container"
+        id="Linkconer_iVa_UPSS_Output_SAF-container"
         style="
           position: absolute;
           left: 1200px;
@@ -832,7 +832,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_UPSS_Output_SAF">0</span> %
+        <span id="Linkconer_iVa_UPSS_Output_SAF">0</span> %
       </div>
       <div
         style="
@@ -844,7 +844,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Act_RH">0</span>
+        <span id="Linkconer_iVa_Act_RH">0</span>
       </div>
       <div
         style="
@@ -856,7 +856,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Act_Temp">0</span>
+        <span id="Linkconer_iVa_Act_Temp">0</span>
       </div>
       <div
         style="
@@ -868,7 +868,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Damper_Output">0</span> %
+        <span id="Linkconer_iVa_Damper_Output">0</span> %
       </div>
       <div
         style="
@@ -880,7 +880,7 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Damper_Output2">0</span> %
+        <span id="Linkconer_iVa_Damper_Output2">0</span> %
       </div>
       <div
         style="
@@ -892,49 +892,49 @@ content %}
           border-radius: 5px;
         "
       >
-        <span id="Lconer_iVa_Ret_Damper_Output">0</span> %
+        <span id="Linkconer_iVa_Ret_Damper_Output">0</span> %
       </div>
       <p style="position: absolute; left: 1224px; top: 523px"><b>%R.H</b></p>
-      <p style="position: absolute; left: 1238px; top: 570px"><b>Â°C</b></p>
+      <p style="position: absolute; left: 1238px; top: 570px"><b>°C</b></p>
     </div>
     <script>
       let isFirstUpdate = true;
 
       const onOffNodePairs = {
         "fan1-on-off": {
-          on: "DI_Lconer_iFl_RetAFan1_ON",
-          off: "DI_Lconer_iFl_RetAFan1_OFF",
+          on: "DI_Linkconer_iFl_RetAFan1_ON",
+          off: "DI_Linkconer_iFl_RetAFan1_OFF",
         },
         "fan3-on-off": {
-          on: "DI_Lconer_iFl_SAFan1_ON",
-          off: "DI_Lconer_iFl_SAFan1_OFF",
+          on: "DI_Linkconer_iFl_SAFan1_ON",
+          off: "DI_Linkconer_iFl_SAFan1_OFF",
         },
         "rdf1-on-off": {
-          on: "DI_Lconer_iFl_RDF1_ON",
-          off: "DI_Lconer_iFl_RDF1_OFF",
+          on: "DI_Linkconer_iFl_RDF1_ON",
+          off: "DI_Linkconer_iFl_RDF1_OFF",
         },
         "dcf1-on-off": {
-          on: "DI_Lconer_iFl_DCF1_ON",
-          off: "DI_Lconer_iFl_DCF1_OFF",
+          on: "DI_Linkconer_iFl_DCF1_ON",
+          off: "DI_Linkconer_iFl_DCF1_OFF",
         },
         "screwcompactor1-on-off": {
-          on: "DI_Lconer_iFl_ScrewCompactor1_ON",
-          off: "DI_Lconer_iFl_ScrewCompactor1_OFF",
+          on: "DI_Linkconer_iFl_ScrewCompactor1_ON",
+          off: "DI_Linkconer_iFl_ScrewCompactor1_OFF",
         },
         "washerpump1-on-off": {
-          on: "DI_Lconer_iFl_WasherPump1_ON",
-          off: "DI_Lconer_iFl_WasherPump1_OFF",
+          on: "DI_Linkconer_iFl_WasherPump1_ON",
+          off: "DI_Linkconer_iFl_WasherPump1_OFF",
         },
       };
 
       const tripNodeMappings = {
-        DI_Lconer_iFl_RetAFan1_TRIP: "fan1-trip",
-        DI_Lconer_iFl_RetAFan2_TRIP: "fan2-trip",
-        DI_Lconer_iFl_SAFan1_TRIP: "fan3-trip",
-        DI_Lconer_iFl_RDF1_TRIP: "rdf1-trip",
-        DI_Lconer_iFl_DCF1_TRIP: "dcf1-trip",
-        DI_Lconer_iFl_ScrewCompactor1_TRIP: "screwcompactor1-trip",
-        DI_Lconer_iFl_WasherPump1_TRIP: "washerpump1-trip",
+        DI_Linkconer_iFl_RetAFan1_TRIP: "fan1-trip",
+        DI_Linkconer_iFl_RetAFan2_TRIP: "fan2-trip",
+        DI_Linkconer_iFl_SAFan1_TRIP: "fan3-trip",
+        DI_Linkconer_iFl_RDF1_TRIP: "rdf1-trip",
+        DI_Linkconer_iFl_DCF1_TRIP: "dcf1-trip",
+        DI_Linkconer_iFl_ScrewCompactor1_TRIP: "screwcompactor1-trip",
+        DI_Linkconer_iFl_WasherPump1_TRIP: "washerpump1-trip",
       };
 
       socket.on("update", function (data) {
@@ -949,10 +949,12 @@ content %}
 
         // Handle the two SPECIAL elements with hide/show logic
         const rafContainer = document.getElementById(
-          "Lconer_iVa_UPSS_Output_RAF-container"
+          "Linkconer_iVa_UPSS_Output_RAF-container"
         );
-        const rafSpan = document.getElementById("Lconer_iVa_UPSS_Output_RAF");
-        const rafValue = data["Lconer_iVa_UPSS_Output_RAF"];
+        const rafSpan = document.getElementById(
+          "Linkconer_iVa_UPSS_Output_RAF"
+        );
+        const rafValue = data["Linkconer_iVa_UPSS_Output_RAF"];
 
         if (rafValue === null || typeof rafValue === "undefined") {
           if (rafContainer) rafContainer.style.display = "none";
@@ -962,10 +964,12 @@ content %}
         }
 
         const safContainer = document.getElementById(
-          "Lconer_iVa_UPSS_Output_SAF-container"
+          "Linkconer_iVa_UPSS_Output_SAF-container"
         );
-        const safSpan = document.getElementById("Lconer_iVa_UPSS_Output_SAF");
-        const safValue = data["Lconer_iVa_UPSS_Output_SAF"];
+        const safSpan = document.getElementById(
+          "Linkconer_iVa_UPSS_Output_SAF"
+        );
+        const safValue = data["Linkconer_iVa_UPSS_Output_SAF"];
 
         if (safValue === null || typeof safValue === "undefined") {
           if (safContainer) safContainer.style.display = "none";
@@ -975,26 +979,26 @@ content %}
         }
 
         // Handle all OTHER elements with the original default-to-zero logic
-        document.getElementById("Lconer_iMi_Set_RH").textContent =
-          data["Lconer_iMi_Set_RH"] || "0";
-        document.getElementById("Lconer_iMi_Set_Temp").textContent =
-          data["Lconer_iMi_Set_Temp"] || "0";
-        document.getElementById("Lconer_iVa_DPG_RDF").textContent =
-          data["Lconer_iVa_DPG_RDF"] || "0";
-        document.getElementById("Lconer_iVa_Pump_Output").textContent =
-          data["Lconer_iVa_Pump_Output"] || "0";
-        document.getElementById("Lconer_iVa_Act_WoT").textContent =
-          data["Lconer_iVa_Act_WoT"] || "0";
-        document.getElementById("Lconer_iVa_Act_RH").textContent =
-          data["Lconer_iVa_Act_RH"] || "0";
-        document.getElementById("Lconer_iVa_Act_Temp").textContent =
-          data["Lconer_iVa_Act_Temp"] || "0";
-        document.getElementById("Lconer_iVa_Damper_Output").textContent =
-          data["Lconer_iVa_Damper_Output"] || "0";
-        document.getElementById("Lconer_iVa_Damper_Output2").textContent =
-          data["Lconer_iVa_Damper_Output"] || "0";
-        document.getElementById("Lconer_iVa_Ret_Damper_Output").textContent =
-          data["Lconer_iVa_Ret_Damper_Output"] || "0";
+        document.getElementById("Linkconer_iMi_Set_RH").textContent =
+          data["Linkconer_iMi_Set_RH"] || "0";
+        document.getElementById("Linkconer_iMi_Set_Temp").textContent =
+          data["Linkconer_iMi_Set_Temp"] || "0";
+        document.getElementById("Linkconer_iVa_DPG_RDF").textContent =
+          data["Linkconer_iVa_DPG_RDF"] || "0";
+        document.getElementById("Linkconer_iVa_Pump_Output").textContent =
+          data["Linkconer_iVa_Pump_Output"] || "0";
+        document.getElementById("Linkconer_iVa_Act_WoT").textContent =
+          data["Linkconer_iVa_Act_WoT"] || "0";
+        document.getElementById("Linkconer_iVa_Act_RH").textContent =
+          data["Linkconer_iVa_Act_RH"] || "0";
+        document.getElementById("Linkconer_iVa_Act_Temp").textContent =
+          data["Linkconer_iVa_Act_Temp"] || "0";
+        document.getElementById("Linkconer_iVa_Damper_Output").textContent =
+          data["Linkconer_iVa_Damper_Output"] || "0";
+        document.getElementById("Linkconer_iVa_Damper_Output2").textContent =
+          data["Linkconer_iVa_Damper_Output"] || "0";
+        document.getElementById("Linkconer_iVa_Ret_Damper_Output").textContent =
+          data["Linkconer_iVa_Ret_Damper_Output"] || "0";
 
         // --- UNCHANGED Parts 2, 3, and 4 ---
 
@@ -1032,23 +1036,23 @@ content %}
         // Part 3: Update Manual Mode 'M' Symbol Visibility
         updateManualSymbolVisibility(
           "m-symbol-rdf",
-          data["Lconer_iFl_Set_DPG_RDF_Man_B"]
+          data["Linkconer_iFl_Set_DPG_RDF_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-recirculation",
-          data["Lconer_iFl_Damper_Output_Man_B"]
+          data["Linkconer_iFl_Damper_Output_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-wot",
-          data["Lconer_iMi_Set_WoT_Man_B"]
+          data["Linkconer_iMi_Set_WoT_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-rh",
-          data["Lconer_iFl_Set_Humidity_Man_B"]
+          data["Linkconer_iFl_Set_Humidity_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-temp",
-          data["Lconer_iMi_Set_Temp_Man_B"]
+          data["Linkconer_iMi_Set_Temp_Man_B"]
         );
 
         // Part 4: Update fan images

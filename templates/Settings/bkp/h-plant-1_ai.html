@@ -244,8 +244,8 @@
         <div class="value" id="{{ prefix }}_iVa_Act_Temp">
           {{ msg.payload[prefix ~ '_iVa_Act_Temp'] | default(0) | round(1) }}
         </div>
-        <div class="value" id="{{ prefix }}_iVa_Act_SA_Temp">
-          {{ msg.payload[prefix ~ '_iVa_Act_SA_Temp'] | default(0) | round(1) }}
+        <div class="value" id="{{ prefix }}_iVa_Act_WoT">
+          {{ msg.payload[prefix ~ '_iVa_Act_WoT'] | default(0) | round(1) }}
         </div>
         <div class="value" id="{{ prefix }}_iVa_DPG_RDF">
           {{ msg.payload[prefix ~ '_iVa_DPG_RDF'] | default(0) | round(1) }}
@@ -311,17 +311,15 @@
           <div class="switch-container">
             <label class="switch">
               <!-- STEP 1: Removed onchange handler -->
-              <input type="checkbox" id="{{ prefix }}_iFl_Set_Humidity_Man_B" {{
-              'checked' if msg.payload[prefix ~ '_iFl_Set_Humidity_Man_B'] else
-              '' }} data-nodeid="{{ msg.node_ids[prefix ~
-              '_iFl_Set_Humidity_Man_B'] }}">
+              <input type="checkbox" id="{{ prefix }}_iMi_Set_RH_Man_B" {{
+              'checked' if msg.payload[prefix ~ '_iMi_Set_RH_Man_B'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              '_iMi_Set_RH_Man_B'] }}">
               <span class="slider"></span>
             </label>
-            <span
-              id="{{ prefix }}_iFl_Set_Humidity_Man_B-text"
-              class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Set_Humidity_Man_B']
-              else 'Auto' }}</span
+            <span id="{{ prefix }}_iMi_Set_RH_Man_B-text" class="mode-text"
+              >{{ 'Manual' if msg.payload[prefix ~ '_iMi_Set_RH_Man_B'] |
+              default(False) else 'Auto' }}</span
             >
           </div>
         </div>
@@ -329,14 +327,14 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="{{ prefix }}_iMi_Set_Temp_Man_B" {{
-              'checked' if msg.payload[prefix ~ '_iMi_Set_Temp_Man_B'] else ''
-              }} data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_Temp_Man_B']
-              }}">
+              'checked' if msg.payload[prefix ~ '_iMi_Set_Temp_Man_B'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              '_iMi_Set_Temp_Man_B'] }}">
               <span class="slider"></span>
             </label>
             <span id="{{ prefix }}_iMi_Set_Temp_Man_B-text" class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iMi_Set_Temp_Man_B'] else
-              'Auto' }}</span
+              >{{ 'Manual' if msg.payload[prefix ~ '_iMi_Set_Temp_Man_B'] |
+              default(False) else 'Auto' }}</span
             >
           </div>
         </div>
@@ -344,13 +342,14 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="{{ prefix }}_iMi_Set_WoT_Man_B" {{
-              'checked' if msg.payload[prefix ~ '_iMi_Set_WoT_Man_B'] else '' }}
-              data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_WoT_Man_B'] }}">
+              'checked' if msg.payload[prefix ~ '_iMi_Set_WoT_Man_B'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              '_iMi_Set_WoT_Man_B'] }}">
               <span class="slider"></span>
             </label>
             <span id="{{ prefix }}_iMi_Set_WoT_Man_B-text" class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iMi_Set_WoT_Man_B'] else
-              'Auto' }}</span
+              >{{ 'Manual' if msg.payload[prefix ~ '_iMi_Set_WoT_Man_B'] |
+              default(False) else 'Auto' }}</span
             >
           </div>
         </div>
@@ -358,14 +357,14 @@
           <div class="switch-container">
             <label class="switch">
               <input type="checkbox" id="{{ prefix }}_iFl_Set_DPG_RDF_Man_B" {{
-              'checked' if msg.payload[prefix ~ '_iFl_Set_DPG_RDF_Man_B'] else
-              '' }} data-nodeid="{{ msg.node_ids[prefix ~
+              'checked' if msg.payload[prefix ~ '_iFl_Set_DPG_RDF_Man_B'] |
+              default(False) else '' }} data-nodeid="{{ msg.node_ids[prefix ~
               '_iFl_Set_DPG_RDF_Man_B'] }}">
               <span class="slider"></span>
             </label>
             <span id="{{ prefix }}_iFl_Set_DPG_RDF_Man_B-text" class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Set_DPG_RDF_Man_B']
-              else 'Auto' }}</span
+              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Set_DPG_RDF_Man_B'] |
+              default(False) else 'Auto' }}</span
             >
           </div>
         </div>
@@ -373,12 +372,8 @@
 
       <div class="dialog-footer">
         <!-- STEP 1: Removed onclick handlers -->
-        <button class="btn btn-danger btn-sm" onclick="closeDialog()">
-          Close
-        </button>
-        <button class="btn btn-success btn-sm" onclick="updateSettings()">
-          Update
-        </button>
+        <button class="btn btn-danger btn-sm">Close</button>
+        <button class="btn btn-success btn-sm">Update</button>
       </div>
     </div>
 

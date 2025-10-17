@@ -8,80 +8,54 @@ endblock %} {% block content %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit & Manage Submodules</title>
   <style>
-    /* CSS from your example for consistent modal styling */
+    /* --- Main Page and Modal Styles --- */
     body.modal-open-custom::before {
       content: "";
       position: fixed;
-      top: 61px; /* Matches title-bar height */
-      left: 167px; /* Matches sidebar width */
+      top: 61px;
+      left: 167px;
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(4px);
-      z-index: 1050; /* Below modal, above content */
+      z-index: 1050;
       pointer-events: none;
     }
-
-    /* --- Modal Styling (to match tse.html theme) --- */
     .edit-modal {
       display: none;
       position: fixed;
       top: 50%;
-      left: 55%; /* Centered in the main content area */
+      left: 55%;
       transform: translate(-50%, -50%);
       width: 450px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       z-index: 1051;
-      overflow: hidden; /* To contain the rounded corners of the header */
+      overflow: hidden;
       border: 1px solid #0c609d;
     }
-
     .edit-modal-header {
       background-color: #0c609d;
       color: white;
       padding: 15px 20px;
       font-size: 20px;
       font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
-
-    .edit-modal-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      opacity: 0.8;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .edit-modal-close:hover {
-      opacity: 1;
-    }
-
     .edit-modal-body {
       padding: 25px;
-      max-height: 60vh;
+      max-height: 70vh;
       overflow-y: auto;
     }
-
     .form-group {
       margin-bottom: 20px;
     }
-
     .form-group label {
       display: block;
       margin-bottom: 8px;
       font-weight: bold;
       color: #333;
     }
-
     .form-group input[type="text"],
     .form-group select {
       width: 100%;
@@ -91,74 +65,50 @@ endblock %} {% block content %}
       font-size: 14px;
       box-sizing: border-box;
     }
-
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: #0c609d;
       box-shadow: 0 0 0 2px rgba(12, 96, 157, 0.25);
     }
-
     .edit-modal-footer {
       padding: 15px 25px;
       background-color: #f7f7f7;
       text-align: right;
       border-top: 1px solid #e5e5e5;
     }
-
-    /* General page styling */
     #input-page-container .container {
       padding: 20px;
       margin-top: 20px;
     }
-
     #input-page-container .table-container {
       border-radius: 10px;
       margin-top: 20px;
       border: 1px solid #0c609d;
       overflow: hidden;
     }
-
     #input-page-container .table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 0;
     }
-
     #input-page-container .thead th {
       background-color: #0c609d;
       color: white;
       text-align: center;
-      border-radius: 0;
       padding: 8px;
     }
-
-    #input-page-container .thead th:first-child {
-      border-top-left-radius: 7px;
-    }
-
-    #input-page-container .thead th:last-child {
-      border-top-right-radius: 7px;
-    }
-
     #input-page-container .btn-action {
       border: none;
       background: none;
       cursor: pointer;
-      padding: 0;
       font-size: 16px;
       color: #0c609d;
       margin: 0 5px;
     }
-
-    #input-page-container .btn-action:hover {
-      color: #007bff;
-    }
-
     #input-page-container .text-danger {
       color: #d9534f !important;
     }
-
     #input-page-container td,
     #input-page-container th {
       text-align: center;
@@ -167,19 +117,10 @@ endblock %} {% block content %}
       padding: 8px;
       font-weight: 480;
     }
-
     #input-page-container tr td:last-child,
     #input-page-container tr th:last-child {
       border-right: none;
     }
-
-    #input-page-container .edit-client-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
     #input-page-container .btn {
       padding: 8px 16px;
       border: none;
@@ -187,38 +128,71 @@ endblock %} {% block content %}
       border-radius: 5px;
       font-weight: bold;
       font-size: 14px;
-      transition: background-color 0.3s;
     }
-
     #input-page-container .btn-primary {
       background-color: #005fa3;
       color: white;
     }
-    #input-page-container .btn-primary:hover {
-      background-color: #003e6d;
-    }
-
     #input-page-container .btn-secondary {
       background-color: #6c757d;
       color: white;
       margin-right: 10px;
     }
-    #input-page-container .btn-secondary:hover {
-      background-color: #5a6268;
-    }
-
     #input-page-container .btn-danger {
       background-color: #dc3545;
       color: #fff;
     }
-    #input-page-container .btn-danger:hover {
-      background-color: #c82333;
+
+    /* --- CSS FOR CUSTOM COMBOBOX --- */
+    .combobox-container {
+      position: relative;
+    }
+    .combobox-input {
+      padding-right: 30px !important; /* Make space for the arrow */
+    }
+    .combobox-arrow {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      width: 30px;
+      border: none;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      color: #555;
+      font-size: 12px;
+    }
+    .combobox-arrow:hover {
+      background-color: #e0e0e0;
+    }
+    .combobox-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1052; /* Above the modal overlay */
+      border: 1px solid #0c609d;
+      border-radius: 4px;
+      background-color: white;
+      max-height: 150px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .combobox-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .combobox-option:hover {
+      background-color: #e3f4ff;
     }
   </style>
 
   <div class="container">
     <h3 style="color: #0c609d; font-size: 18px">Client Name:</h3>
-    <div class="edit-client-section">
+    <div>
       <span id="client_name_display" style="font-size: 18px; margin-top: -10px"
         >{{ client_name }}
         <button
@@ -231,8 +205,10 @@ endblock %} {% block content %}
         </button>
       </span>
     </div>
-    <h3 style="color: #0c609d; font-size: 18px">OPC UA URL:</h3>
-    <div class="edit-client-section">
+    <h3 style="color: #0c609d; font-size: 18px; margin-top: 15px">
+      OPC UA URL:
+    </h3>
+    <div>
       <form
         id="opcUrlForm"
         method="post"
@@ -250,12 +226,11 @@ endblock %} {% block content %}
             border-radius: 4px;
           "
           value="{{ opc_ua_url }}"
-          placeholder="opc.tcp://192.168.106.187:4840"
+          placeholder="opc.tcp://127.0.0.1:4840"
         />
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
-
     <div
       style="
         margin-top: 20px;
@@ -295,6 +270,7 @@ endblock %} {% block content %}
             <th>Category</th>
             <th>Department</th>
             <th>Template</th>
+            <th>Node Prefix</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -310,10 +286,11 @@ endblock %} {% block content %}
             <td>{{ item.category }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.template }}</td>
+            <td>{{ item.node_prefix }}</td>
             <td>
               <button
                 class="btn-action"
-                onclick="editSubmodule('{{ item.name }}', '{{ item.template }}', '{{ item.category }}')"
+                onclick="editSubmodule('{{ item.name }}', '{{ item.template }}', '{{ item.category }}', '{{ item.node_prefix }}')"
                 title="Edit"
               >
                 <i class="fas fa-edit"></i>
@@ -340,6 +317,7 @@ endblock %} {% block content %}
       Update Order
     </button>
 
+    <!-- RESTORED: Settings Table -->
     <h3 style="margin-top: 20px; color: #0c609d; font-size: 18px">Settings:</h3>
     <div class="table-container">
       <table
@@ -399,42 +377,12 @@ endblock %} {% block content %}
   </div>
 
   <!-- Modals -->
+  <div id="editClientModal" class="edit-modal"><!-- Populated by JS --></div>
 
-  <!-- Edit Client Name Modal -->
-  <div id="editClientModal" class="edit-modal">
-    <form onsubmit="saveClientName(); return false;">
-      <div class="edit-modal-header">
-        <span>Edit Client Name</span>
-      </div>
-      <div class="edit-modal-body">
-        <div class="form-group">
-          <label for="client_name_input">Client Name:</label>
-          <input
-            type="text"
-            id="client_name_input"
-            placeholder="New Client Name"
-          />
-        </div>
-      </div>
-      <div class="edit-modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="closeAllModals()"
-        >
-          Cancel
-        </button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Edit Submodule Modal -->
+  <!-- Edit Department Modal -->
   <div id="editSubmoduleModal" class="edit-modal">
-    <form onsubmit="saveSubmoduleChanges(); return false;">
-      <div class="edit-modal-header">
-        <span>Edit Department</span>
-      </div>
+    <form onsubmit="saveSubmoduleChanges(event)">
+      <div class="edit-modal-header"><span>Edit Department</span></div>
       <div class="edit-modal-body">
         <input type="hidden" id="submodule_name_input" />
         <div class="form-group">
@@ -447,15 +395,45 @@ endblock %} {% block content %}
         </div>
         <div class="form-group">
           <label for="submodule_new_name_input">Department:</label>
-          <input
-            type="text"
-            id="submodule_new_name_input"
-            placeholder="Department"
-          />
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="submodule_new_name_input"
+              placeholder="Type or select a department"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
         </div>
         <div class="form-group">
           <label for="submodule_file_input">Template:</label>
-          <input type="text" id="submodule_file_input" placeholder="Template" />
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="submodule_file_input"
+              placeholder="Template file name"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edit_node_prefix">Node Prefix:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="edit_node_prefix"
+              placeholder="e.g., Spg1, Prep2"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
         </div>
       </div>
       <div class="edit-modal-footer">
@@ -471,12 +449,10 @@ endblock %} {% block content %}
     </form>
   </div>
 
-  <!-- Add Submodule Modal -->
+  <!-- Add Department Modal -->
   <div id="addSubmoduleModal" class="edit-modal">
-    <form onsubmit="saveNewSubmodule(); return false;">
-      <div class="edit-modal-header">
-        <span>Add Department</span>
-      </div>
+    <form onsubmit="saveNewSubmodule(event)">
+      <div class="edit-modal-header"><span>Add Department</span></div>
       <div class="edit-modal-body">
         <div class="form-group">
           <label for="new_submodule_category">Category:</label>
@@ -488,11 +464,45 @@ endblock %} {% block content %}
         </div>
         <div class="form-group">
           <label for="new_submodule_name">Department:</label>
-          <input type="text" id="new_submodule_name" placeholder="Department" />
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_submodule_name"
+              placeholder="Type or select a department"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
         </div>
         <div class="form-group">
           <label for="new_submodule_file">Template:</label>
-          <input type="text" id="new_submodule_file" placeholder="Template" />
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_submodule_file"
+              placeholder="Template file name"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="new_node_prefix">Node Prefix:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_node_prefix"
+              placeholder="e.g., Spg1, Prep2"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
         </div>
       </div>
       <div class="edit-modal-footer">
@@ -508,243 +518,231 @@ endblock %} {% block content %}
     </form>
   </div>
 
-  <!-- Delete Settings Modal -->
-  <div id="deleteModal" class="edit-modal">
-    <div class="edit-modal-header">
-      <span>Select Settings to Delete</span>
-    </div>
-    <div class="edit-modal-body" id="modalContent">
-      <!-- Checkboxes will be dynamically inserted here -->
-    </div>
-    <div class="edit-modal-footer">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="closeAllModals()"
-      >
-        Cancel
-      </button>
-      <button
-        type="button"
-        onclick="deleteSelectedSettings()"
-        class="btn btn-danger"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
+  <div id="deleteModal" class="edit-modal"><!-- Populated by JS --></div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    // --- Custom Modal Control Functions ---
+    const predefinedDepartments = {{ predefined_departments | tojson }};
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        function setupCombobox(inputElement, options) {
+            const container = inputElement.closest('.combobox-container');
+            if (!container) return;
+            const arrow = container.querySelector('.combobox-arrow');
+            const optionsPanel = container.querySelector('.combobox-options');
+
+            optionsPanel.innerHTML = '';
+            options.forEach(optionText => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'combobox-option';
+                optionEl.textContent = optionText;
+                optionEl.addEventListener('click', () => {
+                    inputElement.value = optionText;
+                    optionsPanel.style.display = 'none';
+                    inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+                });
+                optionsPanel.appendChild(optionEl);
+            });
+
+            const showOptions = () => {
+                document.querySelectorAll('.combobox-options').forEach(p => {
+                    if (p !== optionsPanel) p.style.display = 'none';
+                });
+                optionsPanel.style.display = 'block';
+            };
+
+            arrow.addEventListener('click', (e) => {
+                e.stopPropagation();
+                optionsPanel.style.display = optionsPanel.style.display === 'block' ? 'none' : 'block';
+            });
+            inputElement.addEventListener('focus', showOptions);
+        }
+
+        const addModal = document.getElementById('addSubmoduleModal');
+        const editModal = document.getElementById('editSubmoduleModal');
+
+        setupCombobox(addModal.querySelector('#new_submodule_name'), predefinedDepartments.map(d => d.name));
+        setupCombobox(addModal.querySelector('#new_submodule_file'), predefinedDepartments.map(d => d.template));
+        setupCombobox(addModal.querySelector('#new_node_prefix'), predefinedDepartments.map(d => d.short_name));
+
+        setupCombobox(editModal.querySelector('#submodule_new_name_input'), predefinedDepartments.map(d => d.name));
+        setupCombobox(editModal.querySelector('#submodule_file_input'), predefinedDepartments.map(d => d.template));
+        setupCombobox(editModal.querySelector('#edit_node_prefix'), predefinedDepartments.map(d => d.short_name));
+
+        const setupAutoFill = (nameInput, templateInput, prefixInput) => {
+            nameInput.addEventListener('input', function() {
+                const selectedDept = predefinedDepartments.find(d => d.name === this.value);
+                if (selectedDept) {
+                    templateInput.value = selectedDept.template;
+                    prefixInput.value = selectedDept.short_name;
+                }
+            });
+        };
+
+        setupAutoFill(addModal.querySelector('#new_submodule_name'), addModal.querySelector('#new_submodule_file'), addModal.querySelector('#new_node_prefix'));
+        setupAutoFill(editModal.querySelector('#submodule_new_name_input'), editModal.querySelector('#submodule_file_input'), editModal.querySelector('#edit_node_prefix'));
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.combobox-container')) {
+                document.querySelectorAll('.combobox-options').forEach(p => p.style.display = 'none');
+            }
+        });
+    });
+
+    // --- All Other Page Functions ---
     function openModal(modalId) {
-      // Close any other open modals first to prevent overlap
       closeAllModals();
       const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.style.display = "block";
-        document.body.classList.add("modal-open-custom");
-      }
+      if (modal) modal.style.display = "block";
+      document.body.classList.add("modal-open-custom");
     }
 
     function closeAllModals() {
-      const modals = document.querySelectorAll(".edit-modal");
-      modals.forEach((modal) => {
-        modal.style.display = "none";
-      });
+      document.querySelectorAll(".edit-modal").forEach(modal => modal.style.display = "none");
       document.body.classList.remove("modal-open-custom");
     }
 
-    // Close modal if user presses the 'Escape' key
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        closeAllModals();
-      }
-    });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeAllModals(); });
 
-    // --- Page-specific Logic ---
     function editClientName() {
-      const clientName = document
-        .getElementById("client_name_display")
-        .innerText.trim();
-      document.getElementById("client_name_input").value = clientName;
+      const clientName = document.getElementById("client_name_display").innerText.trim();
+      const modal = document.getElementById('editClientModal');
+      modal.innerHTML = `
+        <form onsubmit="saveClientName(event)">
+          <div class="edit-modal-header"><span>Edit Client Name</span></div>
+          <div class="edit-modal-body">
+            <div class="form-group">
+              <label for="client_name_input">Client Name:</label>
+              <input type="text" id="client_name_input" value="${clientName}" />
+            </div>
+          </div>
+          <div class="edit-modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeAllModals()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>`;
       openModal("editClientModal");
     }
 
-    function saveClientName() {
+    function saveClientName(event) {
+      event.preventDefault();
       const clientName = document.getElementById("client_name_input").value;
-      fetch("/input", {
-        method: "POST",
-        body: new URLSearchParams({ client_name: clientName }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          closeAllModals();
-          if (data.success) {
-            alert(data.message);
-            location.reload();
-          } else {
-            alert(
-              "Error: " + (data.message || "Could not update client name.")
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("An unexpected error occurred.");
-        });
+      fetch("/input", { method: "POST", body: new URLSearchParams({ client_name: clientName })})
+        .then(res => res.json()).then(data => { if(data.success) location.reload(); });
     }
 
-    document
-      .getElementById("opcUrlForm")
-      .addEventListener("submit", function (event) {
+    document.getElementById("opcUrlForm").addEventListener("submit", function (event) {
         event.preventDefault();
         const opcUrl = document.getElementById("opc_ua_url_input").value;
-        fetch("/input", {
-          method: "POST",
-          body: new URLSearchParams({ opc_ua_url: opcUrl }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert(data.message);
-              location.reload();
-            } else {
-              alert(
-                "Error: " + (data.message || "Could not update OPC UA URL.")
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("An unexpected error occurred.");
-          });
-      });
+        fetch("/input", { method: "POST", body: new URLSearchParams({ opc_ua_url: opcUrl })})
+            .then(res => res.json()).then(data => { if(data.success) location.reload(); });
+    });
 
-    function editSubmodule(name, file, category) {
+    function editSubmodule(name, file, category, prefix) {
       document.getElementById("submodule_name_input").value = name;
       document.getElementById("submodule_new_name_input").value = name;
       document.getElementById("submodule_file_input").value = file;
       document.getElementById("edit_submodule_category").value = category;
+      document.getElementById("edit_node_prefix").value = prefix;
       openModal("editSubmoduleModal");
     }
 
-    function saveSubmoduleChanges() {
-      const oldName = document.getElementById("submodule_name_input").value;
-      const newName = document.getElementById("submodule_new_name_input").value;
-      const file = document.getElementById("submodule_file_input").value;
-      const category = document.getElementById("edit_submodule_category").value;
-
-      fetch("/edit_submodule", {
-        method: "POST",
-        body: new URLSearchParams({
-          submodule_name: oldName,
-          new_submodule_name: newName,
-          submodule_file: file,
-          submodule_category: category,
-        }),
-      }).then(() => location.reload());
+    function saveSubmoduleChanges(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("submodule_name_input").value,
+          new_submodule_name: document.getElementById("submodule_new_name_input").value,
+          submodule_file: document.getElementById("submodule_file_input").value,
+          submodule_category: document.getElementById("edit_submodule_category").value,
+          node_prefix: document.getElementById("edit_node_prefix").value,
+      };
+      fetch("/edit_submodule", { method: "POST", body: new URLSearchParams(payload) })
+        .then(() => location.reload());
     }
 
     function removeSubmodule(name) {
       if (confirm("Are you sure you want to remove this department?")) {
-        fetch("/remove_submodule", {
-          method: "POST",
-          body: new URLSearchParams({ submodule_name: name }),
-        }).then(() => location.reload());
+        fetch("/remove_submodule", { method: "POST", body: new URLSearchParams({ submodule_name: name })})
+          .then(() => location.reload());
       }
     }
 
-    function saveNewSubmodule() {
-      const name = document.getElementById("new_submodule_name").value;
-      const file = document.getElementById("new_submodule_file").value;
-      const category = document.getElementById("new_submodule_category").value;
-
-      fetch("/input", {
-        method: "POST",
-        body: new URLSearchParams({
-          submodule_category: category,
-          submodule_name: name,
-          submodule_file: file,
-        }),
-      }).then(() => location.reload());
+    function saveNewSubmodule(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("new_submodule_name").value,
+          submodule_file: document.getElementById("new_submodule_file").value,
+          submodule_category: document.getElementById("new_submodule_category").value,
+          node_prefix: document.getElementById("new_node_prefix").value,
+      };
+      fetch("/input", { method: "POST", body: new URLSearchParams(payload) })
+        .then(() => location.reload());
     }
 
     let draggedRow = null;
-
     function dragStart(event) {
       draggedRow = event.target;
-      event.dataTransfer.effectAllowed = "move";
-      event.dataTransfer.setData("text/html", draggedRow.innerHTML);
       draggedRow.style.opacity = "0.4";
     }
-
-    function dragOver(event) {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = "move";
-    }
-
+    function dragOver(event) { event.preventDefault(); }
     function drop(event) {
       event.preventDefault();
       draggedRow.style.opacity = "1";
       const targetRow = event.target.closest("tr");
-      if (draggedRow && targetRow && draggedRow !== targetRow) {
-        const tableBody = document.getElementById("submodule_table_body");
-        // Logic to handle drop relative to target position
-        const rect = targetRow.getBoundingClientRect();
-        const offsetY = event.clientY - rect.top;
-        if (offsetY > targetRow.offsetHeight / 2) {
-          tableBody.insertBefore(draggedRow, targetRow.nextSibling);
-        } else {
-          tableBody.insertBefore(draggedRow, targetRow);
-        }
+      if (targetRow && draggedRow !== targetRow) {
+          const tableBody = document.getElementById("submodule_table_body");
+          const rect = targetRow.getBoundingClientRect();
+          const offsetY = event.clientY - rect.top;
+          tableBody.insertBefore(draggedRow, (offsetY > targetRow.offsetHeight / 2) ? targetRow.nextSibling : targetRow);
       }
-      draggedRow = null;
     }
 
     function updateOrder() {
-      const tableBody = document.getElementById("submodule_table_body");
-      const rows = Array.from(tableBody.querySelectorAll("tr"));
-      const newOrder = rows.map((row) => ({
-        category: row.cells[0].innerText.trim(),
-        name: row.cells[1].innerText.trim(),
-        template: row.cells[2].innerText.trim(),
+      const rows = document.querySelectorAll("#submodule_table_body tr");
+      const newOrder = Array.from(rows).map(row => ({
+        category: row.cells[0].innerText,
+        name: row.cells[1].innerText,
+        template: row.cells[2].innerText,
+        node_prefix: row.cells[3].innerText,
       }));
-
       fetch("/update-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ new_order: newOrder }),
-      }).then((response) => {
-        if (response.ok) {
-          alert("Order updated successfully!");
-        } else {
-          alert("Failed to update order.");
-        }
+      }).then(res => {
+          if (res.ok) alert("Order updated successfully!"); else alert("Failed to update order.");
       });
     }
 
+    // --- RESTORED: Settings Management Functions ---
     let currentRole = "";
-
     function showDeletePopup(role) {
       currentRole = role;
       fetch(`/get_settings/${role}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            const modalContent = document.getElementById("modalContent");
-            modalContent.innerHTML = ""; // Clear previous content
+            const modal = document.getElementById('deleteModal');
+            let content = `
+              <div class="edit-modal-header"><span>Select Settings to Delete for ${role}</span></div>
+              <div class="edit-modal-body">`;
             data.settings.forEach((setting) => {
-              const div = document.createElement("div");
-              // Using form-group for consistent styling
-              div.className = "form-group";
-              div.innerHTML = `
-                                <label style="font-weight: normal; display: flex; align-items: center; gap: 10px;">
-                                    <input type="checkbox" value="${setting}" name="settings_to_delete" style="width: 16px; height: 16px;">
-                                    ${setting}
-                                </label>`;
-              modalContent.appendChild(div);
+              content += `
+                <div class="form-group">
+                  <label style="font-weight: normal; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" value="${setting}" name="settings_to_delete" style="width: 16px; height: 16px;">
+                    ${setting}
+                  </label>
+                </div>`;
             });
+            content += `
+              </div>
+              <div class="edit-modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAllModals()">Cancel</button>
+                <button type="button" onclick="deleteSelectedSettings()" class="btn btn-danger">Delete</button>
+              </div>`;
+            modal.innerHTML = content;
             openModal("deleteModal");
           } else {
             alert("Error fetching settings");
@@ -770,7 +768,7 @@ endblock %} {% block content %}
 
     function addSetting(role) {
       let settingName = prompt("Enter the setting name:");
-      if (settingName) {
+      if (settingName && settingName.trim() !== "") {
         fetch("/add_setting", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

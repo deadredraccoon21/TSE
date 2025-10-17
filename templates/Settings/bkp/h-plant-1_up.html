@@ -357,13 +357,17 @@
           const element = document.getElementById(key);
           if (!element) return;
 
+          // fallback to 0 if value is undefined or null
+          const value =
+            data[key] !== undefined && data[key] !== null ? data[key] : 0;
+
           if (element.classList.contains("value")) {
             // Update blue value boxes
-            element.innerText = data[key];
+            element.innerText = value;
           } else if (element.tagName === "INPUT" && element.type === "number") {
             // Update number input boxes only if not focused
             if (document.activeElement !== element) {
-              element.value = data[key];
+              element.value = value;
             }
           }
         });
