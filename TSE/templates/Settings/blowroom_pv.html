@@ -1,280 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Inputs Dialog</title>
     <!-- Include Bootstrap CSS -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="static\css\font.css">
+    <link rel="stylesheet" href="static\css\font.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <style>
-        
-        .btn-success {
-            color: #fff;
-            background-color: #5cb85c;
-            border-color: #5cb85c;
-            border-radius: 3px;
-            border-style:solid;
-            box-shadow: none;
-            }
-            .btn-success:focus,
-            .btn-success.focus {
-            color: #fff;
-            background-color: #449d44;
-            border-color: #255625;
-            }
-            .btn-success:hover {
-            color: #fff;
-            background-color: #449d44;
-            border-color: #398439;
-            }
+      .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        border-radius: 3px;
+        border-style: solid;
+        box-shadow: none;
+      }
+      .btn-success:focus,
+      .btn-success.focus {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #255625;
+      }
+      .btn-success:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439;
+      }
 
-            .btn-danger {
-            color: #fff;
-            background-color: #d9534f;
-            border-color: #d43f3a;
-            border-style: solid;
-            box-shadow: none;
-            border-radius: 3px;
-            }
-            .btn-danger:focus,
-            .btn-danger.focus {
-            color: #fff;
-            background-color: #c9302c;
-            border-color: #761c19;
-            }
-            .btn-danger:hover {
-            color: #fff;
-            background-color: #c9302c;
-            border-color: #ac2925;
-            }
+      .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+        border-style: solid;
+        box-shadow: none;
+        border-radius: 3px;
+      }
+      .btn-danger:focus,
+      .btn-danger.focus {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #761c19;
+      }
+      .btn-danger:hover {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #ac2925;
+      }
 
       .dialog-box {
-    /* max-width: 20%;  Reduced from 50% */
-    width: 200%;
-    transform: translate(60%, 50%);  /* Reduced from 80%, 60% */
-    border: 1px solid #333;
-    border-radius: 8px;  /* Reduced from 10px */
-    background-color: #e3f4ff;
-    padding: 15px;  /* Reduced from 20px */
-    margin: 0 auto;
-    box-sizing: border-box;
-    position: relative;
-    top: -30px;  /* Reduced from -50px */
-    left: -20px;  /* Reduced from -30px */
-}
-.header {
-    background-color: #0c609d;
-    color: white;
-    text-align: center;
-    font-size: 16px;  /* Reduced from 20px */
-    font-weight: bold;
-    padding: 8px;  /* Reduced from 10px */
-    border-radius: 6px;  /* Reduced from 8px */
-    margin-bottom: 10px;  /* Reduced from 15px */
-    width: 95%;
-}
+        /* max-width: 20%;  Reduced from 50% */
+        width: 200%;
+        transform: translate(60%, 50%); /* Reduced from 80%, 60% */
+        border: 1px solid #333;
+        border-radius: 8px; /* Reduced from 10px */
+        background-color: #e3f4ff;
+        padding: 15px; /* Reduced from 20px */
+        margin: 0 auto;
+        box-sizing: border-box;
+        position: relative;
+        top: -30px; /* Reduced from -50px */
+        left: -20px; /* Reduced from -30px */
+      }
+      .header {
+        background-color: #0c609d;
+        color: white;
+        text-align: center;
+        font-size: 16px; /* Reduced from 20px */
+        font-weight: bold;
+        padding: 8px; /* Reduced from 10px */
+        border-radius: 6px; /* Reduced from 8px */
+        margin-bottom: 10px; /* Reduced from 15px */
+        width: 95%;
+      }
 
-.row-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));  /* Reduced from 100px */
-    gap: 6px;  /* Reduced from 8px */
-    margin-bottom: 6px;  /* Reduced from 8px */
-}
+      .row-container {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(80px, 1fr)
+        ); /* Reduced from 100px */
+        gap: 6px; /* Reduced from 8px */
+        margin-bottom: 6px; /* Reduced from 8px */
+      }
 
-.parameter {
-    width: 100%;
-    height: 32px;  /* Reduced from 40px */
-    text-align: center;
-    line-height: 32px;  /* Reduced from 40px */
-    font-size: 10px;  /* Reduced from 11px */
-    font-weight: bold;
-   
-    border: 1px solid #333;  /* Reduced from 2px */
-    border-radius: 4px;  /* Reduced from 5px */
-    background-color: #c9f6ff;
-    color: black;
-}
+      .parameter {
+        width: 100%;
+        height: 32px; /* Reduced from 40px */
+        text-align: center;
+        line-height: 32px; /* Reduced from 40px */
+        font-size: 10px; /* Reduced from 11px */
+        font-weight: bold;
 
-.value {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #333;  /* Reduced from 2px */
-    border-radius: 4px;  /* Reduced from 5px */
-    line-height: 32px;  /* Reduced from 40px */
-    padding-right: 8px;  /* Reduced from 10px */
-}
+        border: 1px solid #333; /* Reduced from 2px */
+        border-radius: 4px; /* Reduced from 5px */
+        background-color: #c9f6ff;
+        color: black;
+      }
 
-.close-icon {
-    position: absolute;
-    top: 2px;  /* Reduced from 3px */
-    right: 2px;  /* Reduced from 3px */
-    width: 16px;  /* Reduced from 18px */
-    height: 16px;  /* Reduced from 18px */
-    padding: 1px;  /* Reduced from 2px */
-    font-size: 14px;  /* Reduced from 16px */
-}
+      .value {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333; /* Reduced from 2px */
+        border-radius: 4px; /* Reduced from 5px */
+        line-height: 32px; /* Reduced from 40px */
+        padding-right: 8px; /* Reduced from 10px */
+      }
 
-.set-box input {
-    width: 95%;
-    height: 32px;  /* Reduced from 40px */
-    background: #4caf50;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #333;  /* Reduced from 2px */
-    border-radius: 4px;  /* Reduced from 5px */
-    line-height: 32px;  /* Reduced from 40px */
-}
+      .close-icon {
+        position: absolute;
+        top: 2px; /* Reduced from 3px */
+        right: 2px; /* Reduced from 3px */
+        width: 16px; /* Reduced from 18px */
+        height: 16px; /* Reduced from 18px */
+        padding: 1px; /* Reduced from 2px */
+        font-size: 14px; /* Reduced from 16px */
+      }
 
-/* Styling for toggle switch */
-.switch {
-    margin-top: 4px;  /* Reduced from 6px */
-    width: 36px;  /* Reduced from 42px */
-    height: 20px;  /* Reduced from 24px */
-}
+      .set-box input {
+        width: 95%;
+        height: 32px; /* Reduced from 40px */
+        background: #4caf50;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333; /* Reduced from 2px */
+        border-radius: 4px; /* Reduced from 5px */
+        line-height: 32px; /* Reduced from 40px */
+      }
 
-.slider:before {
-    height: 14px;  /* Reduced from 16px */
-    width: 14px;  /* Reduced from 16px */
-    left: 3px;  /* Reduced from 4px */
-    bottom: 3px;  /* Reduced from 4px */
-}
+      /* Styling for toggle switch */
+      .switch {
+        margin-top: 4px; /* Reduced from 6px */
+        width: 36px; /* Reduced from 42px */
+        height: 20px; /* Reduced from 24px */
+      }
 
-input:checked+.slider:before {
-    transform: translateX(14px);  /* Reduced from 16px */
-}
+      .slider:before {
+        height: 14px; /* Reduced from 16px */
+        width: 14px; /* Reduced from 16px */
+        left: 3px; /* Reduced from 4px */
+        bottom: 3px; /* Reduced from 4px */
+      }
 
-@media (max-width: 768px) {
-    .dialog-box {
-        max-width: 90%;  /* Allow more space on small screens */
-    }
-    
-    .header {
-        font-size: 14px;  /* Further reduced for small screens */
-    }
+      input:checked + .slider:before {
+        transform: translateX(14px); /* Reduced from 16px */
+      }
 
-    .parameter,
-    .value {
-        font-size: 9px;  /* Reduced from 10px */
-        height: 30px;  /* Reduced from 35px */
-        line-height: 30px;  /* Added to match height */
-    }
-    
-    .row-container {
-        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));  /* Smaller on mobile */
-    }
-}
+      @media (max-width: 768px) {
+        .dialog-box {
+          max-width: 90%; /* Allow more space on small screens */
+        }
+
+        .header {
+          font-size: 14px; /* Further reduced for small screens */
+        }
+
+        .parameter,
+        .value {
+          font-size: 9px; /* Reduced from 10px */
+          height: 30px; /* Reduced from 35px */
+          line-height: 30px; /* Added to match height */
+        }
+
+        .row-container {
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(60px, 1fr)
+          ); /* Smaller on mobile */
+        }
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
     <div class="dialog-box mt-5">
+      <!-- Header -->
+      <div class="header">PRESET &nbsp; VALUES</div>
 
-        <!-- Header -->
-        <div class="header">PRESET &nbsp; VALUES</div>
-
-        <!-- Row 1: Headers -->
-        <div class="row-container">
-            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">PARAMETER</div>
-            <div class="parameter" style="background-color: rgb(0, 86, 128); color:white">PUMP</div>
+      <!-- Row 1: Headers -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          PARAMETER
         </div>
-        <!-- Row 2: Dynamic ON-REF Input -->
-        <div class="row-container m-value-row">
-            <div class="parameter" style="background-color: rgb(20,105,46); color:white">ON-REF</div>
-            <div class="set-box">
-                <input type="number" class="setpoint-input" id="BR_iTime_Start_Pump"
-                       value="{{ msg.payload['BR_iTime_Start_Pump'] | round(1) }}" 
-                       data-nodeid="{{ msg.node_ids['BR_iTime_Start_Pump'] }}" />
-            </div>
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          PUMP
         </div>
-
-        <!-- Row 3: Dynamic OFF-REF Input -->
-        <div class="row-container m-value-row">
-            <div class="parameter" style="background-color: rgb(20,105,46); color:white">OFF-REF</div>
-            <div class="set-box">
-                <input type="number" class="setpoint-input" id="BR_iVa_Pump_Stop_REF"
-                       value="{{ msg.payload['BR_iVa_Pump_Stop_REF'] | round(1) }}" 
-                       data-nodeid="{{ msg.node_ids['BR_iVa_Pump_Stop_REF'] }}" />
-            </div>
+      </div>
+      <!-- Row 2: Dynamic ON-REF Input -->
+      <div class="row-container m-value-row">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          ON-REF
         </div>
-
-        <div class="dialog-footer" style="text-align: right;">
-            <button class="btn btn-danger" onclick="closeDialog()">Close</button>
-            <button class="btn btn-success" onclick="updateSettings()">Update</button>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="BR_iTime_Start_Pump"
+            value="{{ msg.payload['BR_iTime_Start_Pump'] |default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids['BR_iTime_Start_Pump'] }}"
+          />
         </div>
+      </div>
 
+      <!-- Row 3: Dynamic OFF-REF Input -->
+      <div class="row-container m-value-row">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          OFF-REF
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="BR_iVa_Pump_Stop_REF"
+            value="{{ msg.payload['BR_iVa_Pump_Stop_REF'] |default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids['BR_iVa_Pump_Stop_REF'] }}"
+          />
+        </div>
+      </div>
+
+      <div class="dialog-footer" style="text-align: right">
+        <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+        <button class="btn btn-success" onclick="updateSettings()">
+          Update
+        </button>
+      </div>
     </div>
 
     <script>
-        const socket = io();
+      const socket = io();
 
-        // This listener handles all real-time updates from the server
-        socket.on('update', function (data) {
-            Object.keys(data).forEach((key) => {
-                const element = document.getElementById(key);
-                if (!element) return;
-                
-                // This dialog only has number inputs
-                if (element.tagName === 'INPUT' && element.type === 'number') {
-                    // Update the number input box only if not focused
-                    if (document.activeElement !== element) {
-                        element.value = data[key];
-                    }
-                }
-            });
+      // This listener handles all real-time updates from the server
+      socket.on("update", function (data) {
+        Object.keys(data).forEach((key) => {
+          const element = document.getElementById(key);
+          if (!element) return;
+
+          // This dialog only has number inputs
+          if (element.tagName === "INPUT" && element.type === "number") {
+            // Update the number input box only if not focused
+            if (document.activeElement !== element) {
+              element.value = data[key];
+            }
+          }
+        });
+      });
+
+      /**
+       * Sends updates for all setpoints when the 'Update' button is clicked.
+       * It reads Node IDs from the data attributes of elements with class 'setpoint-input'.
+       */
+      function updateSettings() {
+        const payload = {};
+        // Select all number inputs that need to be sent on update
+        const inputs = document.querySelectorAll(".setpoint-input");
+
+        inputs.forEach((input) => {
+          const nodeId = input.dataset.nodeid;
+          if (nodeId) {
+            payload[nodeId] = input.value;
+          }
         });
 
-        /**
-         * Sends updates for all setpoints when the 'Update' button is clicked.
-         * It reads Node IDs from the data attributes of elements with class 'setpoint-input'.
-         */
-        function updateSettings() {
-            const payload = {};
-            // Select all number inputs that need to be sent on update
-            const inputs = document.querySelectorAll('.setpoint-input');
-
-            inputs.forEach(input => {
-                const nodeId = input.dataset.nodeid;
-                if (nodeId) {
-                    payload[nodeId] = input.value;
-                }
-            });
-
-            if (Object.keys(payload).length === 0) {
-                alert("No settings found to update.");
-                return;
-            }
-
-            fetch('/write', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Settings updated successfully!');
-                } else {
-                    alert('Failed to update settings: ' + (data.error || 'Unknown error'));
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred during the update.');
-            });
+        if (Object.keys(payload).length === 0) {
+          alert("No settings found to update.");
+          return;
         }
 
-        function closeDialog() {
-            const dialogBox = document.querySelector('.dialog-box');
-            if (dialogBox) {
-                dialogBox.style.display = 'none';
+        fetch("/write", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Settings updated successfully!");
+            } else {
+              alert(
+                "Failed to update settings: " + (data.error || "Unknown error")
+              );
             }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred during the update.");
+          });
+      }
+
+      function closeDialog() {
+        const dialogBox = document.querySelector(".dialog-box");
+        if (dialogBox) {
+          dialogBox.style.display = "none";
         }
+      }
     </script>
-</body>
+  </body>
 </html>

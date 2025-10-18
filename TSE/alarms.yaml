@@ -1,34 +1,144 @@
 alarms:
   # Blowroom
   - code: 1
+    message: SA Fan-1 Trip - Blowroom
+    nodeids:
+      - DI_BR_iFl_SAFan1_TRIP
+    severity: 1
+  - code: 2
     message: Washer Pump-1 VFD Fault - Blowroom
     nodeids:
       - DI_BR_iFl_WasherPump1_TRIP
     severity: 1
 
   # Preparatory
-  - code: 2
+  - code: 3
+    message: Return Air Fan-1 Trip - Preparatory
+    nodeids:
+      - DI_Prep_iFl_RetAFan1_TRIP
+    severity: 1
+  - code: 4
+    message: SA Fan-1 Trip - Preparatory
+    nodeids:
+      - DI_Prep_iFl_SAFan1_TRIP
+    severity: 1
+  - code: 5
+    message: Rotary Drum Filter-1 Trip - Preparatory
+    nodeids:
+      - DI_Prep_iFl_RDF1_TRIP
+    severity: 1
+  - code: 6
+    message: Dust Collector Fan-1 Trip - Preparatory
+    nodeids:
+      - DI_Prep_iFl_DCF1_TRIP
+    severity: 1
+  - code: 7
+    message: Screw Compactor-1 Trip - Preparatory
+    nodeids:
+      - DI_Prep_iFl_ScrewCompactor1_TRIP
+    severity: 1
+  - code: 8
     message: Washer Pump-1 VFD Fault - Preparatory
     nodeids:
       - DI_Prep_iFl_WasherPump1_TRIP
     severity: 1
 
   # Spinning 1
-  - code: 3
+  - code: 9
+    message: Return Air Fan-1 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_RetAFan1_TRIP
+    severity: 1
+  - code: 10
+    message: Return Air Fan-2 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_RetAFan2_TRIP
+    severity: 1
+  - code: 11
+    message: SA Fan-1 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_SAFan1_TRIP
+    severity: 1
+  - code: 12
+    message: SA Fan-2 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_SAFan2_TRIP
+    severity: 1
+  - code: 13
+    message: Rotary Drum Filter-1 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_RDF1_TRIP
+    severity: 1
+  - code: 14
+    message: Rotary Drum Filter-2 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_RDF2_TRIP
+    severity: 1
+  - code: 15
+    message: Dust Collector Fan-1 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_DCF1_TRIP
+    severity: 1
+  - code: 16
+    message: Dust Collector Fan-2 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_DCF2_TRIP
+    severity: 1
+  - code: 17
+    message: Screw Compactor-1 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_ScrewCompactor1_TRIP
+    severity: 1
+  - code: 18
+    message: Screw Compactor-2 Trip - Spinning 1
+    nodeids:
+      - DI_Spg1_iFl_ScrewCompactor2_TRIP
+    severity: 1
+  - code: 19
     message: Washer Pump-1 VFD Fault - Spinning 1
     nodeids:
       - DI_Spg1_iFl_WasherPump1_TRIP
     severity: 1
 
   # Spinning 2
-  - code: 4
+  - code: 20
+    message: Return Air Fan-1 Trip - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_RetAFan1_TRIP
+    severity: 1
+  - code: 21
+    message: SA Fan-1 Trip - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_SAFan1_TRIP
+    severity: 1
+  - code: 22
+    message: Rotary Drum Filter-1 Trip - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_RDF1_TRIP
+    severity: 1
+  - code: 23
+    message: Dust Collector Fan-1 Trip - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_DCF1_TRIP
+    severity: 1
+  - code: 24
+    message: Screw Compactor-1 Trip - Spinning 2
+    nodeids:
+      - DI_Spg2_iFl_ScrewCompactor1_TRIP
+    severity: 1
+  - code: 25
     message: Washer Pump-1 VFD Fault - Spinning 2
     nodeids:
       - DI_Spg2_iFl_WasherPump1_TRIP
     severity: 1
 
   # Autoconer
-  - code: 5
+  - code: 26
+    message: SA Fan-1 Trip - Autoconer
+    nodeids:
+      - DI_Autoconer_iFl_SAFan1_TRIP
+    severity: 1
+  - code: 27
     message: Washer Pump-1 VFD Fault - Autoconer
     nodeids:
       - DI_Autoconer_iFl_WasherPump1_TRIP

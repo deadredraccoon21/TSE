@@ -137,8 +137,8 @@
               <td><b>% RH</b></td>
               <td>
                 <span class="value-box" id="BR_iVa_Act_RH"
-                  >{{ msg.payload['BR_iVa_Act_RH'] | default(0) | round(1)
-                  }}</span
+                  >{{ msg.payload['BR_iVa_Act_RH'] | default(0) |default(0) |
+                  round(1) }}</span
                 >
               </td>
               <td class="set-box">
@@ -147,7 +147,7 @@
                   type="number"
                   class="setpoint-input"
                   id="BR_iMi_Set_RH"
-                  value="{{ msg.payload['BR_iMi_Set_RH'] | default(0) | round(1) }}"
+                  value="{{ msg.payload['BR_iMi_Set_RH'] | default(0) |default(0) | round(1) }}"
                   data-nodeid="{{ msg.node_ids['BR_iMi_Set_RH'] }}"
                 />
               </td>
@@ -156,8 +156,8 @@
               <td><b>°C</b></td>
               <td>
                 <span class="value-box" id="BR_iVa_Act_Temp"
-                  >{{ msg.payload['BR_iVa_Act_Temp'] | default(0) | round(1)
-                  }}</span
+                  >{{ msg.payload['BR_iVa_Act_Temp'] | default(0) |default(0) |
+                  round(1) }}</span
                 >
               </td>
               <td class="set-box">
@@ -166,7 +166,7 @@
                   type="number"
                   class="setpoint-input"
                   id="BR_iMi_Set_Temp"
-                  value="{{ msg.payload['BR_iMi_Set_Temp'] | default(0) | round(1) }}"
+                  value="{{ msg.payload['BR_iMi_Set_Temp'] | default(0) |default(0) | round(1) }}"
                   data-nodeid="{{ msg.node_ids['BR_iMi_Set_Temp'] }}"
                 />
               </td>

@@ -1,217 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Set Point</title>
 
-    <link rel="stylesheet" href="static\css\font.css">
+    <link rel="stylesheet" href="static\css\font.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <style>
-        .btn-success {
-            color: #fff;
-            background-color: #5cb85c;
-            border-color: #5cb85c;
-            border-radius: 3px;
-            border-style: solid;
-            box-shadow: none;
-        }
+      .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        border-radius: 3px;
+        border-style: solid;
+        box-shadow: none;
+      }
 
-        .btn-success:hover {
-            color: #fff;
-            background-color: #449d44;
-            border-color: #398439;
-        }
+      .btn-success:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439;
+      }
 
-        .btn-danger {
-            color: #fff;
-            background-color: #d9534f;
-            border-color: #d43f3a;
-            border-style: solid;
-            box-shadow: none;
-            border-radius: 3px;
-        }
+      .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+        border-style: solid;
+        box-shadow: none;
+        border-radius: 3px;
+      }
 
-        .btn-danger:hover {
-            color: #fff;
-            background-color: #c9302c;
-            border-color: #ac2925;
-        }
+      .btn-danger:hover {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #ac2925;
+      }
 
-        /* CHANGE #1: Renamed .dialog-container to .dialog-box for consistency */
-        .dialog-box {
-            /* Sizing and positioning to match the other dialog */
-            width: 100%; 
-            transform: translate(130%, 60%);
-            margin: auto;
-            background: #e3f4ff;
-            border: 1px solid #0c609d;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            /* CHANGE #2: THIS IS THE CRUCIAL FIX. Added position: relative */
-            position: relative; 
-        }
+      /* CHANGE #1: Renamed .dialog-container to .dialog-box for consistency */
+      .dialog-box {
+        /* Sizing and positioning to match the other dialog */
+        width: 100%;
+        transform: translate(130%, 60%);
+        margin: auto;
+        background: #e3f4ff;
+        border: 1px solid #0c609d;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        /* CHANGE #2: THIS IS THE CRUCIAL FIX. Added position: relative */
+        position: relative;
+      }
 
-        /* CHANGE #3: Renamed .dialog-header to .header to be the drag handle */
-        .header {
-            background: #0c609d;
-            color: white;
-            padding: 10px;
-            font-weight: bold;
-            border-radius: 9px 9px 0 0; /* Adjusted for border */
-            cursor: move; /* Good practice to show it's draggable */
-        }
+      /* CHANGE #3: Renamed .dialog-header to .header to be the drag handle */
+      .header {
+        background: #0c609d;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border-radius: 9px 9px 0 0; /* Adjusted for border */
+        cursor: move; /* Good practice to show it's draggable */
+      }
 
-        .dialog-body {
-            padding: 10px;
-        }
+      .dialog-body {
+        padding: 10px;
+      }
 
-        .dialog-body table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+      .dialog-body table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-        .dialog-body th,
-        .dialog-body td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #0c609d;
-        }
+      .dialog-body th,
+      .dialog-body td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #0c609d;
+      }
 
-        .value-box {
-            display: inline-block;
-            width: 50px;
-            padding: 5px;
-            background: #007bff;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+      .value-box {
+        display: inline-block;
+        width: 50px;
+        padding: 5px;
+        background: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+      }
 
-        .set-box input {
-            width: 60px;
-            padding: 5px;
-            text-align: center;
-            border: 1px solid #4caf50;
-            border-radius: 5px;
-        }
+      .set-box input {
+        width: 60px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #4caf50;
+        border-radius: 5px;
+      }
 
-        .dialog-footer {
-            padding: 10px;
-            text-align: right;
-            background: #e3f4ff;
-            border-radius: 0 0 10px 10px;
-        }
+      .dialog-footer {
+        padding: 10px;
+        text-align: right;
+        background: #e3f4ff;
+        border-radius: 0 0 10px 10px;
+      }
 
-        .btn {
-            margin: 5px;
-        }
+      .btn {
+        margin: 5px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- CHANGE #1 (HTML part): Changed class to "dialog-box" -->
     <div class="dialog-box" id="setPointDialog">
-        <!-- CHANGE #3 (HTML part): Changed class to "header" -->
-        <div class="header">SET POINT</div>
+      <!-- CHANGE #3 (HTML part): Changed class to "header" -->
+      <div class="header">SET POINT</div>
 
-        <div class="dialog-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Actual</th>
-                        <th>Set</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><b>% RH</b></td>
-                        <td><span class="value-box" id="{{ prefix }}_iVa_Act_RH">{{ msg.payload['Autoconer_iVa_Act_RH'] | round(1) }}</span></td>
-                        <td class="set-box">
-                            <input type="number" class="setpoint-input" id="{{ prefix }}_iMi_Set_RH"
-                                   value="{{ msg.payload['Autoconer_iMi_Set_RH'] | round(1) }}"
-                                   data-nodeid="{{ msg.node_ids['Autoconer_iMi_Set_RH'] }}" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>°C</b></td>
-                        <td><span class="value-box" id="{{ prefix }}_iVa_Act_Temp">{{ msg.payload['Autoconer_iVa_Act_Temp'] | round(1) }}</span></td>
-                        <td class="set-box">
-                            <input type="number" class="setpoint-input" id="{{ prefix }}_iMi_Set_Temp"
-                                   value="{{ msg.payload['Autoconer_iMi_Set_Temp'] | round(1) }}"
-                                   data-nodeid="{{ msg.node_ids['Autoconer_iMi_Set_Temp'] }}" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <div class="dialog-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Actual</th>
+              <th>Set</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>% RH</b></td>
+              <td>
+                <span class="value-box" id="{{ prefix }}_iVa_Act_RH"
+                  >{{ msg.payload['Autoconer_iVa_Act_RH'] |default(0) | round(1)
+                  }}</span
+                >
+              </td>
+              <td class="set-box">
+                <input
+                  type="number"
+                  class="setpoint-input"
+                  id="{{ prefix }}_iMi_Set_RH"
+                  value="{{ msg.payload['Autoconer_iMi_Set_RH'] |default(0) | round(1) }}"
+                  data-nodeid="{{ msg.node_ids['Autoconer_iMi_Set_RH'] }}"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><b>°C</b></td>
+              <td>
+                <span class="value-box" id="{{ prefix }}_iVa_Act_Temp"
+                  >{{ msg.payload['Autoconer_iVa_Act_Temp'] |default(0) |
+                  round(1) }}</span
+                >
+              </td>
+              <td class="set-box">
+                <input
+                  type="number"
+                  class="setpoint-input"
+                  id="{{ prefix }}_iMi_Set_Temp"
+                  value="{{ msg.payload['Autoconer_iMi_Set_Temp'] |default(0) | round(1) }}"
+                  data-nodeid="{{ msg.node_ids['Autoconer_iMi_Set_Temp'] }}"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="dialog-footer">
-            <button class="btn btn-danger" onclick="closeDialog()">Close</button>
-            <button class="btn btn-success" onclick="updateSettings()">Update</button>
-        </div>
+      <div class="dialog-footer">
+        <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+        <button class="btn btn-success" onclick="updateSettings()">
+          Update
+        </button>
+      </div>
     </div>
 
     <script>
-        // The script part was already correct and needs no changes.
-        const socket = io();
+      // The script part was already correct and needs no changes.
+      const socket = io();
 
-        socket.on('update', function (data) {
-            Object.keys(data).forEach((key) => {
-                const element = document.getElementById(key);
-                if (!element) return;
-                
-                if (element.tagName === 'SPAN') {
-                    element.innerText = data[key];
-                } else if (element.tagName === 'INPUT' && element.type === 'number') {
-                    if (document.activeElement !== element) {
-                        element.value = data[key];
-                    }
-                }
-            });
+      socket.on("update", function (data) {
+        Object.keys(data).forEach((key) => {
+          const element = document.getElementById(key);
+          if (!element) return;
+
+          if (element.tagName === "SPAN") {
+            element.innerText = data[key];
+          } else if (element.tagName === "INPUT" && element.type === "number") {
+            if (document.activeElement !== element) {
+              element.value = data[key];
+            }
+          }
+        });
+      });
+
+      function updateSettings() {
+        const setpoints = {};
+        const inputs = document.querySelectorAll(".setpoint-input");
+
+        inputs.forEach((input) => {
+          const nodeId = input.dataset.nodeid;
+          if (nodeId) {
+            setpoints[nodeId] = input.value;
+          }
         });
 
-        function updateSettings() {
-            const setpoints = {};
-            const inputs = document.querySelectorAll('.setpoint-input');
+        if (Object.keys(setpoints).length === 0) {
+          alert("Could not find any settings to update.");
+          return;
+        }
 
-            inputs.forEach(input => {
-                const nodeId = input.dataset.nodeid; 
-                if (nodeId) {
-                    setpoints[nodeId] = input.value;
-                }
-            });
-
-            if (Object.keys(setpoints).length === 0) {
-                alert("Could not find any settings to update.");
-                return;
+        fetch("/write", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(setpoints),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Settings updated successfully!");
+            } else {
+              alert(
+                "Failed to update settings: " + (data.error || "Unknown error")
+              );
             }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred while updating settings.");
+          });
+      }
 
-            fetch('/write', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(setpoints),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Settings updated successfully!');
-                } else {
-                    alert('Failed to update settings: ' + (data.error || 'Unknown error'));
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while updating settings.');
-            });
-        }
-
-        function closeDialog() {
-            document.getElementById('setPointDialog').style.display = 'none';
-        }
+      function closeDialog() {
+        document.getElementById("setPointDialog").style.display = "none";
+      }
     </script>
-</body>
+  </body>
 </html>

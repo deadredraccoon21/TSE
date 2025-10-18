@@ -1,0 +1,10 @@
+alarms:
+- acknowledged: true
+  code: '1'
+  id: 4b37547e-266d-400c-98cf-3cb2da297c95
+  message: SA Fan-1 Trip - Blowroom
+  severity: 1
+  status: Acknowledged
+  time: '2025-10-18 11:35:24'
+lastTripStates:
+  '1': true
