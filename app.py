@@ -103,7 +103,7 @@ DB_USER = config.get('DB_USER')
 DB_PASSWORD = config.get('DB_PASSWORD')
 OPC_UA_URL = config.get('OPC_UA_URL')
 # Connection string
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USER};PWD={DB_PASSWORD}'
+connection_string = f'DRIVER={{ODBC Driver 11 for SQL Server}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USER};PWD={DB_PASSWORD}'
 
 
 # Function to create a connection

@@ -2,95 +2,95 @@ DB_DATABASE: tse_data
 DB_PASSWORD: tse@123
 DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
 DB_USER: tse
-OPC_UA_URL: opc.tcp://127.0.0.1:4840/freeopcua/server/
+OPC_UA_URL: opc.tcp://127.0.0.1:4840
 client_name: TSE
 predefined_departments:
-- name: Preparatory
-  short_name: Prep
-  template: H-Plant-1_Prep.html
-- name: Preparatory1
-  short_name: Prep1
-  template: H-Plant-1_Prep1.html
-- name: Preparatory2
-  short_name: Prep2
-  template: H-Plant-1_Prep2.html
-- name: Spinning
-  short_name: Spg
-  template: H-Plant-1_Spg.html
-- name: Spinning1
-  short_name: Spg1
-  template: H-Plant-1_Spg1.html
-- name: Spinning2
-  short_name: Spg2
-  template: H-Plant-1_Sp2.html
-- name: Spinning3
-  short_name: Spg3
-  template: H-Plant-1_Spg3.html
-- name: Winding
-  short_name: Wdg
-  template: H-Plant-1_Wdg.html
-- name: Open End
-  short_name: OE
-  template: H-Plant-1_OE.html
-- name: TFO
-  short_name: TFO
-  template: H-Plant-1_TFO.html
-- name: LinkConer
-  short_name: Lconer
-  template: H-Plant-1_Lconer.html
-- name: AutoConer
-  short_name: Aconer
-  template: H-Plant-1_Aconer.html
+  - name: Preparatory
+    short_name: Prep
+    template: H-Plant-1_Prep.html
+  - name: Preparatory1
+    short_name: Prep1
+    template: H-Plant-1_Prep1.html
+  - name: Preparatory2
+    short_name: Prep2
+    template: H-Plant-1_Prep2.html
+  - name: Spinning
+    short_name: Spg
+    template: H-Plant-1_Spg.html
+  - name: Spinning1
+    short_name: Spg1
+    template: H-Plant-1_Spg1.html
+  - name: Spinning2
+    short_name: Spg2
+    template: H-Plant-1_Sp2.html
+  - name: Spinning3
+    short_name: Spg3
+    template: H-Plant-1_Spg3.html
+  - name: Winding
+    short_name: Wdg
+    template: H-Plant-1_Wdg.html
+  - name: Open End
+    short_name: OE
+    template: H-Plant-1_OE.html
+  - name: TFO
+    short_name: TFO
+    template: H-Plant-1_TFO.html
+  - name: LinkConer
+    short_name: Lconer
+    template: H-Plant-1_Lconer.html
+  - name: AutoConer
+    short_name: Aconer
+    template: H-Plant-1_Aconer.html
 roles:
   Manager:
-  - Set Point
-  - Digital Input
-  - Digital Output
-  - Analog Input
-  - Analog Output
-  - Preset Values
-  - Timer
-  - Controllers
-  - UPSS
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Timer
+    - Controllers
+    - UPSS
   Operator:
-  - Set Point
+    - Set Point
   Tse:
-  - Set Point
-  - Digital Input
-  - Digital Output
-  - Analog Input
-  - Analog Output
-  - Preset Values
-  - Controllers
-  - UPSS
-  - Pump Min Set
-  - Timer
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Controllers
+    - UPSS
+    - Pump Min Set
+    - Timer
 submodules:
-- category: H-Plant-1
-  name: LinkConer
-  node_prefix: Lconer
-  template: H-Plant-1_Lconer.html
-- category: H-Plant-1
-  name: AutoConer
-  node_prefix: Autoconer
-  template: H-Plant-1_Aconer.html
-- category: H-Plant-1
-  name: Spinning2
-  node_prefix: Spg2
-  template: H-Plant-1_Sp2.html
-- category: H-Plant-1
-  name: Preparatory
-  node_prefix: Prep
-  template: H-Plant-1_Prep.html
-- category: H-Plant-1
-  name: Preparatory1
-  node_prefix: Prep1
-  template: H-Plant-1_Prep1.html
-- category: H-Plant-1
-  name: Spinning3
-  node_prefix: Spg3
-  template: H-Plant-1_Spg3.html
-- category: H-Plant-1
-  name: Spinning1
-  node_prefix: Spg1
-  template: H-Plant-1_Spg1.html
+  - category: H-Plant-1
+    name: LinkConer
+    node_prefix: Lconer
+    template: H-Plant-1_Lconer.html
+  - category: H-Plant-1
+    name: AutoConer
+    node_prefix: Autoconer
+    template: H-Plant-1_Aconer.html
+  - category: H-Plant-1
+    name: Spinning2
+    node_prefix: Spg2
+    template: H-Plant-1_Sp2.html
+  - category: H-Plant-1
+    name: Preparatory
+    node_prefix: Prep
+    template: H-Plant-1_Prep.html
+  - category: H-Plant-1
+    name: Preparatory1
+    node_prefix: Prep1
+    template: H-Plant-1_Prep1.html
+  - category: H-Plant-1
+    name: Spinning3
+    node_prefix: Spg3
+    template: H-Plant-1_Spg3.html
+  - category: H-Plant-1
+    name: Spinning1
+    node_prefix: Spg1
+    template: H-Plant-1_Spg1.html

@@ -311,17 +311,14 @@
           <div class="switch-container">
             <label class="switch">
               <!-- STEP 1: Removed onchange handler -->
-              <input type="checkbox" id="{{ prefix }}_iFl_Set_Humidity_Man_B" {{
-              'checked' if msg.payload[prefix ~ '_iFl_Set_Humidity_Man_B'] else
-              '' }} data-nodeid="{{ msg.node_ids[prefix ~
-              '_iFl_Set_Humidity_Man_B'] }}">
+              <input type="checkbox" id="{{ prefix }}_iFl_Set_RH_Man_B" {{
+              'checked' if msg.payload[prefix ~ '_iFl_Set_RH_Man_B'] else '' }}
+              data-nodeid="{{ msg.node_ids[prefix ~ '_iFl_Set_RH_Man_B'] }}">
               <span class="slider"></span>
             </label>
-            <span
-              id="{{ prefix }}_iFl_Set_Humidity_Man_B-text"
-              class="mode-text"
-              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Set_Humidity_Man_B']
-              else 'Auto' }}</span
+            <span id="{{ prefix }}_iFl_Set_RH_Man_B-text" class="mode-text"
+              >{{ 'Manual' if msg.payload[prefix ~ '_iFl_Set_RH_Man_B'] else
+              'Auto' }}</span
             >
           </div>
         </div>

@@ -344,15 +344,6 @@ $(document).ready(function() {
     $('#home').on('click', function() { window.location.href = '/dashboard'; });
     $('#alarms').on('click', function() { window.location.href = '/alarmslist'; });
     $('#inputs').on('click', function() { window.location.href = '/input'; });
-    // Handle user management links
-    $('button[onclick="window.location.href=\'/add_user\'"]').on('click', function() { window.location.href = '/add_user'; });
-    $('button[onclick="window.location.href=\'/user_management\'"]').on('click', function() { window.location.href = '/user_management'; });
-
-    // NEW: Handler for the category headers
-    $('.category-toggle').on('click', function(event) {
-        event.stopPropagation(); // Prevent other click handlers from firing
-        $(this).next('.department-group').slideToggle();
-    });
 
     // 2. Handle main module buttons that just toggle a dropdown menu
     $('.module-button').on('click', function(event) {
@@ -381,10 +372,7 @@ $(document).ready(function() {
             // If already on the page, just toggle the settings dropdown
             $submoduleContainer.slideToggle();
         } else {
-            // Find the parent category's ID
-            const categoryId = $(this).closest('.department-group').attr('id');
-            // Store both the category and department IDs in sessionStorage
-            sessionStorage.setItem('openCategoryOnLoad', categoryId);
+            // Store the department's submodule ID to be opened on the next page
             sessionStorage.setItem('openSubmoduleOnLoad', submoduleId);
             
             // Now, navigate to the new page
@@ -392,20 +380,13 @@ $(document).ready(function() {
         }
     });
 
-    // On page load, check if we need to open a specific category and department
-    const categoryToOpen = sessionStorage.getItem('openCategoryOnLoad');
+    // On page load, check if we need to open a specific department's submodule menu
     const submoduleToOpen = sessionStorage.getItem('openSubmoduleOnLoad');
 
-    if (categoryToOpen && submoduleToOpen) {
+    if (submoduleToOpen) {
         // Ensure the main "Departments" container is open
         $('#departmentsSubmodules').show();
         
-        // Find and show the specific category container
-        const $categoryContainer = $('#' + categoryToOpen);
-        if ($categoryContainer.length) {
-            $categoryContainer.show();
-        }
-
         // Find and show the specific department's settings container
         const $submoduleContainer = $('#' + submoduleToOpen);
         if ($submoduleContainer.length) {
@@ -413,7 +394,6 @@ $(document).ready(function() {
         }
 
         // Clean up sessionStorage so it doesn't happen on the next click
-        sessionStorage.removeItem('openCategoryOnLoad');
         sessionStorage.removeItem('openSubmoduleOnLoad');
     }
 

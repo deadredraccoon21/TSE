@@ -183,42 +183,30 @@
       </button>
       <div id="departmentsSubmodules" class="submodule-container">
         {% for category, departments_in_category in
-        categorized_submodules.items() %}
-        <button class="submodule-button category-toggle">
-          <i class="fa-solid fa-folder"></i>
-          {{ category }}
-        </button>
-
-        <!-- THIS DIV NOW HAS A UNIQUE ID FOR JAVASCRIPT TO FIND -->
-        <div
-          id="category-{{ category | slugify }}"
-          class="submodule-container department-group"
+        categorized_submodules.items() %} {% for dept in departments_in_category
+        %}
+        <button
+          class="submodule-button department-link"
+          data-url="{{ url_for('render_submodule', submodule=dept.name) }}"
+          data-submodule-id="{{ dept.name | slugify }}Submodules"
         >
-          {% for dept in departments_in_category %}
+          {{ dept.name }}
+        </button>
+        <div
+          id="{{ dept.name | slugify }}Submodules"
+          class="submodule-container"
+        >
+          {% for submodule_option in session['allowed_submodules'] %}
           <button
-            class="submodule-button department-link"
-            data-url="{{ url_for('render_submodule', submodule=dept.name) }}"
-            data-submodule-id="{{ dept.name | slugify }}Submodules"
+            class="submodule-button bg"
+            onclick="loadTemplate('{{ dept.name }}', '{{ submodule_option }}')"
           >
-            {{ dept.name }}
+            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+            }}
           </button>
-          <div
-            id="{{ dept.name | slugify }}Submodules"
-            class="submodule-container"
-          >
-            {% for submodule_option in session['allowed_submodules'] %}
-            <button
-              class="submodule-button bg"
-              onclick="loadTemplate('{{ dept.name }}', '{{ submodule_option }}')"
-            >
-              <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
-              }}
-            </button>
-            {% endfor %}
-          </div>
           {% endfor %}
         </div>
-        {% endfor %}
+        {% endfor %} {% endfor %}
       </div>
       <button id="alarms" class="module-button">
         <i class="fa-solid fa-triangle-exclamation"></i> Alarms

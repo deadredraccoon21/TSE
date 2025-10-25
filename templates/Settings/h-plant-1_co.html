@@ -313,7 +313,7 @@
             type="number"
             class="setpoint-input"
             id="{{ prefix }}_DeHumidity.Gain"
-            value="{{ msg.payload[prefix ~ '_DeHumidity.Gain'] }}"
+            value="{{ msg.payload[prefix ~ '_DeHumidity.Gain'] | default(0) | round(1) }}"
             data-nodeid="{{ msg.node_ids[prefix ~ '_DeHumidity.Gain'] }}"
           />
         </div>
@@ -359,7 +359,7 @@
             type="number"
             class="setpoint-input"
             id="{{ prefix }}_DeHumidity.IntegrationTime"
-            value="{{ msg.payload[prefix ~ '_DeHumidity.IntegrationTime'] }}"
+            value="{{ msg.payload[prefix ~ '_DeHumidity.IntegrationTime'] | default(0) | round(1) }}"
             data-nodeid="{{ msg.node_ids['c'] }}"
           />
         </div>
@@ -386,7 +386,8 @@
           round(1) }}
         </div>
         <div class="value" id="{{ prefix }}_iVA_Dehumid_Pid_Out">
-          {{ msg.payload[prefix ~ '_iVA_Dehumid_Pid_Out'] }}
+          {{ msg.payload[prefix ~ '_iVA_Dehumid_Pid_Out'] | default(0) |
+          round(1) }}
         </div>
       </div>
 

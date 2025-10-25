@@ -56,9 +56,9 @@ content %}
         border-color: transparent;
       }
 
-      /* Class to hide buttons before the first data update */
+      /* MODIFIED: Class to hide elements before the first data update */
       .initially-hidden {
-        visibility: hidden;
+        display: none;
       }
 
       /* Class for the Manual Mode 'M' Symbol */
@@ -118,23 +118,40 @@ content %}
         M
       </div>
       <div
-        id="m-symbol-recirculation"
+        id="m-symbol-do1"
+        class="manual-mode-symbol"
+        style="left: 620px; top: 130px"
+      >
+        M
+      </div>
+
+      <div
+        id="m-symbol-do2"
+        class="manual-mode-symbol"
+        style="left: 850px; top: 130px"
+      >
+        M
+      </div>
+
+      <div
+        id="m-symbol-do3"
         class="manual-mode-symbol"
         style="left: 785px; top: 358px"
       >
         M
       </div>
+
       <div
         id="m-symbol-wot"
         class="manual-mode-symbol"
-        style="left: 1305px; top: 217px"
+        style="left: 1305px; top: 215px"
       >
         M
       </div>
       <div
         id="m-symbol-rh"
         class="manual-mode-symbol"
-        style="left: 1362px; top: 541px"
+        style="left: 1372px; top: 541px"
       >
         M
       </div>
@@ -142,6 +159,21 @@ content %}
         id="m-symbol-temp"
         class="manual-mode-symbol"
         style="left: 1372px; top: 585px"
+      >
+        M
+      </div>
+
+      <div
+        id="m-symbol-do"
+        class="manual-mode-symbol"
+        style="left: 920px; top: 400px"
+      >
+        M
+      </div>
+      <div
+        id="m-symbol-po"
+        class="manual-mode-symbol"
+        style="left: 1160px; top: 355px"
       >
         M
       </div>
@@ -195,21 +227,21 @@ content %}
       >
         <button id="fan1-trip" class="status-button"></button>
       </div>
-      <div
-        class="initially-hidden"
-        style="
-          position: absolute;
-          left: 596px;
-          top: 320px;
-          width: 17px;
-          height: 17px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <button id="fan2-trip" class="status-button"></button>
-      </div>
+      <!-- <div
+          class="initially-hidden"
+          style="
+            position: absolute;
+            left: 596px;
+            top: 320px;
+            width: 17px;
+            height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <button id="fan2-trip" class="status-button"></button>
+        </div> -->
 
       <!-- Fan 3 -->
       <img
@@ -549,8 +581,10 @@ content %}
       >
         <span id="Spg1_iMi_Set_Temp">0</span>
       </div>
-      <p style="position: absolute; left: 1037px; top: 520px">Set %RH</p>
-      <p style="position: absolute; left: 1013px; top: 566px">Set Temp °C</p>
+      <p style="position: absolute; left: 1037px; top: 523px"><b>Set %RH</b></p>
+      <p style="position: absolute; left: 1010px; top: 569px">
+        <b>Set Temp °C</b>
+      </p>
       <img
         src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
         style="
@@ -735,7 +769,7 @@ content %}
         class="initially-hidden"
         style="
           position: absolute;
-          left: 1080px;
+          left: 980px;
           top: 353px;
           width: 17px;
           height: 17px;
@@ -750,7 +784,7 @@ content %}
         class="initially-hidden"
         style="
           position: absolute;
-          left: 1100px;
+          left: 1000px;
           top: 353px;
           width: 17px;
           height: 17px;
@@ -784,23 +818,25 @@ content %}
       >
         <span id="Spg1_iVa_DPG_RDF">0</span> Pa
       </div>
+      <!-- MODIFIED: Added initially-hidden class, removed placeholder '0' -->
       <div
         id="Spg1_iVa_UPSS_Output_RAF-container"
+        class="initially-hidden"
         style="
           position: absolute;
-          left: 460px;
+          left: 480px;
           top: 340px;
           border: 2px solid black;
           padding: 0px 15px 0px 20px;
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_UPSS_Output_RAF">0</span> %
+        <span id="Spg1_iVa_UPSS_Output_RAF"></span> %
       </div>
       <div
         style="
           position: absolute;
-          left: 1140px;
+          left: 1090px;
           top: 355px;
           border: 2px solid black;
           padding: 0px 15px 0px 20px;
@@ -812,7 +848,7 @@ content %}
       <div
         style="
           position: absolute;
-          left: 1205px;
+          left: 1220px;
           top: 215px;
           border: 2px solid black;
           padding: 0px 15px 0px 20px;
@@ -821,18 +857,20 @@ content %}
       >
         <span id="Spg1_iVa_Act_WoT">0</span> °C
       </div>
+      <!-- MODIFIED: Added initially-hidden class, removed placeholder '0' -->
       <div
         id="Spg1_iVa_UPSS_Output_SAF-container"
+        class="initially-hidden"
         style="
           position: absolute;
-          left: 1180px;
+          left: 1200px;
           top: 410px;
           border: 2px solid black;
           padding: 0px 15px 0px 20px;
           border-radius: 5px;
         "
       >
-        <span id="Spg1_iVa_UPSS_Output_SAF">0</span> %
+        <span id="Spg1_iVa_UPSS_Output_SAF"></span> %
       </div>
       <div
         style="
@@ -940,14 +978,21 @@ content %}
       socket.on("update", function (data) {
         if (isFirstUpdate) {
           document.querySelectorAll(".initially-hidden").forEach((el) => {
-            el.classList.remove("initially-hidden");
+            // Check if the element is NOT one of the special containers
+            // before removing the class, as they have their own logic.
+            if (
+              el.id !== "Spg1_iVa_UPSS_Output_RAF-container" &&
+              el.id !== "Spg1_iVa_UPSS_Output_SAF-container"
+            ) {
+              el.classList.remove("initially-hidden");
+            }
           });
           isFirstUpdate = false;
         }
 
         // --- Part 1: Update numerical values ---
 
-        // Handle the two SPECIAL elements with hide/show logic
+        // MODIFIED: Handle the two SPECIAL elements with hide/show logic using classes
         const rafContainer = document.getElementById(
           "Spg1_iVa_UPSS_Output_RAF-container"
         );
@@ -955,9 +1000,9 @@ content %}
         const rafValue = data["Spg1_iVa_UPSS_Output_RAF"];
 
         if (rafValue === null || typeof rafValue === "undefined") {
-          if (rafContainer) rafContainer.style.display = "none";
+          if (rafContainer) rafContainer.classList.add("initially-hidden");
         } else {
-          if (rafContainer) rafContainer.style.display = "";
+          if (rafContainer) rafContainer.classList.remove("initially-hidden");
           if (rafSpan) rafSpan.textContent = rafValue.toFixed(1);
         }
 
@@ -968,9 +1013,9 @@ content %}
         const safValue = data["Spg1_iVa_UPSS_Output_SAF"];
 
         if (safValue === null || typeof safValue === "undefined") {
-          if (safContainer) safContainer.style.display = "none";
+          if (safContainer) safContainer.classList.add("initially-hidden");
         } else {
-          if (safContainer) safContainer.style.display = "";
+          if (safContainer) safContainer.classList.remove("initially-hidden");
           if (safSpan) safSpan.textContent = safValue.toFixed(1);
         }
 
@@ -1035,20 +1080,36 @@ content %}
           data["Spg1_iFl_Set_DPG_RDF_Man_B"]
         );
         updateManualSymbolVisibility(
-          "m-symbol-recirculation",
+          "m-symbol-do1",
+          data["Spg1_iFl_Damper_Output_Man_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-do2",
+          data["Spg1_iFl_Damper_Output_Man_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-do3",
           data["Spg1_iFl_Damper_Output_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-wot",
-          data["Spg1_iMi_Set_WoT_Man_B"]
+          data["Spg1_iMi_Set_SA_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-rh",
-          data["Spg1_iFl_Set_Humidity_Man_B"]
+          data["Spg1_iFl_Set_RH_Man_B"]
         );
         updateManualSymbolVisibility(
           "m-symbol-temp",
           data["Spg1_iMi_Set_Temp_Man_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-do",
+          data["Spg1_iFl_Start_DO_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-po",
+          data["Spg1_iFl_Pump_Output_Man_B"]
         );
 
         // Part 4: Update fan images
