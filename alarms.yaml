@@ -1,0 +1,364 @@
+alarms:
+  # --- Preparatory (Prep) ---
+  - code: "1"
+    message: "Return Air Fan VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "2"
+    message: "Return Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "3"
+    message: "Return Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "4"
+    message: "Return Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "5"
+    message: "Return Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "6"
+    message: "Supply Air Fan VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "7"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "8"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "9"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "10"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "11"
+    message: "Washer Pump VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "12" 
+    message: "Washer Pump-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "13"
+    message: "Washer Pump-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "14"
+    message: "Rotary Drum Filter TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF_TRIP]
+    severity: 1
+  - code: "15"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "16"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "17"
+    message: "Dust Collector TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF_TRIP]
+    severity: 1
+  - code: "18"
+    message: "Dust Collector-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "19"
+    message: "Dust Collector-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "20"
+    message: "Cyclone with Screw Compactor TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "21"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "22"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "23"
+    message: "High RH in Preparatory"
+    nodeids: [Prep_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "24"
+    message: "Low RH in Preparatory"
+    nodeids: [Prep_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "25"
+    message: "High Temperature in Preparatory"
+    nodeids: [Prep_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "26"
+    message: "Low Temperature in Preparatory"
+    nodeids: [Prep_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "27"
+    message: "High Supply Air Temperature in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "28"
+    message: "Low Supply Air Temperature in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "29"
+    message: "High Pressure in Preparatory"
+    nodeids: [Prep_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "30"
+    message: "Low Pressure in Preparatory"
+    nodeids: [Prep_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "31"
+    message: "No RH Signal in Preparatory"
+    nodeids: [Prep_iFl_RH_No_Signal]
+    severity: 1
+  - code: "32"
+    message: "RH Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "33"
+    message: "No Temp Signal in Preparatory"
+    nodeids: [Prep_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "34"
+    message: "Temp Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "35"
+    message: "No SA Temp Signal in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "36"
+    message: "SA Temp Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "37"
+    message: "No DPT RDF Signal in Preparatory"
+    nodeids: [Prep_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "38"
+    message: "DPT RDF Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+  
+
+    # WCS Alarms
+
+  - code: "208"
+    message: "Compactor TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_Compactor_Trip]
+    severity: 1
+  - code: "209"
+    message: "Compactor-1 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "210"
+    message: "Compactor-2 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "211"
+    message: "Conveyance Fan TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "212"
+    message: "Cyclone TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "213"
+    message: "PDF TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_PDF_Trip]
+    severity: 1
+  - code: "214"
+    message: "PDF1 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_PDF1_Trip]
+    severity: 1
+  - code: "215"
+    message: "PDF2 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_PDF2_Trip]
+    severity: 1
+  - code: "216"
+    message: "RDF TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_RDF_Trip]
+    severity: 1
+  - code: "217"
+    message: "Transport Fan TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "218"
+    message: "Transport Fan-1 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "219"
+    message: "Transport Fan-2 TRIP - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "220"
+    message: "Main Air Fan VFD Fault - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "221"
+    message: "Main Air Fan-1 VFD Fault - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "222"
+    message: "Main Air Fan-2 VFD Fault - WCS_Card"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "223"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "224"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "225"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "226"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "227"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "228"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "229"
+    message: "No DPT RDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "230"
+    message: "DPT RDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+  - code: "231"
+    message: "Compactor TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor_Trip]
+    severity: 1
+  - code: "232"
+    message: "Compactor-1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "233"
+    message: "Compactor-2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "234"
+    message: "Conveyance Fan TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "235"
+    message: "Cyclone TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "236"
+    message: "PDF TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF_Trip]
+    severity: 1
+  - code: "237"
+    message: "PDF1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF1_Trip]
+    severity: 1
+  - code: "238"
+    message: "PDF2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF2_Trip]
+    severity: 1
+  - code: "239"
+    message: "RDF TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_RDF_Trip]
+    severity: 1
+  - code: "240"
+    message: "Transport Fan TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "241"
+    message: "Transport Fan-1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "242"
+    message: "Transport Fan-2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "243"
+    message: "Main Air Fan VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "244"
+    message: "Main Air Fan-1 VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "245"
+    message: "Main Air Fan-2 VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "246"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "247"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "248"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "249"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "250"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "251"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "252"
+    message: "No DPT RDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "253"
+    message: "DPT RDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+  #---OUTSIDE---
+  - code: "254"
+    message: "No RH Signal in OutSide"
+    nodeids: [OutSide_iFl_RH_No_Signal_Alarm]
+    severity: 1
+  - code: "255"
+    message: "RH Sensor Loss in OutSide"
+    nodeids: [OutSide_iFl_RH_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "256"
+    message: "No Temp Signal in OutSide"
+    nodeids: [OutSide_iFl_Temp_No_Signal_Alarm]
+    severity: 1
+  - code: "257"
+    message: "Temp Sensor Loss in OutSide"
+    nodeids: [OutSide_iFl_Temp_Sensor_Loss_Alarm]
+    severity: 1

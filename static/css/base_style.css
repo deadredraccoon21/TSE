@@ -1,0 +1,667 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.sidebar {
+    position: fixed;
+    width: 168px;
+    height: 91%;
+    top: 60px;
+    left: -2px;
+    background-color: #3273a1;
+    padding-top: 2px;
+    color: white;
+    border-right: 3px solid rgba(173, 216, 230, 0.6);
+    overflow-y: scroll;
+    /* Enable scrolling */
+    -ms-overflow-style: none;
+    /* Hide scrollbar in IE 10+ */
+    scrollbar-width: none;
+    /* Hide scrollbar in Firefox */
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar in Chrome, Safari, and Edge */
+}
+
+
+
+.module-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%); */
+    background: #3273a1;
+    color: rgb(238, 238, 255);
+    padding-left: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border-bottom: 0.2px solid black;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.module-buttons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%);
+    color: rgb(238, 238, 255);
+    padding-left: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border-bottom: 0.2px solid black;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.module-button:hover {
+    background-color: #005fa3;
+}
+
+
+
+.submodule-container {
+
+    display: none;
+    /* background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(173, 216, 230, 0.6) 98%); */
+    /* background: #3273a1; */
+    text-align: left !important;
+}
+
+
+.submodule-button {
+    width: 100%;
+    /* background-color: rgba(0, 99, 132, 0.6); */
+    background-color: #1e5a86;
+    color: white;
+    padding-left: 32px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    margin-bottom: 0px;
+    text-align: left;
+    /* cursor: pointer; */
+    border-bottom: 1px solid black;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.submodule-button:hover {
+    background-color: #25628d;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.content {
+    margin-left: 160px;
+    padding: 20px;
+}
+
+.fa-house,
+.fa-building,
+.fa-triangle-exclamation,
+.fa-gear,
+.fa-file,
+.fa-user-cog {
+    font-size: 11px;
+    padding-right: 7px;
+}
+
+.fa-user-plus,
+.fa-user-pen {
+    font-size: 10px;
+    padding-right: 6px;
+}
+
+.active {
+    background-color: #003e6d;
+    /* Darker background for the active button */
+}
+
+.module-button.active,
+.submodule-button.active {
+    background-color: #003e6d;
+    /* Darker background for the active button */
+}
+
+
+.title-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(rgba(0, 51, 102, 0.9) 0%, rgba(108, 194, 223, 0.6) 98%);
+    background-color: #005fa3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 3px solid rgba(173, 216, 230, 0.6);
+    z-index: 10000;
+}
+
+.company-logo {
+    margin-top: 8px;
+    height: 40px;
+    width: 40px;
+    margin-left: 28px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.company-name {
+    font-size: 24px;
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+    margin-left: 10%;
+}
+
+.client-name {
+    font-size: 15px;
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+}
+
+.left-section {
+    display: flex;
+    border-right: 2px solid rgba(173, 216, 230, 0.6);
+    top: 0px;
+    padding-right: 78px;
+    width: fit-content;
+    height: 60px;
+}
+
+.login-button {
+    font-size: 14px;
+    color: #fff;
+    background-color: #005fa3;
+    margin-top: 6px;
+    padding: 8px 18px;
+    border: 1px solid black;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+.login-button:hover {
+    background-color: #003e6d;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+}
+
+.last-login-info {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 20px;
+    text-align: right;
+}
+
+.last-login-info .label {
+    display: block;
+    font-size: 10px;
+    opacity: 0.8;
+}
+.profile-icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    position: relative;
+}
+
+.profile-icon-button:hover {
+    color: #003e6d;
+    cursor: pointer;
+}
+
+/* Circle profile icon styles */
+.profile-icon {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #005fa3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+    border: 2px solid #005591;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+/* Tooltip content style */
+.tooltip-content {
+    position: absolute;
+    top: 9%;
+    /* Position it just below the profile icon */
+    left: 87%;
+    /* Center it horizontally */
+    transform: translateX(-50%);
+    /* Adjust for perfect centering */
+    width: 180px;
+    /* Set the desired width */
+    height: 40px;
+    /* Set the desired height */
+    background-color: rgba(129, 183, 201, 0.6);
+    color: black;
+    padding: 6px;
+    /* Add some padding inside */
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 2;
+    display: none;
+    /* Initially hidden */
+    overflow: hidden;
+    /* Ensures content does not overflow outside the tooltip */
+    text-overflow: ellipsis;
+    /* Adds ellipsis if the text overflows */
+    white-space: nowrap;
+    /* Prevents text from breaking into multiple lines */
+    border: 1px solid rgba(95, 149, 167, 0.6);
+    /* text-align: center; */
+
+}
+
+.tooltip-content p {
+    margin: 0;
+    /* Remove any default margins */
+    overflow: hidden;
+    /* Prevent content overflow */
+    text-overflow: ellipsis;
+    /* Add ellipsis for overflowing text */
+    line-height: 24px;
+    /* Adjust line height for better readability */
+    font-size: 12px;
+    /* Adjust font size if needed */
+    word-wrap: break-word;
+    /* Ensures content breaks correctly if needed */
+    font-weight: bold;
+}
+
+
+/* Show the tooltip when hovering over the profile icon */
+.profile-icon:hover+#profile-tooltip {
+    display: block;
+}
+
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 58px;
+    /* Adjust this to position the dropdown below the profile icon */
+    left: 35%;
+    transform: translateX(-50%);
+    /* Centers the dropdown content horizontally */
+    background-color: rgba(129, 183, 201, 0.6);
+    min-width: 100px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px solid rgba(95, 149, 167, 0.6);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 7px 8px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(64, 142, 169, 0.6);
+    color: white;
+}
+
+.bg {
+    background-color: rgba(64, 142, 169, 0.6) !important;
+    color: white;
+    /* Optional: ensures text is visible on a red background */
+}
+
+.submodule-button .settings-icon {
+    font-size: 9px;
+    /* Adjust icon size */
+    color: white;
+    margin-left: 5px;
+    margin-right: 1px;
+    /* Adds space between the icon and text */
+    cursor: pointer;
+}
+
+iframe {
+    position: fixed;
+    top: 61px;
+    /* Matches the height of the title bar */
+    left: 167px;
+    /* Matches the width of the sidebar */
+    width: calc(100% - 167px);
+    /* Full width minus the sidebar width */
+    height: calc(100% - 61px);
+    /* Full height minus the title bar height */
+    border: none;
+    z-index: 1;
+    /* iframe overlaps other content */
+}
+
+.submodule-button a {
+    color: white;
+    /* Set text color to white */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.submodule-button a:hover {
+    color: lightgray;
+    /* Optional: Change color on hover */
+}
+
+/* Bell icon container */
+.bell-container {
+    position: relative;
+}
+
+.bell-button {
+    background-color: #0c609d;
+    margin-top: 6px;
+    margin-right: 18px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid black;
+}
+
+.bell-button i {
+    font-size: 20px;
+}
+
+/* Notification badge */
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 10px;
+    font-weight: bold;
+    display: none;
+    /* Hidden by default */
+}
+
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    /* This ensures the modal is centered */
+    background-color: #0c609d;
+    border-radius: 6px;
+    /* Transparent background */
+    justify-content: center;
+    align-items: center;
+    z-index: 11000;
+    padding: 15px;
+    width: 50%;
+    /* Increase the modal width */
+    max-width: 1200px;
+    /* Optional: Set a maximum width */
+    left: 53%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #0c609d;
+    /* Add a red outer border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    /* Apply 5px rounded corners to the outer modal container */
+    overflow: hidden;
+    /* Ensures child elements respect the border radius */
+    /* border: 2px solid red; */
+}
+
+/* Modal header with blue background */
+.modal-header {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #0c609d;
+    /* Blue background */
+    color: white;
+    /* White text */
+    padding: 15px;
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    /* Rounded top corners */
+    text-align: center;
+}
+
+/* Modal body - Remove spacing and set consistent background */
+.modal-body {
+    padding-left: 0;
+    margin: 0;
+    max-height: 400px; /* Set a max height for the body */
+    overflow-y: auto;  /* Enable scrolling for the body */
+}
+
+.modal-body p:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-body p:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Style for the alarm time */
+.alarm-time {
+    /* font-weight: bold; */
+    margin-right: 50px;
+    color: #0c609d;
+    /* Change the color of the time if needed */
+}
+
+/* Optional: Style the rest of the alarm message */
+.modal-body p {
+    margin: 0;
+    padding: 15px;
+    background-color: #e3f4ff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+/* Alternate background color for even items */
+.modal-body p:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* A more standard and smoother close button */
+.modal-close-btn {
+position: absolute;
+top: 12px;
+right: 12px;
+width: 32px;
+height: 32px;
+background-color: transparent;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+color: rgba(255, 255, 255, 0.862); /* Subtle white icon */
+font-size: 18px;
+
+/* Center the icon perfectly */
+display: flex;
+justify-content: center;
+align-items: center;
+
+/* This is the key for the smooth effect */
+transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.modal-close-btn:hover {
+background-color: rgba(0, 0, 0, 0.2); /* Darker transparent background on hover */
+color: white; /* Make icon fully white */
+transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* For accessibility when using keyboard navigation */
+.modal-close-btn:focus {
+outline: 2px solid rgba(255, 255, 255, 0.5);
+outline-offset: 2px;
+}
+
+/* Apply blur effect to the whole page when modal is open */
+body.modal-open {
+    position: relative;
+    /* Ensures the modal can be layered above */
+}
+
+/* Apply the blur to the background when the modal is open */
+body.alarm-modal-active::before {
+    content: '';
+    position: fixed;
+    /* Changed to fixed to cover the whole screen */
+    top: 61px;
+    left: 167px;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    backdrop-filter: blur(5px);
+    /* Blur effect */
+    pointer-events: none;
+    /* Prevent interaction with the background */
+    z-index: 10999;
+    /* Place the blur layer behind the modal */
+    
+}
+
+/* Ensure the modal stays unaffected by the blur */
+body.alarm-modal-active .modal  {
+    filter: none;
+    /* No blur on modal */
+    pointer-events: all;
+    /* Allow interaction with the modal */
+    z-index: 11000;
+    /* Ensure the modal appears above the blurred background */
+    
+}
+
+#main-content {
+    position: absolute;
+    z-index: 10000;
+}
+/* Update these classes in base_style.css */
+
+.modal-body p {
+    margin: 0;
+    padding: 12px 20px; /* Added side padding to pull content off the edges */
+    background-color: #e3f4ff;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between columns */
+    border-bottom: 1px solid #d1eaff; /* Optional: separates rows nicely */
+}
+
+/* 1. Time Column: Fixed width to contain the date string */
+.alarm-time {
+    flex: 0 0 110px; /* Fixed width, prevents shrinking/growing */
+    color: #0c609d;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* 2. Message Column: Takes up all available remaining space */
+.alarm-message {
+    flex: 1; 
+    text-align: left;
+    white-space: nowrap; /* Keeps message on one line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if too long */
+    font-weight: 500;
+}
+
+/* 3. Status Column: Fixed width, aligned Left */
+.alarm-status {
+    flex: 0 0 110px; /* Fixed width for the status */
+    text-align: left; /* Aligns text to the start of the column (closer to message) */
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+}

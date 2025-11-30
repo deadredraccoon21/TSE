@@ -1,0 +1,974 @@
+import eventlet
+eventlet.monkey_patch()
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash, send_file
+from flask_cors import CORS
+from opcua import Client, ua
+from collections import defaultdict
+import os
+import json
+import yaml
+from flask_socketio import SocketIO, emit
+import threading
+import time
+import plotly
+import pyodbc
+import re
+from werkzeug.utils import redirect
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, ValidationError
+import bcrypt
+from datetime import datetime, timedelta
+from cryptography.fernet import Fernet
+import uuid
+import logging
+import subprocess  # <--- ADDED: To run PowerShell scripts
+
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s - %(levelname)s - %(message)s",
+#     handlers=[
+#         logging.StreamHandler(os.devnull)
+#     ]
+# )
+# logger = logging.getLogger(__name__)
+
+app = Flask(__name__)
+
+def slugify(value):
+    """
+    Sanitizes a string to be used as a valid CSS selector/ID.
+    """
+    value = re.sub(r'[^\w\-]+', '_', value).strip('_')
+    return value.lower()
+
+app.jinja_env.filters['slugify'] = slugify 
+CORS(app)
+app.secret_key = 'xyzsdfg'
+app.permanent_session_lifetime = timedelta(minutes=20)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Automatic logout after 20 minutes of inactivity
+@app.before_request
+def before_request_handler():
+    session.permanent = True
+    if 'userloggedin' in session:
+        if 'last_activity' in session:
+            try:
+                last_activity = datetime.fromisoformat(session['last_activity'])
+                time_since_last_activity = datetime.now() - last_activity
+                
+                if time_since_last_activity.total_seconds() >= 1200:
+                    session.pop('userloggedin', None)
+                    session.pop('username', None)
+                    session.pop('role', None)
+                    session.pop('allowed_submodules', None)
+                    session.pop('last_activity', None)
+                    flash('You were automatically logged out due to inactivity.', 'info')
+                    return redirect(url_for('user_login'))
+            except (ValueError, TypeError):
+                session['last_activity'] = datetime.now().isoformat()
+        
+        session['last_activity'] = datetime.now().isoformat()
+
+
+SECRET_KEY = Fernet.generate_key()
+cipher = Fernet(SECRET_KEY)
+
+with open(os.path.join(BASE_DIR, 'input.yaml'), 'r') as file:
+    config = yaml.safe_load(file)
+
+DB_SERVER = config.get('DB_SERVER')
+DB_DATABASE = config.get('DB_DATABASE')
+DB_USER = config.get('DB_USER')
+DB_PASSWORD = config.get('DB_PASSWORD')
+OPC_UA_URL = config.get('OPC_UA_URL')
+
+# ===============================================================================
+# === HELPER: RUN POWERSHELL SCRIPT                                           ===
+# ===============================================================================
+def run_powershell(script_name, args):
+    """
+    Executes a PowerShell script and prints output to console.
+    """
+    try:
+        script_path = os.path.join(BASE_DIR, "grafana_dashboards", script_name) 
+        
+        if not os.path.exists(script_path):
+            print(f"ERROR: PowerShell script not found at {script_path}")
+            return
+
+        # Build command: powershell -ExecutionPolicy Bypass -File script.ps1 arg1 arg2 ...
+        cmd = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path] + args
+        
+        print(f"--- Executing PowerShell: {script_name} ---")
+        # capture_output=True captures stdout/stderr, text=True decodes bytes to strings
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.stdout:
+            print("--- OUTPUT ---")
+            print(result.stdout)
+        
+        if result.stderr:
+            print("--- ERROR STREAM ---")
+            print(result.stderr)
+            
+        print("--- End PowerShell Execution ---")
+        
+    except Exception as e:
+        print(f"CRITICAL ERROR executing PowerShell: {e}")
+
+# ===============================================================================
+# === DB CONNECTION                                                           ===
+# ===============================================================================
+def create_connection():
+    drivers = ['ODBC Driver 11 for SQL Server', 'ODBC Driver 17 for SQL Server']
+    while True:
+        for driver in drivers:
+            try:
+                conn_str = f'DRIVER={{{driver}}};SERVER={DB_SERVER};DATABASE={DB_DATABASE};UID={DB_USER};PWD={DB_PASSWORD}'
+                print(f"Attempting connection with: {driver}")
+                conn = pyodbc.connect(conn_str)
+                print("Database connection successful.")
+                return conn
+            except pyodbc.Error as e:
+                print(f"Connection with {driver} failed: {e}")
+                continue
+        print("All database drivers failed. Retrying in 5 seconds...")
+        time.sleep(5)
+
+def connect_to_db():
+    return create_connection()
+
+# Define allowed submodules per role
+ROLE_SUBMODULES = {
+    "Operator": ["Set Point"],
+    "Manager": ["Set Point", "Digital Input", "Digital Output", "Analog Input", "Analog Output", 
+                 "Preset Values", "Timer", "Controllers", "UPSS"],
+    "Tse": ["Set Point", "Digital Input", "Digital Output", "Analog Input", "Analog Output", 
+             "Preset Values", "Timer", "Controllers", "UPSS", "Pump Min Set"]
+}
+
+def validate_user(username, password):
+    conn = create_connection()
+    cursor = conn.cursor()
+    
+    for table in ["Operator", "Manager", "Tse"]:
+        cursor.execute(f"SELECT * FROM {table} WHERE username = ?", (username,))
+        user = cursor.fetchone()
+        print(user)
+        if user and user[1] == username:
+            try:
+                if bcrypt.checkpw(password.encode('utf-8'), user[2].encode('utf-8')):
+                    session['role'] = table
+                    session['username'] = username
+                    return table
+            except (ValueError, AttributeError):
+                print(f"Error validating password for user '{username}'.")
+                continue
+        
+    return None
+
+
+client = Client(OPC_UA_URL)
+latest_values = {}
+
+def load_node_ids():
+    yaml_path = os.path.join(BASE_DIR, "nodeid.yaml")
+    with open(yaml_path, "r") as f:
+        data = yaml.safe_load(f)
+        return data.get("node_ids", {})
+
+# =========================================================================
+# ===            ALARMS SECTION                                         ===
+# =========================================================================
+ALARM_LIST_FILE_PATH = os.path.join(BASE_DIR, "alarmList.yaml")
+YAML_ACCESS_LOCK = threading.Lock()
+LAST_TRIP_STATES = {}
+
+def read_values_periodically():
+    global latest_values
+    while True:
+        try:
+            client.connect()
+            node_ids = load_node_ids()
+            current_batch = {}
+            for name, node_id in node_ids.items():
+                try:
+                    node = client.get_node(node_id)
+                    raw_value = node.get_value()
+                    if isinstance(raw_value, (int, float)):
+                        current_batch[name] = round(raw_value, 1)
+                    else:
+                        current_batch[name] = raw_value
+                except Exception as e:
+                    logging.debug(f"Failed to read node {name}")
+            
+            latest_values = current_batch
+            socketio.emit('update', latest_values)
+
+            with YAML_ACCESS_LOCK:
+                with open('nodeValues.yaml', 'w') as yaml_file:
+                    yaml.dump(latest_values, yaml_file)
+
+            client.disconnect()
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"OPC-UA connection or read error: {str(e)}")
+            time.sleep(2)
+
+def initialize_alarm_states():
+    global LAST_TRIP_STATES
+    with YAML_ACCESS_LOCK:
+        try:
+            if os.path.exists(ALARM_LIST_FILE_PATH):
+                with open(ALARM_LIST_FILE_PATH, 'r') as f:
+                    data = yaml.safe_load(f) or {}
+                    LAST_TRIP_STATES = data.get('lastTripStates', {})
+                    print("Successfully initialized alarm states from file.")
+        except Exception as e:
+            print(f"Could not initialize alarm states from file: {e}")
+            LAST_TRIP_STATES = {}
+
+def alarm_processing_engine():
+    global LAST_TRIP_STATES
+    while True:
+        try:
+            current_opc_values = None
+            with YAML_ACCESS_LOCK:
+                if not os.path.exists('nodeValues.yaml'):
+                    time.sleep(1)
+                    continue
+                with open('nodeValues.yaml', 'r') as f:
+                    current_opc_values = yaml.safe_load(f)
+
+            if not current_opc_values:
+                time.sleep(1)
+                continue
+
+            with open("alarms.yaml", "r") as f:
+                alarm_rules = yaml.safe_load(f).get("alarms", [])
+            
+            something_changed = False
+            
+            with YAML_ACCESS_LOCK:
+                full_alarm_data = {'alarms': [], 'lastTripStates': {}}
+                if os.path.exists(ALARM_LIST_FILE_PATH):
+                    with open(ALARM_LIST_FILE_PATH, 'r') as f:
+                        full_alarm_data = yaml.safe_load(f) or full_alarm_data
+                
+                persistent_alarms = full_alarm_data.get('alarms', [])
+
+                for rule in alarm_rules:
+                    code = str(rule['code'])
+                    current_trip = False
+                    for node_name in rule.get('nodeids', []):
+                        node_value = current_opc_values.get(node_name)
+                        if node_value is not None:
+                            if isinstance(node_value, bool):
+                                if node_value:
+                                    current_trip = True
+                                    break
+                            elif isinstance(node_value, (int, float)):
+                                if node_value != 0:
+                                    current_trip = True
+                                    break
+                            elif isinstance(node_value, str):
+                                if node_value.lower() in ['true', '1', 'on', 'active']:
+                                    current_trip = True
+                                    break
+                    
+                    previous_trip = LAST_TRIP_STATES.get(code, False)
+
+                    if current_trip and not previous_trip:
+                        has_active_alarm = any(
+                            str(alarm.get('code')) == code and alarm.get('status') not in ['Resolved', 'Acknowledged'] 
+                            for alarm in persistent_alarms
+                        )
+                        
+                        if not has_active_alarm:
+                            print(f"NEW ALARM TRIGGERED: {rule['message']} (Code: {code})")
+                            new_alarm = {
+                                'id': str(uuid.uuid4()),
+                                'time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                                'message': rule['message'],
+                                'code': code,
+                                'severity': rule['severity'],
+                                'status': 'Not acknowledged',
+                                'acknowledged': False
+                            }
+                            persistent_alarms.append(new_alarm)
+                            something_changed = True
+                        
+                        LAST_TRIP_STATES[code] = True
+                        
+                    elif not current_trip and previous_trip:
+                        print(f"ALARM RESOLVED: {rule['message']} (Code: {code})")
+                        for alarm in reversed(persistent_alarms):
+                            if str(alarm.get('code')) == code and alarm.get('status') not in ['Resolved']:
+                                alarm['status'] = 'Resolved'
+                                alarm['resolved_time'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                                something_changed = True
+                                break
+                        
+                        LAST_TRIP_STATES[code] = False
+
+                if something_changed:
+                    temp_file_path = ALARM_LIST_FILE_PATH + ".tmp"
+                    final_data = {
+                        'alarms': persistent_alarms,
+                        'lastTripStates': LAST_TRIP_STATES
+                    }
+                    with open(temp_file_path, 'w') as f:
+                        yaml.dump(final_data, f, default_flow_style=False)
+                    os.replace(temp_file_path, ALARM_LIST_FILE_PATH)
+            
+            time.sleep(1)
+
+        except Exception as e:
+            import traceback
+            print(f"CRITICAL ERROR in alarm_processing_engine: {e}")
+            traceback.print_exc()
+            time.sleep(2)
+                        
+@app.route("/notifyAlarms")
+def get_alarms_notification():
+    with YAML_ACCESS_LOCK:
+        alarms = load_alarms_from_yaml_list()
+    sorted_alarms = sorted(alarms, key=lambda x: x.get('time', '1970-01-01 00:00:00'), reverse=True)
+    return jsonify(sorted_alarms[:10])
+
+def load_alarms_from_yaml_list():
+    try:
+        with open(ALARM_LIST_FILE_PATH, 'r') as f:
+            data = yaml.safe_load(f) or {}
+            alarms = data.get('alarms', [])
+            for alarm in alarms:
+                try:
+                    dt = datetime.strptime(alarm['time'], "%Y-%m-%d %H:%M:%S")
+                    alarm['time'] = dt.strftime("%m/%d/%Y, %I:%M:%S %p")
+                except (ValueError, KeyError):
+                    pass
+            return alarms
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f"Error reading alarmList.yaml: {e}")
+        return []
+
+@app.route("/alarmslist")
+def alarmslist():
+    return render_template("iot/alarmslist.html")
+
+def emit_alarms():
+    while True:
+        with YAML_ACCESS_LOCK:
+            alarms = load_alarms_from_yaml_list()
+        socketio.emit('alarm_update', alarms)
+        time.sleep(1)
+
+@app.route("/acknowledge", methods=["POST"])
+def acknowledge_alarm():
+    with YAML_ACCESS_LOCK:
+        try:
+            alarm_id = request.json.get("id")
+            if not alarm_id:
+                return jsonify({"success": False, "error": "Missing alarm ID"}), 400
+
+            data = {}
+            with open(ALARM_LIST_FILE_PATH, 'r') as f:
+                data = yaml.safe_load(f) or {}
+
+            alarms = data.get("alarms", [])
+            updated = False
+            for alarm in alarms:
+                if alarm.get("id") == alarm_id and alarm.get("status") != "Resolved":
+                    alarm["acknowledged"] = True
+                    alarm["status"] = "Acknowledged"
+                    updated = True
+                    break
+            
+            if updated:
+                data["alarms"] = alarms
+                with open(ALARM_LIST_FILE_PATH, 'w') as f:
+                    yaml.dump(data, f, default_flow_style=False)
+                return jsonify({"success": True})
+            else:
+                return jsonify({"success": False, "error": "Alarm ID not found or already resolved"}), 404
+        except Exception as e:
+            return jsonify({"success": False, "error": str(e)}), 500
+
+# =========================================================================
+# === WRITES SECTION                                                    ===
+# =========================================================================
+
+@app.route('/write', methods=['POST'])
+def write():
+    data = request.get_json()
+    if not data:
+        return jsonify({"success": False, "error": "No data provided"}), 400
+
+    print(f"Received write request: {data}")
+
+    opcua_client = Client(OPC_UA_URL)
+
+    try:
+        opcua_client.connect()
+
+        for nodeid, value in data.items():
+            node = opcua_client.get_node(nodeid)
+            node_data_type = node.get_data_type_as_variant_type()
+
+            print(f"Node: {nodeid}, Required Type: {node_data_type}, Received Value: {value}") 
+
+            dv = None
+
+            if node_data_type == ua.VariantType.Boolean:
+                dv = ua.DataValue(ua.Variant(bool(value), ua.VariantType.Boolean))
+            elif node_data_type == ua.VariantType.Int16:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.Int16))
+            elif node_data_type == ua.VariantType.UInt16:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.UInt16))
+            elif node_data_type == ua.VariantType.Int32:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.Int32))
+            elif node_data_type == ua.VariantType.UInt32:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.UInt32))
+            elif node_data_type == ua.VariantType.Float:
+                dv = ua.DataValue(ua.Variant(float(value), ua.VariantType.Float))
+            elif node_data_type == ua.VariantType.Double:
+                dv = ua.DataValue(ua.Variant(float(value), ua.VariantType.Double))
+            else:
+                raise ValueError(f"Unhandled data type for node {nodeid}: {node_data_type}.")
+
+            node.set_value(dv)
+
+        return jsonify({"success": True}), 200
+
+    except Exception as e:
+        print(f"Error writing settings: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+    finally:
+        try:
+            opcua_client.disconnect()
+        except Exception as disconnect_error:
+            print(f"Error during client disconnect: {disconnect_error}")
+
+
+@app.route('/writes', methods=['POST'])
+def writes():
+    data = request.get_json()
+    if not data:
+        return jsonify({"success": False, "error": "No data provided"}), 400
+
+    opcua_client = Client(OPC_UA_URL)
+
+    try:
+        opcua_client.connect()
+
+        for nodeid, value in data.items():
+            if nodeid not in load_node_ids():
+                return jsonify({"success": False, "error": f"Invalid node ID: {nodeid}"}), 400
+            
+            node = opcua_client.get_node(load_node_ids()[nodeid])
+            node_data_type = node.get_data_type_as_variant_type()
+
+            if node_data_type == ua.VariantType.Boolean:
+                dv = ua.DataValue(ua.Variant(bool(value), ua.VariantType.Boolean))
+            elif node_data_type == ua.VariantType.Int32:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.Int32))
+            elif node_data_type == ua.VariantType.UInt16:
+                dv = ua.DataValue(ua.Variant(int(value), ua.VariantType.UInt16))
+            elif node_data_type == ua.VariantType.Float:
+                dv = ua.DataValue(ua.Variant(float(value), ua.VariantType.Float))
+            else:
+                raise ValueError(f"Unsupported data type for node {nodeid}: {node_data_type}")
+
+            node.set_value(dv)
+
+        return jsonify({"success": True}), 200
+
+    except Exception as e:
+        print(f"Error writing settings: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+    finally:
+        try:
+            opcua_client.disconnect()
+        except Exception as disconnect_error:
+            print(f"Error during client disconnect: {disconnect_error}")
+
+
+setting_suffix_mapping = {
+    "Set Point": "_sp.html",
+    "Digital Input": "_di.html",
+    "Digital Output": "_do.html",
+    "Analog Input": "_ai.html",
+    "Analog Output": "_ao.html",
+    "Preset Values": "_pv.html",
+    "Timer": "_ti.html",
+    "Controllers": "_co.html",
+    "UPSS": "_up.html",
+    "Pump Min Set": "_pm.html",
+    "DeHumidity": "_dh.html",
+}
+
+@app.route('/load_template/<parent_submodule>/<setting_option>')
+def load_template(parent_submodule, setting_option):
+    config = load_data()
+    submodules_list = config.get("submodules", [])
+    
+    target_dept = next((s for s in submodules_list if s['name'] == parent_submodule), None)
+
+    if not target_dept:
+        return f"Department '{parent_submodule}' not found in configuration.", 404
+
+    category = target_dept.get('category')
+    prefix = target_dept.get('node_prefix')
+
+    if not category or not prefix:
+        return f"Department '{parent_submodule}' is missing 'category' or 'node_prefix' in input.yaml.", 500
+
+    suffix = setting_suffix_mapping.get(setting_option)
+    if not suffix:
+        return f"Setting option '{setting_option}' not found", 404
+
+    category_filename_part = slugify(category)
+    template_name = f"{category_filename_part}{suffix}"
+    template_path = f"Settings/{template_name}"
+    
+    msg = {
+        'payload': latest_values,
+        'node_ids': load_node_ids()
+    }
+    
+    socketio.emit('update', latest_values)
+    
+    return render_template(template_path, msg=msg, prefix=prefix)
+
+@app.route('/')
+def home():
+    if 'userloggedin' in session:
+        role = session.get('role')
+        allowed_submodules = load_role_submodules(role)
+        departmentss = load_data()
+        return render_template('iot/dashboard.html', departmentss=departmentss, allowed_submodules=allowed_submodules)
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard')
+def dashboard():
+    role = session.get('role')
+    allowed_submodules = load_role_submodules(role)
+
+    config_data = load_data()
+    submodules_list = config_data.get('submodules', [])
+    
+    dashboard_items = []
+    for submodule in submodules_list:
+        node_prefix = submodule.get('node_prefix')
+        if node_prefix:
+            dashboard_items.append({
+                'name': submodule.get('name'),
+                'temperature_node_key': f"{node_prefix}_iVa_Act_Temp",
+                'humidity_node_key': f"{node_prefix}_iVa_Act_RH"
+            })
+
+    return render_template('iot/dashboard.html', 
+                           dashboard_items=dashboard_items, 
+                           allowed_submodules=allowed_submodules)
+
+def load_data():
+    yaml_path = os.path.join(os.path.dirname(__file__), "input.yaml")
+    with open(yaml_path, "r") as f:
+        return yaml.safe_load(f)
+    
+
+def load_role_submodules(role):
+    yaml_path = os.path.join(os.path.dirname(__file__), "input.yaml")
+    with open(yaml_path, "r") as f:
+        data = yaml.safe_load(f)
+    roles = data.get("roles", {})
+    return roles.get(role, [])
+
+@app.context_processor
+def inject_context():
+    data = load_data()
+    
+    categorized_submodules = defaultdict(list)
+    submodules_list = data.get("submodules", [])
+    for submodule in submodules_list:
+        category = submodule.get("category", "Uncategorized")
+        categorized_submodules[category].append(submodule)
+    dashboard_name = data.get("Dashboard")
+    
+    return {
+        'submodules': submodules_list,
+        'categorized_submodules': categorized_submodules,
+        'client_name': data.get("client_name", "Default Client Name"),
+        'dashboard_name': dashboard_name
+    }
+
+@app.route('/<submodule>')
+def render_submodule(submodule):
+    config_data = load_data()
+    submodules_list = config_data.get("submodules", [])
+    target_submodule = next((s for s in submodules_list if s['name'] == submodule), None)
+
+    if not target_submodule:
+        return "Page not found", 404
+
+    role = session.get('role')
+    role_allowed_settings = load_role_submodules(role)
+
+    submodule_category_name = target_submodule.get('category', '')
+    category_type_settings = []
+    
+    if submodule_category_name.lower().startswith('h-plant'):
+        category_type_settings = config_data.get('H-plant', [])
+    elif submodule_category_name.lower().startswith('wcs'):
+        category_type_settings = config_data.get('WCS', [])
+
+    final_visible_settings = [setting for setting in role_allowed_settings if setting in category_type_settings]
+
+    template_name = target_submodule['template']
+    template_path = os.path.join("templates", "iot", template_name)
+    
+    if os.path.exists(template_path):
+        msg = {"payload": latest_values}
+        dept_name = submodule
+        return render_template(
+            f"iot/{template_name}", 
+            msg=msg, 
+            allowed_submodules=final_visible_settings,
+            dept_name=dept_name
+        )
+
+    return "Template file not found", 404
+
+@app.route('/login', methods=['GET', 'POST'])
+def user_login():
+    if 'userloggedin' in session:
+        return redirect(url_for('dashboard'))
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        user_role = validate_user(username, password)
+        
+        if user_role:
+            session['userloggedin'] = True
+            session['username'] = username
+            session['role'] = user_role
+            session['last_activity'] = datetime.now().isoformat()
+            session['last_login'] = datetime.now().strftime("%d-%b-%Y %I:%M %p")
+            session['allowed_submodules'] = load_role_submodules(user_role)
+            return redirect(url_for('dashboard'))
+        else:
+            flash("Invalid credentials, please try again.", 'danger')
+    return render_template('User management/userlogin.html')
+
+@app.route('/index')
+def index():
+    msg = {'payload': 0}
+    return render_template('iot/index.html', msg=msg)
+
+@app.route('/sp')
+def sp():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    msg = {
+        'payload': latest_values,
+        'node_ids': load_node_ids()
+    }
+    return render_template('Settings/spinning2_sp.html', msg=msg)
+
+@app.route('/ti')
+def ti():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    msg = {
+        'payload': latest_values,
+        'node_ids': load_node_ids()
+    }
+    return render_template('Settings/spinning2_ti.html', msg=msg)
+
+@socketio.on('connect')
+def handle_connect():
+    emit('update', latest_values)
+
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        role = request.form['role']
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        table = None
+        if role == 'Operator':
+            table = 'Operator'
+        elif role == 'Manager':
+            table = 'Manager'
+        elif role == 'Tse':
+            table = 'Tse'
+
+        if table:
+            try:
+                conn = create_connection()
+                cursor = conn.cursor()
+                cursor.execute(f"INSERT INTO {table} (username, password) VALUES (?, ?)", (username, hashed_password.decode('utf-8'))) 
+                conn.commit()
+                flash(f"User added successfully to {table}.", 'success')
+            except Exception as e:
+                flash(f"Error adding user: {e}", 'danger')
+            finally:
+                if conn:
+                    conn.close()
+    return render_template('iot/add_user.html')
+
+@app.route('/user_management')
+def user_management():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    conn = create_connection()
+    cursor = conn.cursor()
+    users = []
+    for table in ["Operator", "Manager", "Tse"]:
+        cursor.execute(f"SELECT * FROM {table}")
+        rows = cursor.fetchall()
+        for row in rows:
+            users.append({
+                "username": row[1],
+                "password": "Encrypted",
+                "role": table
+            })
+    conn.close()
+    return render_template('iot/user_management.html', users=users)
+
+@app.route('/edit_user', methods=['POST'])
+def edit_user():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    username = request.form['username']
+    new_password_hashed = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    new_role = request.form['role']
+    
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    for table in ["Operator", "Manager", "Tse"]:
+        cursor.execute(f"DELETE FROM {table} WHERE username = ?", (username,))
+        conn.commit()
+
+    new_table = new_role
+    cursor.execute(f"INSERT INTO {new_table} (username, password) VALUES (?, ?)", (username, new_password_hashed))
+    conn.commit()
+    conn.close()
+
+    flash("User updated successfully.", "success")
+    return redirect(url_for('user_management'))
+
+
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    username = request.form['username']
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    for table in ["Operator", "Manager", "Tse"]:
+        cursor.execute(f"DELETE FROM {table} WHERE username = ?", (username,))
+        conn.commit()
+    conn.close()
+
+    flash("User deleted successfully.", "success")
+    return redirect(url_for('user_management'))
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("You have been successfully logged out.", "info")
+    return redirect(url_for('user_login'))
+
+@app.route('/trends')
+def trends():
+    msg = {'payload': 0}
+    return render_template('iot/trends.html', msg=msg)
+
+def load_yaml():
+    with open("input.yaml", 'r') as file:
+        return yaml.safe_load(file)
+
+def save_yaml(data):
+    with open("input.yaml", 'w') as file:
+        yaml.dump(data, file)
+
+@app.route('/input', methods=['GET', 'POST'])
+def input_page():
+    if 'userloggedin' not in session:
+        return redirect(url_for('user_login'))
+    data = load_yaml()
+    if request.method == 'POST':
+        msg = ""
+        if 'client_name' in request.form:
+            data['client_name'] = request.form['client_name']
+            msg = "Client name updated"
+        elif 'opc_ua_url' in request.form:
+            data['OPC_UA_URL'] = request.form['opc_ua_url']
+            msg = "OPC UA URL updated"
+        elif 'submodule_name' in request.form and 'submodule_file' in request.form and 'submodule_category' in request.form and 'node_prefix' in request.form:
+            
+            # 1. Create Submodule Data
+            new_submodule = {
+                'category': request.form['submodule_category'],
+                'name': request.form['submodule_name'],
+                'template': request.form['submodule_file'],
+                'node_prefix': request.form['node_prefix']
+            }
+            
+            # 2. Update Local YAML
+            if 'submodules' not in data or not isinstance(data['submodules'], list):
+                data['submodules'] = []
+            data['submodules'].append(new_submodule)
+            msg = "Submodule added"
+            
+            # 3. TRIGGER: Import Dashboard to Grafana via PowerShell
+            # node_prefix is the filename (e.g., spg1), name is the Title (e.g., Spinning 1)
+            dashboard_filename = new_submodule['node_prefix']
+            dashboard_title = new_submodule['name']
+            
+            ps_args = ["-DashboardName", dashboard_filename, "-NewTitle", dashboard_title]
+            run_powershell("Import-Dashboard.ps1", ps_args)
+            
+        save_yaml(data)
+        return jsonify(success=True, message=msg)
+
+    return render_template(
+        'iot/input.html',
+        client_name=data.get('client_name', ''),
+        opc_ua_url=data.get('OPC_UA_URL', ''),
+        submodules=data.get('submodules', []),
+        roles=data.get('roles', {}),
+        predefined_departments=data.get('predefined_departments', [])
+    )
+
+@app.route('/remove_submodule', methods=['POST'])
+def remove_submodule():
+    data = load_yaml()
+    submodule_name = request.form['submodule_name']
+    
+    # 1. Update Local YAML
+    if 'submodules' in data:
+        data['submodules'] = [s for s in data['submodules'] if s.get('name') != submodule_name]
+    save_yaml(data)
+    
+    # 2. TRIGGER: Delete Dashboard from Grafana via PowerShell
+    # Use the submodule name as the Title to find and delete
+    ps_args = ["-DashboardTitle", submodule_name]
+    run_powershell("Delete-Dashboard.ps1", ps_args)
+    
+    return jsonify({'success': True})
+
+@app.route('/edit_submodule', methods=['POST'])
+def edit_submodule():
+    data = load_yaml()
+    old_name = request.form['submodule_name']
+    new_name = request.form['new_submodule_name']
+    new_file = request.form['submodule_file']
+    new_category = request.form['submodule_category']
+    new_prefix = request.form['node_prefix']
+    
+    if 'submodules' in data:
+        for submodule in data['submodules']:
+            if submodule.get('name') == old_name:
+                submodule['name'] = new_name
+                submodule['template'] = new_file
+                submodule['category'] = new_category
+                submodule['node_prefix'] = new_prefix
+                break
+            
+    save_yaml(data)
+    return jsonify({'success': True})
+
+@app.route('/update-order', methods=['POST'])
+def update_order():
+    try:
+        new_order = request.json.get('new_order', [])
+        if not new_order:
+            return jsonify({'error': 'No new order provided'}), 400
+        
+        yaml_file_path = 'input.yaml'
+        with open(yaml_file_path, 'r') as yaml_file:
+            data = yaml.safe_load(yaml_file) or {}
+
+        data['submodules'] = new_order
+
+        with open(yaml_file_path, 'w') as yaml_file:
+            yaml.dump(data, yaml_file, default_flow_style=False, sort_keys=False)
+            
+        return jsonify({'message': 'Order updated successfully!'}), 200
+    except Exception as e:
+        print(f"Error in /update-order: {e}") 
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/add_setting', methods=['POST'])
+def add_setting():
+    data = load_yaml()
+    role = request.json.get('role')
+    setting = request.json.get('setting')
+    if role and setting:
+        if role in data['roles']:
+            if setting not in data['roles'][role]:
+                data['roles'][role].append(setting)
+                save_yaml(data)
+                return jsonify({'success': True})
+            else:
+                return jsonify({'success': False, 'message': 'Setting already exists'}), 400
+        else:
+            return jsonify({'success': False, 'message': 'Role not found'}), 400
+    return jsonify({'success': False, 'message': 'Invalid data'}), 400
+
+@app.route('/get_settings/<role>', methods=['GET'])
+def get_settings(role):
+    data = load_yaml()
+    if role in data['roles']:
+        return jsonify({'success': True, 'settings': data['roles'][role]})
+    return jsonify({'success': False, 'message': 'Role not found'}), 400
+
+@app.route('/delete_settings', methods=['POST'])
+def delete_settings():
+    data = load_yaml()
+    role = request.json.get('role')
+    settings = request.json.get('settings')
+    if role and settings:
+        if role in data['roles']:
+            data['roles'][role] = [s for s in data['roles'][role] if s not in settings]
+            save_yaml(data)
+            return jsonify({'success': True})
+        else:
+            return jsonify({'success': False, 'message': 'Role not found'}), 400
+    return jsonify({'success': False, 'message': 'Invalid data'}), 400
+
+if __name__ == '__main__':
+
+    initialize_alarm_states()
+
+    read_thread = threading.Thread(target=read_values_periodically)
+    read_thread.daemon = True
+    read_thread.start()
+
+    process_alarm_thread = threading.Thread(target=alarm_processing_engine)
+    process_alarm_thread.daemon = True
+    process_alarm_thread.start()
+
+    emit_alarm_thread = threading.Thread(target=emit_alarms)
+    emit_alarm_thread.daemon = True
+    emit_alarm_thread.start()
+    
+    socketio.run(app, host="0.0.0.0", port=7005, debug=True, allow_unsafe_werkzeug=True)
