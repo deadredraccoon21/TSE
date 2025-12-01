@@ -107,7 +107,7 @@ OPC_UA_URL = initial_config.get('OPC_UA_URL')
 # This handles special characters in passwords and ensures ODBC Driver 11 is used.
 try:
     params = urllib.parse.quote_plus(
-        f'DRIVER={{ODBC Driver 17 for SQL Server}};'
+        f'DRIVER={{ODBC Driver 11 for SQL Server}};'
         f'SERVER={DB_SERVER};'
         f'DATABASE={DB_DATABASE};'
         f'UID={DB_USER};'
@@ -122,7 +122,7 @@ try:
         pool_timeout=30,
         pool_pre_ping=True # Checks connection before using it (auto-reconnect)
     )
-    print("Database Engine Initialized (SQLAlchemy + ODBC 17)")
+    print("Database Engine Initialized (SQLAlchemy + ODBC 11)")
 except Exception as e:
     print(f"CRITICAL: Error initializing DB Engine: {e}")
     db_engine = None
@@ -145,21 +145,33 @@ def get_departments_map():
     for sub in submodules_list:
         name = sub.get('name')
         prefix = sub.get('node_prefix')
+        category = sub.get('category', '').lower()
+
         if name and prefix:
             display_key = f"{name}"
-            dept_map[display_key] = {
-                'rh_table': f"{prefix}_RH",
-                'temp_table': f"{prefix}_T"
-            }
             
-    # 2. Manually add "Outside" (Not in input.yaml)
-    # This assumes the DB tables are named "Outside_RH" and "Outside_T"
-    dept_map['Outside'] = {
-        'rh_table': 'Outside_RH',
-        'temp_table': 'Outside_T'
+            # WCS Logic: Single table, no _RH/_T suffixes
+            if 'wcs' in category:
+                dept_map[display_key] = {
+                    'rh_table': prefix,  # e.g., "WCS_Card"
+                    'temp_table': None   # No separate temp table
+                }
+            # Default Logic (H-Plant, etc.): Split _RH and _T tables
+            else:
+                dept_map[display_key] = {
+                    'rh_table': f"{prefix}_RH",
+                    'temp_table': f"{prefix}_T"
+                }
+            
+    # 2. Manually add "OutsideConditions"
+    # Logic: Only _RH table exists, no _T table
+    dept_map['OutsideConditions'] = {
+        'rh_table': 'OutsideConditions_RH',
+        'temp_table': None
     }
     
     return dept_map
+
 # ===============================================================================
 # === POWERSHELL HELPERS                                                      ===
 # ===============================================================================
@@ -354,12 +366,17 @@ def read_values_periodically():
                     updates = {}
                     for i, val in enumerate(values):
                         # Only update if val is not None (Prevents showing undefined/blank)
+                        # ... inside updates loop
                         if val is not None and not isinstance(val, ua.StatusCode):
-                            if isinstance(val, (int, float)):
+                            # Check for Boolean FIRST (because isinstance(True, int) is True in Python)
+                            if isinstance(val, bool):
+                                updates[active_node_names[i]] = val
+                            # Then check for numbers
+                            elif isinstance(val, (int, float)):
                                 updates[active_node_names[i]] = round(val, 1)
                             else:
                                 updates[active_node_names[i]] = val
-                    
+                                            
                     # Update Memory Store (Merging new data into old data)
                     if updates:
                         with RUNTIME_STORE["lock"]:
