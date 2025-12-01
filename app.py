@@ -107,7 +107,7 @@ OPC_UA_URL = initial_config.get('OPC_UA_URL')
 # This handles special characters in passwords and ensures ODBC Driver 11 is used.
 try:
     params = urllib.parse.quote_plus(
-        f'DRIVER={{ODBC Driver 11 for SQL Server}};'
+        f'DRIVER={{ODBC Driver 17 for SQL Server}};'
         f'SERVER={DB_SERVER};'
         f'DATABASE={DB_DATABASE};'
         f'UID={DB_USER};'
@@ -122,7 +122,7 @@ try:
         pool_timeout=30,
         pool_pre_ping=True # Checks connection before using it (auto-reconnect)
     )
-    print("Database Engine Initialized (SQLAlchemy + ODBC 11)")
+    print("Database Engine Initialized (SQLAlchemy + ODBC 17)")
 except Exception as e:
     print(f"CRITICAL: Error initializing DB Engine: {e}")
     db_engine = None
@@ -197,6 +197,7 @@ def fetch_data(table_name, from_date, to_date, time_difference, columns_to_fetch
     try:
         cursor = conn.cursor()
         actual_table_columns = fetch_column_names(table_name)
+        # Filters requested columns against actual database columns
         valid_cols = [col for col in columns_to_fetch if col in actual_table_columns]
 
         if 'date' in actual_table_columns and 'date' not in valid_cols: valid_cols.insert(0, 'date')
@@ -659,17 +660,20 @@ def reportpage():
     config_data = load_data()
     client_name = config_data.get('client_name', 'Default Client')
     
-    # --- NEW: Create a mapping of Department Name -> Category ---
+    # NEW: Load selected report fields from input.yaml to pass to template
+    report_fields = config_data.get('report_fields', [])
+    
+    # Create a mapping of Department Name -> Category (Optional, mostly for frontend if needed)
     department_categories = {}
     for sub in config_data.get('submodules', []):
         department_categories[sub['name']] = sub['category']
     
-    # Pass department_categories to the template
     response = make_response(render_template(
         'report.html', 
         department_options=department_options, 
         client_name=client_name,
-        department_categories=department_categories 
+        department_categories=department_categories,
+        report_fields=report_fields # Passing the saved fields
     ))
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     return response
@@ -738,7 +742,25 @@ def get_time_differences():
 @app.route('/admin')
 def admin_dashboard():
     if session.get('role') != 'Tse': return redirect(url_for('user_login'))
-    return make_response(render_template('adminpage.html'))
+    
+    # Load currently saved fields to show them checked in the HTML
+    data = load_data()
+    current_fields = data.get('report_fields', [])
+    
+    return make_response(render_template('adminpage.html', current_fields=current_fields))
+
+@app.route('/update_report_settings', methods=['POST'])
+def update_report_settings():
+    if session.get('role') != 'Tse': return jsonify({'success': False, 'error': 'Unauthorized'}), 401
+    
+    try:
+        selected_fields = request.json.get('fields', [])
+        data = load_data()
+        data['report_fields'] = selected_fields
+        save_yaml(data)
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/admin_logout')
 def admin_logout():
@@ -899,7 +921,6 @@ def inject_context():
         'categorized_submodules': categorized_submodules,
         'client_name': data.get("client_name", "Default Client Name"),
         'dashboard_name': data.get("Dashboard"),
-        # ADD THIS LINE BELOW:
         'show_outside_conditions': data.get("show_outside_conditions", True) 
     }
 
@@ -1032,7 +1053,6 @@ def trends():
     return render_template('iot/trends.html', msg={'payload': 0})
 
 @app.route('/input', methods=['GET', 'POST'])
-@app.route('/input', methods=['GET', 'POST'])
 def input_page():
     if 'userloggedin' not in session: return redirect(url_for('user_login'))
     data = load_data()
@@ -1042,31 +1062,25 @@ def input_page():
             data['client_name'] = request.form['client_name']
             msg = "Client name updated"
             
-        # --- MODIFIED BLOCK FOR OPC UA URL ---
         elif 'opc_ua_url' in request.form:
             data['OPC_UA_URL'] = request.form['opc_ua_url']
-            save_yaml(data) # Save immediately so the restart picks it up
+            save_yaml(data) 
             
             def restart_app():
                 print("--- OPC UA URL Changed. Restarting Application... ---")
-                socketio.sleep(1) # Wait 1s to ensure the frontend receives the success message
-                # Restart the current process
+                socketio.sleep(1) 
                 os.execv(sys.executable, ['python'] + sys.argv)
             
-            # Start the restart countdown in the background
             socketio.start_background_task(restart_app)
             msg = "OPC UA URL updated. Application is restarting..."
             return jsonify(success=True, message=msg)
-        # -------------------------------------
 
         elif 'toggle_outside_conditions' in request.form:
-             # ... (Keep your existing logic for toggle_outside_conditions here)
             is_visible = request.form['toggle_outside_conditions'] == 'true'
             data['show_outside_conditions'] = is_visible
             msg = "Outside conditions visibility updated"
             
         elif 'submodule_name' in request.form:
-            # ... (Keep existing submodule logic)
             new_sub = {
                 'category': request.form['submodule_category'],
                 'name': request.form['submodule_name'],

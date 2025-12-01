@@ -1,6 +1,6 @@
 DB_DATABASE: tse_data
 DB_PASSWORD: tse@123
-DB_SERVER: DESKTOP-SQ1S6QN
+DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
 DB_USER: tse
 H-plant:
 - Set Point
@@ -622,6 +622,21 @@ predefined_departments:
 - name: Preparatory
   short_name: WCS_Prep
   template: WCS-5_Prep.html
+report_fields:
+- Set_RH
+- Act_RH
+- WTC_Output
+- WP_Status
+- SAF_Speed
+- RetAF_Speed
+- Set_Temp
+- Act_temp
+- Act_WoT
+- Set_WoT
+- Damper_Output
+- Set_PR
+- Act_PR
+- Radial_Fan
 roles:
   Manager:
   - Set Point
@@ -661,3 +676,7 @@ submodules:
   name: Preparatory1
   node_prefix: Prep1
   template: H-Plant-1_Prep1.html
+- category: H-Plant-1
+  name: Spinning2
+  node_prefix: Spg2
+  template: H-Plant-1_Spg2.html
