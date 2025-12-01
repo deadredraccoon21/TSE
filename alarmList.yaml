@@ -187,79 +187,255 @@ alarms:
   code: '24'
   id: a1534799-5b6f-4186-b151-387bc649264d
   message: Low RH in Preparatory
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '26'
   id: 66778d4a-a768-46d3-9ee8-6208d001b1cf
   message: Low Temperature in Preparatory
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '28'
   id: 518cf820-ab6a-4ae2-9045-279ac17dc59d
   message: Low Supply Air Temperature in Preparatory
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '30'
   id: cef614d4-523c-44e0-b9d4-657cb021ad08
   message: Low Pressure in Preparatory
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '223'
   id: 15eeaa9c-251b-472c-b77c-a28c4f8befa9
   message: No DPT PDF Signal in Carding
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '224'
   id: d8b50170-4941-4588-a2b3-8d7946aeb6bb
   message: DPT PDF Sensor Loss in Carding
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '229'
   id: a1b59334-a91a-45ba-a979-68a831ec341d
   message: No DPT RDF Signal in Carding
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '230'
   id: 508dcc99-51e3-4b5d-b296-2ead5d0f28bb
   message: DPT RDF Sensor Loss in Carding
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '246'
   id: b72f439b-90a9-44af-84ff-2d7541270d87
   message: No DPT PDF Signal in Comber
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
 - acknowledged: true
   code: '254'
   id: 885d2c6c-fc66-4196-a000-d0b05617c3de
   message: No RH Signal in OutSide
+  resolved_time: '2025-12-01 10:29:35'
   severity: 1
-  status: Acknowledged
+  status: Resolved
   time: '2025-11-30 20:40:47'
-- acknowledged: false
+- acknowledged: true
   code: '256'
   id: ec8d9ef6-0401-4bcc-a95a-d7a87b47e838
   message: No Temp Signal in OutSide
+  resolved_time: '2025-12-01 10:29:35'
+  severity: 1
+  status: Resolved
+  time: '2025-11-30 20:40:47'
+- acknowledged: true
+  code: '24'
+  id: 6724ea78-443e-4380-b360-6cedb49add58
+  message: Low RH in Preparatory
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '26'
+  id: 3a258e27-8245-4c6d-b3e8-d0248feeabe4
+  message: Low Temperature in Preparatory
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '28'
+  id: 5e882bb8-2820-4d05-be97-835fa70a378b
+  message: Low Supply Air Temperature in Preparatory
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '30'
+  id: 9be82c7e-86a6-4046-a4ab-885d952d6e8d
+  message: Low Pressure in Preparatory
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '223'
+  id: cab790ff-9997-4be5-97fb-07a8886e9680
+  message: No DPT PDF Signal in Carding
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '224'
+  id: f06fc56d-b45b-4953-8eff-9cc92d19f03e
+  message: DPT PDF Sensor Loss in Carding
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '229'
+  id: 0f492bfc-b401-48ab-9a3a-dfa59a9c8028
+  message: No DPT RDF Signal in Carding
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '230'
+  id: 460e7371-35aa-4041-9010-c048bcc0f81f
+  message: DPT RDF Sensor Loss in Carding
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '246'
+  id: 235081b4-dbad-476d-bcc8-835b93bc4b8b
+  message: No DPT PDF Signal in Comber
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '254'
+  id: e42af9f9-c289-4a48-8069-060856532a66
+  message: No RH Signal in OutSide
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: true
+  code: '256'
+  id: f6b90adf-9238-40de-824c-f6c807342b8a
+  message: No Temp Signal in OutSide
+  resolved_time: '2025-12-01 12:36:02'
+  severity: 1
+  status: Resolved
+  time: '2025-12-01 10:29:36'
+- acknowledged: false
+  code: '24'
+  id: b58adc2e-8ee6-4ab1-b5f5-dda4a8b25e46
+  message: Low RH in Preparatory
   severity: 1
   status: Not acknowledged
-  time: '2025-11-30 20:40:47'
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '26'
+  id: 725d33bb-3acd-4e34-be82-049c844a1bf2
+  message: Low Temperature in Preparatory
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '28'
+  id: df32e434-4419-44a9-bb59-b9473a82ce09
+  message: Low Supply Air Temperature in Preparatory
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '30'
+  id: 0c3580b7-166b-4801-b3d4-1b1a3bcba013
+  message: Low Pressure in Preparatory
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '223'
+  id: 6a891028-7eb1-4ee8-b241-61568af589c3
+  message: No DPT PDF Signal in Carding
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '224'
+  id: 0c850e97-59e9-4287-8ab8-33f03e342172
+  message: DPT PDF Sensor Loss in Carding
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '229'
+  id: 2df8de65-c7f7-4159-8fe6-c2cefbca321c
+  message: No DPT RDF Signal in Carding
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '230'
+  id: 7d3abb1a-63fe-446b-aee3-b3634c70091a
+  message: DPT RDF Sensor Loss in Carding
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '246'
+  id: fa090774-af1e-40b5-a734-e6cc2cc5f1fd
+  message: No DPT PDF Signal in Comber
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '254'
+  id: 01dfb71e-2db9-4806-acd4-1008fcbc0654
+  message: No RH Signal in OutSide
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
+- acknowledged: false
+  code: '256'
+  id: c0bed20c-7d9b-471e-a655-97e2168a3e32
+  message: No Temp Signal in OutSide
+  severity: 1
+  status: Not acknowledged
+  time: '2025-12-01 12:36:03'
 lastTripStates:
   '223': true
   '224': true

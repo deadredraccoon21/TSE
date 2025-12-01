@@ -563,64 +563,64 @@ predefined_departments:
   short_name: Aconer
   template: H-Plant-15_Aconer.html
 - name: BlowRoom
-  short_name: BR
+  short_name: WCS_BR
   template: WCS-1_BR.html
 - name: Carding
-  short_name: Card
+  short_name: WCS_Card
   template: WCS-1_Card.html
 - name: Comber
-  short_name: Comber
+  short_name: WCS_Cmbr
   template: WCS-1_Comber.html
 - name: Preparatory
-  short_name: Prep
+  short_name: WCS_Prep
   template: WCS-1_Prep.html
 - name: BlowRoom
-  short_name: BR
+  short_name: WCS_BR
   template: WCS-2_BR.html
 - name: Carding
-  short_name: Card
+  short_name: WCS_Card
   template: WCS-2_Card.html
 - name: Comber
-  short_name: Comber
+  short_name: WCS_Cmbr
   template: WCS-2_Comber.html
 - name: Preparatory
-  short_name: Prep
+  short_name: WCS_Prep
   template: WCS-2_Prep.html
 - name: BlowRoom
-  short_name: BR
+  short_name: WCS_BR
   template: WCS-3_BR.html
 - name: Carding
-  short_name: Card
+  short_name: WCS_Card
   template: WCS-3_Card.html
 - name: Comber
-  short_name: Comber
+  short_name: WCS_Cmbr
   template: WCS-3_Comber.html
 - name: Preparatory
-  short_name: Prep
+  short_name: WCS_Prep
   template: WCS-3_Prep.html
 - name: BlowRoom
-  short_name: BR
+  short_name: WCS_BR
   template: WCS-4_BR.html
 - name: Carding
-  short_name: Card
+  short_name: WCS_Card
   template: WCS-4_Card.html
 - name: Comber
-  short_name: Comber
+  short_name: WCS_Cmbr
   template: WCS-4_Comber.html
 - name: Preparatory
-  short_name: Prep
+  short_name: WCS_Prep
   template: WCS-4_Prep.html
 - name: BlowRoom
-  short_name: BR
+  short_name: WCS_BR
   template: WCS-5_BR.html
 - name: Carding
-  short_name: Card
+  short_name: WCS_Card
   template: WCS-5_Card.html
 - name: Comber
-  short_name: Comber
+  short_name: WCS_Cmbr
   template: WCS-5_Comber.html
 - name: Preparatory
-  short_name: Prep
+  short_name: WCS_Prep
   template: WCS-5_Prep.html
 roles:
   Manager:
@@ -649,15 +649,15 @@ roles:
   - DeHumidity
 show_outside_conditions: true
 submodules:
-- category: WCS-2
-  name: Carding
-  node_prefix: WCS_Card
-  template: WCS-2_Card.html
-- category: WCS-1
-  name: Comber
-  node_prefix: WCS_Comber
-  template: WCS-1_Comber.html
 - category: H-Plant-1
   name: Preparatory
   node_prefix: Prep
   template: H-Plant-1_Prep.html
+- category: WCS-2
+  name: Carding
+  node_prefix: WCS_Card
+  template: WCS-2_Card.html
+- category: H-Plant-1
+  name: Preparatory1
+  node_prefix: Prep1
+  template: H-Plant-1_Prep1.html

@@ -5,6 +5,7 @@ from flask_cors import CORS
 from opcua import Client, ua
 from collections import defaultdict
 import os
+import sys
 import json
 import yaml
 from flask_socketio import SocketIO, emit
@@ -1031,6 +1032,7 @@ def trends():
     return render_template('iot/trends.html', msg={'payload': 0})
 
 @app.route('/input', methods=['GET', 'POST'])
+@app.route('/input', methods=['GET', 'POST'])
 def input_page():
     if 'userloggedin' not in session: return redirect(url_for('user_login'))
     data = load_data()
@@ -1039,17 +1041,32 @@ def input_page():
         if 'client_name' in request.form:
             data['client_name'] = request.form['client_name']
             msg = "Client name updated"
+            
+        # --- MODIFIED BLOCK FOR OPC UA URL ---
         elif 'opc_ua_url' in request.form:
             data['OPC_UA_URL'] = request.form['opc_ua_url']
-            msg = "OPC UA URL updated"
-        # --- ADD THIS BLOCK ---
+            save_yaml(data) # Save immediately so the restart picks it up
+            
+            def restart_app():
+                print("--- OPC UA URL Changed. Restarting Application... ---")
+                socketio.sleep(1) # Wait 1s to ensure the frontend receives the success message
+                # Restart the current process
+                os.execv(sys.executable, ['python'] + sys.argv)
+            
+            # Start the restart countdown in the background
+            socketio.start_background_task(restart_app)
+            msg = "OPC UA URL updated. Application is restarting..."
+            return jsonify(success=True, message=msg)
+        # -------------------------------------
+
         elif 'toggle_outside_conditions' in request.form:
-            # Convert string 'true'/'false' to boolean
+             # ... (Keep your existing logic for toggle_outside_conditions here)
             is_visible = request.form['toggle_outside_conditions'] == 'true'
             data['show_outside_conditions'] = is_visible
             msg = "Outside conditions visibility updated"
-        # ----------------------
+            
         elif 'submodule_name' in request.form:
+            # ... (Keep existing submodule logic)
             new_sub = {
                 'category': request.form['submodule_category'],
                 'name': request.form['submodule_name'],
@@ -1060,18 +1077,19 @@ def input_page():
             data['submodules'].append(new_sub)
             msg = "Submodule added"
             run_powershell("Import-Dashboard.ps1", ["-DashboardName", new_sub['node_prefix'], "-NewTitle", new_sub['name']])
+            
         save_yaml(data)
         return jsonify(success=True, message=msg)
     
-    # --- UPDATE THE RETURN STATEMENT TO INCLUDE show_outside_conditions ---
     return render_template('iot/input.html', 
                            client_name=data.get('client_name', ''), 
                            opc_ua_url=data.get('OPC_UA_URL', ''), 
-                           show_outside_conditions=data.get('show_outside_conditions', True), # <--- Add this
+                           show_outside_conditions=data.get('show_outside_conditions', True),
                            submodules=data.get('submodules', []), 
                            roles=data.get('roles', {}), 
                            predefined_departments=data.get('predefined_departments', []))
-                           
+
+
 @app.route('/remove_submodule', methods=['POST'])
 def remove_submodule():
     data = load_data()
