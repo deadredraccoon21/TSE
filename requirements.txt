@@ -1,0 +1,12 @@
+opcua
+pyaml
+flask_socketio
+plotly
+pyodbc
+flask_wtf
+bcrypt
+cryptography
+eventlet
+flask-cors
+sqlalchemy
+requests

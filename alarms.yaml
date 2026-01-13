@@ -1,0 +1,4003 @@
+alarms:
+  # --- BlowRoom (BR) ---
+  - code: "1"
+    message: "Return Air Fan VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "2"
+    message: "Return Air Fan-1 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "3"
+    message: "Return Air Fan-2 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "4"
+    message: "Return Air Fan-3 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "5"
+    message: "Return Air Fan-4 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "6"
+    message: "Supply Air Fan VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "7"
+    message: "Supply Air Fan-1 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "8"
+    message: "Supply Air Fan-2 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "9"
+    message: "Supply Air Fan-3 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "10"
+    message: "Supply Air Fan-4 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "11"
+    message: "Washer Pump VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "12" 
+    message: "Washer Pump-1 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "13"
+    message: "Washer Pump-2 VFD Fault - BlowRoom"
+    nodeids: [DI_BR_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "14"
+    message: "Rotary Drum Filter TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_RDF_TRIP]
+    severity: 1
+  - code: "15"
+    message: "Rotary Drum Filter-1 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "16"
+    message: "Rotary Drum Filter-2 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "17"
+    message: "Dust Collector TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_DCF_TRIP]
+    severity: 1
+  - code: "18"
+    message: "Dust Collector-1 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "19"
+    message: "Dust Collector-2 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "20"
+    message: "Cyclone with Screw Compactor TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "21"
+    message: "Cyclone with Screw Compactor-1 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "22"
+    message: "Cyclone with Screw Compactor-2 TRIP - BlowRoom"
+    nodeids: [DI_BR_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "23"
+    message: "High RH in BlowRoom"
+    nodeids: [BR_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "24"
+    message: "Low RH in BlowRoom"
+    nodeids: [BR_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "25"
+    message: "High Temperature in BlowRoom"
+    nodeids: [BR_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "26"
+    message: "Low Temperature in BlowRoom"
+    nodeids: [BR_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "27"
+    message: "High Supply Air Temperature in BlowRoom"
+    nodeids: [BR_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "28"
+    message: "Low Supply Air Temperature in BlowRoom"
+    nodeids: [BR_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "29"
+    message: "High Pressure in BlowRoom"
+    nodeids: [BR_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "30"
+    message: "Low Pressure in BlowRoom"
+    nodeids: [BR_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "31"
+    message: "No RH Signal in BlowRoom"
+    nodeids: [BR_iFl_RH_No_Signal]
+    severity: 1
+  - code: "32"
+    message: "RH Sensor Loss in BlowRoom"
+    nodeids: [BR_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "33"
+    message: "No Temp Signal in BlowRoom"
+    nodeids: [BR_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "34"
+    message: "Temp Sensor Loss in BlowRoom"
+    nodeids: [BR_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "35"
+    message: "No SA Temp Signal in BlowRoom"
+    nodeids: [BR_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "36"
+    message: "SA Temp Sensor Loss in BlowRoom"
+    nodeids: [BR_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "37"
+    message: "No DPT RDF Signal in BlowRoom"
+    nodeids: [BR_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "38"
+    message: "DPT RDF Sensor Loss in BlowRoom"
+    nodeids: [BR_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+  
+  
+  # --- Preparatory (Prep) ---
+  - code: "40"
+    message: "Return Air Fan VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "41"
+    message: "Return Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "42"
+    message: "Return Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "43"
+    message: "Return Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "44"
+    message: "Return Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "45"
+    message: "Supply Air Fan VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "46"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "47"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "48"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "49"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "50"
+    message: "Washer Pump VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "51" 
+    message: "Washer Pump-1 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "52"
+    message: "Washer Pump-2 VFD Fault - Preparatory"
+    nodeids: [DI_Prep_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "53"
+    message: "Rotary Drum Filter TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF_TRIP]
+    severity: 1
+  - code: "54"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "55"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "56"
+    message: "Dust Collector TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF_TRIP]
+    severity: 1
+  - code: "57"
+    message: "Dust Collector-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "58"
+    message: "Dust Collector-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "59"
+    message: "Cyclone with Screw Compactor TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "60"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "61"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory"
+    nodeids: [DI_Prep_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "62"
+    message: "High RH in Preparatory"
+    nodeids: [Prep_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "63"
+    message: "Low RH in Preparatory"
+    nodeids: [Prep_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "64"
+    message: "High Temperature in Preparatory"
+    nodeids: [Prep_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "65"
+    message: "Low Temperature in Preparatory"
+    nodeids: [Prep_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "66"
+    message: "High Supply Air Temperature in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "67"
+    message: "Low Supply Air Temperature in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "68"
+    message: "High Pressure in Preparatory"
+    nodeids: [Prep_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "69"
+    message: "Low Pressure in Preparatory"
+    nodeids: [Prep_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "70"
+    message: "No RH Signal in Preparatory"
+    nodeids: [Prep_iFl_RH_No_Signal]
+    severity: 1
+  - code: "71"
+    message: "RH Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "72"
+    message: "No Temp Signal in Preparatory"
+    nodeids: [Prep_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "73"
+    message: "Temp Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "74"
+    message: "No SA Temp Signal in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "75"
+    message: "SA Temp Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "76"
+    message: "No DPT RDF Signal in Preparatory"
+    nodeids: [Prep_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "77"
+    message: "DPT RDF Sensor Loss in Preparatory"
+    nodeids: [Prep_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+  
+  # --- Preparatory1 (Prep1) ---
+  - code: "80"
+    message: "Return Air Fan VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "81"
+    message: "Return Air Fan-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "82"
+    message: "Return Air Fan-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "83"
+    message: "Return Air Fan-3 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "84"
+    message: "Return Air Fan-4 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "85"
+    message: "Supply Air Fan VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "86"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "87"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "88"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "89"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "90"
+    message: "Washer Pump VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "91" 
+    message: "Washer Pump-1 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "92"
+    message: "Washer Pump-2 VFD Fault - Preparatory1"
+    nodeids: [DI_Prep1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "93"
+    message: "Rotary Drum Filter TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RDF_TRIP]
+    severity: 1
+  - code: "94"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "95"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "96"
+    message: "Dust Collector TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_DCF_TRIP]
+    severity: 1
+  - code: "97"
+    message: "Dust Collector-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "98"
+    message: "Dust Collector-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "99"
+    message: "Cyclone with Screw Compactor TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "100"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "101"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory1"
+    nodeids: [DI_Prep1_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "102"
+    message: "High RH in Preparatory1"
+    nodeids: [Prep1_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "103"
+    message: "Low RH in Preparatory1"
+    nodeids: [Prep1_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "104"
+    message: "High Temperature in Preparatory1"
+    nodeids: [Prep1_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "105"
+    message: "Low Temperature in Preparatory1"
+    nodeids: [Prep1_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "106"
+    message: "High Supply Air Temperature in Preparatory1"
+    nodeids: [Prep1_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "107"
+    message: "Low Supply Air Temperature in Preparatory1"
+    nodeids: [Prep1_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "108"
+    message: "High Pressure in Preparatory1"
+    nodeids: [Prep1_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "109"
+    message: "Low Pressure in Preparatory1"
+    nodeids: [Prep1_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "110"
+    message: "No RH Signal in Preparatory1"
+    nodeids: [Prep1_iFl_RH_No_Signal]
+    severity: 1
+  - code: "111"
+    message: "RH Sensor Loss in Preparatory1"
+    nodeids: [Prep1_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "112"
+    message: "No Temp Signal in Preparatory1"
+    nodeids: [Prep1_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "113"
+    message: "Temp Sensor Loss in Preparatory1"
+    nodeids: [Prep1_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "114"
+    message: "No SA Temp Signal in Preparatory1"
+    nodeids: [Prep1_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "115"
+    message: "SA Temp Sensor Loss in Preparatory1"
+    nodeids: [Prep1_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "116"
+    message: "No DPT RDF Signal in Preparatory1"
+    nodeids: [Prep1_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "117"
+    message: "DPT RDF Sensor Loss in Preparatory1"
+    nodeids: [Prep1_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+  # --- Preparatory2 (Prep2) ---
+  - code: "120"
+    message: "Return Air Fan VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "121"
+    message: "Return Air Fan-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "122"
+    message: "Return Air Fan-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "123"
+    message: "Return Air Fan-3 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "124"
+    message: "Return Air Fan-4 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "125"
+    message: "Supply Air Fan VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "126"
+    message: "Supply Air Fan-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "127"
+    message: "Supply Air Fan-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "128"
+    message: "Supply Air Fan-3 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "129"
+    message: "Supply Air Fan-4 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "130"
+    message: "Washer Pump VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "131" 
+    message: "Washer Pump-1 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "132"
+    message: "Washer Pump-2 VFD Fault - Preparatory2"
+    nodeids: [DI_Prep2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "133"
+    message: "Rotary Drum Filter TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RDF_TRIP]
+    severity: 1
+  - code: "134"
+    message: "Rotary Drum Filter-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "135"
+    message: "Rotary Drum Filter-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "136"
+    message: "Dust Collector TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_DCF_TRIP]
+    severity: 1
+  - code: "137"
+    message: "Dust Collector-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "138"
+    message: "Dust Collector-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "139"
+    message: "Cyclone with Screw Compactor TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "140"
+    message: "Cyclone with Screw Compactor-1 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "141"
+    message: "Cyclone with Screw Compactor-2 TRIP - Preparatory2"
+    nodeids: [DI_Prep2_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "142"
+    message: "High RH in Preparatory2"
+    nodeids: [Prep2_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "143"
+    message: "Low RH in Preparatory2"
+    nodeids: [Prep2_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "144"
+    message: "High Temperature in Preparatory2"
+    nodeids: [Prep2_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "145"
+    message: "Low Temperature in Preparatory2"
+    nodeids: [Prep2_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "146"
+    message: "High Supply Air Temperature in Preparatory2"
+    nodeids: [Prep2_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "147"
+    message: "Low Supply Air Temperature in Preparatory2"
+    nodeids: [Prep2_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "148"
+    message: "High Pressure in Preparatory2"
+    nodeids: [Prep2_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "149"
+    message: "Low Pressure in Preparatory2"
+    nodeids: [Prep2_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "150"
+    message: "No RH Signal in Preparatory2"
+    nodeids: [Prep2_iFl_RH_No_Signal]
+    severity: 1
+  - code: "160"
+    message: "RH Sensor Loss in Preparatory2"
+    nodeids: [Prep2_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "161"
+    message: "No Temp Signal in Preparatory2"
+    nodeids: [Prep2_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "162"
+    message: "Temp Sensor Loss in Preparatory2"
+    nodeids: [Prep2_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "163"
+    message: "No SA Temp Signal in Preparatory2"
+    nodeids: [Prep2_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "164"
+    message: "SA Temp Sensor Loss in Preparatory2"
+    nodeids: [Prep2_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "165"
+    message: "No DPT RDF Signal in Preparatory2"
+    nodeids: [Prep2_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "166"
+    message: "DPT RDF Sensor Loss in Preparatory2"
+    nodeids: [Prep2_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+
+  # --- Spinning (Spg) ---
+  - code: "170"
+    message: "Return Air Fan VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "171"
+    message: "Return Air Fan-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "172"
+    message: "Return Air Fan-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "173"
+    message: "Return Air Fan-3 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "174"
+    message: "Return Air Fan-4 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "175"
+    message: "Supply Air Fan VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "176"
+    message: "Supply Air Fan-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "177"
+    message: "Supply Air Fan-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "178"
+    message: "Supply Air Fan-3 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "179"
+    message: "Supply Air Fan-4 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "180"
+    message: "Washer Pump VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "181" 
+    message: "Washer Pump-1 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "182"
+    message: "Washer Pump-2 VFD Fault - Spinning"
+    nodeids: [DI_Spg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "183"
+    message: "Rotary Drum Filter TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_RDF_TRIP]
+    severity: 1
+  - code: "184"
+    message: "Rotary Drum Filter-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "185"
+    message: "Rotary Drum Filter-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "186"
+    message: "Dust Collector TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_DCF_TRIP]
+    severity: 1
+  - code: "187"
+    message: "Dust Collector-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "188"
+    message: "Dust Collector-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "189"
+    message: "Cyclone with Screw Compactor TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "190"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "191"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning"
+    nodeids: [DI_Spg_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "192"
+    message: "High RH in Spinning"
+    nodeids: [Spg_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "193"
+    message: "Low RH in Spinning"
+    nodeids: [Spg_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "194"
+    message: "High Temperature in Spinning"
+    nodeids: [Spg_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "195"
+    message: "Low Temperature in Spinning"
+    nodeids: [Spg_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "196"
+    message: "High Supply Air Temperature in Spinning"
+    nodeids: [Spg_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "197"
+    message: "Low Supply Air Temperature in Spinning"
+    nodeids: [Spg_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "198"
+    message: "High Pressure in Spinning"
+    nodeids: [Spg_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "199"
+    message: "Low Pressure in Spinning"
+    nodeids: [Spg_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "200"
+    message: "No RH Signal in Spinning"
+    nodeids: [Spg_iFl_RH_No_Signal]
+    severity: 1
+  - code: "201"
+    message: "RH Sensor Loss in Spinning"
+    nodeids: [Spg_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "202"
+    message: "No Temp Signal in Spinning"
+    nodeids: [Spg_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "203"
+    message: "Temp Sensor Loss in Spinning"
+    nodeids: [Spg_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "204"
+    message: "No SA Temp Signal in Spinning"
+    nodeids: [Spg_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "205"
+    message: "SA Temp Sensor Loss in Spinning"
+    nodeids: [Spg_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "206"
+    message: "No DPT RDF Signal in Spinning"
+    nodeids: [Spg_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "207"
+    message: "DPT RDF Sensor Loss in Spinning"
+    nodeids: [Spg_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- Spinning1 (Spg1) ---
+  - code: "210"
+    message: "Return Air Fan VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "211"
+    message: "Return Air Fan-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "212"
+    message: "Return Air Fan-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "213"
+    message: "Return Air Fan-3 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "214"
+    message: "Return Air Fan-4 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "215"
+    message: "Supply Air Fan VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "216"
+    message: "Supply Air Fan-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "217"
+    message: "Supply Air Fan-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "218"
+    message: "Supply Air Fan-3 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "219"
+    message: "Supply Air Fan-4 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "220"
+    message: "Washer Pump VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "221"
+    message: "Washer Pump-1 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "222"
+    message: "Washer Pump-2 VFD Fault - Spinning1"
+    nodeids: [DI_Spg1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "223"
+    message: "Rotary Drum Filter TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_RDF_TRIP]
+    severity: 1
+  - code: "224"
+    message: "Rotary Drum Filter-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "225"
+    message: "Rotary Drum Filter-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "226"
+    message: "Dust Collector TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_DCF_TRIP]
+    severity: 1
+  - code: "227"
+    message: "Dust Collector-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "228"
+    message: "Dust Collector-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "229"
+    message: "Cyclone with Screw Compactor TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "230"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "231"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning1"
+    nodeids: [DI_Spg1_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "232"
+    message: "High RH in Spinning1"
+    nodeids: [Spg1_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "233"
+    message: "Low RH in Spinning1"
+    nodeids: [Spg1_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "234"
+    message: "High Temperature in Spinning1"
+    nodeids: [Spg1_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "235"
+    message: "Low Temperature in Spinning1"
+    nodeids: [Spg1_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "236"
+    message: "High Supply Air Temperature in Spinning1"
+    nodeids: [Spg1_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "237"
+    message: "Low Supply Air Temperature in Spinning1"
+    nodeids: [Spg1_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "238"
+    message: "High Pressure in Spinning1"
+    nodeids: [Spg1_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "239"
+    message: "Low Pressure in Spinning1"
+    nodeids: [Spg1_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "240"
+    message: "No RH Signal in Spinning1"
+    nodeids: [Spg1_iFl_RH_No_Signal]
+    severity: 1
+  - code: "241"
+    message: "RH Sensor Loss in Spinning1"
+    nodeids: [Spg1_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "242"
+    message: "No Temp Signal in Spinning1"
+    nodeids: [Spg1_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "243"
+    message: "Temp Sensor Loss in Spinning1"
+    nodeids: [Spg1_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "244"
+    message: "No SA Temp Signal in Spinning1"
+    nodeids: [Spg1_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "245"
+    message: "SA Temp Sensor Loss in Spinning1"
+    nodeids: [Spg1_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "246"
+    message: "No DPT RDF Signal in Spinning1"
+    nodeids: [Spg1_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "247"
+    message: "DPT RDF Sensor Loss in Spinning1"
+    nodeids: [Spg1_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+  
+
+
+  # --- Spinning2 (Spg2) ---
+  - code: "250"
+    message: "Return Air Fan VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "251"
+    message: "Return Air Fan-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "252"
+    message: "Return Air Fan-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "253"
+    message: "Return Air Fan-3 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "254"
+    message: "Return Air Fan-4 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "255"
+    message: "Supply Air Fan VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "256"
+    message: "Supply Air Fan-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "257"
+    message: "Supply Air Fan-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "258"
+    message: "Supply Air Fan-3 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "259"
+    message: "Supply Air Fan-4 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "260"
+    message: "Washer Pump VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "261" 
+    message: "Washer Pump-1 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "262"
+    message: "Washer Pump-2 VFD Fault - Spinning2"
+    nodeids: [DI_Spg2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "263"
+    message: "Rotary Drum Filter TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_RDF_TRIP]
+    severity: 1
+  - code: "264"
+    message: "Rotary Drum Filter-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "265"
+    message: "Rotary Drum Filter-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "266"
+    message: "Dust Collector TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_DCF_TRIP]
+    severity: 1
+  - code: "267"
+    message: "Dust Collector-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "268"
+    message: "Dust Collector-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "269"
+    message: "Cyclone with Screw Compactor TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "270"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "271"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning2"
+    nodeids: [DI_Spg2_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "272"
+    message: "High RH in Spinning2"
+    nodeids: [Spg2_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "273"
+    message: "Low RH in Spinning2"
+    nodeids: [Spg2_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "274"
+    message: "High Temperature in Spinning2"
+    nodeids: [Spg2_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "275"
+    message: "Low Temperature in Spinning2"
+    nodeids: [Spg2_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "276"
+    message: "High Supply Air Temperature in Spinning2"
+    nodeids: [Spg2_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "277"
+    message: "Low Supply Air Temperature in Spinning2"
+    nodeids: [Spg2_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "278"
+    message: "High Pressure in Spinning2"
+    nodeids: [Spg2_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "279"
+    message: "Low Pressure in Spinning2"
+    nodeids: [Spg2_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "280"
+    message: "No RH Signal in Spinning2"
+    nodeids: [Spg2_iFl_RH_No_Signal]
+    severity: 1
+  - code: "281"
+    message: "RH Sensor Loss in Spinning2"
+    nodeids: [Spg2_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "282"
+    message: "No Temp Signal in Spinning2"
+    nodeids: [Spg2_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "283"
+    message: "Temp Sensor Loss in Spinning2"
+    nodeids: [Spg2_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "284"
+    message: "No SA Temp Signal in Spinning2"
+    nodeids: [Spg2_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "285"
+    message: "SA Temp Sensor Loss in Spinning2"
+    nodeids: [Spg2_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "286"
+    message: "No DPT RDF Signal in Spinning2"
+    nodeids: [Spg2_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "287"
+    message: "DPT RDF Sensor Loss in Spinning2"
+    nodeids: [Spg2_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+  
+  
+
+  # --- Spinning3 (Spg3) ---
+  - code: "290"
+    message: "Return Air Fan VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "291"
+    message: "Return Air Fan-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "292"
+    message: "Return Air Fan-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "293"
+    message: "Return Air Fan-3 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "294"
+    message: "Return Air Fan-4 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "295"
+    message: "Supply Air Fan VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "296"
+    message: "Supply Air Fan-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "297"
+    message: "Supply Air Fan-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "298"
+    message: "Supply Air Fan-3 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "299"
+    message: "Supply Air Fan-4 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "300"
+    message: "Washer Pump VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "301" 
+    message: "Washer Pump-1 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "302"
+    message: "Washer Pump-2 VFD Fault - Spinning3"
+    nodeids: [DI_Spg3_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "303"
+    message: "Rotary Drum Filter TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_RDF_TRIP]
+    severity: 1
+  - code: "304"
+    message: "Rotary Drum Filter-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "305"
+    message: "Rotary Drum Filter-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "306"
+    message: "Dust Collector TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_DCF_TRIP]
+    severity: 1
+  - code: "307"
+    message: "Dust Collector-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "308"
+    message: "Dust Collector-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "309"
+    message: "Cyclone with Screw Compactor TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "310"
+    message: "Cyclone with Screw Compactor-1 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "311"
+    message: "Cyclone with Screw Compactor-2 TRIP - Spinning3"
+    nodeids: [DI_Spg3_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "312"
+    message: "High RH in Spinning3"
+    nodeids: [Spg3_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "313"
+    message: "Low RH in Spinning3"
+    nodeids: [Spg3_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "314"
+    message: "High Temperature in Spinning3"
+    nodeids: [Spg3_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "315"
+    message: "Low Temperature in Spinning3"
+    nodeids: [Spg3_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "316"
+    message: "High Supply Air Temperature in Spinning3"
+    nodeids: [Spg3_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "317"
+    message: "Low Supply Air Temperature in Spinning3"
+    nodeids: [Spg3_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "318"
+    message: "High Pressure in Spinning3"
+    nodeids: [Spg3_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "319"
+    message: "Low Pressure in Spinning3"
+    nodeids: [Spg3_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "320"
+    message: "No RH Signal in Spinning3"
+    nodeids: [Spg3_iFl_RH_No_Signal]
+    severity: 1
+  - code: "321"
+    message: "RH Sensor Loss in Spinning3"
+    nodeids: [Spg3_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "322"
+    message: "No Temp Signal in Spinning3"
+    nodeids: [Spg3_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "323"
+    message: "Temp Sensor Loss in Spinning3"
+    nodeids: [Spg3_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "324"
+    message: "No SA Temp Signal in Spinning3"
+    nodeids: [Spg3_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "325"
+    message: "SA Temp Sensor Loss in Spinning3"
+    nodeids: [Spg3_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "326"
+    message: "No DPT RDF Signal in Spinning3"
+    nodeids: [Spg3_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "327"
+    message: "DPT RDF Sensor Loss in Spinning3"
+    nodeids: [Spg3_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+  # --- OpenEnd (OE) ---
+  - code: "330"
+    message: "Return Air Fan VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "331"
+    message: "Return Air Fan-1 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "332"
+    message: "Return Air Fan-2 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "333"
+    message: "Return Air Fan-3 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "334"
+    message: "Return Air Fan-4 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "335"
+    message: "Supply Air Fan VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "336"
+    message: "Supply Air Fan-1 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "337"
+    message: "Supply Air Fan-2 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "338"
+    message: "Supply Air Fan-3 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "339"
+    message: "Supply Air Fan-4 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "340"
+    message: "Washer Pump VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "341" 
+    message: "Washer Pump-1 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "342"
+    message: "Washer Pump-2 VFD Fault - OpenEnd"
+    nodeids: [DI_OE_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "343"
+    message: "Rotary Drum Filter TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_RDF_TRIP]
+    severity: 1
+  - code: "344"
+    message: "Rotary Drum Filter-1 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "345"
+    message: "Rotary Drum Filter-2 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "346"
+    message: "Dust Collector TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_DCF_TRIP]
+    severity: 1
+  - code: "347"
+    message: "Dust Collector-1 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "348"
+    message: "Dust Collector-2 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "349"
+    message: "Cyclone with Screw Compactor TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "350"
+    message: "Cyclone with Screw Compactor-1 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "351"
+    message: "Cyclone with Screw Compactor-2 TRIP - OpenEnd"
+    nodeids: [DI_OE_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "352"
+    message: "High RH in OpenEnd"
+    nodeids: [OE_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "353"
+    message: "Low RH in OpenEnd"
+    nodeids: [OE_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "354"
+    message: "High Temperature in OpenEnd"
+    nodeids: [OE_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "355"
+    message: "Low Temperature in OpenEnd"
+    nodeids: [OE_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "356"
+    message: "High Supply Air Temperature in OpenEnd"
+    nodeids: [OE_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "357"
+    message: "Low Supply Air Temperature in OpenEnd"
+    nodeids: [OE_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "358"
+    message: "High Pressure in OpenEnd"
+    nodeids: [OE_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "359"
+    message: "Low Pressure in OpenEnd"
+    nodeids: [OE_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "360"
+    message: "No RH Signal in OpenEnd"
+    nodeids: [OE_iFl_RH_No_Signal]
+    severity: 1
+  - code: "361"
+    message: "RH Sensor Loss in OpenEnd"
+    nodeids: [OE_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "362"
+    message: "No Temp Signal in OpenEnd"
+    nodeids: [OE_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "363"
+    message: "Temp Sensor Loss in OpenEnd"
+    nodeids: [OE_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "364"
+    message: "No SA Temp Signal in OpenEnd"
+    nodeids: [OE_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "365"
+    message: "SA Temp Sensor Loss in OpenEnd"
+    nodeids: [OE_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "366"
+    message: "No DPT RDF Signal in OpenEnd"
+    nodeids: [OE_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "367"
+    message: "DPT RDF Sensor Loss in OpenEnd"
+    nodeids: [OE_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+  
+  # --- TFO (TFO) ---
+  - code: "370"
+    message: "Return Air Fan VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "371"
+    message: "Return Air Fan-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "372"
+    message: "Return Air Fan-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "373"
+    message: "Return Air Fan-3 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "374"
+    message: "Return Air Fan-4 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "375"
+    message: "Supply Air Fan VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "376"
+    message: "Supply Air Fan-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "377"
+    message: "Supply Air Fan-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "378"
+    message: "Supply Air Fan-3 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "379"
+    message: "Supply Air Fan-4 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "380"
+    message: "Washer Pump VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "381" 
+    message: "Washer Pump-1 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "382"
+    message: "Washer Pump-2 VFD Fault - TFO"
+    nodeids: [DI_TFO_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "383"
+    message: "Rotary Drum Filter TRIP - TFO"
+    nodeids: [DI_TFO_iFl_RDF_TRIP]
+    severity: 1
+  - code: "384"
+    message: "Rotary Drum Filter-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "385"
+    message: "Rotary Drum Filter-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "386"
+    message: "Dust Collector TRIP - TFO"
+    nodeids: [DI_TFO_iFl_DCF_TRIP]
+    severity: 1
+  - code: "387"
+    message: "Dust Collector-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "388"
+    message: "Dust Collector-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "389"
+    message: "Cyclone with Screw Compactor TRIP - TFO"
+    nodeids: [DI_TFO_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "390"
+    message: "Cyclone with Screw Compactor-1 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "391"
+    message: "Cyclone with Screw Compactor-2 TRIP - TFO"
+    nodeids: [DI_TFO_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "392"
+    message: "High RH in TFO"
+    nodeids: [TFO_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "393"
+    message: "Low RH in TFO"
+    nodeids: [TFO_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "394"
+    message: "High Temperature in TFO"
+    nodeids: [TFO_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "395"
+    message: "Low Temperature in TFO"
+    nodeids: [TFO_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "396"
+    message: "High Supply Air Temperature in TFO"
+    nodeids: [TFO_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "397"
+    message: "Low Supply Air Temperature in TFO"
+    nodeids: [TFO_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "398"
+    message: "High Pressure in TFO"
+    nodeids: [TFO_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "399"
+    message: "Low Pressure in TFO"
+    nodeids: [TFO_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "400"
+    message: "No RH Signal in TFO"
+    nodeids: [TFO_iFl_RH_No_Signal]
+    severity: 1
+  - code: "401"
+    message: "RH Sensor Loss in TFO"
+    nodeids: [TFO_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "402"
+    message: "No Temp Signal in TFO"
+    nodeids: [TFO_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "403"
+    message: "Temp Sensor Loss in TFO"
+    nodeids: [TFO_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "404"
+    message: "No SA Temp Signal in TFO"
+    nodeids: [TFO_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "405"
+    message: "SA Temp Sensor Loss in TFO"
+    nodeids: [TFO_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "406"
+    message: "No DPT RDF Signal in TFO"
+    nodeids: [TFO_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "407"
+    message: "DPT RDF Sensor Loss in TFO"
+    nodeids: [TFO_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+  # --- Winding (Wdg) ---
+  - code: "410"
+    message: "Return Air Fan VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "411"
+    message: "Return Air Fan-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "412"
+    message: "Return Air Fan-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "413"
+    message: "Return Air Fan-3 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "414"
+    message: "Return Air Fan-4 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "415"
+    message: "Supply Air Fan VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "416"
+    message: "Supply Air Fan-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "417"
+    message: "Supply Air Fan-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "418"
+    message: "Supply Air Fan-3 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "419"
+    message: "Supply Air Fan-4 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "420"
+    message: "Washer Pump VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "421"
+    message: "Washer Pump-1 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "422"
+    message: "Washer Pump-2 VFD Fault - Winding"
+    nodeids: [DI_Wdg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "423"
+    message: "Rotary Drum Filter TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_RDF_TRIP]
+    severity: 1
+  - code: "424"
+    message: "Rotary Drum Filter-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "425"
+    message: "Rotary Drum Filter-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "426"
+    message: "Dust Collector TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_DCF_TRIP]
+    severity: 1
+  - code: "427"
+    message: "Dust Collector-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "428"
+    message: "Dust Collector-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "429"
+    message: "Cyclone with Screw Compactor TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "430"
+    message: "Cyclone with Screw Compactor-1 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "431"
+    message: "Cyclone with Screw Compactor-2 TRIP - Winding"
+    nodeids: [DI_Wdg_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "432"
+    message: "High RH in Winding"
+    nodeids: [Wdg_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "433"
+    message: "Low RH in Winding"
+    nodeids: [Wdg_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "434"
+    message: "High Temperature in Winding"
+    nodeids: [Wdg_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "435"
+    message: "Low Temperature in Winding"
+    nodeids: [Wdg_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "436"
+    message: "High Supply Air Temperature in Winding"
+    nodeids: [Wdg_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "437"
+    message: "Low Supply Air Temperature in Winding"
+    nodeids: [Wdg_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "438"
+    message: "High Pressure in Winding"
+    nodeids: [Wdg_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "439"
+    message: "Low Pressure in Winding"
+    nodeids: [Wdg_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "440"
+    message: "No RH Signal in Winding"
+    nodeids: [Wdg_iFl_RH_No_Signal]
+    severity: 1
+  - code: "441"
+    message: "RH Sensor Loss in Winding"
+    nodeids: [Wdg_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "442"
+    message: "No Temp Signal in Winding"
+    nodeids: [Wdg_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "443"
+    message: "Temp Sensor Loss in Winding"
+    nodeids: [Wdg_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "444"
+    message: "No SA Temp Signal in Winding"
+    nodeids: [Wdg_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "445"
+    message: "SA Temp Sensor Loss in Winding"
+    nodeids: [Wdg_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "446"
+    message: "No DPT RDF Signal in Winding"
+    nodeids: [Wdg_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "447"
+    message: "DPT RDF Sensor Loss in Winding"
+    nodeids: [Wdg_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+  
+  
+  
+  # --- AutoConer (Aconer) ---
+  - code: "450"
+    message: "Return Air Fan VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "451"
+    message: "Return Air Fan-1 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "452"
+    message: "Return Air Fan-2 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "453"
+    message: "Return Air Fan-3 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "454"
+    message: "Return Air Fan-4 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "455"
+    message: "Supply Air Fan VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "456"
+    message: "Supply Air Fan-1 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "457"
+    message: "Supply Air Fan-2 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "458"
+    message: "Supply Air Fan-3 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "459"
+    message: "Supply Air Fan-4 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "460"
+    message: "Washer Pump VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "461"
+    message: "Washer Pump-1 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "462"
+    message: "Washer Pump-2 VFD Fault - AutoConer"
+    nodeids: [DI_Aconer_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "463"
+    message: "Rotary Drum Filter TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_RDF_TRIP]
+    severity: 1
+  - code: "464"
+    message: "Rotary Drum Filter-1 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "465"
+    message: "Rotary Drum Filter-2 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "466"
+    message: "Dust Collector TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_DCF_TRIP]
+    severity: 1
+  - code: "467"
+    message: "Dust Collector-1 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "468"
+    message: "Dust Collector-2 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "469"
+    message: "Cyclone with Screw Compactor TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "470"
+    message: "Cyclone with Screw Compactor-1 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "471"
+    message: "Cyclone with Screw Compactor-2 TRIP - AutoConer"
+    nodeids: [DI_Aconer_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "472"
+    message: "High RH in AutoConer"
+    nodeids: [Aconer_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "473"
+    message: "Low RH in AutoConer"
+    nodeids: [Aconer_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "474"
+    message: "High Temperature in AutoConer"
+    nodeids: [Aconer_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "475"
+    message: "Low Temperature in AutoConer"
+    nodeids: [Aconer_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "476"
+    message: "High Supply Air Temperature in AutoConer"
+    nodeids: [Aconer_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "477"
+    message: "Low Supply Air Temperature in AutoConer"
+    nodeids: [Aconer_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "478"
+    message: "High Pressure in AutoConer"
+    nodeids: [Aconer_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "479"
+    message: "Low Pressure in AutoConer"
+    nodeids: [Aconer_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "480"
+    message: "No RH Signal in AutoConer"
+    nodeids: [Aconer_iFl_RH_No_Signal]
+    severity: 1
+  - code: "481"
+    message: "RH Sensor Loss in AutoConer"
+    nodeids: [Aconer_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "482"
+    message: "No Temp Signal in AutoConer"
+    nodeids: [Aconer_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "483"
+    message: "Temp Sensor Loss in AutoConer"
+    nodeids: [Aconer_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "484"
+    message: "No SA Temp Signal in AutoConer"
+    nodeids: [Aconer_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "485"
+    message: "SA Temp Sensor Loss in AutoConer"
+    nodeids: [Aconer_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "486"
+    message: "No DPT RDF Signal in AutoConer"
+    nodeids: [Aconer_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "487"
+    message: "DPT RDF Sensor Loss in AutoConer"
+    nodeids: [Aconer_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+  
+
+  # --- LinkConer (Lconer) ---
+  - code: "490"
+    message: "Return Air Fan VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "491"
+    message: "Return Air Fan-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "492"
+    message: "Return Air Fan-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "493"
+    message: "Return Air Fan-3 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "494"
+    message: "Return Air Fan-4 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "495"
+    message: "Supply Air Fan VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "496"
+    message: "Supply Air Fan-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "497"
+    message: "Supply Air Fan-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "498"
+    message: "Supply Air Fan-3 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "499"
+    message: "Supply Air Fan-4 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "500"
+    message: "Washer Pump VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "501" 
+    message: "Washer Pump-1 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "502"
+    message: "Washer Pump-2 VFD Fault - LinkConer"
+    nodeids: [DI_Lconer_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "503"
+    message: "Rotary Drum Filter TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_RDF_TRIP]
+    severity: 1
+  - code: "504"
+    message: "Rotary Drum Filter-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "505"
+    message: "Rotary Drum Filter-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "506"
+    message: "Dust Collector TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_DCF_TRIP]
+    severity: 1
+  - code: "507"
+    message: "Dust Collector-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "508"
+    message: "Dust Collector-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "509"
+    message: "Cyclone with Screw Compactor TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "510"
+    message: "Cyclone with Screw Compactor-1 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "511"
+    message: "Cyclone with Screw Compactor-2 TRIP - LinkConer"
+    nodeids: [DI_Lconer_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "512"
+    message: "High RH in LinkConer"
+    nodeids: [Lconer_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "513"
+    message: "Low RH in LinkConer"
+    nodeids: [Lconer_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "514"
+    message: "High Temperature in LinkConer"
+    nodeids: [Lconer_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "515"
+    message: "Low Temperature in LinkConer"
+    nodeids: [Lconer_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "516"
+    message: "High Supply Air Temperature in LinkConer"
+    nodeids: [Lconer_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "517"
+    message: "Low Supply Air Temperature in LinkConer"
+    nodeids: [Lconer_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "518"
+    message: "High Pressure in LinkConer"
+    nodeids: [Lconer_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "519"
+    message: "Low Pressure in LinkConer"
+    nodeids: [Lconer_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "520"
+    message: "No RH Signal in LinkConer"
+    nodeids: [Lconer_iFl_RH_No_Signal]
+    severity: 1
+  - code: "521"
+    message: "RH Sensor Loss in LinkConer"
+    nodeids: [Lconer_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "522"
+    message: "No Temp Signal in LinkConer"
+    nodeids: [Lconer_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "523"
+    message: "Temp Sensor Loss in LinkConer"
+    nodeids: [Lconer_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "524"
+    message: "No SA Temp Signal in LinkConer"
+    nodeids: [Lconer_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "525"
+    message: "SA Temp Sensor Loss in LinkConer"
+    nodeids: [Lconer_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "526"
+    message: "No DPT RDF Signal in LinkConer"
+    nodeids: [Lconer_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "527"
+    message: "DPT RDF Sensor Loss in LinkConer"
+    nodeids: [Lconer_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- Picanol (Pcnl) ---
+  - code: "530"
+    message: "Return Air Fan VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "531"
+    message: "Return Air Fan-1 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "532"
+    message: "Return Air Fan-2 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "533"
+    message: "Return Air Fan-3 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "534"
+    message: "Return Air Fan-4 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "535"
+    message: "Supply Air Fan VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "536"
+    message: "Supply Air Fan-1 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "537"
+    message: "Supply Air Fan-2 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "538"
+    message: "Supply Air Fan-3 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "539"
+    message: "Supply Air Fan-4 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "540"
+    message: "Washer Pump VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "541"
+    message: "Washer Pump-1 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "542"
+    message: "Washer Pump-2 VFD Fault - Picanol"
+    nodeids: [DI_Pcnl_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "543"
+    message: "Rotary Drum Filter TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_RDF_TRIP]
+    severity: 1
+  - code: "544"
+    message: "Rotary Drum Filter-1 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "545"
+    message: "Rotary Drum Filter-2 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "546"
+    message: "Dust Collector TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_DCF_TRIP]
+    severity: 1
+  - code: "547"
+    message: "Dust Collector-1 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "548"
+    message: "Dust Collector-2 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "549"
+    message: "Cyclone with Screw Compactor TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "550"
+    message: "Cyclone with Screw Compactor-1 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "551"
+    message: "Cyclone with Screw Compactor-2 TRIP - Picanol"
+    nodeids: [DI_Pcnl_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "552"
+    message: "High RH in Picanol"
+    nodeids: [Pcnl_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "553"
+    message: "Low RH in Picanol"
+    nodeids: [Pcnl_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "554"
+    message: "High Temperature in Picanol"
+    nodeids: [Pcnl_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "555"
+    message: "Low Temperature in Picanol"
+    nodeids: [Pcnl_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "556"
+    message: "High Supply Air Temperature in Picanol"
+    nodeids: [Pcnl_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "557"
+    message: "Low Supply Air Temperature in Picanol"
+    nodeids: [Pcnl_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "558"
+    message: "High Pressure in Picanol"
+    nodeids: [Pcnl_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "559"
+    message: "Low Pressure in Picanol"
+    nodeids: [Pcnl_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "560"
+    message: "No RH Signal in Picanol"
+    nodeids: [Pcnl_iFl_RH_No_Signal]
+    severity: 1
+  - code: "561"
+    message: "RH Sensor Loss in Picanol"
+    nodeids: [Pcnl_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "562"
+    message: "No Temp Signal in Picanol"
+    nodeids: [Pcnl_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "563"
+    message: "Temp Sensor Loss in Picanol"
+    nodeids: [Pcnl_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "564"
+    message: "No SA Temp Signal in Picanol"
+    nodeids: [Pcnl_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "565"
+    message: "SA Temp Sensor Loss in Picanol"
+    nodeids: [Pcnl_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "566"
+    message: "No DPT RDF Signal in Picanol"
+    nodeids: [Pcnl_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "567"
+    message: "DPT RDF Sensor Loss in Picanol"
+    nodeids: [Pcnl_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+  # --- Warping (Warp) ---
+  - code: "570"
+    message: "Return Air Fan VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "571"
+    message: "Return Air Fan-1 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "572"
+    message: "Return Air Fan-2 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "573"
+    message: "Return Air Fan-3 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "574"
+    message: "Return Air Fan-4 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "575"
+    message: "Supply Air Fan VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "576"
+    message: "Supply Air Fan-1 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "577"
+    message: "Supply Air Fan-2 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "578"
+    message: "Supply Air Fan-3 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "579"
+    message: "Supply Air Fan-4 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "580"
+    message: "Washer Pump VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "581"
+    message: "Washer Pump-1 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "582"
+    message: "Washer Pump-2 VFD Fault - Warping"
+    nodeids: [DI_Warp_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "583"
+    message: "Rotary Drum Filter TRIP - Warping"
+    nodeids: [DI_Warp_iFl_RDF_TRIP]
+    severity: 1
+  - code: "584"
+    message: "Rotary Drum Filter-1 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "585"
+    message: "Rotary Drum Filter-2 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "586"
+    message: "Dust Collector TRIP - Warping"
+    nodeids: [DI_Warp_iFl_DCF_TRIP]
+    severity: 1
+  - code: "587"
+    message: "Dust Collector-1 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "588"
+    message: "Dust Collector-2 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "589"
+    message: "Cyclone with Screw Compactor TRIP - Warping"
+    nodeids: [DI_Warp_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "590"
+    message: "Cyclone with Screw Compactor-1 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "591"
+    message: "Cyclone with Screw Compactor-2 TRIP - Warping"
+    nodeids: [DI_Warp_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "592"
+    message: "High RH in Warping"
+    nodeids: [Warp_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "593"
+    message: "Low RH in Warping"
+    nodeids: [Warp_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "594"
+    message: "High Temperature in Warping"
+    nodeids: [Warp_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "595"
+    message: "Low Temperature in Warping"
+    nodeids: [Warp_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "596"
+    message: "High Supply Air Temperature in Warping"
+    nodeids: [Warp_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "597"
+    message: "Low Supply Air Temperature in Warping"
+    nodeids: [Warp_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "598"
+    message: "High Pressure in Warping"
+    nodeids: [Warp_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "599"
+    message: "Low Pressure in Warping"
+    nodeids: [Warp_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "600"
+    message: "No RH Signal in Warping"
+    nodeids: [Warp_iFl_RH_No_Signal]
+    severity: 1
+  - code: "601"
+    message: "RH Sensor Loss in Warping"
+    nodeids: [Warp_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "602"
+    message: "No Temp Signal in Warping"
+    nodeids: [Warp_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "603"
+    message: "Temp Sensor Loss in Warping"
+    nodeids: [Warp_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "604"
+    message: "No SA Temp Signal in Warping"
+    nodeids: [Warp_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "605"
+    message: "SA Temp Sensor Loss in Warping"
+    nodeids: [Warp_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "606"
+    message: "No DPT RDF Signal in Warping"
+    nodeids: [Warp_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "607"
+    message: "DPT RDF Sensor Loss in Warping"
+    nodeids: [Warp_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+  # --- Weaving (Wvg) ---
+  - code: "610"
+    message: "Return Air Fan VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "611"
+    message: "Return Air Fan-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "612"
+    message: "Return Air Fan-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "613"
+    message: "Return Air Fan-3 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "614"
+    message: "Return Air Fan-4 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "615"
+    message: "Supply Air Fan VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "616"
+    message: "Supply Air Fan-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "617"
+    message: "Supply Air Fan-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "618"
+    message: "Supply Air Fan-3 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "619"
+    message: "Supply Air Fan-4 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "620"
+    message: "Washer Pump VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "621"
+    message: "Washer Pump-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "622"
+    message: "Washer Pump-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "623"
+    message: "Rotary Drum Filter TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_RDF_TRIP]
+    severity: 1
+  - code: "624"
+    message: "Rotary Drum Filter-1 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "625"
+    message: "Rotary Drum Filter-2 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "626"
+    message: "Dust Collector TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_DCF_TRIP]
+    severity: 1
+  - code: "627"
+    message: "Dust Collector-1 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "628"
+    message: "Dust Collector-2 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "629"
+    message: "Cyclone with Screw Compactor TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "630"
+    message: "Cyclone with Screw Compactor-1 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "631"
+    message: "Cyclone with Screw Compactor-2 TRIP - Weaving"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "632"
+    message: "High RH in Weaving"
+    nodeids: [Wvg_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "633"
+    message: "Low RH in Weaving"
+    nodeids: [Wvg_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "634"
+    message: "High Temperature in Weaving"
+    nodeids: [Wvg_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "635"
+    message: "Low Temperature in Weaving"
+    nodeids: [Wvg_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "636"
+    message: "High Supply Air Temperature in Weaving"
+    nodeids: [Wvg_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "637"
+    message: "Low Supply Air Temperature in Weaving"
+    nodeids: [Wvg_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "638"
+    message: "High Pressure in Weaving"
+    nodeids: [Wvg_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "639"
+    message: "Low Pressure in Weaving"
+    nodeids: [Wvg_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "640"
+    message: "No RH Signal in Weaving"
+    nodeids: [Wvg_iFl_RH_No_Signal]
+    severity: 1
+  - code: "641"
+    message: "RH Sensor Loss in Weaving"
+    nodeids: [Wvg_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "642"
+    message: "No Temp Signal in Weaving"
+    nodeids: [Wvg_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "643"
+    message: "Temp Sensor Loss in Weaving"
+    nodeids: [Wvg_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "644"
+    message: "No SA Temp Signal in Weaving"
+    nodeids: [Wvg_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "645"
+    message: "SA Temp Sensor Loss in Weaving"
+    nodeids: [Wvg_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "646"
+    message: "No DPT RDF Signal in Weaving"
+    nodeids: [Wvg_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "647"
+    message: "DPT RDF Sensor Loss in Weaving"
+    nodeids: [Wvg_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- Weaving (Wvg1) ---
+  - code: "650"
+    message: "Return Air Fan VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "651"
+    message: "Return Air Fan-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "652"
+    message: "Return Air Fan-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "653"
+    message: "Return Air Fan-3 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "654"
+    message: "Return Air Fan-4 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "655"
+    message: "Supply Air Fan VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "656"
+    message: "Supply Air Fan-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "657"
+    message: "Supply Air Fan-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "658"
+    message: "Supply Air Fan-3 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "659"
+    message: "Supply Air Fan-4 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "660"
+    message: "Washer Pump VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "661"
+    message: "Washer Pump-1 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "662"
+    message: "Washer Pump-2 VFD Fault - Weaving"
+    nodeids: [DI_Wvg1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "663"
+    message: "Rotary Drum Filter TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_RDF_TRIP]
+    severity: 1
+  - code: "664"
+    message: "Rotary Drum Filter-1 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "665"
+    message: "Rotary Drum Filter-2 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "666"
+    message: "Dust Collector TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_DCF_TRIP]
+    severity: 1
+  - code: "667"
+    message: "Dust Collector-1 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "668"
+    message: "Dust Collector-2 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "669"
+    message: "Cyclone with Screw Compactor TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "670"
+    message: "Cyclone with Screw Compactor-1 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "671"
+    message: "Cyclone with Screw Compactor-2 TRIP - Weaving"
+    nodeids: [DI_Wvg1_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "672"
+    message: "High RH in Weaving"
+    nodeids: [Wvg1_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "673"
+    message: "Low RH in Weaving"
+    nodeids: [Wvg1_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "674"
+    message: "High Temperature in Weaving"
+    nodeids: [Wvg1_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "675"
+    message: "Low Temperature in Weaving"
+    nodeids: [Wvg1_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "676"
+    message: "High Supply Air Temperature in Weaving"
+    nodeids: [Wvg1_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "677"
+    message: "Low Supply Air Temperature in Weaving"
+    nodeids: [Wvg1_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "678"
+    message: "High Pressure in Weaving"
+    nodeids: [Wvg1_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "679"
+    message: "Low Pressure in Weaving"
+    nodeids: [Wvg1_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "680"
+    message: "No RH Signal in Weaving"
+    nodeids: [Wvg1_iFl_RH_No_Signal]
+    severity: 1
+  - code: "681"
+    message: "RH Sensor Loss in Weaving"
+    nodeids: [Wvg1_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "682"
+    message: "No Temp Signal in Weaving"
+    nodeids: [Wvg1_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "683"
+    message: "Temp Sensor Loss in Weaving"
+    nodeids: [Wvg1_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "684"
+    message: "No SA Temp Signal in Weaving"
+    nodeids: [Wvg1_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "685"
+    message: "SA Temp Sensor Loss in Weaving"
+    nodeids: [Wvg1_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "686"
+    message: "No DPT RDF Signal in Weaving"
+    nodeids: [Wvg1_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "687"
+    message: "DPT RDF Sensor Loss in Weaving"
+    nodeids: [Wvg1_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+  # --- Weaving1 (Wvg) ---
+  - code: "690"
+    message: "Return Air Fan VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "691"
+    message: "Return Air Fan-1 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "692"
+    message: "Return Air Fan-2 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "693"
+    message: "Return Air Fan-3 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "694"
+    message: "Return Air Fan-4 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "695"
+    message: "Supply Air Fan VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "696"
+    message: "Supply Air Fan-1 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "697"
+    message: "Supply Air Fan-2 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "698"
+    message: "Supply Air Fan-3 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "699"
+    message: "Supply Air Fan-4 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "700"
+    message: "Washer Pump VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "701"
+    message: "Washer Pump-1 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "702"
+    message: "Washer Pump-2 VFD Fault - Weaving1"
+    nodeids: [DI_Wvg_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "703"
+    message: "Rotary Drum Filter TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_RDF_TRIP]
+    severity: 1
+  - code: "704"
+    message: "Rotary Drum Filter-1 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "705"
+    message: "Rotary Drum Filter-2 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "706"
+    message: "Dust Collector TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_DCF_TRIP]
+    severity: 1
+  - code: "707"
+    message: "Dust Collector-1 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "708"
+    message: "Dust Collector-2 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "709"
+    message: "Cyclone with Screw Compactor TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "710"
+    message: "Cyclone with Screw Compactor-1 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "711"
+    message: "Cyclone with Screw Compactor-2 TRIP - Weaving1"
+    nodeids: [DI_Wvg_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "712"
+    message: "High RH in Weaving1"
+    nodeids: [Wvg_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "713"
+    message: "Low RH in Weaving1"
+    nodeids: [Wvg_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "714"
+    message: "High Temperature in Weaving1"
+    nodeids: [Wvg_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "715"
+    message: "Low Temperature in Weaving1"
+    nodeids: [Wvg_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "716"
+    message: "High Supply Air Temperature in Weaving1"
+    nodeids: [Wvg_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "717"
+    message: "Low Supply Air Temperature in Weaving1"
+    nodeids: [Wvg_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "718"
+    message: "High Pressure in Weaving1"
+    nodeids: [Wvg_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "719"
+    message: "Low Pressure in Weaving1"
+    nodeids: [Wvg_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "720"
+    message: "No RH Signal in Weaving1"
+    nodeids: [Wvg_iFl_RH_No_Signal]
+    severity: 1
+  - code: "721"
+    message: "RH Sensor Loss in Weaving1"
+    nodeids: [Wvg_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "722"
+    message: "No Temp Signal in Weaving1"
+    nodeids: [Wvg_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "723"
+    message: "Temp Sensor Loss in Weaving1"
+    nodeids: [Wvg_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "724"
+    message: "No SA Temp Signal in Weaving1"
+    nodeids: [Wvg_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "725"
+    message: "SA Temp Sensor Loss in Weaving1"
+    nodeids: [Wvg_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "726"
+    message: "No DPT RDF Signal in Weaving1"
+    nodeids: [Wvg_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "727"
+    message: "DPT RDF Sensor Loss in Weaving1"
+    nodeids: [Wvg_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+
+  # --- Weaving2 (Wvg2) ---
+  - code: "730"
+    message: "Return Air Fan VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "731"
+    message: "Return Air Fan-1 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "732"
+    message: "Return Air Fan-2 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "733"
+    message: "Return Air Fan-3 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "734"
+    message: "Return Air Fan-4 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "735"
+    message: "Supply Air Fan VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "736"
+    message: "Supply Air Fan-1 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "737"
+    message: "Supply Air Fan-2 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "738"
+    message: "Supply Air Fan-3 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "739"
+    message: "Supply Air Fan-4 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "740"
+    message: "Washer Pump VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "741"
+    message: "Washer Pump-1 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "742"
+    message: "Washer Pump-2 VFD Fault - Weaving2"
+    nodeids: [DI_Wvg2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "743"
+    message: "Rotary Drum Filter TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RDF_TRIP]
+    severity: 1
+  - code: "744"
+    message: "Rotary Drum Filter-1 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "745"
+    message: "Rotary Drum Filter-2 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "746"
+    message: "Dust Collector TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_DCF_TRIP]
+    severity: 1
+  - code: "747"
+    message: "Dust Collector-1 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "748"
+    message: "Dust Collector-2 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "749"
+    message: "Cyclone with Screw Compactor TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "750"
+    message: "Cyclone with Screw Compactor-1 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "751"
+    message: "Cyclone with Screw Compactor-2 TRIP - Weaving2"
+    nodeids: [DI_Wvg2_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "752"
+    message: "High RH in Weaving2"
+    nodeids: [Wvg2_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "753"
+    message: "Low RH in Weaving2"
+    nodeids: [Wvg2_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "754"
+    message: "High Temperature in Weaving2"
+    nodeids: [Wvg2_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "755"
+    message: "Low Temperature in Weaving2"
+    nodeids: [Wvg2_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "756"
+    message: "High Supply Air Temperature in Weaving2"
+    nodeids: [Wvg2_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "757"
+    message: "Low Supply Air Temperature in Weaving2"
+    nodeids: [Wvg2_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "758"
+    message: "High Pressure in Weaving2"
+    nodeids: [Wvg2_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "759"
+    message: "Low Pressure in Weaving2"
+    nodeids: [Wvg2_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "760"
+    message: "No RH Signal in Weaving2"
+    nodeids: [Wvg2_iFl_RH_No_Signal]
+    severity: 1
+  - code: "761"
+    message: "RH Sensor Loss in Weaving2"
+    nodeids: [Wvg2_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "762"
+    message: "No Temp Signal in Weaving2"
+    nodeids: [Wvg2_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "763"
+    message: "Temp Sensor Loss in Weaving2"
+    nodeids: [Wvg2_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "764"
+    message: "No SA Temp Signal in Weaving2"
+    nodeids: [Wvg2_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "765"
+    message: "SA Temp Sensor Loss in Weaving2"
+    nodeids: [Wvg2_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "766"
+    message: "No DPT RDF Signal in Weaving2"
+    nodeids: [Wvg2_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "767"
+    message: "DPT RDF Sensor Loss in Weaving2"
+    nodeids: [Wvg2_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- WeavingLoom (WvgL) ---
+  - code: "770"
+    message: "Return Air Fan VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "771"
+    message: "Return Air Fan-1 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "772"
+    message: "Return Air Fan-2 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "773"
+    message: "Return Air Fan-3 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "774"
+    message: "Return Air Fan-4 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "775"
+    message: "Supply Air Fan VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "776"
+    message: "Supply Air Fan-1 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "777"
+    message: "Supply Air Fan-2 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "778"
+    message: "Supply Air Fan-3 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "779"
+    message: "Supply Air Fan-4 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "780"
+    message: "Washer Pump VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "781"
+    message: "Washer Pump-1 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "782"
+    message: "Washer Pump-2 VFD Fault - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "783"
+    message: "Rotary Drum Filter TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RDF_TRIP]
+    severity: 1
+  - code: "784"
+    message: "Rotary Drum Filter-1 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "785"
+    message: "Rotary Drum Filter-2 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "786"
+    message: "Dust Collector TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_DCF_TRIP]
+    severity: 1
+  - code: "787"
+    message: "Dust Collector-1 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "788"
+    message: "Dust Collector-2 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "789"
+    message: "Cyclone with Screw Compactor TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "790"
+    message: "Cyclone with Screw Compactor-1 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "791"
+    message: "Cyclone with Screw Compactor-2 TRIP - WeavingLoom"
+    nodeids: [DI_WvgL_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "792"
+    message: "High RH in WeavingLoom"
+    nodeids: [WvgL_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "793"
+    message: "Low RH in WeavingLoom"
+    nodeids: [WvgL_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "794"
+    message: "High Temperature in WeavingLoom"
+    nodeids: [WvgL_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "795"
+    message: "Low Temperature in WeavingLoom"
+    nodeids: [WvgL_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "796"
+    message: "High Supply Air Temperature in WeavingLoom"
+    nodeids: [WvgL_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "797"
+    message: "Low Supply Air Temperature in WeavingLoom"
+    nodeids: [WvgL_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "798"
+    message: "High Pressure in WeavingLoom"
+    nodeids: [WvgL_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "799"
+    message: "Low Pressure in WeavingLoom"
+    nodeids: [WvgL_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "780"
+    message: "No RH Signal in WeavingLoom"
+    nodeids: [WvgL_iFl_RH_No_Signal]
+    severity: 1
+  - code: "781"
+    message: "RH Sensor Loss in WeavingLoom"
+    nodeids: [WvgL_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "782"
+    message: "No Temp Signal in WeavingLoom"
+    nodeids: [WvgL_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "783"
+    message: "Temp Sensor Loss in WeavingLoom"
+    nodeids: [WvgL_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "784"
+    message: "No SA Temp Signal in WeavingLoom"
+    nodeids: [WvgL_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "785"
+    message: "SA Temp Sensor Loss in WeavingLoom"
+    nodeids: [WvgL_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "786"
+    message: "No DPT RDF Signal in WeavingLoom"
+    nodeids: [WvgL_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "787"
+    message: "DPT RDF Sensor Loss in WeavingLoom"
+    nodeids: [WvgL_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- WeavingLoom1 (WvgL1) ---
+  - code: "780"
+    message: "Return Air Fan VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "781"
+    message: "Return Air Fan-1 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "782"
+    message: "Return Air Fan-2 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "783"
+    message: "Return Air Fan-3 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "784"
+    message: "Return Air Fan-4 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "785"
+    message: "Supply Air Fan VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "786"
+    message: "Supply Air Fan-1 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "787"
+    message: "Supply Air Fan-2 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "788"
+    message: "Supply Air Fan-3 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "789"
+    message: "Supply Air Fan-4 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "790"
+    message: "Washer Pump VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "791"
+    message: "Washer Pump-1 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "792"
+    message: "Washer Pump-2 VFD Fault - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "793"
+    message: "Rotary Drum Filter TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RDF_TRIP]
+    severity: 1
+  - code: "794"
+    message: "Rotary Drum Filter-1 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "795"
+    message: "Rotary Drum Filter-2 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "796"
+    message: "Dust Collector TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_DCF_TRIP]
+    severity: 1
+  - code: "797"
+    message: "Dust Collector-1 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "798"
+    message: "Dust Collector-2 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "799"
+    message: "Cyclone with Screw Compactor TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "800"
+    message: "Cyclone with Screw Compactor-1 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "801"
+    message: "Cyclone with Screw Compactor-2 TRIP - WeavingLoom1"
+    nodeids: [DI_WvgL1_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "802"
+    message: "High RH in WeavingLoom1"
+    nodeids: [WvgL1_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "803"
+    message: "Low RH in WeavingLoom1"
+    nodeids: [WvgL1_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "804"
+    message: "High Temperature in WeavingLoom1"
+    nodeids: [WvgL1_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "805"
+    message: "Low Temperature in WeavingLoom1"
+    nodeids: [WvgL1_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "806"
+    message: "High Supply Air Temperature in WeavingLoom1"
+    nodeids: [WvgL1_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "807"
+    message: "Low Supply Air Temperature in WeavingLoom1"
+    nodeids: [WvgL1_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "808"
+    message: "High Pressure in WeavingLoom1"
+    nodeids: [WvgL1_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "809"
+    message: "Low Pressure in WeavingLoom1"
+    nodeids: [WvgL1_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "810"
+    message: "No RH Signal in WeavingLoom1"
+    nodeids: [WvgL1_iFl_RH_No_Signal]
+    severity: 1
+  - code: "811"
+    message: "RH Sensor Loss in WeavingLoom1"
+    nodeids: [WvgL1_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "812"
+    message: "No Temp Signal in WeavingLoom1"
+    nodeids: [WvgL1_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "813"
+    message: "Temp Sensor Loss in WeavingLoom1"
+    nodeids: [WvgL1_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "814"
+    message: "No SA Temp Signal in WeavingLoom1"
+    nodeids: [WvgL1_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "815"
+    message: "SA Temp Sensor Loss in WeavingLoom1"
+    nodeids: [WvgL1_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "816"
+    message: "No DPT RDF Signal in WeavingLoom1"
+    nodeids: [WvgL1_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "817"
+    message: "DPT RDF Sensor Loss in WeavingLoom1"
+    nodeids: [WvgL1_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- WeavingLoom2 (WvgL2) ---
+  - code: "820"
+    message: "Return Air Fan VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "821"
+    message: "Return Air Fan-1 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "822"
+    message: "Return Air Fan-2 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "823"
+    message: "Return Air Fan-3 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "824"
+    message: "Return Air Fan-4 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "825"
+    message: "Supply Air Fan VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "826"
+    message: "Supply Air Fan-1 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "827"
+    message: "Supply Air Fan-2 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "828"
+    message: "Supply Air Fan-3 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "829"
+    message: "Supply Air Fan-4 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "830"
+    message: "Washer Pump VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "831"
+    message: "Washer Pump-1 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "832"
+    message: "Washer Pump-2 VFD Fault - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "833"
+    message: "Rotary Drum Filter TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RDF_TRIP]
+    severity: 1
+  - code: "834"
+    message: "Rotary Drum Filter-1 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "835"
+    message: "Rotary Drum Filter-2 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "836"
+    message: "Dust Collector TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_DCF_TRIP]
+    severity: 1
+  - code: "837"
+    message: "Dust Collector-1 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "838"
+    message: "Dust Collector-2 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "839"
+    message: "Cyclone with Screw Compactor TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "840"
+    message: "Cyclone with Screw Compactor-1 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "841"
+    message: "Cyclone with Screw Compactor-2 TRIP - WeavingLoom2"
+    nodeids: [DI_WvgL2_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "842"
+    message: "High RH in WeavingLoom2"
+    nodeids: [WvgL2_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "843"
+    message: "Low RH in WeavingLoom2"
+    nodeids: [WvgL2_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "844"
+    message: "High Temperature in WeavingLoom2"
+    nodeids: [WvgL2_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "845"
+    message: "Low Temperature in WeavingLoom2"
+    nodeids: [WvgL2_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "846"
+    message: "High Supply Air Temperature in WeavingLoom2"
+    nodeids: [WvgL2_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "847"
+    message: "Low Supply Air Temperature in WeavingLoom2"
+    nodeids: [WvgL2_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "848"
+    message: "High Pressure in WeavingLoom2"
+    nodeids: [WvgL2_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "849"
+    message: "Low Pressure in WeavingLoom2"
+    nodeids: [WvgL2_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "850"
+    message: "No RH Signal in WeavingLoom2"
+    nodeids: [WvgL2_iFl_RH_No_Signal]
+    severity: 1
+  - code: "851"
+    message: "RH Sensor Loss in WeavingLoom2"
+    nodeids: [WvgL2_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "852"
+    message: "No Temp Signal in WeavingLoom2"
+    nodeids: [WvgL2_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "853"
+    message: "Temp Sensor Loss in WeavingLoom2"
+    nodeids: [WvgL2_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "854"
+    message: "No SA Temp Signal in WeavingLoom2"
+    nodeids: [WvgL2_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "855"
+    message: "SA Temp Sensor Loss in WeavingLoom2"
+    nodeids: [WvgL2_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "856"
+    message: "No DPT RDF Signal in WeavingLoom2"
+    nodeids: [WvgL2_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "857"
+    message: "DPT RDF Sensor Loss in WeavingLoom2"
+    nodeids: [WvgL2_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+
+
+
+
+  # --- WeavingLoom3 (WvgL3) ---
+  - code: "860"
+    message: "Return Air Fan VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RetAFan_TRIP]
+    severity: 1
+  - code: "861"
+    message: "Return Air Fan-1 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RetAFan1_TRIP]
+    severity: 1
+  - code: "862"
+    message: "Return Air Fan-2 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RetAFan2_TRIP]
+    severity: 1
+  - code: "863"
+    message: "Return Air Fan-3 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RetAFan3_TRIP]
+    severity: 1
+  - code: "864"
+    message: "Return Air Fan-4 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RetAFan4_TRIP]
+    severity: 1
+  - code: "865"
+    message: "Supply Air Fan VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_SAFan_TRIP]
+    severity: 1
+  - code: "866"
+    message: "Supply Air Fan-1 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_SAFan1_TRIP]
+    severity: 1
+  - code: "867"
+    message: "Supply Air Fan-2 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_SAFan2_TRIP]
+    severity: 1
+  - code: "868"
+    message: "Supply Air Fan-3 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_SAFan3_TRIP]
+    severity: 1
+  - code: "869"
+    message: "Supply Air Fan-4 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_SAFan4_TRIP]
+    severity: 1
+  - code: "870"
+    message: "Washer Pump VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_WasherPump_TRIP]
+    severity: 1
+  - code: "871"
+    message: "Washer Pump-1 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_WasherPump1_TRIP]
+    severity: 1
+  - code: "872"
+    message: "Washer Pump-2 VFD Fault - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_WasherPump2_TRIP]
+    severity: 1
+  - code: "873"
+    message: "Rotary Drum Filter TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RDF_TRIP]
+    severity: 1
+  - code: "874"
+    message: "Rotary Drum Filter-1 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RDF1_TRIP]
+    severity: 1
+  - code: "875"
+    message: "Rotary Drum Filter-2 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_RDF2_TRIP]
+    severity: 1
+  - code: "876"
+    message: "Dust Collector TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_DCF_TRIP]
+    severity: 1
+  - code: "877"
+    message: "Dust Collector-1 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_DCF1_TRIP]
+    severity: 1
+  - code: "878"
+    message: "Dust Collector-2 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_DCF2_TRIP]
+    severity: 1
+  - code: "879"
+    message: "Cyclone with Screw Compactor TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_ScrewCompactor_TRIP]
+    severity: 1
+  - code: "880"
+    message: "Cyclone with Screw Compactor-1 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_ScrewCompactor1_TRIP]
+    severity: 1
+  - code: "881"
+    message: "Cyclone with Screw Compactor-2 TRIP - WeavingLoom3"
+    nodeids: [DI_WvgL3_iFl_ScrewCompactor2_TRIP]
+    severity: 1
+  - code: "882"
+    message: "High RH in WeavingLoom3"
+    nodeids: [WvgL3_iFl_RH_High_Alarm]
+    severity: 1
+  - code: "883"
+    message: "Low RH in WeavingLoom3"
+    nodeids: [WvgL3_iFl_RH_Low_Alarm]
+    severity: 1
+  - code: "884"
+    message: "High Temperature in WeavingLoom3"
+    nodeids: [WvgL3_iFl_Temp_High_Alarm]
+    severity: 1
+  - code: "885"
+    message: "Low Temperature in WeavingLoom3"
+    nodeids: [WvgL3_iFl_Temp_Low_Alarm]
+    severity: 1
+  - code: "886"
+    message: "High Supply Air Temperature in WeavingLoom3"
+    nodeids: [WvgL3_iFl_SA_Temp_High_Alarm]
+    severity: 1
+  - code: "887"
+    message: "Low Supply Air Temperature in WeavingLoom3"
+    nodeids: [WvgL3_iFl_SA_Temp_Low_Alarm]
+    severity: 1
+  - code: "888"
+    message: "High Pressure in WeavingLoom3"
+    nodeids: [WvgL3_iFl_DPT_High_Alarm]
+    severity: 1
+  - code: "889"
+    message: "Low Pressure in WeavingLoom3"
+    nodeids: [WvgL3_iFl_DPT_Low_Alarm]
+    severity: 1
+  - code: "890"
+    message: "No RH Signal in WeavingLoom3"
+    nodeids: [WvgL3_iFl_RH_No_Signal]
+    severity: 1
+  - code: "891"
+    message: "RH Sensor Loss in WeavingLoom3"
+    nodeids: [WvgL3_iFl_RH_Sensor_Loss]
+    severity: 1
+  - code: "892"
+    message: "No Temp Signal in WeavingLoom3"
+    nodeids: [WvgL3_iFl_Temp_No_Signal]
+    severity: 1
+  - code: "893"
+    message: "Temp Sensor Loss in WeavingLoom3"
+    nodeids: [WvgL3_iFl_Temp_Sensor_Loss]
+    severity: 1
+  - code: "894"
+    message: "No SA Temp Signal in WeavingLoom3"
+    nodeids: [WvgL3_iFl_SA_Temp_No_Signal]
+    severity: 1
+  - code: "895"
+    message: "SA Temp Sensor Loss in WeavingLoom3"
+    nodeids: [WvgL3_iFl_SA_Temp_Sensor_Loss]
+    severity: 1
+  - code: "896"
+    message: "No DPT RDF Signal in WeavingLoom3"
+    nodeids: [WvgL3_iFl_DPT_RDF_No_Signal]
+    severity: 1
+  - code: "897"
+    message: "DPT RDF Sensor Loss in WeavingLoom3"
+    nodeids: [WvgL3_iFl_DPT_RDF_Sensor_Loss]
+    severity: 1
+  
+
+
+
+
+    # WCS Alarms
+
+  # --- WCS_Carding (WCS_Card) ---
+
+  - code: "900"
+    message: "Compactor TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_Compactor_Trip]
+    severity: 1
+  - code: "901"
+    message: "Compactor-1 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "902"
+    message: "Compactor-2 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "903"
+    message: "Conveyance Fan TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "904"
+    message: "Cyclone TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "905"
+    message: "PDF TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_PDF_Trip]
+    severity: 1
+  - code: "906"
+    message: "PDF1 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_PDF1_Trip]
+    severity: 1
+  - code: "907"
+    message: "PDF2 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_PDF2_Trip]
+    severity: 1
+  - code: "908"
+    message: "RDF TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_RDF_Trip]
+    severity: 1
+  - code: "909"
+    message: "Transport Fan TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "910"
+    message: "Transport Fan-1 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "911"
+    message: "Transport Fan-2 TRIP - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "912"
+    message: "Main Air Fan VFD Fault - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "913"
+    message: "Main Air Fan-1 VFD Fault - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "914"
+    message: "Main Air Fan-2 VFD Fault - WCS_Carding"
+    nodeids: [DI_WCS_Card_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "915"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "916"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "917"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "918"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "919"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "920"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "921"
+    message: "No DPT RDF Signal in Carding"
+    nodeids: [WCS_Card_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "922"
+    message: "DPT RDF Sensor Loss in Carding"
+    nodeids: [WCS_Card_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+    # --- WCS_Comber (WCS_Comber) ---
+  - code: "930"
+    message: "Compactor TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor_Trip]
+    severity: 1
+  - code: "931"
+    message: "Compactor-1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "932"
+    message: "Compactor-2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "933"
+    message: "Conveyance Fan TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "934"
+    message: "Cyclone TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "935"
+    message: "PDF TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF_Trip]
+    severity: 1
+  - code: "936"
+    message: "PDF1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF1_Trip]
+    severity: 1
+  - code: "937"
+    message: "PDF2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_PDF2_Trip]
+    severity: 1
+  - code: "938"
+    message: "RDF TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_RDF_Trip]
+    severity: 1
+  - code: "939"
+    message: "Transport Fan TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "940"
+    message: "Transport Fan-1 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "941"
+    message: "Transport Fan-2 TRIP - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "942"
+    message: "Main Air Fan VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "943"
+    message: "Main Air Fan-1 VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "944"
+    message: "Main Air Fan-2 VFD Fault - WCS_Comber"
+    nodeids: [DI_WCS_Comber_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "945"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "946"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "947"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "948"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "949"
+    message: "No DPT PDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "950"
+    message: "DPT PDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "951"
+    message: "No DPT RDF Signal in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "952"
+    message: "DPT RDF Sensor Loss in Comber"
+    nodeids: [WCS_Comber_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+
+    # --- WCS_BlowRoom (WCS_BR) ---
+
+  - code: "960"
+    message: "Compactor TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_Compactor_Trip]
+    severity: 1
+  - code: "961"
+    message: "Compactor-1 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "962"
+    message: "Compactor-2 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "963"
+    message: "Conveyance Fan TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "964"
+    message: "Cyclone TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "965"
+    message: "PDF TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_PDF_Trip]
+    severity: 1
+  - code: "966"
+    message: "PDF1 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_PDF1_Trip]
+    severity: 1
+  - code: "967"
+    message: "PDF2 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_PDF2_Trip]
+    severity: 1
+  - code: "968"
+    message: "RDF TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_RDF_Trip]
+    severity: 1
+  - code: "969"
+    message: "Transport Fan TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "970"
+    message: "Transport Fan-1 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "971"
+    message: "Transport Fan-2 TRIP - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "972"
+    message: "Main Air Fan VFD Fault - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "973"
+    message: "Main Air Fan-1 VFD Fault - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "974"
+    message: "Main Air Fan-2 VFD Fault - WCS_BlowRoom"
+    nodeids: [DI_WCS_BR_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "975"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "976"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "977"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "978"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "979"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "980"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_BR_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "981"
+    message: "No DPT RDF Signal in Carding"
+    nodeids: [WCS_BR_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "982"
+    message: "DPT RDF Sensor Loss in Carding"
+    nodeids: [WCS_BR_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+    # --- WCS_Preparatory (WCS_Prep) ---
+
+  - code: "990"
+    message: "Compactor TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_Compactor_Trip]
+    severity: 1
+  - code: "991"
+    message: "Compactor-1 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_Compactor1_Trip]
+    severity: 1
+  - code: "992"
+    message: "Compactor-2 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_Compactor2_Trip]
+    severity: 1
+  - code: "993"
+    message: "Conveyance Fan TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_Conveyance_Fan_Trip]
+    severity: 1
+  - code: "994"
+    message: "Cyclone TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_Cyclone_Trip]
+    severity: 1
+  - code: "995"
+    message: "PDF TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_PDF_Trip]
+    severity: 1
+  - code: "996"
+    message: "PDF1 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_PDF1_Trip]
+    severity: 1
+  - code: "997"
+    message: "PDF2 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_PDF2_Trip]
+    severity: 1
+  - code: "998"
+    message: "RDF TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_RDF_Trip]
+    severity: 1
+  - code: "999"
+    message: "Transport Fan TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_TR_Fan_Trip]
+    severity: 1
+  - code: "1000"
+    message: "Transport Fan-1 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_TR_Fan1_Trip]
+    severity: 1
+  - code: "1001"
+    message: "Transport Fan-2 TRIP - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_TR_Fan2_Trip]
+    severity: 1
+  - code: "1002"
+    message: "Main Air Fan VFD Fault - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_MainAirFan_Trip]
+    severity: 1
+  - code: "1003"
+    message: "Main Air Fan-1 VFD Fault - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_MainAirFan1_Trip]
+    severity: 1
+  - code: "1004"
+    message: "Main Air Fan-2 VFD Fault - WCS_Preparatory"
+    nodeids: [DI_WCS_Prep_iFl_MainAirFan2_Trip]
+    severity: 1
+  - code: "1005"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF_No_Signal_Alarm]
+    severity: 1
+  - code: "1006"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "1007"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF1_No_Signal_Alarm]
+    severity: 1
+  - code: "1008"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF1_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "1009"
+    message: "No DPT PDF Signal in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF2_No_Signal_Alarm]
+    severity: 1
+  - code: "1010"
+    message: "DPT PDF Sensor Loss in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_PDF2_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "1011"
+    message: "No DPT RDF Signal in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_RDF_No_Signal_Alarm]
+    severity: 1
+  - code: "1012"
+    message: "DPT RDF Sensor Loss in Carding"
+    nodeids: [WCS_Prep_iFl_DPT_RDF_Sensor_Loss_Alarm]
+    severity: 1
+
+
+  #---OUTSIDE---
+  - code: "1020"
+    message: "No RH Signal in OutSide"
+    nodeids: [OutSide_iFl_RH_No_Signal_Alarm]
+    severity: 1
+  - code: "1021"
+    message: "RH Sensor Loss in OutSide"
+    nodeids: [OutSide_iFl_RH_Sensor_Loss_Alarm]
+    severity: 1
+  - code: "1022"
+    message: "No Temp Signal in OutSide"
+    nodeids: [OutSide_iFl_Temp_No_Signal_Alarm]
+    severity: 1
+  - code: "1023"
+    message: "Temp Sensor Loss in OutSide"
+    nodeids: [OutSide_iFl_Temp_Sensor_Loss_Alarm]
+    severity: 1

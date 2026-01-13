@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}TSE Control System{% endblock %}</title>
+    <link rel="stylesheet" href="static\css\font.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/favicon.png') }}"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .outside-conditions-box {
+        margin: 20px auto 10px auto;
+        width: 85%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border: 1px solid #003054;
+      }
+      .outside-conditions-header {
+        background-color: #0c609d;
+        color: white;
+        padding: 6px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+      }
+      .outside-conditions-body {
+        background-color: #e3f4ff;
+        padding: 10px;
+        color: #003054;
+      }
+      .condition-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .condition-row:last-child {
+        margin-bottom: 0;
+      }
+      .condition-value {
+        background-color: white;
+        color: black;
+        border: 1px solid #9ca3af;
+        border-radius: 4px;
+        padding: 3px 8px;
+        min-width: 60px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .condition-unit {
+        width: 35px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: bold;
+        color: #0c609d;
+      }
+
+      /* OPC Status Indicator Styles */
+      .status-container {
+        display: flex;
+        align-items: center;
+        margin-left: 20px; /* Moves it away from the vertical line */
+        padding: 0;
+      }
+
+      .status-light {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+        background-color: #999;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .status-text {
+        color: white;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      .status-connected {
+        margin-right: 27px;
+      }
+
+      /* Connected State (Green Glow) */
+      .status-connected .status-light {
+        background-color: #00ff00;
+        box-shadow: 0 0 8px #00ff00;
+      }
+
+      /* Disconnected State (Red Glow) */
+      .status-disconnected .status-light {
+        background-color: #ff3333;
+        box-shadow: 0 0 8px #ff3333;
+      }
+    </style>
+
+    <script>
+      const socket = io();
+
+      socket.on("update", function (data) {
+        if (data.hasOwnProperty("OutSide_RH")) {
+          const rhElement = document.getElementById("OutSide_RH");
+          if (rhElement) {
+            const value = data["OutSide_RH"];
+            rhElement.textContent =
+              value !== null && value !== undefined
+                ? Number(value).toFixed(1)
+                : "0.0";
+          }
+        }
+        if (data.hasOwnProperty("OutSide_Temp")) {
+          const tempElement = document.getElementById("OutSide_Temp");
+          if (tempElement) {
+            const value = data["OutSide_Temp"];
+            tempElement.textContent =
+              value !== null && value !== undefined
+                ? Number(value).toFixed(1)
+                : "0.0";
+          }
+        }
+      });
+
+      /* Listen for OPC Status */
+      socket.on("opc_status", function (data) {
+        const box = document.getElementById("opcStatusBox");
+        const text = document.getElementById("opcStatusText");
+
+        if (box && text) {
+          if (data.connected) {
+            box.classList.remove("status-disconnected");
+            box.classList.add("status-connected");
+            text.textContent = "Controller Connected";
+          } else {
+            box.classList.remove("status-connected");
+            box.classList.add("status-disconnected");
+            text.textContent = "Controller disonnected";
+          }
+        }
+      });
+    </script>
+  </head>
+
+  <body style="background-color: #e3f4ff">
+    <div class="title-bar">
+      <!-- 1. LEFT SECTION (Logo) -->
+      <div class="left-section">
+        <img
+          src="{{ url_for('static', filename='images/LOGO.png') }}"
+          alt="Company Logo"
+          class="company-logo"
+        />
+      </div>
+
+      <!-- 2. STATUS INDICATOR (Placed BETWEEN Left Section and Title) -->
+      <div id="opcStatusBox" class="status-container status-disconnected">
+        <div class="status-light"></div>
+        <span id="opcStatusText" class="status-text"
+          >Controller disconnected</span
+        >
+      </div>
+
+      <!-- 3. CENTER SECTION (Title) -->
+      <div style="margin-right: 15%" class="company-name">
+        DigiMapp<br />
+        <div class="client-name" style="margin-top: 5px">{{ client_name }}</div>
+      </div>
+
+      <!-- 4. RIGHT SECTION (User Info, Bell, Logout) -->
+      <div class="right-section">
+        {% if session['userloggedin'] %}
+        <div class="last-login-info">
+          <span class="label">Last Login</span>
+          <span>{{ session.get('last_login', 'N/A') }}</span>
+        </div>
+        {% endif %}
+
+        <div class="bell-container">
+          <button class="bell-button" onclick="showAlarmslist()">
+            <i class="fa fa-bell"></i>
+            <span id="alarm-count" class="badge">0</span>
+          </button>
+        </div>
+
+        {% if session['userloggedin'] %}
+        <div class="dropdown">
+          <button class="profile-icon">
+            {{ session['username'][0]|upper }}
+          </button>
+          <div class="dropdown-content">
+            <a href="{{ url_for('logout') }}">Logout</a>
+          </div>
+        </div>
+        <div id="profile-tooltip" class="tooltip-content">
+          <p>
+            <strong style="color: #003054">User Name:</strong> {{
+            session['username'] }}
+          </p>
+          <p>
+            <strong style="color: #003054">Last Login:</strong> {{
+            session['last_login'] }}
+          </p>
+        </div>
+        {% else %}
+        <a href="{{ url_for('user_login') }}" class="login-button">Login</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Rest of the Body Content -->
+    <div class="modal" id="alarmModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          Alarm Notifications
+          <button
+            class="modal-close-btn"
+            onclick="closeModal()"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="alarm-modal-body"></div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <button id="home" class="module-button">
+        <i class="fa-solid fa-house"></i> Home
+      </button>
+      <div id="homeSubmodules" class="submodule-container"></div>
+      <button id="departments" class="module-button">
+        <i class="fa-solid fa-building"></i> Departments
+      </button>
+      <div id="departmentsSubmodules" class="submodule-container">
+        {% for category, departments_in_category in
+        categorized_submodules.items() %} {% for dept in departments_in_category
+        %}
+        <button
+          class="submodule-button department-link"
+          data-url="{{ url_for('render_submodule', submodule=dept.name) }}"
+          data-submodule-id="{{ dept.name | slugify }}Submodules"
+        >
+          {{ dept.name }}
+        </button>
+        <div
+          id="{{ dept.name | slugify }}Submodules"
+          class="submodule-container"
+        >
+          {% for submodule_option in allowed_submodules %}
+          <button
+            class="submodule-button bg"
+            onclick="loadTemplate('{{ dept.name }}', '{{ submodule_option }}')"
+          >
+            <i class="fa-solid fa-gear settings-icon"></i> {{ submodule_option
+            }}
+          </button>
+          {% endfor %}
+        </div>
+        {% endfor %} {% endfor %}
+      </div>
+      <button id="alarms" class="module-button">
+        <i class="fa-solid fa-triangle-exclamation"></i> Alarms
+      </button>
+      <div id="alarmsSubmodules" class="submodule-container"></div>
+      <button id="reports" class="module-button">
+        <i class="fa-solid fa-file"></i> Analytics
+      </button>
+      <div id="reportsSubmodules" class="submodule-container">
+        <button
+          class="submodule-button"
+          onclick="showIframe('trendsIframe');closeTemplate()"
+        >
+          Trends
+        </button>
+        <button
+          class="submodule-button"
+          onclick="showIframe('reportIframe');closeTemplate()"
+        >
+          Reports
+        </button>
+      </div>
+
+      {% if session['role'] == 'Tse' %}
+      <button id="inputs" class="module-button">
+        <i class="fa-solid fa-wrench" style="margin-right: 6px"></i> Input
+      </button>
+      <button id="usermanagement" class="module-button">
+        <i class="fa-solid fa-user-cog"></i> User Management
+      </button>
+      <div id="usermanagementSubmodules" class="submodule-container">
+        <button
+          class="submodule-button"
+          onclick="window.location.href='/add_user'"
+        >
+          <i class="fa-solid fa-user-plus"></i> Add User
+        </button>
+        <button
+          class="submodule-button"
+          onclick="window.location.href='/user_management'"
+        >
+          <i class="fa-solid fa-user-pen"></i> Update user
+        </button>
+      </div>
+      {% endif %} {% if show_outside_conditions %}
+      <div class="outside-conditions-box">
+        <div class="outside-conditions-header">OUTSIDE CONDITIONS</div>
+        <div class="outside-conditions-body">
+          <div class="condition-row">
+            <span id="OutSide_RH" class="condition-value">0.0</span>
+            <span class="condition-unit">%RH</span>
+          </div>
+          <div class="condition-row">
+            <span id="OutSide_Temp" class="condition-value">0.0</span>
+            <span class="condition-unit">°C</span>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if session['role'] == 'Tse' %}
+    <div>
+      <iframe
+        id="reportIframe"
+        src="{{ url_for('admin_dashboard') }}"
+        style="display: none"
+      ></iframe>
+    </div>
+    {% else %}
+    <div>
+      <iframe
+        id="reportIframe"
+        src="{{ url_for('reportpage') }}"
+        style="display: none"
+      ></iframe>
+    </div>
+    {% endif %}
+    <div>
+      <iframe
+        id="trendsIframe"
+        src="http://127.0.0.1:3000/dashboards"
+        style="display: none"
+      ></iframe>
+    </div>
+
+    <div class="content">{% block content %}{% endblock %}</div>
+    <div id="main-content"></div>
+
+    <script>
+      const USER_ROLE = "{{ session.get('role', 'Guest') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/base_script.js') }}"></script>
+
+    {% if session.userloggedin %}
+    <script>
+      (function () {
+        let inactivityTimer;
+        const inactivityTime = 20 * 60 * 1000;
+        function logoutUser() {
+          window.location.href = "{{ url_for('logout') }}";
+        }
+        function resetTimer() {
+          clearTimeout(inactivityTimer);
+          inactivityTimer = setTimeout(logoutUser, inactivityTime);
+        }
+        const activityEvents = [
+          "mousemove",
+          "mousedown",
+          "keypress",
+          "scroll",
+          "touchstart",
+        ];
+        activityEvents.forEach(function (eventName) {
+          document.addEventListener(eventName, resetTimer, true);
+        });
+        resetTimer();
+      })();
+    </script>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,1058 @@
+{% extends "iot/tse.html" %} {% block title %}Edit & Manage Submodules{%
+endblock %} {% block content %}
+<div id="input-page-container">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/font.css') }}"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit & Manage Submodules</title>
+  <style>
+    /* --- Main Page and Modal Styles --- */
+    body.modal-open-custom::before {
+      content: "";
+      position: fixed;
+      top: 61px;
+      left: 167px;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1050;
+      pointer-events: none;
+    }
+    .edit-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      width: 450px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      z-index: 1051;
+      overflow: hidden;
+      border: 1px solid #0c609d;
+    }
+    .edit-modal-header {
+      background-color: #0c609d;
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .edit-modal-body {
+      padding: 25px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    .form-group input[type="text"],
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #0c609d;
+      box-shadow: 0 0 0 2px rgba(12, 96, 157, 0.25);
+    }
+    .edit-modal-footer {
+      padding: 15px 25px;
+      background-color: #f7f7f7;
+      text-align: right;
+      border-top: 1px solid #e5e5e5;
+    }
+    #input-page-container .container {
+      padding: 20px;
+      margin-top: 20px;
+    }
+    #input-page-container .table-container {
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid #0c609d;
+      overflow: hidden;
+    }
+    #input-page-container .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+    }
+    #input-page-container .thead th {
+      background-color: #0c609d;
+      color: white;
+      text-align: center;
+      padding: 8px;
+    }
+    #input-page-container .btn-action {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #0c609d;
+      margin: 0 5px;
+    }
+    #input-page-container .text-danger {
+      color: #d9534f !important;
+    }
+    #input-page-container td,
+    #input-page-container th {
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid #0c609d;
+      padding: 8px;
+      font-weight: 480;
+    }
+    #input-page-container tr td:last-child,
+    #input-page-container tr th:last-child {
+      border-right: none;
+    }
+    #input-page-container .btn {
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    #input-page-container .btn-primary {
+      background-color: #005fa3;
+      color: white;
+    }
+    #input-page-container .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+      margin-right: 10px;
+    }
+    #input-page-container .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    #input-page-container .btn-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    /* --- CSS FOR CUSTOM COMBOBOX --- */
+    .combobox-container {
+      position: relative;
+    }
+    .combobox-input {
+      padding-right: 30px !important; /* Make space for the arrow */
+    }
+    .combobox-arrow {
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      bottom: 1px;
+      width: 30px;
+      border: none;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      color: #555;
+      font-size: 12px;
+    }
+    .combobox-arrow:hover {
+      background-color: #e0e0e0;
+    }
+    .combobox-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1052; /* Above the modal overlay */
+      border: 1px solid #0c609d;
+      border-radius: 4px;
+      background-color: white;
+      max-height: 150px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .combobox-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .combobox-option:hover {
+      background-color: #e3f4ff;
+    }
+    /* Toggle Switch CSS */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+      vertical-align: middle;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+    }
+    input:checked + .slider {
+      background-color: #0c609d;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .slider.round {
+      border-radius: 24px;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+
+  <div class="container">
+    <h3 style="color: #0c609d; font-size: 18px">Client Name:</h3>
+    <div>
+      <span id="client_name_display" style="font-size: 18px; margin-top: -10px"
+        >{{ client_name }}
+        <button
+          class="btn-action"
+          onclick="editClientName()"
+          title="Edit Client Name"
+          style="font-size: unset"
+        >
+          <i class="fas fa-edit"></i>
+        </button>
+      </span>
+    </div>
+    <h3 style="color: #0c609d; font-size: 18px; margin-top: 15px">
+      OPC UA URL:
+    </h3>
+    <div>
+      <form
+        id="opcUrlForm"
+        method="post"
+        style="display: flex; gap: 10px; width: 100%"
+      >
+        <input
+          type="text"
+          id="opc_ua_url_input"
+          name="opc_ua_url"
+          class="form-control"
+          style="
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          "
+          value="{{ opc_ua_url }}"
+          placeholder="opc.tcp://10.91.0.18:4840"
+        />
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <div
+      style="
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <h3 style="color: #0c609d; font-size: 18px; margin-bottom: 0">
+        Departments:
+      </h3>
+      <button
+        class="btn"
+        onclick="openModal('addSubmoduleModal')"
+        title="Add Department"
+        style="
+          background-color: #0c609d;
+          border: black;
+          padding: 8px 12px;
+          color: white;
+          font-size: 12px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+        "
+      >
+        <i class="fas fa-plus" style="font-size: 20px"></i>
+      </button>
+    </div>
+    <div class="table-container">
+      <table class="table table-striped table-hover" id="submodule_table">
+        <thead class="thead">
+          <tr>
+            <th>Category</th>
+            <th>Department</th>
+            <th>Template</th>
+            <th>Node Prefix</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="submodule_table_body">
+          {% for item in submodules %}
+          <tr
+            id="submodule_{{ item.name | slugify }}"
+            draggable="true"
+            ondragstart="dragStart(event)"
+            ondragover="dragOver(event)"
+            ondrop="drop(event)"
+          >
+            <td>{{ item.category }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.template }}</td>
+            <td>{{ item.node_prefix }}</td>
+            <td>
+              <button
+                class="btn-action"
+                onclick="editSubmodule('{{ item.name }}', '{{ item.template }}', '{{ item.category }}', '{{ item.node_prefix }}')"
+                title="Edit"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn-action"
+                onclick="removeSubmodule('{{ item.name }}')"
+                title="Remove"
+              >
+                <i class="fas fa-trash-alt text-danger"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px">
+      <button
+        class="btn btn-primary"
+        id="updateOrderButton"
+        onclick="updateOrder()"
+      >
+        Update Departments
+      </button>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; align-items: center">
+      <h3
+        style="color: #0c609d; font-size: 18px; margin: 0; margin-right: 15px"
+      >
+        Show Outside Conditions:
+      </h3>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="outside_conditions_toggle"
+          onchange="toggleOutsideConditions(this)"
+          {%
+          if
+          show_outside_conditions
+          %}checked{%
+          endif
+          %}
+        />
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <div style="margin-top: 20px; display: flex; align-items: center">
+      <h3
+        style="color: #0c609d; font-size: 18px; margin: 0; margin-right: 15px"
+      >
+        Delete All Alarms:
+      </h3>
+      <button class="btn btn-danger" onclick="clearAllAlarms()">Delete</button>
+    </div>
+
+    <!-- NEW RESTART BUTTON -->
+    <div style="margin-top: 20px; display: flex; align-items: center">
+      <h3
+        style="color: #0c609d; font-size: 18px; margin: 0; margin-right: 15px"
+      >
+        Restart Application:
+      </h3>
+      <button class="btn btn-warning" onclick="restartApp()">Restart</button>
+    </div>
+
+    <h3 style="margin-top: 20px; color: #0c609d; font-size: 18px">Settings:</h3>
+    <div class="table-container">
+      <table
+        class="table table-striped table-hover"
+        id="roles_table"
+        style="border-collapse: collapse; width: 100%; height: auto"
+      >
+        <thead class="thead">
+          <tr style="border-bottom: 1px solid #0c609d">
+            <th style="text-align: center">Role</th>
+            <th style="text-align: left">Settings</th>
+            <th style="text-align: center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for role, settings in roles.items() %}
+          <tr style="border-bottom: 1px solid #0c609d">
+            <td>{{ role }}</td>
+            <td
+              style="
+                vertical-align: middle;
+                text-align: left;
+                padding-left: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+              "
+            >
+              <ul style="list-style-type: none; padding: 0; margin: 0">
+                {% for setting in settings %}
+                <li style="padding: 5px 0; text-align: left">{{ setting }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+            <td style="text-align: center">
+              <button
+                style="background-color: #0c609d; color: white"
+                class="btn btn-sm"
+                onclick="openAddSettingModal('{{ role }}')"
+                title="Add Setting"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+              <button
+                style="margin-left: 15px"
+                class="btn btn-danger btn-sm"
+                onclick="showDeletePopup('{{ role }}')"
+                title="Delete Settings"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="editClientModal" class="edit-modal"></div>
+
+  <!-- Edit Department Modal -->
+  <div id="editSubmoduleModal" class="edit-modal">
+    <form onsubmit="saveSubmoduleChanges(event)">
+      <div class="edit-modal-header"><span>Edit Department</span></div>
+      <div class="edit-modal-body">
+        <input type="hidden" id="submodule_name_input" />
+        <div class="form-group">
+          <label for="edit_submodule_category">Category:</label>
+          <select id="edit_submodule_category">
+            {% for i in range(1, 21) %}
+            <option value="H-Plant-{{ i }}">H-Plant-{{ i }}</option>
+            {% endfor %} {% for i in range(1, 6) %}
+            <option value="WCS-{{ i }}">WCS-{{ i }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="submodule_file_input">Template:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="submodule_file_input"
+              placeholder="Template file name"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="submodule_new_name_input">Department:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="submodule_new_name_input"
+              placeholder="Type or select a department"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="edit_node_prefix">Node Prefix:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="edit_node_prefix"
+              placeholder="e.g., Spg1, Prep2"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+      </div>
+      <div class="edit-modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="closeAllModals()"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add Department Modal -->
+  <div id="addSubmoduleModal" class="edit-modal">
+    <form onsubmit="saveNewSubmodule(event)">
+      <div class="edit-modal-header"><span>Add Department</span></div>
+      <div class="edit-modal-body">
+        <div class="form-group">
+          <label for="new_submodule_category">Category:</label>
+          <select id="new_submodule_category">
+            {% for i in range(1, 21) %}
+            <option value="H-Plant-{{ i }}">H-Plant-{{ i }}</option>
+            {% endfor %} {% for i in range(1, 6) %}
+            <option value="WCS-{{ i }}">WCS-{{ i }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="new_submodule_file">Template:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_submodule_file"
+              placeholder="Template file name"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="new_submodule_name">Department:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_submodule_name"
+              placeholder="Type or select a department"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="new_node_prefix">Node Prefix:</label>
+          <div class="combobox-container">
+            <input
+              type="text"
+              id="new_node_prefix"
+              placeholder="e.g., Spg1, Prep2"
+              class="combobox-input"
+              autocomplete="off"
+            />
+            <button type="button" class="combobox-arrow">&#9662;</button>
+            <div class="combobox-options"></div>
+          </div>
+        </div>
+      </div>
+      <div class="edit-modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="closeAllModals()"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add Setting Modal -->
+  <div id="addSettingModal" class="edit-modal" aria-hidden="true">
+    <form id="addSettingForm" onsubmit="saveAddSetting(event)">
+      <div class="edit-modal-header"><span>Add Setting</span></div>
+
+      <div class="edit-modal-body">
+        <input type="hidden" id="add_setting_role" />
+
+        <div class="form-group">
+          <label for="add_setting_select">Choose a setting:</label>
+          <select
+            id="add_setting_select"
+            style="width: 100%; padding: 8px; border-radius: 4px"
+          >
+            <option value="">-- select --</option>
+            <option>Set Point</option>
+            <option>Digital Input</option>
+            <option>Digital Output</option>
+            <option>Analog Input</option>
+            <option>Analog Output</option>
+            <option>Preset Values</option>
+            <option>Timer</option>
+            <option>Controllers</option>
+            <option>UPSS</option>
+            <option>DeHumidity</option>
+            <option value="__custom__">Custom (enter manually)</option>
+          </select>
+        </div>
+
+        <div
+          id="add_setting_custom_group"
+          class="form-group"
+          style="display: none"
+        >
+          <label>Custom setting name:</label>
+          <input
+            type="text"
+            id="add_setting_custom"
+            placeholder="Enter custom setting"
+            style="width: 100%; padding: 8px; border-radius: 4px"
+          />
+        </div>
+      </div>
+
+      <div class="edit-modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="closeAllModals()"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="deleteModal" class="edit-modal"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const predefinedDepartments = {{ predefined_departments | tojson }};
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        function setupCombobox(inputElement, options) {
+            const container = inputElement.closest('.combobox-container');
+            if (!container) return;
+            const arrow = container.querySelector('.combobox-arrow');
+            const optionsPanel = container.querySelector('.combobox-options');
+
+            optionsPanel.innerHTML = '';
+            options.forEach(optionText => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'combobox-option';
+                optionEl.textContent = optionText;
+                optionEl.addEventListener('click', () => {
+                    inputElement.value = optionText;
+                    optionsPanel.style.display = 'none';
+                    inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+                });
+                optionsPanel.appendChild(optionEl);
+            });
+
+            const showOptions = () => {
+                document.querySelectorAll('.combobox-options').forEach(p => {
+                    if (p !== optionsPanel) p.style.display = 'none';
+                });
+                optionsPanel.style.display = 'block';
+            };
+
+            arrow.addEventListener('click', (e) => {
+                e.stopPropagation();
+                optionsPanel.style.display = optionsPanel.style.display === 'block' ? 'none' : 'block';
+            });
+            inputElement.addEventListener('focus', showOptions);
+        }
+
+        const addModal = document.getElementById('addSubmoduleModal');
+        const editModal = document.getElementById('editSubmoduleModal');
+
+        setupCombobox(addModal.querySelector('#new_submodule_name'), predefinedDepartments.map(d => d.name));
+        setupCombobox(addModal.querySelector('#new_submodule_file'), predefinedDepartments.map(d => d.template));
+        setupCombobox(addModal.querySelector('#new_node_prefix'), predefinedDepartments.map(d => d.short_name));
+
+        setupCombobox(editModal.querySelector('#submodule_new_name_input'), predefinedDepartments.map(d => d.name));
+        setupCombobox(editModal.querySelector('#submodule_file_input'), predefinedDepartments.map(d => d.template));
+        setupCombobox(editModal.querySelector('#edit_node_prefix'), predefinedDepartments.map(d => d.short_name));
+
+        const setupAutoFill = (nameInput, templateInput, prefixInput) => {
+            // Auto-fill based on Template selection (Requested feature)
+            templateInput.addEventListener('input', function() {
+                const selectedMatch = predefinedDepartments.find(d => d.template === this.value);
+                if (selectedMatch) {
+                    nameInput.value = selectedMatch.name;
+                    prefixInput.value = selectedMatch.short_name;
+                }
+            });
+
+            // Keep Name-based autofill as a fallback
+            nameInput.addEventListener('input', function() {
+                const selectedMatch = predefinedDepartments.find(d => d.name === this.value);
+                if (selectedMatch) {
+                    // Only fill if template is empty or if user selects a name first
+                    if(templateInput.value === '') {
+                        templateInput.value = selectedMatch.template;
+                        prefixInput.value = selectedMatch.short_name;
+                    }
+                }
+            });
+        };
+
+        setupAutoFill(addModal.querySelector('#new_submodule_name'), addModal.querySelector('#new_submodule_file'), addModal.querySelector('#new_node_prefix'));
+        setupAutoFill(editModal.querySelector('#submodule_new_name_input'), editModal.querySelector('#submodule_file_input'), editModal.querySelector('#edit_node_prefix'));
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.combobox-container')) {
+                document.querySelectorAll('.combobox-options').forEach(p => p.style.display = 'none');
+            }
+        });
+    });
+
+    // --- All Other Page Functions ---
+    function openModal(modalId) {
+      closeAllModals();
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = "block";
+      document.body.classList.add("modal-open-custom");
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll(".edit-modal").forEach(modal => modal.style.display = "none");
+      document.body.classList.remove("modal-open-custom");
+    }
+
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeAllModals(); });
+
+    function editClientName() {
+      const clientName = document.getElementById("client_name_display").innerText.trim();
+      const modal = document.getElementById('editClientModal');
+      modal.innerHTML = `
+        <form onsubmit="saveClientName(event)">
+          <div class="edit-modal-header"><span>Edit Client Name</span></div>
+          <div class="edit-modal-body">
+            <div class="form-group">
+              <label for="client_name_input">Client Name:</label>
+              <input type="text" id="client_name_input" value="${clientName}" />
+            </div>
+          </div>
+          <div class="edit-modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeAllModals()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>`;
+      openModal("editClientModal");
+    }
+
+    function saveClientName(event) {
+      event.preventDefault();
+      const clientName = document.getElementById("client_name_input").value;
+      fetch("/input", { method: "POST", body: new URLSearchParams({ client_name: clientName })})
+        .then(res => res.json()).then(data => { if(data.success) location.reload(); });
+    }
+
+    document.getElementById("opcUrlForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const opcUrl = document.getElementById("opc_ua_url_input").value;
+        fetch("/input", { method: "POST", body: new URLSearchParams({ opc_ua_url: opcUrl })})
+            .then(res => res.json()).then(data => { if(data.success) location.reload(); });
+    });
+
+    function editSubmodule(name, file, category, prefix) {
+      document.getElementById("submodule_name_input").value = name;
+      document.getElementById("submodule_new_name_input").value = name;
+      document.getElementById("submodule_file_input").value = file;
+      document.getElementById("edit_submodule_category").value = category;
+      document.getElementById("edit_node_prefix").value = prefix;
+      openModal("editSubmoduleModal");
+    }
+
+    function saveSubmoduleChanges(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("submodule_name_input").value,
+          new_submodule_name: document.getElementById("submodule_new_name_input").value,
+          submodule_file: document.getElementById("submodule_file_input").value,
+          submodule_category: document.getElementById("edit_submodule_category").value,
+          node_prefix: document.getElementById("edit_node_prefix").value,
+      };
+      fetch("/edit_submodule", { method: "POST", body: new URLSearchParams(payload) })
+        .then(() => location.reload());
+    }
+
+    function removeSubmodule(name) {
+      if (confirm("Are you sure you want to remove this department?")) {
+        fetch("/remove_submodule", { method: "POST", body: new URLSearchParams({ submodule_name: name })})
+          .then(() => location.reload());
+      }
+    }
+
+    function saveNewSubmodule(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("new_submodule_name").value,
+          submodule_file: document.getElementById("new_submodule_file").value,
+          submodule_category: document.getElementById("new_submodule_category").value,
+          node_prefix: document.getElementById("new_node_prefix").value,
+      };
+      fetch("/input", { method: "POST", body: new URLSearchParams(payload) })
+        .then(() => location.reload());
+    }
+
+    let draggedRow = null;
+    function dragStart(event) {
+      draggedRow = event.target;
+      draggedRow.style.opacity = "0.4";
+    }
+    function dragOver(event) { event.preventDefault(); }
+    function drop(event) {
+      event.preventDefault();
+      draggedRow.style.opacity = "1";
+      const targetRow = event.target.closest("tr");
+      if (targetRow && draggedRow !== targetRow) {
+          const tableBody = document.getElementById("submodule_table_body");
+          const rect = targetRow.getBoundingClientRect();
+          const offsetY = event.clientY - rect.top;
+          tableBody.insertBefore(draggedRow, (offsetY > targetRow.offsetHeight / 2) ? targetRow.nextSibling : targetRow);
+      }
+    }
+
+    function updateOrder() {
+      const rows = document.querySelectorAll("#submodule_table_body tr");
+      const newOrder = Array.from(rows).map(row => ({
+        category: row.cells[0].innerText,
+        name: row.cells[1].innerText,
+        template: row.cells[2].innerText,
+        node_prefix: row.cells[3].innerText,
+      }));
+      fetch("/update-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ new_order: newOrder }),
+      }).then(res => {
+          if (res.ok) alert("Order updated successfully!"); else alert("Failed to update order.");
+      });
+    }
+
+    let currentRole = "";
+    function showDeletePopup(role) {
+      currentRole = role;
+      fetch(`/get_settings/${role}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            const modal = document.getElementById('deleteModal');
+            let content = `
+              <div class="edit-modal-header"><span>Select Settings to Delete for ${role}</span></div>
+              <div class="edit-modal-body">`;
+            data.settings.forEach((setting) => {
+              content += `
+                <div class="form-group">
+                  <label style="font-weight: normal; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" value="${setting}" name="settings_to_delete" style="width: 16px; height: 16px;">
+                    ${setting}
+                  </label>
+                </div>`;
+            });
+            content += `
+              </div>
+              <div class="edit-modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeAllModals()">Cancel</button>
+                <button type="button" onclick="deleteSelectedSettings()" class="btn btn-danger">Delete</button>
+              </div>`;
+            modal.innerHTML = content;
+            openModal("deleteModal");
+          } else {
+            alert("Error fetching settings");
+          }
+        });
+    }
+
+    function deleteSelectedSettings() {
+      const selectedSettings = Array.from(
+        document.querySelectorAll('input[name="settings_to_delete"]:checked')
+      ).map((el) => el.value);
+      if (selectedSettings.length === 0) {
+        alert("No settings selected");
+        return;
+      }
+
+      fetch("/delete_settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: currentRole, settings: selectedSettings }),
+      }).then(() => location.reload());
+    }
+
+    let currentRoleForAdd = "";
+
+    function openAddSettingModal(role) {
+      currentRoleForAdd = role;
+      document.getElementById("add_setting_role").value = role;
+
+      const select = document.getElementById("add_setting_select");
+      const customGroup = document.getElementById("add_setting_custom_group");
+      const customInput = document.getElementById("add_setting_custom");
+
+      select.value = "";
+      customGroup.style.display = "none";
+      customInput.value = "";
+
+      select.onchange = () => {
+        customGroup.style.display = (select.value === "__custom__") ? "block" : "none";
+      };
+
+      openModal("addSettingModal");
+    }
+
+    function saveAddSetting(event) {
+      event.preventDefault();
+
+      const role = document.getElementById("add_setting_role").value;
+      const selected = document.getElementById("add_setting_select").value;
+      const custom = document.getElementById("add_setting_custom").value.trim();
+
+      let settingToAdd = "";
+
+      if (selected === "") {
+        alert("Please select a setting");
+        return;
+      }
+
+      if (selected === "__custom__") {
+        if (custom === "") {
+          alert("Enter custom setting name.");
+          return;
+        }
+        settingToAdd = custom;
+      } else {
+        settingToAdd = selected;
+      }
+
+      fetch("/add_setting", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: role, setting: settingToAdd })
+      })
+      .then(() => {
+        closeAllModals();
+        location.reload();
+      })
+      .catch(err => {
+        console.error('Failed to add setting', err);
+        alert('Failed to add setting.');
+      });
+    }
+    function toggleOutsideConditions(checkbox) {
+        const isChecked = checkbox.checked;
+        fetch("/input", {
+            method: "POST",
+            body: new URLSearchParams({ toggle_outside_conditions: isChecked })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                console.log(data.message);
+                location.reload();
+            } else {
+                alert("Failed to update setting");
+                checkbox.checked = !isChecked;
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            checkbox.checked = !isChecked;
+        });
+    }
+
+    function clearAllAlarms() {
+      if (confirm("Are you sure you want to delete ALL previous alarms? This action cannot be undone.")) {
+        fetch("/clear_alarms", { method: "POST" })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              alert("All alarms have been deleted.");
+              location.reload();
+            } else {
+              alert("Error clearing alarms: " + (data.error || "Unknown error"));
+            }
+          })
+          .catch(err => alert("Error: " + err));
+      }
+    }
+
+    // NEW: Restart Function
+    function restartApp() {
+      if (confirm("Are you sure you want to restart the application? All current connections will be reset.")) {
+        fetch("/restart_server", { method: "POST" })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              alert(data.message);
+              // Give the server a few seconds to reboot before reloading
+              setTimeout(() => location.reload(), 3000);
+            } else {
+              alert("Error restarting: " + data.error);
+            }
+          })
+          .catch(err => {
+             // Often connection drops immediately upon restart, treating as success
+             alert("Server is restarting...");
+             setTimeout(() => location.reload(), 3000);
+          });
+      }
+    }
+  </script>
+</div>
+{% endblock %}

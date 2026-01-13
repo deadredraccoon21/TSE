@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: TSE_MSSQL
+    type: mssql
+    access: proxy
+    # Host and Port from your request
+    url: localhost:2828
+    user: tse
+    database: tse_data
+    isDefault: true
+    jsonData:
+      # TLS/SSL Auth -> Encrypt: disable
+      encrypt: "disable"
+      authenticationType: "SQL Server Authentication"
+    secureJsonData:
+      password: "tse@123"
+    version: 1
+    editable: true
