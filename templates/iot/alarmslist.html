@@ -1,0 +1,373 @@
+{% extends "iot/tse.html" %} 
+{% block title %}Alarms{% endblock %} 
+{% block content %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="static/css/font.css" />
+  <title>Alarm List</title>
+  <style>
+    /* Remove body background since base_style.css handles it now */
+    h1 {
+      text-align: center;
+      color: #0056b3; /* Match new header blue */
+      margin: 0 auto 20px auto;
+      width: 90%;
+      font-size: 24px;
+      font-weight: 800;
+    }
+    
+    .table-container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #d3dbe2;
+      overflow: hidden;
+    }
+
+    .alarm-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    
+    .alarm-table th,
+    .alarm-table td {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .alarm-table th {
+      background-color: #0056b3; /* Solid Blue Header */
+      color: white;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Clean, subtle hover effect instead of harsh alternating rows */
+    .alarm-table tbody tr {
+      background-color: #ffffff;
+      transition: background-color 0.15s ease;
+    }
+    
+    .alarm-table tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    /* Modern Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 25px 0;
+      gap: 5px;
+    }
+    
+    .pagination button {
+      padding: 8px 14px;
+      border: 1px solid #d3dbe2;
+      background-color: white;
+      color: #495057;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .pagination button:hover:not(:disabled) {
+      background-color: #e9ecef;
+      color: #0056b3;
+      border-color: #ced4da;
+    }
+    
+    .pagination button.active {
+      background-color: #0056b3;
+      color: white;
+      border-color: #0056b3;
+    }
+    
+    .pagination button:disabled {
+      background-color: #f8f9fa;
+      color: #adb5bd;
+      cursor: not-allowed;
+      border-color: #e9ecef;
+    }
+    
+    .pagination .ellipsis {
+      padding: 8px 12px;
+      color: #adb5bd;
+    }
+    
+    .page-info {
+      text-align: center;
+      color: #6c757d;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Modern Status Tags */
+    .acknowledge-button {
+      background: #fff5f5;
+      border: 1px solid #ffc9c9;
+      color: #e03131;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+    
+    .acknowledge-button:hover {
+      background: #ffe3e3;
+      border-color: #ffa8a8;
+      color: #c92a2a;
+    }
+    
+    .acknowledge-button:active {
+      transform: scale(0.97);
+    }
+    
+    .acknowledged-span,
+    .resolved-span {
+      font-weight: 700;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    
+    .acknowledged-span {
+      color: #d9480f; /* Orange */
+      background-color: #fff4e6;
+      border: 1px solid #ffd8a8;
+    }
+    
+    .resolved-span {
+      color: #2b8a3e; /* Green */
+      background-color: #ebfbee;
+      border: 1px solid #b2f2bb;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Alarm History</h1>
+
+  <div class="table-container">
+    <table class="alarm-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Date / Time</th>
+          <th style="width: 50%;">Message</th>
+          <th style="width: 20%;">Status</th>
+        </tr>
+      </thead>
+      <tbody id="alarm-list-body"></tbody>
+    </table>
+  </div>
+
+  <div class="pagination" id="pagination-controls"></div>
+  <div class="page-info" id="page-info"></div>
+
+  <script src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+  <script>
+    const ITEMS_PER_PAGE = 10;
+    let currentPage = 1;
+    let alarmHistory = [];
+
+    function getAlarmWeight(status) {
+      if (status === "Not acknowledged") return 0;
+      if (status === "Acknowledged") return 1;
+      return 2; 
+    }
+
+    function sortAlarms(alarms) {
+      return alarms.sort((a, b) => {
+        const weightA = getAlarmWeight(a.status || "Not acknowledged");
+        const weightB = getAlarmWeight(b.status || "Not acknowledged");
+
+        if (weightA !== weightB) {
+          return weightA - weightB; 
+        }
+
+        const dateA = new Date(a.time);
+        const dateB = new Date(b.time);
+        return dateB - dateA;
+      });
+    }
+
+    function renderPagination() {
+      const paginationDiv = document.getElementById("pagination-controls");
+      paginationDiv.innerHTML = "";
+      const totalPages = Math.ceil(alarmHistory.length / ITEMS_PER_PAGE);
+
+      const updatePageInfo = () => {
+        const pageInfo = document.getElementById("page-info");
+        if (alarmHistory.length === 0) {
+          pageInfo.innerText = "";
+          return;
+        }
+        const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+        const endItem = Math.min(
+          currentPage * ITEMS_PER_PAGE,
+          alarmHistory.length
+        );
+        pageInfo.innerText = `Showing ${startItem} to ${endItem} of ${alarmHistory.length} alarms`;
+      };
+
+      if (totalPages <= 1) {
+        updatePageInfo();
+        return;
+      }
+
+      const prevButton = document.createElement("button");
+      prevButton.innerText = "Previous";
+      prevButton.disabled = currentPage === 1;
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderAlarmHistory();
+        }
+      });
+      paginationDiv.appendChild(prevButton);
+
+      const pageNeighbours = 1;
+      const pagesToShow = [];
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (
+          i === 1 ||
+          i === totalPages ||
+          (i >= currentPage - pageNeighbours &&
+            i <= currentPage + pageNeighbours)
+        ) {
+          pagesToShow.push(i);
+        }
+      }
+
+      let lastPage = 0;
+      [...new Set(pagesToShow)].forEach((page) => {
+        if (lastPage !== 0 && page > lastPage + 1) {
+          const ellipsisSpan = document.createElement("span");
+          ellipsisSpan.innerText = "...";
+          ellipsisSpan.className = "ellipsis";
+          paginationDiv.appendChild(ellipsisSpan);
+        }
+
+        const pageButton = document.createElement("button");
+        pageButton.innerText = page;
+        if (page === currentPage) pageButton.classList.add("active");
+        pageButton.addEventListener("click", () => {
+          currentPage = page;
+          renderAlarmHistory();
+        });
+        paginationDiv.appendChild(pageButton);
+        lastPage = page;
+      });
+
+      const nextButton = document.createElement("button");
+      nextButton.innerText = "Next";
+      nextButton.disabled = currentPage === totalPages;
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderAlarmHistory();
+        }
+      });
+      paginationDiv.appendChild(nextButton);
+
+      updatePageInfo();
+    }
+
+    function renderAlarmHistory() {
+      const tbody = document.getElementById("alarm-list-body");
+      tbody.innerHTML = "";
+
+      if (alarmHistory.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding: 30px; color: #6c757d; font-weight: 500;">No active alarms</td></tr>`;
+        document.getElementById("pagination-controls").innerHTML = "";
+        document.getElementById("page-info").innerText = "";
+        return;
+      }
+
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const currentPageAlarms = alarmHistory.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+      );
+
+      currentPageAlarms.forEach((alarm) => {
+        const row = document.createElement("tr");
+
+        const status = alarm.status || "Unacknowledged";
+        let statusCellHtml;
+
+        if (status === "Resolved") {
+          statusCellHtml = '<span class="resolved-span">Resolved</span>';
+        } else if (status === "Acknowledged") {
+          statusCellHtml = '<span class="acknowledged-span">Acknowledged</span>';
+        } else {
+          statusCellHtml = `<button onclick="acknowledgeAlarm('${alarm.id}')" class="acknowledge-button">Not acknowledged</button>`;
+        }
+
+        // Added styling to the time to make it look cleaner
+        const timeSplit = alarm.time ? alarm.time.split(',') : ["N/A", ""];
+        const formattedTime = `<span style="font-weight: 600; color: #495057;">${timeSplit[0]}</span><br><span style="font-size: 12px; color: #adb5bd;">${timeSplit[1] ? timeSplit[1].trim() : ''}</span>`;
+
+        row.innerHTML = `
+                <td>${formattedTime}</td>
+                <td style="font-weight: 500; color: #212529;">${alarm.message}</td>
+                <td>${statusCellHtml}</td>
+            `;
+        tbody.appendChild(row);
+      });
+
+      renderPagination();
+    }
+
+    function acknowledgeAlarm(alarmId) {
+      // 1. OPTIMISTIC UI UPDATE: Instantly change the local data and re-render
+      // This makes the button instantly turn into the orange "Acknowledged" tag without waiting for the server
+      const alarmIndex = alarmHistory.findIndex(a => a.id === alarmId);
+      if (alarmIndex !== -1) {
+        alarmHistory[alarmIndex].status = "Acknowledged";
+        
+        // Re-sort and re-render instantly so the user feels zero lag
+        alarmHistory = sortAlarms(alarmHistory);
+        renderAlarmHistory(); 
+      }
+
+      // 2. BACKGROUND SERVER REQUEST: Tell the server to officially save it
+      fetch("/acknowledge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: alarmId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.success) {
+            alert("Failed to acknowledge on server: " + (data.error || "Unknown error"));
+            // (Optional) If it fails, the next socket 'alarm_update' will automatically revert the UI to match the server
+          }
+        })
+        .catch((error) => console.error("Error acknowledging alarm:", error));
+    }
+    socket.on("alarm_update", function (alarmsFromServer) {
+      alarmHistory = sortAlarms(alarmsFromServer);
+      renderAlarmHistory();
+    });
+  </script>
+</body>
+{% endblock %}

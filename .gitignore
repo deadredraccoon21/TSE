@@ -1,0 +1,15 @@
+# Ignore virtual environment folder
+venv/
+
+install_files/
+
+TSE-Scada_Setup.exe
+
+build/
+
+dist/
+
+# Ignore .git folder
+.git/
+
+test/

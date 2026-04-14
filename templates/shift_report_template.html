@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Report</title>
+    <style>
+      /* Enforce strict A4 landscape formatting and margins for printing */
+      /* Match the new 1.2in bottom margin */
+      @page {
+        size: A4 landscape;
+        margin: 0.4in 0.4in 1.2in 0.4in;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+      table {
+        page-break-inside: auto;
+      }
+      tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      "
+    >
+      <div style="width: 180px; text-align: center">
+        {% if logo_b64 %}
+        <img
+          src="{{ logo_b64 }}"
+          style="max-height: 70px; object-fit: contain"
+        />
+        {% endif %}
+        <div
+          style="
+            color: #003a6c;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: -5px;
+          "
+        >
+          DigiMapp
+        </div>
+      </div>
+
+      <div style="flex-grow: 1; text-align: center">
+        <h1 style="text-transform: none">{{ client_name }}</h1>
+        <h2 style="color: #555; margin: 0 0 10px 0; font-size: 20px">
+          Daily Plant Report
+        </h2>
+        <div style="color: #003a6c; font-size: 14px; font-weight: bold">
+          Report Date: {{ date }}
+        </div>
+      </div>
+
+      <div style="width: 180px"></div>
+    </div>
+
+    {% for shift in multi_shift_data %}
+    <div style="margin-bottom: 40px">
+      <h3
+        style="
+          color: #003a6c;
+          margin-top: 20px;
+          border-bottom: 2px solid #e1e5eb;
+          padding-bottom: 5px;
+          margin-bottom: 15px;
+          page-break-after: avoid;
+        "
+      >
+        {{ shift.shift_name }}
+        <span
+          style="
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: normal;
+            margin-left: 10px;
+          "
+        >
+          ({{ shift.from_time }} {{ shift.from_date }} to {{ shift.to_time }} {{
+          shift.to_date }})
+        </span>
+      </h3>
+
+      {% for category_name, category_data in shift.report_data.items() %} {% if
+      category_data.departments and category_data.valid_fields %}
+      <h4
+        style="
+          margin: 0 0 5px 0;
+          color: #333;
+          font-size: 16px;
+          text-transform: uppercase;
+          page-break-after: avoid;
+        "
+      >
+        {{ category_name }}
+      </h4>
+
+      {% for field_chunk in category_data.valid_fields | batch(8) %}
+
+      <table
+        style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: center; margin-bottom: {% if loop.last %}20px{% else %}10px{% endif %}; table-layout: fixed; word-wrap: break-word;"
+      >
+        <thead>
+          <tr style="background-color: #003a6c; color: white">
+            <th
+              style="
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+                width: 15%;
+              "
+            >
+              Department
+            </th>
+            {% for field in field_chunk %}
+            <th style="border: 1px solid #ccc; padding: 8px; width: 10%">
+              {{ field_labels.get(field, field) }}
+              <br /><span
+                style="font-size: 9px; font-weight: normal; color: #e8f4fd"
+                >(Avg)</span
+              >
+            </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for dept in category_data.departments %}
+          <tr>
+            <td
+              style="
+                border: 1px solid #ccc;
+                padding: 6px;
+                font-weight: bold;
+                text-align: left;
+                background-color: #fcfcfc;
+              "
+            >
+              {{ dept.name }}
+            </td>
+            {% for field in field_chunk %}
+            <td style="border: 1px solid #ccc; padding: 6px">
+              {{ dept.stats[field] }}
+            </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% endfor %} {% endif %} {% endfor %} {% if shift.alarms %}
+      <div style="margin-top: 15px; page-break-inside: auto">
+        <h4
+          style="
+            color: #dc3545;
+            margin-bottom: 5px;
+            font-size: 14px;
+            margin-top: 0;
+            page-break-after: avoid;
+          "
+        >
+          Alarms Triggered During Shift:
+        </h4>
+        <table
+          style="
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            text-align: left;
+          "
+        >
+          <thead>
+            <tr style="background-color: #f8d7da; color: #721c24">
+              <th style="border: 1px solid #f5c6cb; padding: 5px; width: 20%">
+                Time
+              </th>
+              <th style="border: 1px solid #f5c6cb; padding: 5px; width: 50%">
+                Alarm Message
+              </th>
+              <th style="border: 1px solid #f5c6cb; padding: 5px; width: 15%">
+                Severity
+              </th>
+              <th style="border: 1px solid #f5c6cb; padding: 5px; width: 15%">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for alarm in shift.alarms %}
+            <tr>
+              <td style="border: 1px solid #f5c6cb; padding: 5px">
+                {{ alarm.time }}
+              </td>
+              <td style="border: 1px solid #f5c6cb; padding: 5px">
+                {{ alarm.message }}
+              </td>
+              <td style="border: 1px solid #f5c6cb; padding: 5px">
+                {{ alarm.severity }}
+              </td>
+              <td style="border: 1px solid #f5c6cb; padding: 5px">
+                {{ alarm.status }}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p
+        style="
+          font-size: 12px;
+          color: #28a745;
+          font-style: italic;
+          margin-top: 5px;
+          margin-bottom: 0;
+        "
+      >
+        No trip alarms recorded during this shift.
+      </p>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <!-- Footer for the last page only, bottom right -->
+    <div style="margin-bottom: 50%; text-align: right; width: 100%">
+      <span
+        style="
+          font-size: 20px;
+          color: #003a6c;
+          font-weight: bold;
+          font-style: italic;
+          white-space: nowrap;
+        "
+      >
+        <!-- First Section -->
+        <span style="font-family: 'Brush Script MT', cursive">E</span
+        ><span style="font-family: Calibri, sans-serif">nhancing Air</span
+        >.....<span style="font-family: 'Brush Script MT', cursive">E</span
+        ><span style="font-family: Calibri, sans-serif">levating Life</span>
+      </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+alarms:
+- acknowledged: true
+  code: '85'
+  id: 3662fdee-4557-4550-aa16-d6a2e8bfd734
+  message: Supply Air Fan VFD Fault - Preparatory1
+  resolved_time: '2026-01-12 00:11:42'
+  severity: 1
+  status: Resolved
+  time: '2026-01-12 00:10:40'
+- acknowledged: true
+  code: '85'
+  id: 9b9775ee-c257-40cb-a6ed-9ebcec5e71ef
+  message: Supply Air Fan VFD Fault - Preparatory1
+  resolved_time: '2026-01-12 00:15:09'
+  severity: 1
+  status: Resolved
+  time: '2026-01-12 00:12:23'
+- acknowledged: false
+  code: '85'
+  id: a8f65a62-300b-46fe-9772-b6e4b6cea62f
+  message: Supply Air Fan VFD Fault - Preparatory1
+  resolved_time: '2026-01-12 00:19:45'
+  severity: 1
+  status: Resolved
+  time: '2026-01-12 00:15:53'
+- acknowledged: false
+  code: '85'
+  id: 03e28cbd-1ad4-4c75-8d3c-66646a8c3860
+  message: Supply Air Fan VFD Fault - Preparatory1
+  resolved_time: '2026-01-12 00:21:44'
+  severity: 1
+  status: Resolved
+  time: '2026-01-12 00:20:00'
+- acknowledged: false
+  code: '85'
+  id: 69a73b6a-2b79-4bcc-a1c2-80caa1149f55
+  message: Supply Air Fan VFD Fault - Preparatory1
+  resolved_time: '2026-01-12 00:27:54'
+  severity: 1
+  status: Resolved
+  time: '2026-01-12 00:23:46'
+- acknowledged: true
+  code: '85'
+  id: 91ab6518-8cca-4071-9da9-a2841eef579f
+  message: Supply Air Fan VFD Fault - Preparatory1
+  severity: 1
+  status: Acknowledged
+  time: '2026-01-12 00:27:57'
+- acknowledged: false
+  code: '215'
+  id: 8cb6b142-7a30-4c7a-a6ee-f4b749f726cf
+  message: Supply Air Fan VFD Fault - Spinning1
+  severity: 1
+  status: Not acknowledged
+  time: '2026-01-12 00:28:32'
+lastTripStates:
+  '215': true
+  '85': true
+

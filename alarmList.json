@@ -1,0 +1,104 @@
+{
+    "alarms": [
+        {
+            "id": "f8112dcb-0074-4a45-aaed-6606f1ca6b65",
+            "time": "2026-04-12 12:15:28",
+            "message": "CRITICAL: Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "Critical",
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-04-12 12:16:57"
+        },
+        {
+            "id": "c7b34c69-8449-4f95-b94c-1b591ba1dc6d",
+            "time": "2026-04-12 12:17:26",
+            "message": "Dust Collector TRIP - Preparatory1",
+            "code": "96",
+            "severity": 1,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-04-12 12:17:37"
+        },
+        {
+            "id": "6af34a07-0687-4540-b890-0a10c1c3c701",
+            "time": "2026-04-12 12:18:16",
+            "message": "Supply Air Fan-3 VFD Fault - Preparatory1",
+            "code": "88",
+            "severity": 1,
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "39739a62-953d-4d6f-b982-275e4c219c42",
+            "time": "2026-04-12 12:18:45",
+            "message": "Rotary Drum Filter TRIP - Preparatory1",
+            "code": "93",
+            "severity": 1,
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "aea998e8-3bc5-41fa-b8ff-2b1ccb7d4c53",
+            "time": "2026-04-12 12:18:47",
+            "message": "Dust Collector-1 TRIP - Preparatory1",
+            "code": "97",
+            "severity": 1,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-04-12 12:18:57"
+        },
+        {
+            "id": "e3943a71-3142-45e0-a663-77364bd8ec61",
+            "time": "2026-04-12 12:18:55",
+            "message": "Rotary Drum Filter-2 TRIP - Preparatory1",
+            "code": "95",
+            "severity": 1,
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "e281c553-ab29-47be-8baf-608cf5800cea",
+            "time": "2026-04-12 12:18:59",
+            "message": "CRITICAL: Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "Critical",
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "04a9b104-7443-4ba3-aca7-28118de07bac",
+            "time": "2026-04-12 12:29:59",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "Critical",
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "d3b5370b-1fc9-4f28-9b64-3dd86e0a7808",
+            "time": "2026-04-12 12:32:13",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "Critical",
+            "status": "Acknowledged",
+            "acknowledged": true
+        },
+        {
+            "id": "b37b566f-1ff0-4762-84a0-2abb01eef531",
+            "time": "2026-04-14 10:30:55",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "Critical",
+            "status": "Not acknowledged",
+            "acknowledged": false
+        }
+    ],
+    "lastTripStates": {
+        "96": false,
+        "88": true,
+        "93": true,
+        "97": false,
+        "95": true
+    }
+}

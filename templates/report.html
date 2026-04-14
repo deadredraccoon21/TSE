@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/all.min.css') }}"
+  />
+    <!-- <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='print.css') }}"
+      media="print"
+    /> -->
+    <style>
+      /* --- Global Reset & Font --- */
+      body {
+        margin: 0;
+        padding: 40px;
+        background-color: #f4f6f9; /* Match main app background */
+        font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+        color: #333;
+      }
+
+      /* --- Typography --- */
+      h1 {
+        text-align: center;
+        color: #0056b3;
+        font-weight: 800;
+        margin-top: 0;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 28px;
+        text-decoration: none; /* Removed the <u> tag approach */
+      }
+
+      h2 {
+        text-align: center;
+        color: #495057;
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      /* --- Filter Controls Container --- */
+      .form-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #d3dbe2;
+        margin-bottom: 20px;
+      }
+
+      .inline-group {
+        flex: 1;
+        min-width: 150px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .inline-group label {
+        font-size: 13px;
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      /* Modern Inputs */
+      .inline-group select,
+      .inline-group input[type="date"] {
+        padding: 10px 12px;
+        width: 100%;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        background-color: #ffffff;
+        color: #212529;
+        font-size: 14px;
+        font-family: inherit;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        box-sizing: border-box;
+      }
+
+      .inline-group select:focus,
+      .inline-group input[type="date"]:focus {
+        outline: none;
+        border-color: #0056b3;
+        box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15);
+      }
+
+      /* --- Buttons --- */
+      .report-buttons-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+
+      .generate-button {
+        background-color: #0056b3;
+        color: white;
+      }
+      .generate-button:hover {
+        background-color: #004085;
+      }
+
+      .toggle-names-button {
+        background-color: #f8f9fa;
+        color: #0056b3;
+        border: 1px solid #d3dbe2;
+      }
+      .toggle-names-button:hover {
+        background-color: #e2e6ea;
+      }
+
+      .print-button {
+        background-color: #6c757d;
+        color: white;
+        padding: 10px 15px;
+      }
+      .print-button:hover {
+        background-color: #5a6268;
+      }
+
+      /* --- Modern Table --- */
+      .table-wrapper {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #d3dbe2;
+        overflow-x: auto; /* Handles many columns gracefully */
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      th {
+        background-color: #0056b3;
+        color: #ffffff;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        position: sticky;
+        top: 0;
+      }
+
+      td {
+        color: #212529;
+      }
+
+      tbody tr:hover {
+        background-color: #f8f9fa;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Print Styles */
+     /* Print Styles */
+  @media print {
+    /* 1. Set physical margins for EVERY page to allow room for headers/footers */
+    @page {
+      margin: 15mm 10mm; /* 15mm top/bottom margin, 10mm left/right margin */
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: white;
+    }
+
+    /* 2. Hide UI elements */
+    .to-hide-print,
+    .report-buttons-wrapper {
+      display: none !important;
+    }
+
+    /* 3. Fix Table Wrapper clipping */
+    .table-wrapper {
+      box-shadow: none !important;
+      border: none !important;
+      overflow: visible !important; 
+    }
+
+    /* 4. Table Pagination & Layout Fixes */
+    table {
+      border-collapse: collapse !important;
+      width: 100% !important;
+      page-break-inside: auto; /* Allows table to split across pages */
+    }
+
+    tr {
+      page-break-inside: avoid; /* Prevents a single row from being cut in half */
+      page-break-after: auto;
+    }
+
+    thead {
+      display: table-header-group; /* Forces the header to repeat on page 2, 3, etc. */
+    }
+
+    th, td {
+      border: 1px solid #000 !important;
+      color: #000 !important;
+    }
+
+    th {
+      position: static !important; 
+      background-color: #f2f2f2 !important; 
+      -webkit-print-color-adjust: exact; /* Forces background colors to print */
+      color-adjust: exact;
+    }
+  }
+  </style>
+  </head>
+
+  <body>
+    
+    <h1 style="text-transform: none;">{{ client_name }}</h1>
+    <h2 id="department-heading"></h2>
+
+    <div class="form-container to-hide-print">
+      <div class="inline-group">
+        <label for="department">Department</label>
+        <select id="department">
+          {% for department_option in department_options %}
+          <option value="{{ department_option }}">
+            {{ department_option }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="inline-group">
+        <label for="from_date">From Date</label>
+        <input type="date" id="from_date" />
+      </div>
+
+      <div class="inline-group">
+        <label for="to_date">To Date</label>
+        <input type="date" id="to_date" />
+      </div>
+
+      <div class="inline-group">
+        <label for="time_difference">Time Duration</label>
+        <select id="time_difference">
+          <option value="">None (All Data)</option>
+          <option value="10 minutes">10 minutes</option>
+          <option value="30 minutes">30 minutes</option>
+          <option value="1 hour">1 hour</option>
+          <option value="2 hours">2 hours</option>
+          <option value="5 hours">5 hours</option>
+          <option value="1 Day">1 Day</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="report-buttons-wrapper to-hide-print">
+      <button
+        class="toggle-names-button"
+        id="toggleColumnNameButton"
+        onclick="toggleColumnNames()"
+      >
+        Expand Names
+      </button>
+      <button
+        class="print-button"
+        onclick="prepareAndPrintReport()"
+        title="Print Report"
+      >
+        <i class="fas fa-print"></i>
+      </button>
+      <button class="generate-button" onclick="getData()">
+        Generate Report
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="table-report"></table>
+    </div>
+
+    <script>
+      const globalReportFields = {{ report_fields | tojson | default([]) }};
+
+      const shortToLongColumnNames = {
+          'Set_RH': 'Relative Humidity Set Point %',
+          'Act_RH': 'Actual Relative Humidity %',
+          'Pump_Output': 'Pump Output %',
+          'Pump_Status': 'Pump Status',
+          'SAF_Speed': 'Supply Air Fan Speed %',
+          'RetAF_Speed': 'Return Air Fan Speed %',
+          'Set_Temp': 'Relative Temperature Set Point °C',
+          'Act_Temp': 'Actual Temperature °C',
+          'Act_SA_Temp': 'Supply Air Temperature °C',
+          'Set_SA_Temp': 'Supply Air Temperature Set Point °C',
+          'Damper_Output': 'Damper Output %',
+          'Act_PR': 'Actual Pressure Pa',
+          'Set_PR': 'Pressure Set Point Pa',
+          'RadialFan_Speed': 'Radial Fan Output Speed %',
+          'Act_TDS': 'Total Dissolved Solids ppm',
+          'Act_DP_RDF': 'Differential Pressure RDF',
+          'Act_DP_PDF': 'Differential Pressure PDF',
+          'Act_DP_PDF1': 'Differential Pressure PDF1',
+          'Act_DP_PDF2': 'Differential Pressure PDF2',
+          'Act_DP_COMP': 'Differential Pressure COMP',
+          'Act_DP_COMP1': 'Differential Pressure COMP1',
+          'Act_DP_COMP2': 'Differential Pressure COMP2'
+          
+          
+          
+      };
+
+      let longToShortColumnNames = {};
+      for (const key in shortToLongColumnNames) {
+          longToShortColumnNames[shortToLongColumnNames[key]] = key;
+      }
+
+      let areColumnNamesExtended = false;
+
+      function getData() {
+          var department = document.getElementById('department').value;
+          var from_date = document.getElementById('from_date').value;
+          var to_date = document.getElementById('to_date').value;
+          var time_difference = document.getElementById('time_difference').value;
+          var selected_fields = globalReportFields;
+
+          if (!from_date || !to_date) {
+              alert("Please select both a 'From Date' and a 'To Date'.");
+              return;
+          }
+
+          fetch('/data', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                  body: 'department=' + encodeURIComponent(department) +
+                      '&from_date=' + encodeURIComponent(from_date) +
+                      '&to_date=' + encodeURIComponent(to_date) +
+                      '&time_difference=' + encodeURIComponent(time_difference) +
+                      '&selected_fields=' + encodeURIComponent(selected_fields.join(','))
+              })
+              .then(response => {
+                  if (!response.ok) throw new Error('Network response was not ok');
+                  return response.json();
+              })
+              .then(data => {
+                  if (data.error) { alert('Error: ' + data.error); return; }
+                  displayData(data.columns, data.data);
+                  areColumnNamesExtended = false;
+                  document.getElementById('toggleColumnNameButton').innerText = 'Expand Names';
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error fetching data.');
+              });
+      }
+
+      function displayData(columns, data) {
+          const table = document.getElementById('table-report');
+          let table_html = '<thead><tr>';
+
+          table_html += '<th>Sl.No.</th>';
+          columns.forEach(key => {
+              const headerText = key.charAt(0).toUpperCase() + key.slice(1);
+              table_html += `<th data-backend-key="${key}">${headerText}</th>`;
+          });
+          table_html += '</tr></thead><tbody>';
+
+          data.forEach((row, i) => {
+              table_html += '<tr>';
+              table_html += '<td>' + (i + 1) + '</td>';
+              columns.forEach(key => {
+                  let val = row[key] !== undefined && row[key] !== null ? row[key] : '';
+                  if (key === 'time' && typeof val === 'string' && val.length > 5) {
+                      val = val.substring(0, 5);
+                  }
+                  table_html += '<td>' + val + '</td>';
+              });
+              table_html += '</tr>';
+          });
+          table_html += '</tbody>';
+          table.innerHTML = table_html;
+      }
+
+      function toggleColumnNames() {
+          areColumnNamesExtended = !areColumnNamesExtended;
+          applyNameToggle(areColumnNamesExtended);
+          document.getElementById('toggleColumnNameButton').innerText = areColumnNamesExtended ? 'Shorten Names' : 'Expand Names';
+      }
+
+      function applyNameToggle(extend) {
+          const table = document.getElementById('table-report');
+          if (!table) return;
+          const headers = table.querySelectorAll('thead th');
+
+          headers.forEach(th => {
+              const currentText = th.textContent;
+              if (currentText === 'Sl.No.' || currentText === 'Date' || currentText === 'Time') return;
+
+              if (extend) {
+                  let mapped = shortToLongColumnNames[currentText];
+                  if (mapped) th.textContent = mapped;
+              } else {
+                  if (longToShortColumnNames[currentText]) th.textContent = longToShortColumnNames[currentText];
+              }
+          });
+      }
+
+      function prepareAndPrintReport() { window.print(); }
+
+      document.addEventListener('DOMContentLoaded', function () {
+          const departmentDropdown = document.getElementById('department');
+          if(departmentDropdown.value) document.getElementById('department-heading').innerText = departmentDropdown.value;
+
+          const today = new Date().toISOString().split('T')[0];
+          document.getElementById('from_date').value = today;
+          document.getElementById('to_date').value = today;
+
+          departmentDropdown.addEventListener('change', function () {
+              document.getElementById('department-heading').innerText = this.value;
+          });
+
+          // Automatically load today's data on initial page load
+          getData();
+      });
+    </script>
+  </body>
+</html>

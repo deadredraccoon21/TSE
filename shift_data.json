@@ -1,0 +1,55 @@
+{
+    "shifts": {
+        "Shift A": {
+            "from": "06:00",
+            "to": "14:00",
+            "members": [
+                {
+                    "name": "TSE",
+                    "email": "electrical.tse.2225@gmail.com",
+                    "mobile": "",
+                    "telegram": "1230599487"
+                }
+            ]
+        },
+        "shift B": {
+            "from": "14:00",
+            "to": "22:00",
+            "members": []
+        },
+        "shift C": {
+            "from": "22:00",
+            "to": "06:00",
+            "members": [
+                {
+                    "name": "Shravan",
+                    "email": "shravandhangi13@gmail.com",
+                    "mobile": "9353617814",
+                    "telegram": ""
+                }
+            ]
+        }
+    },
+    "global_config": {
+        "send_time": "11:04",
+        "fields": [
+            "Act_RH",
+            "Pump_Output",
+            "Pump_Status",
+            "SAF_Speed",
+            "RetAF_Speed",
+            "Act_Temp",
+            "Act_SA_Temp",
+            "Damper_Output",
+            "Act_PR",
+            "RadialFan_Speed",
+            "Act_TDS",
+            "Act_DP_PDF",
+            "Act_DP_PDF1",
+            "Act_DP_PDF2",
+            "Act_DP_COMP",
+            "Act_DP_COMP1",
+            "Act_DP_COMP2"
+        ]
+    }
+}
