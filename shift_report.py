@@ -316,31 +316,49 @@ def send_telegram_report(pdf_bytes, report_date, report_title="Daily_Report"):
         return False, str(e)
         
 def send_whatsapp_report(to_mobile, pdf_bytes, report_date, report_title="Daily_Report"):
-    """Sends the PDF via Meta WhatsApp Cloud API."""
-    ACCESS_TOKEN = "your_meta_access_token"
-    PHONE_NUMBER_ID = "your_phone_number_id"
+    """Sends the PDF via Meta WhatsApp Cloud API using input.yaml credentials."""
+    config = load_app_config()
     
+    # Dynamically pull from input.yaml
+    ACCESS_TOKEN = config.get("ACCESS_TOKEN", "")
+    PHONE_NUMBER_ID = str(config.get("PHONE_NUMBER_ID", ""))
+    
+    if not ACCESS_TOKEN or not PHONE_NUMBER_ID:
+        print("WHATSAPP ERROR: Missing Access Token or Phone Number ID in input.yaml")
+        return False, "Missing Credentials"
+        
     if not to_mobile or not pdf_bytes: return False, "Missing Info"
     
+    # Strip any special characters from the phone number
     to_mobile = "".join(filter(str.isdigit, str(to_mobile)))
     filename = f"{report_title}_{report_date}.pdf".replace(" ", "_")
 
     try:
-        # Step 1: Upload
+        # Step 1: Upload the PDF to Meta's servers
         upload_url = f"https://graph.facebook.com/v17.0/{PHONE_NUMBER_ID}/media"
         headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
         files = {"file": (filename, pdf_bytes, "application/pdf"), "type": (None, "document"), "messaging_product": (None, "whatsapp")}
         upload_res = requests.post(upload_url, headers=headers, files=files).json()
         
-        if "id" not in upload_res: return False, "Upload failed"
+        if "id" not in upload_res: 
+            print(f"WHATSAPP UPLOAD ERROR: {upload_res}")
+            return False, "Upload failed"
         
-        # Step 2: Send
+        # Step 2: Send the uploaded PDF to the user
         send_url = f"https://graph.facebook.com/v17.0/{PHONE_NUMBER_ID}/messages"
         payload = {
-            "messaging_product": "whatsapp", "to": to_mobile, "type": "document",
+            "messaging_product": "whatsapp", 
+            "to": to_mobile, 
+            "type": "document",
             "document": {"id": upload_res["id"], "filename": filename, "caption": f"Automated Plant Report ({report_date})"}
         }
         res = requests.post(send_url, headers=headers, json=payload)
+        
+        # Print exact error to console if Meta blocks it
+        if res.status_code != 200:
+            print(f"WHATSAPP SEND ERROR: {res.text}")
+            
         return res.status_code == 200, res.text
     except Exception as e:
+        print(f"WHATSAPP CRASH: {e}")
         return False, str(e)

@@ -3,64 +3,6 @@ DB_PASSWORD: tse@123
 DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
 DB_USER: tse
 H-plant:
-- Set Point
-- Digital Input
-- Digital Output
-- Analog Input
-- Analog Output
-- Preset Values
-- Controllers
-- UPSS
-- Pump Min Set
-- Timer
-- DeHumidity
-OPC_UA_URL: opc.tcp://127.0.0.1:4840
-SENDER_EMAIL: reports@tsengg.com
-SENDER_PASSWORD: Tech$#22345
-SMTP_PORT: 587
-SMTP_SERVER: mail.tsengg.com
-TELEGRAM_BOT_TOKEN: 8651269310:AAFZ9wGMxXVlIf9y7OTQB_rhgLKITu4fxCI
-TELEGRAM_GROUP_ID: '-1003964934333'
-WCS:
-- Digital Input
-- Analog Input
-- Analog Output
-- Controllers
-client_name: Tech Sphere Engineering pvt ltd
-last_report_sent: DAILY_14-04-2026_11:04
-report_fields:
-- Act_RH
-- Pump_Output
-- Pump_Status
-- SAF_Speed
-- RetAF_Speed
-- Act_Temp
-- Act_SA_Temp
-- Damper_Output
-- Act_PR
-- RadialFan_Speed
-- Act_TDS
-- Act_DP_PDF
-- Act_DP_PDF1
-- Act_DP_PDF2
-- Act_DP_COMP
-- Act_DP_COMP1
-- Act_DP_COMP2
-roles:
-  Manager:
-  - Set Point
-  - Digital Input
-  - Digital Output
-  - Analog Input
-  - Analog Output
-  - Preset Values
-  - Timer
-  - Controllers
-  - UPSS
-  - DeHumidity
-  Operator:
-  - Set Point
-  Tse:
   - Set Point
   - Digital Input
   - Digital Output
@@ -72,9 +14,69 @@ roles:
   - Pump Min Set
   - Timer
   - DeHumidity
+OPC_UA_URL: opc.tcp://127.0.0.1:4840
+SENDER_EMAIL: reports@tsengg.com
+SENDER_PASSWORD: Tech$#22345
+SMTP_PORT: 587
+SMTP_SERVER: mail.tsengg.com
+TELEGRAM_BOT_TOKEN: 8651269310:AAFZ9wGMxXVlIf9y7OTQB_rhgLKITu4fxCI
+TELEGRAM_GROUP_ID: "-1003964934333"
+PHONE_NUMBER_ID: "992931253914656"
+ACCESS_TOKEN: "EAAYgqW92JdUBReA9JCDcbfF69cposei52InV6aDQGSY8oPLMYBJZBlAm4JQIGNaHykfgYgZAFzvwg0PUJjTKGTdbMZCmE2yJ87rIpBxdBtAmGcZBWotm2sAwrhVwFRSdtrPBouErixJhGHf6CZArZCuBYqHRcYZCuksFXQUf7IDPIZAdysXTxABa6Yk0TZCIXNvY7JMPnOmBahMsjPg1jvkahLjwE6cBXotB6gZC8S4d3oVZALbDOiU2uBGgIP0j6o09FFAKazuhmPJsKUltVcL2hzemCuv"
+WCS:
+  - Digital Input
+  - Analog Input
+  - Analog Output
+  - Controllers
+client_name: Tech Sphere Engineering pvt ltd
+last_report_sent: DAILY_21-04-2026_11:04
+report_fields:
+  - Act_RH
+  - Pump_Output
+  - Pump_Status
+  - SAF_Speed
+  - RetAF_Speed
+  - Act_Temp
+  - Act_SA_Temp
+  - Damper_Output
+  - Act_PR
+  - RadialFan_Speed
+  - Act_TDS
+  - Act_DP_PDF
+  - Act_DP_PDF1
+  - Act_DP_PDF2
+  - Act_DP_COMP
+  - Act_DP_COMP1
+  - Act_DP_COMP2
+roles:
+  Manager:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Timer
+    - Controllers
+    - UPSS
+    - DeHumidity
+  Operator:
+    - Set Point
+  Tse:
+    - Set Point
+    - Digital Input
+    - Digital Output
+    - Analog Input
+    - Analog Output
+    - Preset Values
+    - Controllers
+    - UPSS
+    - Pump Min Set
+    - Timer
+    - DeHumidity
 show_outside_conditions: true
 submodules:
-- category: H-Plant-1
-  name: Preparatory1
-  node_prefix: Prep1
-  template: H-Plant-1_Prep1.html
+  - category: H-Plant-1
+    name: Preparatory1
+    node_prefix: Prep1
+    template: H-Plant-1_Prep1.html
