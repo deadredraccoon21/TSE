@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reports Admin Dashboard</title>
+    <!-- Use base style to inherit app's typography and colors -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        .admin-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #d3dbe2;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            transition: background 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0;
+            user-select: none;
+        }
+
+        .select-all-wrapper {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-card">
+        <div class="admin-header">Reports Admin Dashboard</div>
+        
+        <p style="color: #6c757d; font-size: 15px; margin-bottom: 20px;">
+            Select the default fields that should be available in the Report Generator. 
+            These settings will be saved locally for this browser.
+        </p>
+
+        <div class="select-all-wrapper checkbox-item" style="background: #e6f2ff; border-color: #b3d4ff;">
+            <input type="checkbox" id="select_all" onclick="toggleAllOptions()">
+            <label for="select_all" style="color: #0056b3; font-weight: 600;">Select All Fields</label>
+        </div>
+
+        <div class="checkbox-grid">
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="act_rh" value="act_rh">
+                <label for="act_rh">Actual RH</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="act_temp" value="act_temp">
+                <label for="act_temp">Actual Temp</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="wot_temp" value="wot_temp">
+                <label for="wot_temp">WOT Temp</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="SAF_Speed" value="SAF_Speed">
+                <label for="SAF_Speed">SAF Speed</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="set_rh" value="set_rh">
+                <label for="set_rh">Set RH</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="wp_ref" value="wp_ref">
+                <label for="wp_ref">WP Ref</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="wp_status" value="wp_status">
+                <label for="wp_status">WP Status</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="set_temp" value="set_temp">
+                <label for="set_temp">Set Temp</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="wot_sp" value="wot_sp">
+                <label for="wot_sp">WOT SP</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" class="field-checkbox" id="fre_damper" value="fre_damper">
+                <label for="fre_damper">Fresh Air Damper</label>
+            </div>
+        </div>
+
+        <div class="selected-columns" style="display: none;">
+            <h2>Selected Data Names:</h2>
+            <ul id="selected-columns-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selected_columns = localStorage.getItem('selected_columns');
+            if (selected_columns) {
+                selected_columns = selected_columns.split(',');
+                selected_columns.forEach(function (column) {
+                    var checkbox = document.getElementById(column);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateSelectedColumnsList);
+            });
+        });
+
+        function toggleAllOptions() {
+            var selectAllCheckbox = document.getElementById('select_all');
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+            updateSelectedColumnsList();
+        }
+
+        function updateSelectedColumnsList() {
+            var selectedColumnsList = document.getElementById('selected-columns-list');
+            selectedColumnsList.innerHTML = ''; 
+
+            var selected_columns = [];
+            var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+            fieldCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selected_columns.push(checkbox.value);
+                    var listItem = document.createElement('li');
+                    listItem.textContent = checkbox.value;
+                    selectedColumnsList.appendChild(listItem);
+                }
+            });
+
+            localStorage.setItem('selected_columns', selected_columns.join(','));
+        }
+    </script>
+</body>
+</html>

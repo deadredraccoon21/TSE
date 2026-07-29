@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/all.min.css') }}"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+
+      /* Background Image Layer */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='images/login_bg.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(5px);
+        z-index: -1;
+        transform: scale(
+          1.05
+        ); /* Prevents the white halo effect caused by CSS blur */
+      }
+
+      /* The Modern White Card */
+      .login-card {
+        background: #ffffff;
+        padding: 45px 40px;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+        z-index: 1;
+        border: 1px solid #e1e5eb;
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .login-header h1 {
+        color: #003a6c;
+        margin: 0 0 8px 0;
+        font-size: 36px;
+        font-weight: 700;
+      }
+
+      .login-header p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      /* Form Elements */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #495057;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Input Icons */
+      .input-wrapper i.field-icon {
+        position: absolute;
+        left: 14px;
+        color: #a0b2c1;
+        font-size: 14px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 12px 12px 38px; /* Extra left padding to make room for the icon */
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 14px;
+        background-color: #fafbfc;
+        color: #333;
+        transition: all 0.2s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #0056b3;
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
+      }
+
+      /* Password Eye Toggle */
+      .password-toggle {
+        position: absolute;
+        right: 10px;
+        background: none;
+        border: none;
+        color: #6c757d;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+
+      .password-toggle:hover {
+        color: #0056b3;
+      }
+
+      /* Login Button */
+      .btn-login {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        font-weight: bold;
+        transition: all 0.2s;
+        margin-top: 10px;
+        box-shadow: 0 4px 6px rgba(0, 86, 179, 0.2);
+      }
+
+      .btn-login:hover {
+        background-color: #004494;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 8px rgba(0, 86, 179, 0.25);
+      }
+
+      .btn-login:active {
+        transform: translateY(0);
+      }
+
+      /* Return to Home Link */
+      .home-link {
+        display: block;
+        text-align: center;
+        margin-top: 25px;
+        color: #6c757d;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .home-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+
+      /* Flashed messages override */
+      .alert {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-align: center;
+        border: none;
+      }
+      .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .alert-info {
+        background-color: #e8f4fd;
+        color: #0056b3;
+      }
+
+      @media (max-width: 480px) {
+        .login-card {
+          margin: 20px;
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-card">
+      <div class="login-header">
+        <h1>
+          <!-- <i class="fa-solid fa-lock" style="margin-right: 8px"></i> Login -->
+          Login
+        </h1>
+        <!-- <p>Sign in to access the Control System</p> -->
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <form action="{{ url_for('user_login') }}" method="post">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user field-icon"></i>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              placeholder="Enter username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-key field-icon"></i>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword()"
+              tabindex="-1"
+              title="Toggle Password Visibility"
+            >
+              <i class="fas fa-eye" id="toggleIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">Log In</button>
+      </form>
+
+      <a href="{{ url_for('dashboard') }}" class="home-link">
+        <i class="fa-solid fa-arrow-left" style="margin-right: 4px"></i> Return
+        to Dashboard
+      </a>
+    </div>
+
+    <script>
+      function togglePassword() {
+        let passwordInput = document.getElementById("password");
+        let toggleIcon = document.getElementById("toggleIcon");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.classList.remove("fa-eye");
+          toggleIcon.classList.add("fa-eye-slash");
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.classList.remove("fa-eye-slash");
+          toggleIcon.classList.add("fa-eye");
+        }
+      }
+    </script>
+  </body>
+</html>

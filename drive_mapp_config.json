@@ -1,0 +1,145 @@
+{
+  "vfd_connection": {
+    "mock_mode": false,
+    "default_ip": "192.160.100.110",
+    "default_port": 502,
+    "default_slave_address": 31,
+    "default_com_port": "COM1",
+    "default_baudrate": 9600
+  },
+  "department_equipment": {
+    "H-Plant-1": {
+      "supply_air_fans": 2,
+      "return_air_fans": 2,
+      "washer_pumps": 2
+    },
+    "H-Plant-20": {
+      "supply_air_fans": 2,
+      "return_air_fans": 1,
+      "washer_pumps": 2
+    }
+  },
+  "equipment_overrides": {
+    "H-Plant-1": {
+      "supply-air-fan-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "supply-air-fan-2": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "return-air-fan-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "return-air-fan-2": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "washer-pump-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "washer-pump-2": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "supply-air-fan": {
+        "vfd_number": "0426",
+        "serial_number": "001",
+        "ip_address": "192.160.100.110",
+        "com_port": "COM1",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "baudrate": 9600
+      }
+    },
+    "H-Plant-20": {
+      "supply-air-fan-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "supply-air-fan-2": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "return-air-fan-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "washer-pump-1": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "washer-pump-2": {
+        "vfd_number": "",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "com_port": "COM1",
+        "baudrate": 9600
+      },
+      "supply-air-fan": {
+        "vfd_number": "0426",
+        "serial_number": "",
+        "ip_address": "192.160.100.110",
+        "com_port": "COM1",
+        "tcp_port": 502,
+        "slave_address": 31,
+        "baudrate": 9600
+      }
+    }
+  }
+}

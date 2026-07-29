@@ -1,0 +1,775 @@
+[
+    {
+      "group": "A: Initialization Parameters",
+      "parameters": [
+        {
+          "id": "A1-00",
+          "address_hex": "0100",
+          "name": "Language Selection",
+          "description": "Sets the language for the LCD keypad.",
+          "default": 0,
+          "min": 0,
+          "max": 12,
+          "type": "select",
+          "options": {
+            "0": "English",
+            "1": "Japanese",
+            "2": "German",
+            "3": "French",
+            "4": "Italian",
+            "5": "Spanish",
+            "6": "Portuguese",
+            "7": "Chinese",
+            "8": "Czech",
+            "9": "Russian",
+            "10": "Turkish",
+            "11": "Polish",
+            "12": "Greek"
+          }
+        },
+        {
+          "id": "A1-01",
+          "address_hex": "0101",
+          "name": "Access Level Selection",
+          "description": "Sets user access to parameters.",
+          "default": 2,
+          "min": 0,
+          "max": 3,
+          "type": "select",
+          "options": {
+            "0": "Operation Only",
+            "1": "User Parameters",
+            "2": "Advanced Level",
+            "3": "Expert Level"
+          }
+        },
+        {
+          "id": "A1-02",
+          "address_hex": "0102",
+          "name": "Control Method Selection",
+          "description": "Sets the control method for the drive application and the motor.",
+          "default": 0,
+          "min": 0,
+          "max": 8,
+          "type": "select",
+          "options": {
+            "0": "V/f Control",
+            "2": "Open Loop Vector",
+            "5": "PM Open Loop Vector",
+            "6": "PM Advanced Open Loop Vector",
+            "8": "EZ Vector Control"
+          }
+        },
+        {
+          "id": "A1-03",
+          "address_hex": "0103",
+          "name": "Initialize Parameters",
+          "description": "Resets parameters to default values.",
+          "default": 0,
+          "min": 0,
+          "max": 3330,
+          "type": "select",
+          "options": {
+            "0": "No Initialization",
+            "1110": "User Initialization",
+            "2220": "2-Wire Initialization",
+            "3330": "3-Wire Initialization"
+          }
+        },
+        {
+          "id": "A1-04",
+          "address_hex": "0104",
+          "name": "Password",
+          "description": "Entry point for the password set in A1-05. Enter the correct password to change parameter settings.",
+          "default": 0,
+          "min": 0,
+          "max": 9999,
+          "type": "integer"
+        },
+        {
+          "id": "A1-05",
+          "address_hex": "0105",
+          "name": "Password Setting",
+          "description": "Set the password to lock parameters and prevent changes.",
+          "default": 0,
+          "min": 0,
+          "max": 9999,
+          "type": "integer"
+        },
+        {
+          "id": "A1-06",
+          "address_hex": "0127",
+          "name": "Application Preset",
+          "description": "Sets the drive to operate in selected application conditions.",
+          "default": 0,
+          "min": 0,
+          "max": 8,
+          "type": "select",
+          "options": {
+            "0": "General-purpose",
+            "1": "Water Supply Pump 2",
+            "2": "Conveyor",
+            "3": "Exhaust Fan",
+            "4": "HVAC Fan",
+            "5": "Air Compressor",
+            "6": "Crane (Hoist)",
+            "7": "Crane (Traveling)",
+            "8": "Conveyor 2"
+          }
+        },
+        {
+          "id": "A1-07",
+          "address_hex": "0128",
+          "name": "DriveWorksEZ Function Selection",
+          "description": "Sets the drive to operate with DriveWorksEZ.",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "type": "select",
+          "options": {
+            "0": "DWEZ Disabled",
+            "1": "DWEZ Enabled",
+            "2": "Enabled/Disabled w Digital Input"
+          }
+        },
+        {
+          "id": "A1-11",
+          "address_hex": "111D",
+          "name": "Firmware Update Lock",
+          "description": "Protects the drive firmware. When enabled, you cannot update the firmware.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Disabled",
+            "1": "Enabled"
+          }
+        },
+        {
+          "id": "A1-12",
+          "address_hex": "1564",
+          "name": "Bluetooth ID",
+          "description": "Sets the password necessary to use Bluetooth to control the drive.",
+          "default": 0,
+          "min": 0,
+          "max": 9999,
+          "type": "integer"
+        },
+        {
+          "id": "A2-33",
+          "address_hex": "0126",
+          "name": "User Parameter Auto Selection",
+          "description": "Sets the automatic save feature for changes to parameters A2-17 to A2-32.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Disabled: Manual Entry Required",
+            "1": "Enabled: Auto Save Recent Parms"
+          }
+        }
+      ]
+    },
+    {
+      "group": "b: Application",
+      "parameters": [
+        {
+          "id": "b1-01",
+          "address_hex": "0180",
+          "name": "Frequency Reference Selection 1",
+          "description": "Sets the input method for the frequency reference.",
+          "default": 1,
+          "min": 0,
+          "max": 4,
+          "type": "select",
+          "options": {
+            "0": "Keypad",
+            "1": "Analog Input",
+            "2": "Memobus/Modbus Communications",
+            "3": "Option PCB",
+            "4": "Pulse Train Input"
+          }
+        },
+        {
+          "id": "b1-02",
+          "address_hex": "0181",
+          "name": "Run Command Selection 1",
+          "description": "Sets the input method for the Run command.",
+          "default": 1,
+          "min": 0,
+          "max": 3,
+          "type": "select",
+          "options": {
+            "0": "Keypad",
+            "1": "Digital Input",
+            "2": "Memobus/Modbus Communications",
+            "3": "Option PCB"
+          }
+        },
+        {
+          "id": "b1-03",
+          "address_hex": "0182",
+          "name": "Stopping Method Selection",
+          "description": "Sets the method to stop the motor after removing a Run command.",
+          "default": 0,
+          "min": 0,
+          "max": 9,
+          "type": "select",
+          "options": {
+            "0": "Ramp to Stop",
+            "1": "Coast to Stop",
+            "2": "DC Injection Braking to Stop",
+            "3": "Coast to Stop with Timer",
+            "9": "Stop with Constant Distance"
+          }
+        },
+        {
+          "id": "b1-04",
+          "address_hex": "0183",
+          "name": "Reverse Operation Selection",
+          "description": "Sets the reverse operation function. Disable in fan/pump applications where reverse is dangerous.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Reverse Enabled",
+            "1": "Reverse Disabled"
+          }
+        },
+        {
+          "id": "b1-06",
+          "address_hex": "0185",
+          "name": "Digital Input Reading",
+          "description": "Sets the number of times the drive reads the sequence input command to prevent electrical interference.",
+          "default": 1,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Single Scan",
+            "1": "Double Scan"
+          }
+        },
+        {
+          "id": "b1-07",
+          "address_hex": "0186",
+          "name": "LOCAL/REMOTE Run Selection",
+          "description": "Sets drive response to an existing Run command when receiving a second Run command from a different location.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Disregard Existing RUN Command",
+            "1": "Accept Existing RUN Command"
+          }
+        },
+        {
+          "id": "b1-14",
+          "address_hex": "01C3",
+          "name": "Phase Order Selection",
+          "description": "Sets the phase order for output terminals U/T1, V/T2, and W/T3.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Standard",
+            "1": "Switch Phase Order"
+          }
+        },
+        {
+          "id": "b1-15",
+          "address_hex": "01C4",
+          "name": "Frequency Reference Selection 2",
+          "description": "Sets the input method for frequency reference 2.",
+          "default": 0,
+          "min": 0,
+          "max": 4,
+          "type": "select",
+          "options": {
+            "0": "Keypad",
+            "1": "Analog Input",
+            "2": "Memobus/Modbus Communications",
+            "3": "Option PCB",
+            "4": "Pulse Train Input"
+          }
+        },
+        {
+          "id": "b1-16",
+          "address_hex": "01C5",
+          "name": "Run Command Selection 2",
+          "description": "Sets the input method for Run Command 2 when switching control sources.",
+          "default": 0,
+          "min": 0,
+          "max": 3,
+          "type": "select",
+          "options": {
+            "0": "Keypad",
+            "1": "Digital Input",
+            "2": "Memobus/Modbus Communications",
+            "3": "Option PCB"
+          }
+        },
+        {
+          "id": "b2-01",
+          "address_hex": "0189",
+          "name": "DC Injection/Zero Speed Threshold",
+          "description": "Sets the frequency to start DC Injection Braking or Short Circuit Braking.",
+          "default": "Determined by A1-02",
+          "min": 0.0,
+          "max": 10.0,
+          "type": "float",
+          "unit": "Hz"
+        },
+        {
+          "id": "b2-02",
+          "address_hex": "018A",
+          "name": "DC Injection Braking Current",
+          "description": "Sets the DC Injection Braking current as a percentage of the drive rated current.",
+          "default": 50,
+          "min": 0,
+          "max": 75,
+          "type": "integer",
+          "unit": "%"
+        },
+        {
+          "id": "b3-01",
+          "address_hex": "0191",
+          "name": "Speed Search at Start Selection",
+          "description": "Sets the Speed Search at Start function.",
+          "default": "Determined by A1-02",
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Disable",
+            "1": "Enabled"
+          }
+        },
+        {
+          "id": "b4-01",
+          "address_hex": "01A3",
+          "name": "Timer Function ON Delay Time",
+          "description": "Sets the ON-delay time for the timer input.",
+          "default": 0.0,
+          "min": 0.0,
+          "max": 3000.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "b4-02",
+          "address_hex": "01A4",
+          "name": "Timer Function OFF Delay Time",
+          "description": "Sets the OFF-delay time for the timer input.",
+          "default": 0.0,
+          "min": 0.0,
+          "max": 3000.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "b5-01",
+          "address_hex": "01A5",
+          "name": "PID Mode Setting",
+          "description": "Sets the type of PID control.",
+          "default": 0,
+          "min": 0,
+          "max": 8,
+          "type": "select",
+          "options": {
+            "0": "Disabled",
+            "1": "Standard",
+            "2": "Standard (D on feedback)",
+            "3": "Fref + PID Trim",
+            "4": "Fref + PID Trim (D on feedback)"
+          }
+        },
+        {
+          "id": "b5-02",
+          "address_hex": "01A6",
+          "name": "Proportional Gain (P)",
+          "description": "Sets the proportional gain (P) that is applied to PID input.",
+          "default": 1.00,
+          "min": 0.00,
+          "max": 25.00,
+          "type": "float"
+        },
+        {
+          "id": "b5-03",
+          "address_hex": "01A7",
+          "name": "Integral Time (I)",
+          "description": "Sets the integral time (I) that is applied to PID input.",
+          "default": 1.0,
+          "min": 0.0,
+          "max": 360.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "b8-01",
+          "address_hex": "01CC",
+          "name": "Energy Saving Control Selection",
+          "description": "Sets the Energy-saving control function.",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "type": "select",
+          "options": {
+            "0": "Disabled",
+            "1": "Enabled",
+            "2": "Automatic Optimization"
+          }
+        }
+      ]
+    },
+    {
+      "group": "C: Tuning",
+      "parameters": [
+        {
+          "id": "C1-01",
+          "address_hex": "0200",
+          "name": "Acceleration Time 1",
+          "description": "Sets the length of time to accelerate from zero to maximum output frequency.",
+          "default": 10.0,
+          "min": 0.0,
+          "max": 6000.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "C1-02",
+          "address_hex": "0201",
+          "name": "Deceleration Time 1",
+          "description": "Sets the length of time to decelerate from maximum output frequency to zero.",
+          "default": 10.0,
+          "min": 0.0,
+          "max": 6000.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "C1-09",
+          "address_hex": "0208",
+          "name": "Fast Stop Time",
+          "description": "Sets the length of time that the drive will decelerate to zero for a Fast Stop.",
+          "default": 10.0,
+          "min": 0.0,
+          "max": 6000.0,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "C2-01",
+          "address_hex": "020B",
+          "name": "S-Curve Time @ Start of Accel",
+          "description": "Sets the S-curve acceleration time at start.",
+          "default": "Determined by A1-02",
+          "min": 0.00,
+          "max": 10.00,
+          "type": "float",
+          "unit": "s"
+        },
+        {
+          "id": "C6-01",
+          "address_hex": "0223",
+          "name": "Normal/Heavy Duty Selection",
+          "description": "Sets the drive duty rating.",
+          "default": 0,
+          "min": 0,
+          "max": 1,
+          "type": "select",
+          "options": {
+            "0": "Heavy Duty Rating",
+            "1": "Normal Duty Rating"
+          }
+        },
+        {
+          "id": "C6-02",
+          "address_hex": "0224",
+          "name": "Carrier Frequency Selection",
+          "description": "Sets the carrier frequency for the transistors in the drive.",
+          "default": "Determined by A1-02",
+          "min": 1,
+          "max": 15,
+          "type": "select",
+          "options": {
+            "1": "2.0 kHz",
+            "2": "5.0 kHz",
+            "3": "8.0 kHz",
+            "4": "10.0 kHz",
+            "5": "12.5 kHz",
+            "6": "15.0 kHz",
+            "F": "User Defined"
+          }
+        }
+      ]
+    },
+    {
+      "group": "d: Reference Settings",
+      "parameters": [
+        {
+          "id": "d1-01",
+          "address_hex": "0280",
+          "name": "Reference 1",
+          "description": "Sets the frequency reference 1.",
+          "default": 0.00,
+          "min": 0.00,
+          "max": 590.00,
+          "type": "float",
+          "unit": "Hz"
+        },
+        {
+          "id": "d1-02",
+          "address_hex": "0281",
+          "name": "Reference 2",
+          "description": "Sets the frequency reference 2.",
+          "default": 0.00,
+          "min": 0.00,
+          "max": 590.00,
+          "type": "float",
+          "unit": "Hz"
+        },
+        {
+          "id": "d1-17",
+          "address_hex": "0292",
+          "name": "Jog Reference",
+          "description": "Sets the Jog frequency reference.",
+          "default": 6.00,
+          "min": 0.00,
+          "max": 590.00,
+          "type": "float",
+          "unit": "Hz"
+        },
+        {
+          "id": "d2-01",
+          "address_hex": "0289",
+          "name": "Frequency Reference Upper Limit",
+          "description": "Sets maximum limit for all frequency references.",
+          "default": 100.0,
+          "min": 0.0,
+          "max": 110.0,
+          "type": "float",
+          "unit": "%"
+        },
+        {
+          "id": "d2-02",
+          "address_hex": "028A",
+          "name": "Frequency Reference Lower Limit",
+          "description": "Sets minimum limit for all frequency references.",
+          "default": 0.0,
+          "min": 0.0,
+          "max": 110.0,
+          "type": "float",
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "group": "E: Motor Parameters",
+      "parameters": [
+        {
+          "id": "E1-01",
+          "address_hex": "0300",
+          "name": "Input AC Supply Voltage",
+          "description": "Sets the drive input voltage.",
+          "default": "230V/400V",
+          "min": 155,
+          "max": 510,
+          "type": "integer",
+          "unit": "V"
+        },
+        {
+          "id": "E1-03",
+          "address_hex": "0302",
+          "name": "V/f Pattern Selection",
+          "description": "Sets the V/f pattern for the drive and motor.",
+          "default": "F",
+          "type": "select",
+          "options": {
+            "0-E": "Preset Patterns",
+            "F": "User Defined V/f"
+          }
+        },
+        {
+          "id": "E1-04",
+          "address_hex": "0303",
+          "name": "Maximum Output Frequency",
+          "description": "Sets the maximum output frequency for the V/f pattern.",
+          "default": "Determined by A1-02",
+          "type": "float",
+          "unit": "Hz"
+        },
+        {
+          "id": "E2-01",
+          "address_hex": "030E",
+          "name": "Motor Rated Current (FLA)",
+          "description": "Sets the motor rated current in amps.",
+          "default": "Determined by Capacity",
+          "type": "float",
+          "unit": "A"
+        },
+        {
+          "id": "E5-01",
+          "address_hex": "0329",
+          "name": "PM Motor Code Selection",
+          "description": "Sets the motor code for Yaskawa PM motors.",
+          "default": "FFFF",
+          "type": "hex"
+        },
+        {
+          "id": "E9-01",
+          "address_hex": "11E4",
+          "name": "Motor Type Selection",
+          "description": "Sets the type of motor.",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "type": "select",
+          "options": {
+            "0": "Induction (IM)",
+            "1": "Permanent Magnet (PM)",
+            "2": "Synchronous Reluctance (SynRM)"
+          }
+        }
+      ]
+    },
+    {
+      "group": "F: Options",
+      "parameters": [
+        {
+          "id": "F6-01",
+          "address_hex": "03A2",
+          "name": "Communication Error Selection",
+          "description": "Sets the method to stop the motor when the drive detects a communication error.",
+          "default": 1,
+          "min": 0,
+          "max": 5,
+          "type": "select",
+          "options": {
+            "0": "Ramp to Stop",
+            "1": "Coast to Stop",
+            "2": "Fast Stop",
+            "3": "Alarm Only",
+            "4": "Alarm (Run at d1-04)",
+            "5": "Alarm-Ramp Stop"
+          }
+        },
+        {
+          "id": "F7-01",
+          "address_hex": "03E5",
+          "name": "IP Address 1",
+          "description": "Sets the first octet of the IP Address.",
+          "default": 192,
+          "min": 0,
+          "max": 255,
+          "type": "integer"
+        },
+        {
+          "id": "F7-02",
+          "address_hex": "03E6",
+          "name": "IP Address 2",
+          "description": "Sets the second octet of the IP Address.",
+          "default": 168,
+          "min": 0,
+          "max": 255,
+          "type": "integer"
+        },
+        {
+          "id": "F7-13",
+          "address_hex": "03F1",
+          "name": "Address Mode at Startup",
+          "description": "Sets the method to set option card IP addresses.",
+          "default": 2,
+          "min": 0,
+          "max": 2,
+          "type": "select",
+          "options": {
+            "0": "Static",
+            "1": "BOOTP",
+            "2": "DHCP"
+          }
+        }
+      ]
+    },
+    {
+      "group": "H: Terminal Functions",
+      "parameters": [
+        {
+          "id": "H1-01",
+          "address_hex": "0438",
+          "name": "Terminal S1 Function Selection",
+          "description": "Sets the function for MFDI terminal S1.",
+          "default": 40,
+          "min": 1,
+          "max": 511,
+          "type": "hex_value_select",
+          "note": "See MFDI Function Table"
+        },
+        {
+          "id": "H1-02",
+          "address_hex": "0439",
+          "name": "Terminal S2 Function Selection",
+          "description": "Sets the function for MFDI terminal S2.",
+          "default": 41,
+          "min": 1,
+          "max": 511,
+          "type": "hex_value_select"
+        },
+        {
+          "id": "H1-03",
+          "address_hex": "0400",
+          "name": "Terminal S3 Function Selection",
+          "description": "Sets the function for MFDI terminal S3.",
+          "default": 24,
+          "min": 0,
+          "max": 511,
+          "type": "hex_value_select"
+        },
+        {
+          "id": "H1-04",
+          "address_hex": "0401",
+          "name": "Terminal S4 Function Selection",
+          "description": "Sets the function for MFDI terminal S4.",
+          "default": 14,
+          "min": 0,
+          "max": 511,
+          "type": "hex_value_select"
+        },
+        {
+          "id": "H1-05",
+          "address_hex": "0402",
+          "name": "Terminal S5 Function Selection",
+          "description": "Sets the function for MFDI terminal S5.",
+          "default": 3,
+          "min": 0,
+          "max": 511,
+          "type": "hex_value_select"
+        },
+        {
+          "id": "H1-06",
+          "address_hex": "0403",
+          "name": "Terminal S6 Function Selection",
+          "description": "Sets the function for MFDI terminal S6.",
+          "default": 4,
+          "min": 0,
+          "max": 511,
+          "type": "hex_value_select"
+        },
+        {
+          "id": "H1-07",
+          "address_hex": "0404",
+          "name": "Terminal S7 Function Selection",
+          "description": "Sets the function for MFDI terminal S7.",
+          "default": 6,
+          "min": 0,
+          "max": 511,
+          "type": "hex_value_select"
+        }
+      ]
+    }
+  ]

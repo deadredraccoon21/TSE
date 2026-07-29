@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Point</title>
+
+    <link rel="stylesheet" href="static\css\font.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+      /* Styles adapted from ai.html */
+      .parameter {
+        background-color: rgb(0, 86, 128);
+      }
+      .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        border-radius: 3px;
+        border-style: solid;
+        box-shadow: none;
+      }
+      .btn-success:focus,
+      .btn-success.focus {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #255625;
+      }
+      .btn-success:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439;
+      }
+      .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+        border-style: solid;
+        box-shadow: none;
+        border-radius: 3px;
+      }
+      .btn-danger:focus,
+      .btn-danger.focus {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #761c19;
+      }
+      .btn-danger:hover {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #ac2925;
+      }
+      .dialog-box {
+        /* Adjusted width slightly since SP has fewer columns than AI, but kept style */
+        width: 150%;
+        transform: translate(100%, 80%);
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #e3f4ff;
+        padding: 12px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .header {
+        background-color: #0c609d;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 6px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+      .row-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 4px;
+        margin-bottom: 4px;
+      }
+      .parameter {
+        width: 100%;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        font-size: 12px; /* Slightly larger for main labels */
+        font-weight: bold;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #c9f6ff;
+      }
+      .value {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333;
+        border-radius: 4px;
+        line-height: 32px;
+        font-size: 12px;
+      }
+      .set-box input {
+        width: 95%;
+        height: 32px;
+        background: #4caf50;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+      .set-box input:focus {
+        outline: none;
+        box-shadow: 0 0 3px rgba(76, 175, 80, 0.6);
+      }
+      .dialog-footer {
+        text-align: right;
+        padding-top: 6px;
+      }
+      .dialog-footer button {
+        margin-left: 6px;
+        padding: 3px 12px;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dialog-box" id="setPointDialog">
+      <div class="header">SET POINT</div>
+
+      <!-- Header Row -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          PARAMETER
+        </div>
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          ACTUAL
+        </div>
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          SET
+        </div>
+      </div>
+
+      <!-- Row 1: % RH -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          % RH
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Act_RH">
+          {{ msg.payload[prefix ~ '_iVa_Act_RH'] | default(0) | round(1) }}
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iMi_Set_RH"
+            value="{{ msg.payload[prefix ~ '_iMi_Set_RH'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_RH'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 2: °C -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          °C
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Act_Temp">
+          {{ msg.payload[prefix ~ '_iVa_Act_Temp'] | default(0) | round(1) }}
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iMi_Set_Temp"
+            value="{{ msg.payload[prefix ~ '_iMi_Set_Temp'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Set_Temp'] }}"
+          />
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+        <button class="btn btn-success" onclick="updateSettings()">
+          Update
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const socket = io();
+
+      socket.on("update", function (data) {
+        Object.keys(data).forEach((key) => {
+          const element = document.getElementById(key);
+          if (!element) return;
+
+          // Updated logic to match new div structure (div instead of span)
+          if (
+            element.tagName === "DIV" &&
+            element.classList.contains("value")
+          ) {
+            element.innerText = data[key];
+          } else if (element.tagName === "INPUT" && element.type === "number") {
+            if (document.activeElement !== element) {
+              element.value = data[key];
+            }
+          }
+        });
+      });
+
+      function updateSettings() {
+        const setpoints = {};
+        const inputs = document.querySelectorAll(".setpoint-input");
+
+        inputs.forEach((input) => {
+          const nodeId = input.dataset.nodeid;
+          if (nodeId) {
+            setpoints[nodeId] = input.value;
+          }
+        });
+
+        if (Object.keys(setpoints).length === 0) {
+          alert("Could not find any settings to update.");
+          return;
+        }
+
+        fetch("/write", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(setpoints),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Settings updated successfully!");
+            } else {
+              alert(
+                "Failed to update settings: " + (data.error || "Unknown error")
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred while updating settings.");
+          });
+      }
+
+      function closeDialog() {
+        document.getElementById("setPointDialog").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Report Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+  <link rel="stylesheet" type="text/css" href="print.css" media="print">
+  
+  <style>
+    body {
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 30px;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    
+    .report-card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #d3dbe2;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0056b3;
+      margin-top: 0;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #495057;
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 5px;
+      margin-bottom: 25px;
+    }
+
+    .controls-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+      margin-bottom: 25px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .control-group label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #495057;
+      margin-bottom: 6px;
+    }
+
+    .control-group select,
+    .control-group input[type="date"] {
+      padding: 10px 12px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #fff;
+      color: #495057;
+      transition: border-color 0.15s ease-in-out;
+    }
+
+    .control-group select:focus,
+    .control-group input[type="date"]:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #0056b3;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #004494;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: #212529;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #d3dbe2;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e9ecef;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #0056b3;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .to-hide-print, .report-card, .controls-grid {
+        display: none !important;
+      }
+      table {
+        box-shadow: none;
+        border: 1px solid #000;
+      }
+      th, td {
+        border: 1px solid #000;
+        color: #000;
+      }
+      th {
+        background-color: #f0f0f0;
+        color: #000;
+      }
+      h1, h2 {
+        display: block;
+        color: #000;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="report-card to-hide-print">
+    <h1>Ambertex Universal Export</h1>
+    
+    <div class="controls-grid">
+      <div class="control-group">
+        <label>Selected Fields</label>
+        <select id="data-names-dropdown" onchange="handleDataNameSelection()">
+          <option><b>Selected Fields</b></option>
+          <option value="" selected disabled>Select Data Names</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="department">Select a Department</label>
+        <select id="department" onchange="getTables()">
+          {% for department_option in department_options %}
+          <option value="{{ department_option }}">{{ department_option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="from_date">From Date</label>
+        <input type="date" id="from_date">
+      </div>
+
+      <div class="control-group">
+        <label for="to_date">To Date</label>
+        <input type="date" id="to_date">
+      </div>
+
+      <div class="control-group">
+        <label for="time_difference">Time Duration</label>
+        <select id="time_difference">
+          <option></option>
+          <option value="10 minutes">10 minutes</option>
+          <option value="30 minutes">30 minutes</option>
+          <option value="1 hour">1 hour</option>
+          <option value="2 hours">2 hours</option>
+          <option value="5 hours">5 hours</option>
+          <option value="1 Day">1 Day</option>
+        </select>
+      </div>
+      
+      <div class="button-group">
+        <button class="btn btn-primary" onclick="getData()">Generate Report</button>
+        <button class="btn btn-warning" onclick="prepareAndPrintReport()">Print Report</button>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="print-only" style="display:none;">Ambertex Universal Export</h1>
+  <h2 id="department-heading"></h2>
+  
+  <table id="table-report"></table>
+  <script>
+      function getTables() {
+        var department = document.getElementById('department').value;
+        // Set department heading dynamically
+        document.getElementById('department-heading').innerText = department;
+        fetch('/data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'department=' + encodeURIComponent(department)
+        })
+          .then(response => response.json())
+          .then(data => {
+            let rh_columns = data.rh_columns;
+            let temp_columns = data.temp_columns;
+            let rh_data = data.rh_data;
+            let temp_data = data.temp_data;
+
+            displayData(rh_columns, temp_columns, rh_data, temp_data);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+            // Display an error message to the user if needed
+          });
+      }
+
+      function getData() {
+        var department = document.getElementById('department').value;
+        var from_date = document.getElementById('from_date').value;
+        var to_date = document.getElementById('to_date').value;
+        var time_difference = document.getElementById('time_difference').value;
+        // Retrieve selected columns from sessionStorage
+        var selected_fields = localStorage.getItem('selected_columns');
+        if (!selected_fields) {
+          selected_fields = []; // Set an empty array if no columns are selected
+        } else {
+          selected_fields = selected_fields.split(',');
+        }
+        fetch('/data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          // Added the selected_fields to the request body
+          body: 'department=' + encodeURIComponent(department) + '&from_date=' + encodeURIComponent(from_date) + '&to_date=' + encodeURIComponent(to_date) + '&time_difference=' + encodeURIComponent(time_difference) + '&selected_fields=' + encodeURIComponent(selected_fields.join(','))
+        })
+          .then(response => response.json())
+          .then(data => {
+            let rh_columns = data.rh_columns;
+            let temp_columns = data.temp_columns;
+            let rh_data = data.rh_data;
+            let temp_data = data.temp_data;
+
+            // Combine RH and temperature columns and remove duplicates
+            var all_columns = [...rh_columns, ...temp_columns];
+            var selected_columns = selected_fields.filter(column => all_columns.includes(column));
+
+
+            // Filter out the 'idx' column
+            selected_columns = selected_columns.filter(column => column !== 'idx');
+
+            displayData(selected_columns, rh_data, temp_data);
+
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }
+
+      function displayData(selected_columns, rh_data, temp_data) {
+        var table = document.getElementById('table-report');
+        var table_html = '<thead><tr>';
+
+        // Add serial number as the first column header
+        table_html += '<th>Serial No.</th>';
+        // Add date and time columns
+        table_html += '<th>Date</th>';
+        table_html += '<th>Time</th>';
+
+        // Map for column name translations
+        var columnMap = {
+          'act_rh': 'actual_rh',
+          'act_temp': 'actual_temp'
+        };
+
+        // Add selected columns headers
+        // selected_columns.forEach(column => {
+        //   table_html += '<th>' + column + '</th>';
+        // });
+
+        // Add selected columns headers
+        selected_columns.forEach(column => {
+          var displayColumn = columnMap[column] || column; // Use mapped name if available, else use original
+          table_html += '<th>' + displayColumn + '</th>';
+        });
+
+        table_html += '</tr></thead><tbody>';
+
+        // Determine the maximum number of rows from both RH and temperature data
+        var maxRows = Math.max(rh_data.length, temp_data.length);
+
+        // Add table rows with data
+        for (var i = 0; i < maxRows; i++) {
+          table_html += '<tr>';
+          table_html += '<td>' + (i + 1) + '</td>'; // Serial number
+
+          // Add date and time values
+          var date = rh_data[i] ? rh_data[i]['date'] : '';
+          var time = rh_data[i] ? rh_data[i]['time'] : '';
+          table_html += '<td>' + date + '</td>';
+          table_html += '<td>' + time + '</td>';
+
+          // Add data for selected columns
+          selected_columns.forEach(column => {
+            var rh_value = rh_data[i] ? rh_data[i][column] : undefined;
+            var temp_value = temp_data[i] ? temp_data[i][column] : undefined;
+            var value = rh_value !== undefined ? rh_value : (temp_value !== undefined ? temp_value : ''); // Check for undefined instead of null
+            // table_html += '<td>' + (value !== undefined ? value : '') + '</td>'; // Ensure value is not undefined
+
+            // Display mapped value if column name is in the map
+            var displayValue = value !== undefined ? value : '';
+            var displayColumn = columnMap[column] || column;
+            table_html += '<td>' + displayValue + '</td>'; // Ensure value is not undefined
+
+          });
+
+          table_html += '</tr>';
+        }
+
+        table_html += '</tbody>';
+
+        // Display the table
+        table.innerHTML = table_html;
+      }
+
+
+      function populateDataNamesDropdown(selected_columns) {
+        var dataNamesDropdown = document.getElementById('data-names-dropdown');
+        dataNamesDropdown.innerHTML = ''; // Clear existing options
+
+        // Add the default "Selected Fields" option
+        var defaultOption = document.createElement('option');
+        defaultOption.text = 'Selected Fields';
+        defaultOption.setAttribute('style', 'font-weight: bold'); // Set the font weight to bold
+        dataNamesDropdown.add(defaultOption);
+
+
+
+        if (selected_columns) {
+          selected_columns = selected_columns.split(',');
+          selected_columns.forEach(function (column) {
+            var option = document.createElement('option');
+            option.value = column;
+            option.textContent = column;
+            dataNamesDropdown.appendChild(option);
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve selected columns from sessionStorage (if any)
+        var selected_columns = localStorage.getItem('selected_columns');
+
+        // Assuming you have a function to populate the dropdown based on data (replace with your implementation)
+        populateDataNamesDropdown(selected_columns);
+      });
+
+
+      function handleDataNameSelection() {
+        var selectedDataName = document.getElementById('data-names-dropdown').value;
+        // Implement logic to handle the selected data name
+      }
+
+
+      function populateDataNamesList(selected_columns) {
+        var dataNamesList = document.getElementById('data-names-list');
+        dataNamesList.innerHTML = ''; // Clear existing list items
+
+        if (selected_columns) {
+          selected_columns = selected_columns.split(',');
+          selected_columns.forEach(function (column) {
+            var listItem = document.createElement('li');
+            listItem.textContent = column;
+            // Add functionality to handle user selection of data names (e.g., pre-select checkboxes in your form)
+            listItem.addEventListener('click', function () {
+              // Implement logic to handle user selection (e.g., pre-select checkboxes in the user form)
+            });
+            dataNamesList.appendChild(listItem);
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve selected columns from localStorage and mark checkboxes as checked
+        var selected_columns = localStorage.getItem('selected_columns');
+        if (selected_columns) {
+          selected_columns = selected_columns.split(',');
+          selected_columns.forEach(function (column) {
+            var checkbox = document.getElementById(column);
+            if (checkbox) {
+              checkbox.checked = true;
+            }
+          });
+          updateSelectedNamesDropdown();
+        }
+
+        // Add event listeners to field checkboxes
+        var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+        fieldCheckboxes.forEach(function (checkbox) {
+          checkbox.addEventListener('change', updateSelectedNamesDropdown);
+        });
+      });
+
+      function toggleAllOptions() {
+        var selectAllCheckbox = document.getElementById('select_all');
+        var fieldCheckboxes = document.querySelectorAll('.field-checkbox');
+
+        fieldCheckboxes.forEach(function (checkbox) {
+          checkbox.checked = selectAllCheckbox.checked;
+        });
+
+        updateSelectedNamesDropdown();
+      }
+
+      function updateSelectedNamesDropdown() {
+        var selectedNamesDropdown = document.getElementById('selected-names-dropdown');
+        selectedNamesDropdown.innerHTML = ''; // Clear previous options
+
+        // Add the default "Selected data names list" option
+        var defaultOption = document.createElement('option');
+        defaultOption.text = 'Selected data names list';
+        selectedNamesDropdown.add(defaultOption);
+
+        var selected_columns = [];
+        document.querySelectorAll('.field-checkbox:checked').forEach(function (checkbox) {
+          selected_columns.push(checkbox.value);
+        });
+
+        // If columns are selected, update the dropdown options
+        if (selected_columns.length !== 0) {
+          selected_columns.forEach(function (column) {
+            var option = document.createElement('option');
+            option.text = column;
+            selectedNamesDropdown.add(option);
+          });
+        }
+
+        // Store selected columns in localStorage
+        localStorage.setItem('selected_columns', selected_columns.join(','));
+      }
+
+
+      function prepareAndPrintReport() {
+        // Hide unnecessary elements before printing
+        var toHideElements = document.querySelectorAll('.to-hide-print');
+        toHideElements.forEach(element => {
+          element.style.display = 'none';
+        });
+
+        // Print the report
+        window.print();
+
+        // Show the elements after printing
+        toHideElements.forEach(element => {
+          element.style.display = '';
+        });
+      }
+
+
+    </script>
+    
+</body>
+
+</html>

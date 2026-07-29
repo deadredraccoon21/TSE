@@ -1,0 +1,336 @@
+{% extends "drivemapp/base.html" %}
+{% block title %}Drive Mapp Settings{% endblock %}
+{% block page_heading %}Settings{% endblock %}
+
+{% block content %}
+<style>
+  .settings-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    padding: 9px 20px;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn.active { color: #0056b3; border-bottom-color: #0056b3; }
+  .tab-btn:hover:not(.active) { color: #212529; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ---- param management ---- */
+  .param-section { margin-bottom: 28px; }
+  .param-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #002a55;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .param-section-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #e7f0fb;
+    color: #0056b3;
+  }
+  .param-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-bottom: 10px;
+  }
+  .param-list-table th {
+    background: #f8f9fa;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #495057;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  .param-list-table td {
+    padding: 9px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+  }
+  .param-list-table tr:last-child td { border-bottom: none; }
+  .param-id-tag { font-family: monospace; font-weight: 700; color: #002a55; }
+  .del-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .del-btn:hover { background: #fdecea; }
+
+  .add-param-form {
+    background: #fff;
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .add-param-form label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #6c757d; display: block; margin-bottom: 3px; }
+  .add-param-form input, .add-param-form select {
+    padding: 5px 9px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    width: 130px;
+  }
+  .add-btn {
+    padding: 6px 18px;
+    background: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .add-btn:hover { background: #004494; }
+  .save-section-btn {
+    margin-top: 10px;
+    padding: 7px 22px;
+    background: #198754;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .save-section-btn:hover { background: #157347; }
+
+  /* ---- equipment config ---- */
+  .dept-config-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .dept-config-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #002a55;
+    margin: 0 0 14px;
+  }
+  .equip-count-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .equip-count-item label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #6c757d; display: block; margin-bottom: 4px; }
+  .equip-count-item input[type=number] {
+    width: 70px;
+    padding: 5px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* toast */
+  #dm-toast {
+    position: fixed; bottom: 28px; right: 28px; padding: 10px 20px;
+    border-radius: 6px; font-size: 13px; font-weight: 600; color: #fff;
+    z-index: 20000; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  #dm-toast.success { background: #198754; }
+  #dm-toast.error   { background: #dc3545; }
+</style>
+
+<div class="settings-tabs">
+  <button class="tab-btn active">Parameter Lists</button>
+</div>
+
+<!-- ===== Tab: Parameter Lists ===== -->
+<div class="tab-panel active" id="tab-params">
+
+  {% for section_key, section_label in [('monitor_params','Monitor Parameters (Page 3 — All Users'), ('manager_params','Customer Parameters (Page 4 — Manager'), ('tse_params','TSE Parameters (Page 5 — Tse')] %}
+  <div class="param-section" id="section-{{ section_key }}">
+    <div class="param-section-title">
+      {{ section_label }})
+      <span class="param-section-badge">{{ (params.get(section_key) or []) | length }} params</span>
+    </div>
+
+    <table class="param-list-table" id="tbl-{{ section_key }}">
+      <thead>
+        <tr>
+          <th style="width:80px;">ID</th>
+          <th style="width:100px;">Address</th>
+          <th>Name</th>
+          <th style="width:60px;">Type</th>
+          <th style="width:60px;">Scale</th>
+          <th style="width:50px;">Unit</th>
+          <th style="width:40px;"></th>
+        </tr>
+      </thead>
+      <tbody id="body-{{ section_key }}">
+        {% for p in (params.get(section_key) or []) %}
+        <tr data-id="{{ p.id }}" data-section="{{ section_key }}">
+          <td><span class="param-id-tag">{{ p.id }}</span></td>
+          <td><code>{{ p.address_hex }}</code></td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.type | default('float') }}</td>
+          <td>{{ p.scale | default(1) }}</td>
+          <td>{{ p.unit | default('') }}</td>
+          <td>
+            <button class="del-btn" onclick="deleteParam('{{ section_key }}', '{{ p.id }}')" title="Remove">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="add-param-form" id="add-form-{{ section_key }}">
+      <div>
+        <label>ID</label>
+        <input type="text" id="new-id-{{ section_key }}" placeholder="e.g. U1-09">
+      </div>
+      <div>
+        <label>Address (hex)</label>
+        <input type="text" id="new-addr-{{ section_key }}" placeholder="e.g. 0508">
+      </div>
+      <div>
+        <label>Name</label>
+        <input type="text" id="new-name-{{ section_key }}" placeholder="Parameter name" style="width:200px;">
+      </div>
+      <div>
+        <label>Type</label>
+        <select id="new-type-{{ section_key }}" style="width:100px;">
+          <option value="float">float</option>
+          <option value="integer">integer</option>
+          <option value="select">select</option>
+        </select>
+      </div>
+      <div>
+        <label>Scale</label>
+        <input type="number" id="new-scale-{{ section_key }}" value="1" step="any" style="width:70px;">
+      </div>
+      <div>
+        <label>Unit</label>
+        <input type="text" id="new-unit-{{ section_key }}" placeholder="Hz / A / …" style="width:70px;">
+      </div>
+      <button class="add-btn" onclick="addParam('{{ section_key }}')">+ Add</button>
+    </div>
+
+    <button class="save-section-btn" onclick="saveSection('{{ section_key }}')">
+      <i class="fa-solid fa-floppy-disk"></i> Save {{ section_label.split('(')[0].strip() }}
+    </button>
+  </div>
+  {% endfor %}
+
+</div><!-- /tab-params -->
+
+<div id="dm-toast"></div>
+
+<script>
+// In-memory param store built from server-rendered data
+const paramStore = {};
+
+{% for section_key in ['monitor_params', 'manager_params', 'tse_params'] %}
+paramStore['{{ section_key }}'] = {{ (params.get(section_key) or []) | tojson }};
+{% endfor %}
+
+function showToast(msg, type) {
+  const t = document.getElementById('dm-toast');
+  t.textContent = msg;
+  t.className = type;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2800);
+}
+
+function deleteParam(section, id) {
+  paramStore[section] = paramStore[section].filter(p => p.id !== id);
+  const row = document.querySelector(`#body-${section} tr[data-id="${id}"]`);
+  if (row) row.remove();
+  showToast(`${id} removed. Click Save to apply.`, 'success');
+}
+
+function addParam(section) {
+  const id    = document.getElementById(`new-id-${section}`).value.trim();
+  const addr  = document.getElementById(`new-addr-${section}`).value.trim();
+  const name  = document.getElementById(`new-name-${section}`).value.trim();
+  const type  = document.getElementById(`new-type-${section}`).value;
+  const scale = parseFloat(document.getElementById(`new-scale-${section}`).value) || 1;
+  const unit  = document.getElementById(`new-unit-${section}`).value.trim();
+
+  if (!id || !addr || !name) { showToast('ID, Address, and Name are required.', 'error'); return; }
+  if (paramStore[section].find(p => p.id === id)) { showToast(`${id} already exists in this section.`, 'error'); return; }
+
+  const newParam = { id, address_hex: addr, name, type, scale, unit };
+  paramStore[section].push(newParam);
+
+  const tbody = document.getElementById(`body-${section}`);
+  const tr = document.createElement('tr');
+  tr.dataset.id = id;
+  tr.dataset.section = section;
+  tr.innerHTML = `
+    <td><span class="param-id-tag">${id}</span></td>
+    <td><code>${addr}</code></td>
+    <td>${name}</td>
+    <td>${type}</td>
+    <td>${scale}</td>
+    <td>${unit}</td>
+    <td><button class="del-btn" onclick="deleteParam('${section}', '${id}')" title="Remove"><i class="fa-solid fa-trash"></i></button></td>
+  `;
+  tbody.appendChild(tr);
+
+  // clear form
+  ['new-id-','new-addr-','new-name-','new-unit-'].forEach(pf => { document.getElementById(pf+section).value = ''; });
+  document.getElementById(`new-scale-${section}`).value = '1';
+  showToast(`${id} added. Click Save to apply.`, 'success');
+}
+
+async function saveSection(section) {
+  try {
+    const payload = {};
+    payload[section] = paramStore[section];
+    const resp = await fetch('/api/drivemapp/save_params', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+    showToast(data.success ? 'Saved successfully.' : 'Save failed: ' + (data.error || ''), data.success ? 'success' : 'error');
+  } catch {
+    showToast('Communication error.', 'error');
+  }
+}
+
+
+</script>
+{% endblock %}

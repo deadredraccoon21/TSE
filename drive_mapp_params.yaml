@@ -1,0 +1,285 @@
+# Yaskawa GA500 VFD parameter definitions for Drive Mapp
+# monitor_params  → shown to all users (Page 3), read-only
+# manager_params  → shown to Manager role (Page 4), read + write
+# tse_params      → shown to Tse role   (Page 5), read + write
+# Addresses marked [est] are estimated from sequential register map — verify against GA500 manual
+
+monitor_params:
+  - id: "U1-01"
+    address_hex: "0500"
+    name: "Frequency Reference"
+    unit: "Hz"
+    scale: 0.01
+    type: float
+
+  - id: "U1-02"
+    address_hex: "0501"
+    name: "Output Frequency"
+    unit: "Hz"
+    scale: 0.01
+    type: float
+
+  - id: "U1-03"
+    address_hex: "0502"
+    name: "Output Current"
+    unit: "A"
+    scale: 0.1
+    type: float
+
+  - id: "U1-05"
+    address_hex: "0504"
+    name: "Motor Speed"
+    unit: "RPM"
+    scale: 1
+    type: integer
+
+  - id: "U1-08"
+    address_hex: "0507"
+    name: "Output Power"
+    unit: "kW"
+    scale: 0.1
+    type: float
+
+manager_params:
+  - id: "A1-02"
+    address_hex: "0102"
+    name: "Control Method Selection"
+    description: "Sets the control method for the drive application and the motor."
+    type: select
+    scale: 1
+    default: 0
+    options:
+      0: "V/f Control"
+      2: "Open Loop Vector"
+      5: "PM Open Loop Vector"
+      6: "PM Advanced Open Loop Vector"
+      8: "EZ Vector Control"
+
+  - id: "b1-01"
+    address_hex: "0180"
+    name: "Frequency Reference Selection 1"
+    description: "Sets the reference source for speed command in AUTO mode."
+    type: select
+    scale: 1
+    default: 1
+    options:
+      0: "Operator Keypad"
+      1: "Analog Input (A1)"
+      2: "Serial Communication"
+      3: "Option Card"
+      4: "Pulse Train Input"
+
+  - id: "C1-01"
+    address_hex: "0200"
+    name: "Acceleration Time 1"
+    description: "Sets the time to accelerate from 0 Hz to maximum frequency."
+    type: float
+    scale: 0.1
+    unit: "s"
+    default: 10.0
+    min: 0.0
+    max: 6000.0
+
+  - id: "C1-02"
+    address_hex: "0201"
+    name: "Deceleration Time 1"
+    description: "Sets the time to decelerate from maximum frequency to 0 Hz."
+    type: float
+    scale: 0.1
+    unit: "s"
+    default: 10.0
+    min: 0.0
+    max: 6000.0
+
+  - id: "E1-01"
+    address_hex: "0300"
+    name: "Input AC Supply Voltage"
+    description: "Sets the input supply voltage to optimise drive performance."
+    type: integer
+    scale: 1
+    unit: "V"
+    default: 400
+    min: 155
+    max: 510
+
+  - id: "E1-04"
+    address_hex: "0303"
+    name: "Maximum Output Frequency"
+    description: "Sets the maximum output frequency of the drive."
+    type: float
+    scale: 0.01
+    unit: "Hz"
+    default: 50.00
+    min: 0.00
+    max: 400.00
+
+  - id: "E1-05"
+    address_hex: "0304"      # [est] sequential after E1-04
+    name: "Base Frequency"
+    description: "Sets the frequency at which maximum output voltage is reached."
+    type: float
+    scale: 0.01
+    unit: "Hz"
+    default: 50.00
+    min: 0.00
+    max: 400.00
+
+  - id: "E1-06"
+    address_hex: "0305"      # [est] sequential after E1-05
+    name: "Maximum Output Voltage"
+    description: "Sets the maximum output voltage of the drive."
+    type: float
+    scale: 0.1
+    unit: "V"
+    default: 400.0
+    min: 0.0
+    max: 510.0
+
+  - id: "E2-01"
+    address_hex: "030E"
+    name: "Motor Rated Current"
+    description: "Sets the full-load amps rating of the motor (from motor nameplate)."
+    type: float
+    scale: 0.1
+    unit: "A"
+    default: 0.0
+    min: 0.0
+    max: 999.9
+
+  - id: "E2-04"
+    address_hex: "0311"      # [est] sequential after E2-01
+    name: "Motor Pole Number"
+    description: "Sets the number of poles of the connected motor."
+    type: select
+    scale: 1
+    default: 4
+    options:
+      2: "2 Poles"
+      4: "4 Poles"
+      6: "6 Poles"
+      8: "8 Poles"
+
+  - id: "E2-11"
+    address_hex: "0318"      # [est] sequential after E2-04
+    name: "Motor Rated Power"
+    description: "Sets the rated power of the motor (from motor nameplate)."
+    type: float
+    scale: 0.01
+    unit: "kW"
+    default: 0.00
+    min: 0.00
+    max: 650.00
+
+tse_params:
+  - id: "A1-02"
+    address_hex: "0102"
+    name: "Control Method Selection"
+    description: "Sets the control method for the drive application and the motor."
+    type: select
+    scale: 1
+    default: 0
+    options:
+      0: "V/f Control"
+      2: "Open Loop Vector"
+      5: "PM Open Loop Vector"
+      6: "PM Advanced Open Loop Vector"
+      8: "EZ Vector Control"
+
+  - id: "b1-01"
+    address_hex: "0180"
+    name: "Frequency Reference Selection 1"
+    description: "Sets the reference source for speed command in AUTO mode."
+    type: select
+    scale: 1
+    default: 1
+    options:
+      0: "Operator Keypad"
+      1: "Analog Input (A1)"
+      2: "Serial Communication"
+      3: "Option Card"
+      4: "Pulse Train Input"
+
+  - id: "C6-01"
+    address_hex: "0223"
+    name: "Normal / Heavy Duty Selection"
+    description: "Selects Normal Duty (higher speed range) or Heavy Duty (higher overload) rating."
+    type: select
+    scale: 1
+    default: 1
+    options:
+      0: "Normal Duty (ND)"
+      1: "Heavy Duty (HD)"
+
+  - id: "H1-06"
+    address_hex: "0403"
+    name: "Terminal S6 Function Selection"
+    description: "Sets the function assigned to multi-function digital input terminal S6."
+    type: select
+    scale: 1
+    default: 24
+    options:
+      0: "3-Wire Sequence"
+      1: "Local / Remote Select"
+      2: "External Fault NO"
+      3: "External Fault NC"
+      6: "Jog Reference"
+      14: "Fault Reset"
+      24: "Not Used"
+      40: "Forward Run"
+      41: "Reverse Run"
+
+  - id: "H1-07"
+    address_hex: "0404"
+    name: "Terminal S7 Function Selection"
+    description: "Sets the function assigned to multi-function digital input terminal S7."
+    type: select
+    scale: 1
+    default: 24
+    options:
+      0: "3-Wire Sequence"
+      1: "Local / Remote Select"
+      2: "External Fault NO"
+      3: "External Fault NC"
+      6: "Jog Reference"
+      14: "Fault Reset"
+      24: "Not Used"
+      40: "Forward Run"
+      41: "Reverse Run"
+
+  - id: "H2-03"
+    address_hex: "040A"      # [est] H2-01=0x0408, H2-02=0x0409, H2-03=0x040A
+    name: "Terminal MA/MB/MC Function"
+    description: "Sets the function for the relay output contacts (MA/MB/MC)."
+    type: select
+    scale: 1
+    default: 0
+    options:
+      0: "During Run"
+      1: "Zero Speed"
+      2: "Speed Agree"
+      3: "User Speed Agree"
+      4: "Frequency Detection 1"
+      6: "Inverter Ready"
+      37: "During Fault"
+
+  - id: "L8-05"
+    address_hex: "04D4"      # [est] — verify against GA500 Modbus register list
+    name: "Input Phase Loss Detection"
+    description: "Enables or disables protection against input phase loss."
+    type: select
+    scale: 1
+    default: 1
+    options:
+      0: "Disabled"
+      1: "Enabled"
+
+  - id: "L8-07"
+    address_hex: "04D6"      # [est] sequential after L8-05
+    name: "Output Phase Loss Detection"
+    description: "Enables or disables protection against output phase loss."
+    type: select
+    scale: 1
+    default: 1
+    options:
+      0: "Disabled"
+      1: "Enabled"

@@ -1,0 +1,5031 @@
+{
+    "alarms": [
+        {
+            "id": "d47ffa16-c368-4177-9aac-7892444034fa",
+            "time": "2026-07-29 12:48:42",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:44"
+        },
+        {
+            "id": "169b7e63-a4c0-4841-9a08-99d0b0506d48",
+            "time": "2026-07-29 12:48:42",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:44"
+        },
+        {
+            "id": "97610cd0-fe5b-4477-ba70-10ca44a212b8",
+            "time": "2026-07-29 12:48:42",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:46"
+        },
+        {
+            "id": "b1829209-03ad-40bb-975a-7a43ab05ff12",
+            "time": "2026-07-29 12:48:42",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:43"
+        },
+        {
+            "id": "05ff4698-5f0d-4a82-b22c-0ec20d960cbd",
+            "time": "2026-07-29 12:48:43",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:44"
+        },
+        {
+            "id": "9352327b-b0a7-4721-bd02-8a028ea95d84",
+            "time": "2026-07-29 12:48:43",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:54"
+        },
+        {
+            "id": "5a27d5b3-cc4e-41dd-bf66-5f8b5c802479",
+            "time": "2026-07-29 12:48:43",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:46"
+        },
+        {
+            "id": "2b74b441-564d-49e2-b60a-5795f19c6eb1",
+            "time": "2026-07-29 12:48:43",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "e9009362-c4ff-4b6a-b68a-dcea2126d2c3",
+            "time": "2026-07-29 12:48:44",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:46"
+        },
+        {
+            "id": "52c17084-e465-4aa7-acf6-a0fc364bd46a",
+            "time": "2026-07-29 12:48:44",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "bafde326-059e-471e-8be4-edd552bedf41",
+            "time": "2026-07-29 12:48:44",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:46"
+        },
+        {
+            "id": "7d286718-1016-4a47-a842-83c66fe3019d",
+            "time": "2026-07-29 12:48:46",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "9dc3d216-77a2-4698-9d9c-fdc02512b7d8",
+            "time": "2026-07-29 12:48:46",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:54"
+        },
+        {
+            "id": "be7a0816-ee17-4162-acf5-b1f49d833885",
+            "time": "2026-07-29 12:48:46",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "7c11dfc0-f81d-4ced-835c-45e52bd0dc3b",
+            "time": "2026-07-29 12:48:46",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "75eb1454-9e3a-4a8b-b611-78a201645f90",
+            "time": "2026-07-29 12:48:46",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:53"
+        },
+        {
+            "id": "147d797c-aa71-44f0-858a-0c056b4ad309",
+            "time": "2026-07-29 12:48:47",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:49"
+        },
+        {
+            "id": "d158121e-1a96-4ba7-b2db-f42823b2abbe",
+            "time": "2026-07-29 12:48:47",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "01b3d10e-af69-40be-b788-54b87d22abc9",
+            "time": "2026-07-29 12:48:47",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "ba41492b-f82a-4309-8566-8fdf2860a315",
+            "time": "2026-07-29 12:48:47",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "5afbd478-e890-44d7-947d-31b0c623ec3e",
+            "time": "2026-07-29 12:48:47",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "db3026f4-5812-4234-aba6-257318fce295",
+            "time": "2026-07-29 12:48:47",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:48"
+        },
+        {
+            "id": "010c7f47-a92c-44e4-9dd5-19a2455ffa05",
+            "time": "2026-07-29 12:48:48",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "038d428f-9d69-4237-9940-925f1408fc1f",
+            "time": "2026-07-29 12:48:48",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:52"
+        },
+        {
+            "id": "300e9f3c-39e6-40b7-9012-d447746e0e56",
+            "time": "2026-07-29 12:48:48",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:50"
+        },
+        {
+            "id": "0342408d-b1fd-4747-83b9-4a4cfcbfded4",
+            "time": "2026-07-29 12:48:48",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:50"
+        },
+        {
+            "id": "5811c98f-fa63-48bd-9969-a23f94b65e7b",
+            "time": "2026-07-29 12:48:48",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:54"
+        },
+        {
+            "id": "7e6e5791-196e-4766-9228-d0bc7594bdca",
+            "time": "2026-07-29 12:48:48",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:49"
+        },
+        {
+            "id": "6e6af3b5-a2b5-4695-af38-35838ce245bd",
+            "time": "2026-07-29 12:48:49",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "ced91a17-b0c8-4ce1-87be-6a062bb8a035",
+            "time": "2026-07-29 12:48:49",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "df492557-9ab8-4e9f-ba71-43f7776121e2",
+            "time": "2026-07-29 12:48:49",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:50"
+        },
+        {
+            "id": "23fd3c7b-d905-49d9-9346-cf60e0b2c2af",
+            "time": "2026-07-29 12:48:50",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "d0e4948b-3764-4325-a2d3-751ba4bb06c9",
+            "time": "2026-07-29 12:48:50",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "cf862028-d986-4575-873f-4c921cba9688",
+            "time": "2026-07-29 12:48:50",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:54"
+        },
+        {
+            "id": "43c5f893-a383-4547-92a1-9044ca3c2977",
+            "time": "2026-07-29 12:48:50",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:52"
+        },
+        {
+            "id": "205f93d5-7827-4ba8-80ef-3632365509e2",
+            "time": "2026-07-29 12:48:50",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:54"
+        },
+        {
+            "id": "63701014-7f32-4167-941c-6ea7374b7fbc",
+            "time": "2026-07-29 12:48:51",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "37d7fd54-f7ca-45a9-9d17-abe37dcdbe1f",
+            "time": "2026-07-29 12:48:51",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "853aa5ad-8aee-4b16-b412-f75eaf6c278a",
+            "time": "2026-07-29 12:48:51",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:51"
+        },
+        {
+            "id": "868fcd42-2f58-4f88-9c09-6c540b2fc082",
+            "time": "2026-07-29 12:48:51",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "898b6a3e-2e12-4e12-a8c3-9dd9f6e64b85",
+            "time": "2026-07-29 12:48:51",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "7d7405cc-c094-4628-b135-99c7a5f53d66",
+            "time": "2026-07-29 12:48:51",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "95f066dd-5b00-471e-b01f-30dc2585d41b",
+            "time": "2026-07-29 12:48:51",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:59"
+        },
+        {
+            "id": "a203c033-9881-4176-91ac-f9d41bac164f",
+            "time": "2026-07-29 12:48:52",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:57"
+        },
+        {
+            "id": "46cc3c11-0815-434f-b13b-0dd0b13eb84c",
+            "time": "2026-07-29 12:48:53",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "77b4262f-3f43-4cf1-b3c4-91991301758f",
+            "time": "2026-07-29 12:48:53",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "0bc764b6-731d-482f-8ddd-e9a94adf145d",
+            "time": "2026-07-29 12:48:54",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "c44e862d-da8a-4da9-ad0a-4cbe0fc2d446",
+            "time": "2026-07-29 12:48:54",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "8249bdf9-d829-474c-89cc-0f1d14b39fac",
+            "time": "2026-07-29 12:48:54",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "c0e6ebe8-415e-4249-a4fc-d13b8b3a489b",
+            "time": "2026-07-29 12:48:54",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "90288fdc-b715-46db-95c2-5c42dc3ff4be",
+            "time": "2026-07-29 12:48:54",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:55"
+        },
+        {
+            "id": "eb6a32b1-a58a-45d1-be6a-d2acb43db893",
+            "time": "2026-07-29 12:48:55",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:59"
+        },
+        {
+            "id": "1b9f6007-d981-4986-9bc5-a76b0d8e34b0",
+            "time": "2026-07-29 12:48:55",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "2f504573-8b67-49a9-b1c0-32d569753932",
+            "time": "2026-07-29 12:48:55",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "58e3bbc4-223d-43d9-b474-043acdbc1249",
+            "time": "2026-07-29 12:48:55",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:59"
+        },
+        {
+            "id": "24b6b9ff-9166-4de5-a141-1e41eb7e96bc",
+            "time": "2026-07-29 12:48:55",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:59"
+        },
+        {
+            "id": "985caa37-ee76-42aa-ba52-c770ceab2067",
+            "time": "2026-07-29 12:48:55",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:59"
+        },
+        {
+            "id": "569d177f-fb99-4541-ba6c-3c6d35870da4",
+            "time": "2026-07-29 12:48:55",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "341f7e68-5b86-4935-91a2-2771ca97c35e",
+            "time": "2026-07-29 12:48:55",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:56"
+        },
+        {
+            "id": "a1dd74a4-c312-46b7-8ff2-c3e640340194",
+            "time": "2026-07-29 12:48:56",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:57"
+        },
+        {
+            "id": "9e0b0d55-4409-48eb-a08b-ef0bda9bfcea",
+            "time": "2026-07-29 12:48:56",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:57"
+        },
+        {
+            "id": "cfc9e056-de34-4521-8adc-6c54c60b0390",
+            "time": "2026-07-29 12:48:56",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:00"
+        },
+        {
+            "id": "b972d7d9-0958-487f-84fb-a46cc79e2f60",
+            "time": "2026-07-29 12:48:56",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "d56e7af4-2d2f-449f-8dba-13523bfc1f03",
+            "time": "2026-07-29 12:48:56",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:57"
+        },
+        {
+            "id": "ec298281-b37d-43b3-905e-23c87128f065",
+            "time": "2026-07-29 12:48:57",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "ac295931-bdd4-410f-8035-2ba4a87247d0",
+            "time": "2026-07-29 12:48:57",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "0a7daaee-c4be-4848-a44a-44972370b15a",
+            "time": "2026-07-29 12:48:57",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "0aa0ce46-80a4-4e39-90ff-78d7358c54b6",
+            "time": "2026-07-29 12:48:57",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:00"
+        },
+        {
+            "id": "f856acef-2458-47ce-b082-61ce559f0640",
+            "time": "2026-07-29 12:48:57",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:01"
+        },
+        {
+            "id": "a3ad77de-6242-47d1-9582-e6a23617126e",
+            "time": "2026-07-29 12:48:57",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:00"
+        },
+        {
+            "id": "31c8d1a8-5f04-4539-86ff-d1f115b2eaff",
+            "time": "2026-07-29 12:48:57",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:48:58"
+        },
+        {
+            "id": "0e1b9a25-7f94-4d0e-ac1e-6344340c916a",
+            "time": "2026-07-29 12:48:58",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "c33f608c-87d0-4245-94db-1a5d9dcb5642",
+            "time": "2026-07-29 12:48:59",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "a9cb1cc9-163c-4117-8b5a-e23d9264521f",
+            "time": "2026-07-29 12:48:59",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "ed9b459a-3f46-46a8-96d8-5177489c69a4",
+            "time": "2026-07-29 12:48:59",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "55278072-0397-4b34-829a-dc565b68c08c",
+            "time": "2026-07-29 12:48:59",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "f75046f6-c50f-422c-85f0-cc528079e9a2",
+            "time": "2026-07-29 12:49:00",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:01"
+        },
+        {
+            "id": "e0149081-ae2a-4c6f-80c6-7493621e8a9f",
+            "time": "2026-07-29 12:49:00",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "6d65f61e-98bb-4afd-a1a9-d18d279458ce",
+            "time": "2026-07-29 12:49:00",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:01"
+        },
+        {
+            "id": "220f160b-e765-4bd1-9c2c-2745c9a7f37c",
+            "time": "2026-07-29 12:49:01",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "3cf3e954-947d-48aa-8672-782c0cf3115a",
+            "time": "2026-07-29 12:49:01",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:02"
+        },
+        {
+            "id": "0d64d422-23bf-4d54-a21a-458fa39a56bd",
+            "time": "2026-07-29 12:49:01",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:02"
+        },
+        {
+            "id": "ebb861c0-158c-4cef-b29b-e48215cf63da",
+            "time": "2026-07-29 12:49:01",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "845e175e-b2ad-4244-bd0b-69d072dae61d",
+            "time": "2026-07-29 12:49:02",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "e784eb35-0bf2-484c-b7d0-82139d2c30f4",
+            "time": "2026-07-29 12:49:02",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "fefaaf35-d2d8-4362-82b3-89fb35848033",
+            "time": "2026-07-29 12:49:02",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:44"
+        },
+        {
+            "id": "339f0cd2-9514-408e-bc8f-f8822a7c4fcc",
+            "time": "2026-07-29 12:49:02",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "01a2e68a-9237-4f63-bb74-d02b1a392038",
+            "time": "2026-07-29 12:49:02",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "4bb228bf-3623-4181-b759-73bcbc341511",
+            "time": "2026-07-29 12:49:06",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "0",
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:42"
+        },
+        {
+            "id": "d07f3208-2610-415c-a69c-1f68e4c150c1",
+            "time": "2026-07-29 12:49:44",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "dea8ff97-095b-45ea-b19c-dcfd9f2112c4",
+            "time": "2026-07-29 12:49:44",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "cdcba748-1df8-45ca-8173-6848c5c1785b",
+            "time": "2026-07-29 12:49:44",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:50"
+        },
+        {
+            "id": "bf5147d3-2d1f-4c9e-8f6f-9998d6c97c88",
+            "time": "2026-07-29 12:49:44",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:46"
+        },
+        {
+            "id": "4693eab6-ab08-4843-b9c4-31213e1c303c",
+            "time": "2026-07-29 12:49:45",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "5b904b6e-b760-41df-8ab7-ce2aa96d9a4d",
+            "time": "2026-07-29 12:49:45",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "dd9d2eb9-f3ce-467e-b926-17d8fd007608",
+            "time": "2026-07-29 12:49:45",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:45"
+        },
+        {
+            "id": "12e2615d-5aca-4e02-908e-c3d80f50a1ca",
+            "time": "2026-07-29 12:49:45",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:46"
+        },
+        {
+            "id": "3531117f-6e41-458c-9977-17243fae441f",
+            "time": "2026-07-29 12:49:45",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "104eb43d-4136-4207-89cc-dff26f0a5c02",
+            "time": "2026-07-29 12:49:45",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "4f855161-cd88-4d27-9440-e711af59c0de",
+            "time": "2026-07-29 12:49:45",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "3ca1821a-e5cd-4922-a429-1347b5173bc9",
+            "time": "2026-07-29 12:49:45",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:46"
+        },
+        {
+            "id": "2e57eb18-8a7f-419c-891a-e068fc8fd06a",
+            "time": "2026-07-29 12:49:45",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:48"
+        },
+        {
+            "id": "2ef3064a-44bb-4b4d-9853-73e6d84708ed",
+            "time": "2026-07-29 12:49:45",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "1f93631d-0933-4cd8-a030-1ce4e371236a",
+            "time": "2026-07-29 12:49:45",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:48"
+        },
+        {
+            "id": "18dd8900-fbaf-4977-aa85-1e28cbcab9eb",
+            "time": "2026-07-29 12:49:46",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "f2880ca3-9cb2-46dd-a63b-ab813f31982e",
+            "time": "2026-07-29 12:49:46",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:56"
+        },
+        {
+            "id": "80c7a9c1-bc11-47be-b2b5-76bbd705fc1b",
+            "time": "2026-07-29 12:49:46",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "d7182bc5-77c5-441f-86de-dbc34422e93f",
+            "time": "2026-07-29 12:49:46",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:47"
+        },
+        {
+            "id": "17e79d69-385e-4b69-abb8-b99e106d14ae",
+            "time": "2026-07-29 12:49:47",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:48"
+        },
+        {
+            "id": "a90a3fd3-a3af-4534-b5cd-16470b5c4d2c",
+            "time": "2026-07-29 12:49:47",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:48"
+        },
+        {
+            "id": "76f9b2b5-bd23-452f-a5ce-4d89e9f2190a",
+            "time": "2026-07-29 12:49:47",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:50"
+        },
+        {
+            "id": "92999a86-c64e-4628-855d-1a2cc02e142b",
+            "time": "2026-07-29 12:49:47",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "c303e1c0-5e69-4cd8-98f0-b97cf987d3fd",
+            "time": "2026-07-29 12:49:47",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "a1c1761e-e0a9-4b26-9139-d13f01e0a43e",
+            "time": "2026-07-29 12:49:48",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "a095b19f-0817-44e2-a4e0-08231f434a61",
+            "time": "2026-07-29 12:49:48",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "b4e07bf1-c253-452e-8980-4d3efca8c290",
+            "time": "2026-07-29 12:49:48",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:49"
+        },
+        {
+            "id": "7586345b-181f-4787-a581-76988969fa72",
+            "time": "2026-07-29 12:49:48",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:55"
+        },
+        {
+            "id": "e80ef48e-e50c-4143-8936-b7be4725ab7c",
+            "time": "2026-07-29 12:49:49",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:50"
+        },
+        {
+            "id": "72061d57-600e-4cc3-a5d6-77053950a878",
+            "time": "2026-07-29 12:49:49",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:50"
+        },
+        {
+            "id": "59a94be2-1eb4-44bb-b222-819e93d6bae4",
+            "time": "2026-07-29 12:49:49",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "c5a3f7e5-dcbd-4613-a99c-a51869c9ac92",
+            "time": "2026-07-29 12:49:49",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:59"
+        },
+        {
+            "id": "4e1e5f8b-94a6-4b88-8b5b-010a08be7dc4",
+            "time": "2026-07-29 12:49:49",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "9fc3fe92-8567-4fd8-8da1-109abebb3419",
+            "time": "2026-07-29 12:49:52",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "2323e10f-b25a-472a-93a6-55c895995cf1",
+            "time": "2026-07-29 12:49:52",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "5a7d4ccb-7052-4d5a-9b50-fb472612bda5",
+            "time": "2026-07-29 12:49:52",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:55"
+        },
+        {
+            "id": "fd6e060f-cbae-4308-b173-c270f125ef30",
+            "time": "2026-07-29 12:49:52",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:55"
+        },
+        {
+            "id": "2a0986ec-558d-4f11-a3d3-d48694622360",
+            "time": "2026-07-29 12:49:52",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "25ec138a-f573-4f29-adb0-9c427e84faa6",
+            "time": "2026-07-29 12:49:52",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:53"
+        },
+        {
+            "id": "b9b124e1-3390-4595-b1e2-11a896a712da",
+            "time": "2026-07-29 12:49:53",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "b683b06f-728f-4a89-9748-27b6488dbfad",
+            "time": "2026-07-29 12:49:53",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "3217cd4b-9949-46c9-ada1-3f62b5e4f608",
+            "time": "2026-07-29 12:49:53",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "6bf3ab02-26e2-4004-a155-3354072365af",
+            "time": "2026-07-29 12:49:53",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "ecf633a8-3c05-460f-8fc3-ec9a388d9924",
+            "time": "2026-07-29 12:49:54",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "ffeb1b02-6757-41b4-b1a4-0a7f0c869cc6",
+            "time": "2026-07-29 12:49:54",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:56"
+        },
+        {
+            "id": "43305138-018d-4f79-b889-4bb9626021f5",
+            "time": "2026-07-29 12:49:54",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "7ad0930a-0c01-456a-a52c-6f2bc1bb3535",
+            "time": "2026-07-29 12:49:54",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "00859104-9657-4b6d-a5e2-c1a00c5d4225",
+            "time": "2026-07-29 12:49:54",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:54"
+        },
+        {
+            "id": "d99d3a7e-f209-4fc6-947b-6cda7969d92a",
+            "time": "2026-07-29 12:49:54",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:55"
+        },
+        {
+            "id": "816a0baa-b726-42ab-a704-c3e160f16874",
+            "time": "2026-07-29 12:49:54",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:56"
+        },
+        {
+            "id": "ede38d22-962d-4ba8-a646-e414fe186e92",
+            "time": "2026-07-29 12:49:54",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "fbe537db-7561-4528-bd5b-53962e45b631",
+            "time": "2026-07-29 12:49:54",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "9428d783-7fa0-4fbe-ba64-d2977a4df5f9",
+            "time": "2026-07-29 12:49:54",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "41562964-495b-4cde-b756-1c40866db1da",
+            "time": "2026-07-29 12:49:55",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "aa1cf4de-be63-4785-918e-fc11a2744c50",
+            "time": "2026-07-29 12:49:55",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:56"
+        },
+        {
+            "id": "a361fd4a-dccb-4891-90af-86deed3a02ce",
+            "time": "2026-07-29 12:49:55",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "0034d72a-660b-4195-b4dd-661ba32c33f2",
+            "time": "2026-07-29 12:49:55",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "5252b4ae-3366-4af0-8a76-3dac97a6e12d",
+            "time": "2026-07-29 12:49:55",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "79555ffd-254b-4bae-a5cb-469636385525",
+            "time": "2026-07-29 12:49:55",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "867cb519-0224-483c-9fe1-595c084e8c63",
+            "time": "2026-07-29 12:49:56",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "c9084757-be4e-45c1-8819-6025660a9952",
+            "time": "2026-07-29 12:49:56",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "2c227740-cc83-4cb5-b295-4296ad060e9d",
+            "time": "2026-07-29 12:49:56",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "bc3e2c1d-2274-40c1-a908-80927e731a96",
+            "time": "2026-07-29 12:49:58",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "d9dd9c4b-0b7f-4cc8-848a-e4c7c02cf217",
+            "time": "2026-07-29 12:49:58",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:58"
+        },
+        {
+            "id": "43d91797-d041-46e0-ad24-fa8ed676b8ee",
+            "time": "2026-07-29 12:49:58",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "7a8d8418-866e-4bc7-915a-3804f90bb158",
+            "time": "2026-07-29 12:49:58",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "a1d2628e-d873-441a-98d8-908848543b7c",
+            "time": "2026-07-29 12:49:58",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "9dea3953-9922-41d0-a5a5-eebaf357c2d6",
+            "time": "2026-07-29 12:49:58",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "3e700b1b-64c8-4ed2-b6fb-d9d687edada1",
+            "time": "2026-07-29 12:49:58",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:59"
+        },
+        {
+            "id": "6770213b-11bf-49cb-95cd-a37be5537a97",
+            "time": "2026-07-29 12:49:58",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:49:59"
+        },
+        {
+            "id": "7297f8ed-330f-4757-9443-8b9ef1bb939a",
+            "time": "2026-07-29 12:49:58",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "65280d72-abc7-4322-b81c-685f0be7b41b",
+            "time": "2026-07-29 12:49:59",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "0acddc07-116e-4198-acce-443882311234",
+            "time": "2026-07-29 12:49:59",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "bc2c2f08-4109-4ba8-a00c-b616ff040972",
+            "time": "2026-07-29 12:49:59",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:25"
+        },
+        {
+            "id": "c99c5e94-a026-4768-afd2-ae6e054448d3",
+            "time": "2026-07-29 12:49:59",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "cdf903b9-abd8-452f-b65f-886a2334576f",
+            "time": "2026-07-29 12:49:59",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "686a78c7-a599-4357-9208-a0df982993d2",
+            "time": "2026-07-29 12:49:59",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:26"
+        },
+        {
+            "id": "c31dd465-0d12-425f-bf50-788147f73373",
+            "time": "2026-07-29 12:50:04",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "0",
+            "status": "Resolved",
+            "acknowledged": true,
+            "resolved_time": "2026-07-29 12:55:24"
+        },
+        {
+            "id": "0b04a234-a31c-4d9a-96e1-3772107bb5e7",
+            "time": "2026-07-29 12:55:29",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "fb2a0f38-fce3-4318-a3cb-9492edf10647",
+            "time": "2026-07-29 12:55:29",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:31"
+        },
+        {
+            "id": "e4a58f19-7700-4890-9fcd-fbb43d9a3bb8",
+            "time": "2026-07-29 12:55:29",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "c254e928-f643-43d2-b06d-193cbe021df0",
+            "time": "2026-07-29 12:55:29",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "8213bb27-4b4d-444c-9f73-55592e08f685",
+            "time": "2026-07-29 12:55:29",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:31"
+        },
+        {
+            "id": "086254f0-c6e6-4da2-bb59-817d1d5033bf",
+            "time": "2026-07-29 12:55:30",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "15743ce3-fa30-4e3e-9233-e27a6368760b",
+            "time": "2026-07-29 12:55:30",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:32"
+        },
+        {
+            "id": "eec8063f-dee2-4d36-ba11-615878d2d8de",
+            "time": "2026-07-29 12:55:30",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:38"
+        },
+        {
+            "id": "261277ea-cb88-496c-8d9a-243d7ec0b7dd",
+            "time": "2026-07-29 12:55:31",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "190e6eb5-2031-4dae-88b9-8e55bfbebc57",
+            "time": "2026-07-29 12:55:31",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:32"
+        },
+        {
+            "id": "a7fb8f64-8222-4daa-8b0c-0a30b95ffff7",
+            "time": "2026-07-29 12:55:31",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:32"
+        },
+        {
+            "id": "5287c23f-59e4-4156-88a3-05a71ab47b3d",
+            "time": "2026-07-29 12:55:32",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "6d037b18-ad54-4c97-a302-bf14aae1d322",
+            "time": "2026-07-29 12:55:32",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "8d2f823d-51b1-4900-83e2-700b5120d73b",
+            "time": "2026-07-29 12:55:32",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "a3cd3b25-6b56-4369-8d4c-d44f9913b434",
+            "time": "2026-07-29 12:55:32",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "02b3adba-a60c-4158-96e1-1f60e1575177",
+            "time": "2026-07-29 12:55:32",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "04e4af5b-e913-4eb1-aa58-6706f485a7e7",
+            "time": "2026-07-29 12:55:32",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "5ed47bbb-25f0-4eae-a449-cb480969080a",
+            "time": "2026-07-29 12:55:32",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:36"
+        },
+        {
+            "id": "031e262f-2f72-479f-9f74-b612843219cf",
+            "time": "2026-07-29 12:55:33",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:36"
+        },
+        {
+            "id": "141c1c68-8faf-49bc-ae28-c2514102d857",
+            "time": "2026-07-29 12:55:33",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:36"
+        },
+        {
+            "id": "129589f6-b742-42ed-9ad4-8a7df2d497ea",
+            "time": "2026-07-29 12:55:33",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "cc25be74-bcd4-4e68-a723-333d9638decb",
+            "time": "2026-07-29 12:55:33",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "9c5c98e6-4df7-48d5-aedd-387c7f8f31eb",
+            "time": "2026-07-29 12:55:33",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:33"
+        },
+        {
+            "id": "6fe1381d-d5e6-4185-8d09-ec18bdf8484b",
+            "time": "2026-07-29 12:55:33",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "27e07423-461a-4d40-a5c2-8b0c357f9e3b",
+            "time": "2026-07-29 12:55:33",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:35"
+        },
+        {
+            "id": "55594f44-7bc1-4ae6-8c97-57a03296d230",
+            "time": "2026-07-29 12:55:33",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "6608581b-c078-4481-8e3e-269f0e8a545a",
+            "time": "2026-07-29 12:55:35",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:36"
+        },
+        {
+            "id": "3e23d962-97d2-43cf-a851-da4b2f0f4a5e",
+            "time": "2026-07-29 12:55:36",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "76685359-388a-40c4-b7ff-346416a6ffee",
+            "time": "2026-07-29 12:55:36",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "07f9e0f4-cdb8-4113-a789-6e9efff76110",
+            "time": "2026-07-29 12:55:36",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "6d39f365-981d-4b02-9715-c4230b2f5e4b",
+            "time": "2026-07-29 12:55:36",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "a2e3229c-618b-41c8-95af-112030607990",
+            "time": "2026-07-29 12:55:36",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "722439b9-bd72-4130-9dfe-5bff2a9ac6ab",
+            "time": "2026-07-29 12:55:36",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "8138c0cd-6be9-4fe6-888c-a35bff4b7efb",
+            "time": "2026-07-29 12:55:36",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:38"
+        },
+        {
+            "id": "1ce81fcb-f389-48fb-a71e-1ef2f47f7aa2",
+            "time": "2026-07-29 12:55:36",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "6ba1fd6f-a05f-432a-87ba-27c8bf62f429",
+            "time": "2026-07-29 12:55:36",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "e9d97f2b-fc26-454f-a78b-d0e8ec96decf",
+            "time": "2026-07-29 12:55:36",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "7afc662c-6694-43e7-bd70-d27a04727d47",
+            "time": "2026-07-29 12:55:37",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "ae36b5a9-5775-47da-b79a-82fe54d12d72",
+            "time": "2026-07-29 12:55:37",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:37"
+        },
+        {
+            "id": "bb64ed24-3dc0-41ce-b82b-728ed54b002b",
+            "time": "2026-07-29 12:55:37",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:39"
+        },
+        {
+            "id": "0f82ff99-b8c0-48b3-99ce-b4f3f005534b",
+            "time": "2026-07-29 12:55:37",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:42"
+        },
+        {
+            "id": "4eb039ef-9602-41d5-baf7-8dd11e393956",
+            "time": "2026-07-29 12:55:37",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "f5812154-cbe1-4898-9400-f4daae192b4e",
+            "time": "2026-07-29 12:55:38",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "abd40d45-26ad-4cca-94e2-a017170758ed",
+            "time": "2026-07-29 12:55:38",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:39"
+        },
+        {
+            "id": "7ba4a49c-7241-4a44-9497-c43ec339dee5",
+            "time": "2026-07-29 12:55:38",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "97010b5b-61d8-4b44-9803-c5c8be34594d",
+            "time": "2026-07-29 12:55:38",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "41b34116-6738-4c51-ae48-ea4df7b64608",
+            "time": "2026-07-29 12:55:39",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "8275630b-b235-4af5-b761-83bee3de7415",
+            "time": "2026-07-29 12:55:39",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "d9454d55-c1d3-4298-8b0c-a9b2a0783f73",
+            "time": "2026-07-29 12:55:39",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "a9601b28-0c80-46dd-bc21-5193b6abdb98",
+            "time": "2026-07-29 12:55:39",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "f412fc2f-bab8-472b-9ebf-1427164fb9c2",
+            "time": "2026-07-29 12:55:39",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "d7d08b31-0b59-4514-bd3a-951ed4734389",
+            "time": "2026-07-29 12:55:39",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "79589674-d599-4e6e-9967-bf0adff75869",
+            "time": "2026-07-29 12:55:39",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:42"
+        },
+        {
+            "id": "7c43c29c-b2d9-42cb-8cab-513a12cd17f3",
+            "time": "2026-07-29 12:55:39",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "1681a966-eeda-4022-b0dc-85342a8103fa",
+            "time": "2026-07-29 12:55:39",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:40"
+        },
+        {
+            "id": "83ebfda1-c32c-461f-93e7-5dff2b09f2f3",
+            "time": "2026-07-29 12:55:39",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "45754e2d-9f3f-402c-b399-996441c92c68",
+            "time": "2026-07-29 12:55:40",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "4e3fb504-fc71-46be-9a76-40bfa1836a70",
+            "time": "2026-07-29 12:55:41",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "8f5e0a54-8df2-42c9-ad12-879f3cb8ca02",
+            "time": "2026-07-29 12:55:42",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "896f63d0-bb73-407f-8633-52eb4b20e574",
+            "time": "2026-07-29 12:55:42",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "31ab5c40-6110-4957-9d87-b9694786c90f",
+            "time": "2026-07-29 12:55:42",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "834ac4f2-1e1e-4b11-83e1-d44403d89cdf",
+            "time": "2026-07-29 12:55:42",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "f3c646e8-036b-4f3d-aa12-7bf1bf898a82",
+            "time": "2026-07-29 12:55:42",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "8541596d-2de6-4f50-8427-bd9a7306dd55",
+            "time": "2026-07-29 12:55:42",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:43"
+        },
+        {
+            "id": "0fb4511e-ea8c-41e0-be4e-37dcea02315c",
+            "time": "2026-07-29 12:55:42",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "fdc13ba3-038f-4cca-bfb1-1ce11abb0f65",
+            "time": "2026-07-29 12:55:43",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "7c2cd8c0-854a-43ab-b12e-ff2b4e87d3b4",
+            "time": "2026-07-29 12:55:43",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "0d91c867-39c4-4b14-8435-4195c2807126",
+            "time": "2026-07-29 12:55:43",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "e923980e-c3fd-4598-8f81-51369fe69746",
+            "time": "2026-07-29 12:55:43",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "39518ad4-b20f-447d-9562-3350a8a1df63",
+            "time": "2026-07-29 12:55:43",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:51"
+        },
+        {
+            "id": "0bea0c58-4003-48a4-8aa5-bd033a6bfc32",
+            "time": "2026-07-29 12:55:43",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "8b6e1f80-6d48-467f-a1d6-1264f66c05d0",
+            "time": "2026-07-29 12:55:43",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "4918b6ac-926d-4ec1-9bae-e205da984b61",
+            "time": "2026-07-29 12:55:43",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:52"
+        },
+        {
+            "id": "bf87d084-ced4-4af1-822f-1b5fcad4e426",
+            "time": "2026-07-29 12:55:48",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "0",
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:50"
+        },
+        {
+            "id": "7aaa200e-5c1a-4d3b-9d0f-311446106b50",
+            "time": "2026-07-29 12:55:53",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:00"
+        },
+        {
+            "id": "49043698-3178-41a3-b0ef-e8cbc254f74b",
+            "time": "2026-07-29 12:55:53",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:54"
+        },
+        {
+            "id": "487f8558-a2b3-4410-9daa-eac9b1332a57",
+            "time": "2026-07-29 12:55:53",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "b7a50e49-73d0-4709-9622-aead3cc60440",
+            "time": "2026-07-29 12:55:53",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:57"
+        },
+        {
+            "id": "2917d389-2ea0-4239-a83f-3c9b541b2e2e",
+            "time": "2026-07-29 12:55:53",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:55"
+        },
+        {
+            "id": "c871fa3a-3bae-4ba5-af3a-d0388998a921",
+            "time": "2026-07-29 12:55:53",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:54"
+        },
+        {
+            "id": "73d03635-d6d1-45fd-b374-9d2302e53185",
+            "time": "2026-07-29 12:55:54",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:55"
+        },
+        {
+            "id": "80a8b5df-918f-4ba8-81af-df934415c432",
+            "time": "2026-07-29 12:55:54",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:57"
+        },
+        {
+            "id": "2a51135e-0050-4064-8627-e5ad4c688249",
+            "time": "2026-07-29 12:55:54",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:55"
+        },
+        {
+            "id": "8d62d372-49b4-4baa-b585-fbe67973f208",
+            "time": "2026-07-29 12:55:54",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "b63d0420-df0c-4694-af77-3d2036c0b386",
+            "time": "2026-07-29 12:55:54",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:55"
+        },
+        {
+            "id": "fe68bbc5-c550-4262-b41b-1af7341e757b",
+            "time": "2026-07-29 12:55:54",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:55"
+        },
+        {
+            "id": "a25797b3-581f-49ad-b2ea-1a6599ae8989",
+            "time": "2026-07-29 12:55:55",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "66a28d34-4654-4afa-ba01-f7b521a0ff37",
+            "time": "2026-07-29 12:55:55",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "bedc1698-fca0-475a-b7fe-46ec6b7ecf5e",
+            "time": "2026-07-29 12:55:55",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "28e8c3dd-a1c6-43dc-b280-a93c2c6bef51",
+            "time": "2026-07-29 12:55:55",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:56"
+        },
+        {
+            "id": "09cdc8a4-1955-4a2f-9d76-c3d99c4423b0",
+            "time": "2026-07-29 12:55:55",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:56"
+        },
+        {
+            "id": "1e7cc310-d762-4155-99bc-b31e58987fc3",
+            "time": "2026-07-29 12:55:56",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:57"
+        },
+        {
+            "id": "4f91da71-cb20-45e0-9115-cda459db6667",
+            "time": "2026-07-29 12:55:56",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:58"
+        },
+        {
+            "id": "76eb1117-de24-42ee-8f65-c806c463ea28",
+            "time": "2026-07-29 12:55:56",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:57"
+        },
+        {
+            "id": "ba0caa33-cfb2-4431-94fe-4a2ef86139c1",
+            "time": "2026-07-29 12:55:56",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "582c0fad-818a-4d1d-b434-7401a6c95de9",
+            "time": "2026-07-29 12:55:56",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:57"
+        },
+        {
+            "id": "54b9222e-794b-45df-ac38-57420b65196b",
+            "time": "2026-07-29 12:55:57",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "31682387-b67a-4f5c-a01a-a5ad425ede87",
+            "time": "2026-07-29 12:55:57",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:04"
+        },
+        {
+            "id": "68d2c3fe-936b-418e-b7c0-cf63af703927",
+            "time": "2026-07-29 12:55:57",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:58"
+        },
+        {
+            "id": "bbe73a7c-cdaa-4678-8a47-708d35cb8867",
+            "time": "2026-07-29 12:55:57",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "076b8d22-129d-4477-8d0c-f39da9fa8c54",
+            "time": "2026-07-29 12:55:58",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "34f34a3f-d126-4285-92ef-f26f5f02652d",
+            "time": "2026-07-29 12:55:58",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "2a26b675-815a-43f4-b9e0-121bc464099d",
+            "time": "2026-07-29 12:55:58",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "366bcb77-1474-4466-b507-0efbac690a44",
+            "time": "2026-07-29 12:55:58",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:06"
+        },
+        {
+            "id": "93f5127c-0ccb-474b-8fca-7acd9c4566ad",
+            "time": "2026-07-29 12:55:58",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "ca8e2299-5c4c-4b3f-937a-e4cfbd232f74",
+            "time": "2026-07-29 12:55:58",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:55:59"
+        },
+        {
+            "id": "c8fcc1de-30c9-44c4-aecf-05e0c54189c5",
+            "time": "2026-07-29 12:55:58",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:00"
+        },
+        {
+            "id": "c849ca60-ad8f-45f6-b029-8d7a848c96b5",
+            "time": "2026-07-29 12:55:58",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "bea75bce-6020-4fe7-b520-d7cf29a34be9",
+            "time": "2026-07-29 12:55:59",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:00"
+        },
+        {
+            "id": "951e2985-e44e-468a-ab72-1103fb57564b",
+            "time": "2026-07-29 12:55:59",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:00"
+        },
+        {
+            "id": "defdd8b6-e759-4b29-b5c7-59fbaddf11c3",
+            "time": "2026-07-29 12:55:59",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "2091ca96-e4c4-430b-9393-f6dc54722e06",
+            "time": "2026-07-29 12:55:59",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "81bb00e5-dfd0-4bc2-9dcd-754e33111dff",
+            "time": "2026-07-29 12:56:00",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "f71eafa4-0093-4e07-a2b3-1d3a3d43d7cd",
+            "time": "2026-07-29 12:56:00",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "f83fb81e-3089-4ab9-a8e6-6e0e483f5401",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "a2c4dd73-08c1-4a82-aee7-fefb2c38aef7",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:01"
+        },
+        {
+            "id": "c22be92e-61dc-4a02-a8d4-341c55e86e0a",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "8c7b4571-7457-4cc8-a74a-0e7f94af2174",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "3e9604ed-6117-4644-9f4d-b5405e4854a7",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "a0b46777-d91b-42a2-89f8-969576f84e27",
+            "time": "2026-07-29 12:56:01",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "f4838fe7-d4d2-4647-8d48-5cadfba0bd6a",
+            "time": "2026-07-29 12:56:01",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:04"
+        },
+        {
+            "id": "96decdc7-4bd4-4405-8a28-8cf2f74e6beb",
+            "time": "2026-07-29 12:56:01",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:03"
+        },
+        {
+            "id": "f746e240-cda6-4e31-945c-92f9a19ac5c1",
+            "time": "2026-07-29 12:56:01",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:06"
+        },
+        {
+            "id": "1d407a64-3774-4d1d-bed2-82d12e31c938",
+            "time": "2026-07-29 12:56:01",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "f10165ba-c9b6-4e77-b7f2-62445f14e1d3",
+            "time": "2026-07-29 12:56:01",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:04"
+        },
+        {
+            "id": "36d4f860-2c6b-4938-b7a0-d935f39d384b",
+            "time": "2026-07-29 12:56:03",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "5797b6f6-10a4-4f3f-bb26-3393312dc1b4",
+            "time": "2026-07-29 12:56:03",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "9b57d025-5d71-4712-97a0-fc5f44eaa3f0",
+            "time": "2026-07-29 12:56:03",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "4abc376b-a9e2-4ba7-a7a7-64008eff66d6",
+            "time": "2026-07-29 12:56:04",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:07"
+        },
+        {
+            "id": "7902c63e-4f6b-4244-97a5-9671507ff6a9",
+            "time": "2026-07-29 12:56:04",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "a7e137f2-d693-4504-8ca8-ab8eb57c8c54",
+            "time": "2026-07-29 12:56:04",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "7b4c7bdb-946c-4674-8c50-bb41d6afe1fd",
+            "time": "2026-07-29 12:56:04",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "951af802-0920-48c7-a273-b93e327b614d",
+            "time": "2026-07-29 12:56:04",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:06"
+        },
+        {
+            "id": "34fc2f64-51c9-4d64-a9a5-c89b2cc1c924",
+            "time": "2026-07-29 12:56:04",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:05"
+        },
+        {
+            "id": "2e2ee12a-7ac2-4447-bf26-db13566c2fcc",
+            "time": "2026-07-29 12:56:05",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:08"
+        },
+        {
+            "id": "480f8a94-9ff7-4545-93ab-bcb7926b9d51",
+            "time": "2026-07-29 12:56:05",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "6ccfe4f3-7a69-4f9a-9f00-27ed0d13aaa0",
+            "time": "2026-07-29 12:56:06",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "e2a32d1b-1584-47c6-bd8e-0524b09ca590",
+            "time": "2026-07-29 12:56:06",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:08"
+        },
+        {
+            "id": "10feea2b-5bde-4b16-8ac7-1f07b5165160",
+            "time": "2026-07-29 12:56:06",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "5d2b6693-3604-49b4-82ea-09f79a83d467",
+            "time": "2026-07-29 12:56:06",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "5fa971f0-19b6-4f57-afe6-3ac3e93a5b8a",
+            "time": "2026-07-29 12:56:06",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "6addb270-98e3-4b7b-bb72-e69f6a8fd90d",
+            "time": "2026-07-29 12:56:07",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "9ae9420a-0d72-42cd-a142-ec554e3a2762",
+            "time": "2026-07-29 12:56:07",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:08"
+        },
+        {
+            "id": "d1ce74cb-4c5d-4681-94f0-8e5ad0382873",
+            "time": "2026-07-29 12:56:07",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "309d47d4-f4b5-4fca-b964-cdb0a0e56652",
+            "time": "2026-07-29 12:56:07",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:08"
+        },
+        {
+            "id": "2377e6ae-4942-4925-809f-0506fd2e8895",
+            "time": "2026-07-29 12:56:07",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "e22b1808-5018-4d61-9400-a75e7cbea887",
+            "time": "2026-07-29 12:56:08",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "728520a6-e394-42b9-9ae0-ce32e1388f6d",
+            "time": "2026-07-29 12:56:08",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "43452863-d257-4501-a6e9-3f533fe541ec",
+            "time": "2026-07-29 12:56:08",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "efcbf060-f93e-4223-84af-baa19d7cbf41",
+            "time": "2026-07-29 12:56:08",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "cd920950-a4be-4c1e-b841-7433f182da82",
+            "time": "2026-07-29 12:56:10",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "d76226e0-c38c-40e5-aa64-98a0693e4a50",
+            "time": "2026-07-29 12:56:10",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "325c9a9f-7d10-4eff-96fd-a95f6e8c4276",
+            "time": "2026-07-29 12:56:10",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:14"
+        },
+        {
+            "id": "973f7e29-db4a-4b2f-939d-a3214199dbc5",
+            "time": "2026-07-29 12:56:10",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:14"
+        },
+        {
+            "id": "5aa20297-85c4-4bfc-9dc5-23946c54013d",
+            "time": "2026-07-29 12:56:10",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:10"
+        },
+        {
+            "id": "f74235d9-aebf-48df-911a-4fb61188c2a8",
+            "time": "2026-07-29 12:56:10",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:12"
+        },
+        {
+            "id": "b79ac192-c766-4dbe-b18c-eb1a04b3a845",
+            "time": "2026-07-29 12:56:10",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:12"
+        },
+        {
+            "id": "a1e232e9-a328-4b52-886b-000b5af066f1",
+            "time": "2026-07-29 12:56:10",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:11"
+        },
+        {
+            "id": "20f1b8a1-6d7a-4ce3-8016-70e31e584bfa",
+            "time": "2026-07-29 12:56:11",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "455d5b0c-d09f-485b-afa4-0183dd1c2c4f",
+            "time": "2026-07-29 12:56:11",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:14"
+        },
+        {
+            "id": "c7ed2fa0-68f2-4958-8720-7b1afa112463",
+            "time": "2026-07-29 12:56:11",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:12"
+        },
+        {
+            "id": "bbc6ecdd-5f6f-4877-b6d8-3554a4322608",
+            "time": "2026-07-29 12:56:11",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "b66a1823-89f4-47a0-9c68-ec9a80cf9b7a",
+            "time": "2026-07-29 12:56:11",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "dd0f0966-c398-4212-8c83-16019413872a",
+            "time": "2026-07-29 12:56:12",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:18"
+        },
+        {
+            "id": "c6b96058-5c1a-4092-9fbc-43f2c98ac136",
+            "time": "2026-07-29 12:56:12",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "75c9f925-f475-425e-812a-58758fdc42a9",
+            "time": "2026-07-29 12:56:12",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "8ebb2df5-79e2-401f-afc5-69e033b871a3",
+            "time": "2026-07-29 12:56:14",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "56b95355-9441-4e66-b21f-08ffd1fd06f1",
+            "time": "2026-07-29 12:56:14",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "517e0ac7-ec50-42b4-abf3-277070c61ed7",
+            "time": "2026-07-29 12:56:14",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "a86341fc-6ed7-4f61-af83-73c5023f3054",
+            "time": "2026-07-29 12:56:14",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:16"
+        },
+        {
+            "id": "05070cf0-bc2f-451c-9977-348eb447ecfb",
+            "time": "2026-07-29 12:56:14",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "ea4bbe9a-4d17-449a-a2c7-0fb7c0acfd85",
+            "time": "2026-07-29 12:56:14",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:19"
+        },
+        {
+            "id": "715133a9-b544-4571-8715-3bad84224ae8",
+            "time": "2026-07-29 12:56:14",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "df6459f8-9989-456b-888c-adfa442f272b",
+            "time": "2026-07-29 12:56:15",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "858e4f6c-5124-4ac9-a427-76c407017a2e",
+            "time": "2026-07-29 12:56:15",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:16"
+        },
+        {
+            "id": "b05ec97d-f7d5-4b7f-80ee-aa480137c163",
+            "time": "2026-07-29 12:56:15",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:18"
+        },
+        {
+            "id": "a9b4915f-8591-45d6-b029-9052e5857518",
+            "time": "2026-07-29 12:56:15",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "8bed3d21-808d-49c1-a1cb-e943ee85e119",
+            "time": "2026-07-29 12:56:15",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:15"
+        },
+        {
+            "id": "e01811f0-9330-4368-a4bf-132831287934",
+            "time": "2026-07-29 12:56:15",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:17"
+        },
+        {
+            "id": "d0e6ead1-26fc-4689-a0dc-34317da0c632",
+            "time": "2026-07-29 12:56:15",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "68b43c54-66d5-4b67-a312-93eb8b04b464",
+            "time": "2026-07-29 12:56:15",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "ca38206f-c5ab-4197-8aa6-46170f499e45",
+            "time": "2026-07-29 12:56:15",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:16"
+        },
+        {
+            "id": "5caa6949-3796-4033-a736-9f3a89e4130c",
+            "time": "2026-07-29 12:56:16",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:18"
+        },
+        {
+            "id": "f8c95fa0-53e5-490a-b369-3a82d0d57d29",
+            "time": "2026-07-29 12:56:16",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:19"
+        },
+        {
+            "id": "fde65c02-27ea-4594-92f4-16f0a655aa15",
+            "time": "2026-07-29 12:56:16",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "38f5ab12-2f05-4a0b-9722-f2f7d16c8e8f",
+            "time": "2026-07-29 12:56:16",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:18"
+        },
+        {
+            "id": "7603a203-5e32-4359-abb9-dbcb178fe573",
+            "time": "2026-07-29 12:56:16",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:56:19"
+        },
+        {
+            "id": "1a0d43b4-f9d2-4591-9986-599d0739ed1e",
+            "time": "2026-07-29 12:56:18",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "648814e5-5b5f-4baf-ae59-4743c7cc592c",
+            "time": "2026-07-29 12:56:18",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "6924d2ab-d6dd-43e1-8cc7-aeacad059d63",
+            "time": "2026-07-29 12:56:18",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "e8a503d4-0df7-46c5-8f9f-8c52d6d6687c",
+            "time": "2026-07-29 12:56:18",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "e524d32f-cdc6-4d7e-acf9-3c77795e97b6",
+            "time": "2026-07-29 12:56:18",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "d489e6e0-733b-4792-a5b0-c7f700e4cb09",
+            "time": "2026-07-29 12:56:18",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "d4884743-277f-4a95-85d3-d0094bc70df1",
+            "time": "2026-07-29 12:56:18",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "79760d86-8e03-495d-a9f5-dbfa6a22e049",
+            "time": "2026-07-29 12:56:18",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "aa6e4764-bec2-4b5e-b733-bef97b752369",
+            "time": "2026-07-29 12:56:19",
+            "message": "Return Air Fan-3 VFD Fault - Spinning 1",
+            "code": "213",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "bf14b1d1-624d-41e5-be3a-86f3ec6e3265",
+            "time": "2026-07-29 12:56:19",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "a6da28d0-39af-4269-8a2d-f38fb66ababf",
+            "time": "2026-07-29 12:56:19",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "ff0a3af4-8948-43bd-abad-64b63920d5b9",
+            "time": "2026-07-29 12:56:19",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "91365617-2b39-4fc9-bd93-c83248fcc837",
+            "time": "2026-07-29 12:56:19",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:37"
+        },
+        {
+            "id": "cc6175f2-d652-48c5-92c7-7ce3a2920ade",
+            "time": "2026-07-29 12:56:23",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "0",
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:35"
+        },
+        {
+            "id": "e96d4d0e-54ed-47f7-9106-29ccc45b3266",
+            "time": "2026-07-29 12:58:37",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:39"
+        },
+        {
+            "id": "dc716bd6-af22-453a-b4a9-11084ec16b16",
+            "time": "2026-07-29 12:58:37",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:39"
+        },
+        {
+            "id": "9c48dd78-356c-45a8-a415-1bfd8aff0f00",
+            "time": "2026-07-29 12:58:37",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:39"
+        },
+        {
+            "id": "4e3088ce-15c1-4226-8c3c-b25c6702c56c",
+            "time": "2026-07-29 12:58:37",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:41"
+        },
+        {
+            "id": "9c65d2e7-a10e-43f5-8d2c-68d1dfe7d24e",
+            "time": "2026-07-29 12:58:37",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "483180c5-5c35-41a1-8e3c-a4b114b9a99f",
+            "time": "2026-07-29 12:58:38",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:41"
+        },
+        {
+            "id": "d1b7d029-34aa-41e1-a877-ec34f156854f",
+            "time": "2026-07-29 12:58:38",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:44"
+        },
+        {
+            "id": "c2f7a189-650b-40f9-b0ac-d7d7d8631cb6",
+            "time": "2026-07-29 12:58:38",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "20b2d3c6-c127-4f19-a921-5e231ace3f9f",
+            "time": "2026-07-29 12:58:38",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:41"
+        },
+        {
+            "id": "316d57b3-22b0-459d-be96-0392fe0632ed",
+            "time": "2026-07-29 12:58:38",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:41"
+        },
+        {
+            "id": "8ba3ad84-036f-47f3-8231-bf9fe7348faf",
+            "time": "2026-07-29 12:58:38",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:44"
+        },
+        {
+            "id": "51056412-b0cd-4fda-a20d-f216f5f74701",
+            "time": "2026-07-29 12:58:39",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "934f7dea-feaa-4431-b825-bd68b10bd8f6",
+            "time": "2026-07-29 12:58:39",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "c081fbda-bf77-41cf-a5c3-fbe5941340c7",
+            "time": "2026-07-29 12:58:39",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "dfbfd79e-2aa9-4759-b966-d8561d676bac",
+            "time": "2026-07-29 12:58:39",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:41"
+        },
+        {
+            "id": "9624481b-0918-41a5-ba51-820368c89696",
+            "time": "2026-07-29 12:58:39",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:42"
+        },
+        {
+            "id": "3169f00b-b851-40f3-a033-6abf979aecd9",
+            "time": "2026-07-29 12:58:39",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "38780836-339e-4a7c-a5fb-7a6546b721b5",
+            "time": "2026-07-29 12:58:39",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "6d4a329f-859a-4548-a999-488ead5f933d",
+            "time": "2026-07-29 12:58:39",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:40"
+        },
+        {
+            "id": "8d1d74b4-5f87-4a4d-a919-473c2e502172",
+            "time": "2026-07-29 12:58:39",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:42"
+        },
+        {
+            "id": "393b7425-3fa6-49d5-bbf5-6187848943b8",
+            "time": "2026-07-29 12:58:40",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:45"
+        },
+        {
+            "id": "cf111199-c45f-44d5-8f33-ea0c2f48f7d0",
+            "time": "2026-07-29 12:58:40",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:44"
+        },
+        {
+            "id": "232cb460-c32c-42a3-9e47-389463841457",
+            "time": "2026-07-29 12:58:40",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "7ab07e80-017c-4008-bfd9-e0c699a5f370",
+            "time": "2026-07-29 12:58:40",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "3b0c4b35-aef5-47ba-922c-e93ac76a2fc3",
+            "time": "2026-07-29 12:58:41",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "a7cd56d3-342f-47e6-a8ff-59aafc065300",
+            "time": "2026-07-29 12:58:41",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:42"
+        },
+        {
+            "id": "970d47fc-3f0a-4981-87fc-df93889b6c95",
+            "time": "2026-07-29 12:58:42",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:46"
+        },
+        {
+            "id": "5c0aa118-3fa9-4b5e-a667-fd4bb7e1bd7a",
+            "time": "2026-07-29 12:58:42",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "7972123f-e389-442f-9be8-1b9eeed15282",
+            "time": "2026-07-29 12:58:42",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "da4e45e6-5b3e-4bd3-a495-24fb5949c9cc",
+            "time": "2026-07-29 12:58:42",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:45"
+        },
+        {
+            "id": "7d66e2ab-bdd1-4e4c-8cb8-ad57920ec011",
+            "time": "2026-07-29 12:58:42",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "18fc4ddb-16d2-4275-93ca-3213a1ff9e02",
+            "time": "2026-07-29 12:58:42",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:43"
+        },
+        {
+            "id": "65d35265-eb1e-4c08-94e0-70e8b1595462",
+            "time": "2026-07-29 12:58:43",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:49"
+        },
+        {
+            "id": "484b36a4-179f-46bf-972a-de4543c9799a",
+            "time": "2026-07-29 12:58:44",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:45"
+        },
+        {
+            "id": "80e5f386-e039-43f6-84c3-67fcefaafcb4",
+            "time": "2026-07-29 12:58:44",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:46"
+        },
+        {
+            "id": "8588eaed-03b6-4931-91b0-7450125bb657",
+            "time": "2026-07-29 12:58:44",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:49"
+        },
+        {
+            "id": "84dec12a-08ee-4084-b1ff-6f1c409e58e8",
+            "time": "2026-07-29 12:58:45",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:46"
+        },
+        {
+            "id": "4ca72f03-5c8e-4e9b-ab2e-be8e04cdf0cd",
+            "time": "2026-07-29 12:58:45",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:48"
+        },
+        {
+            "id": "749fd256-00a2-442d-bf9b-25feb25863b5",
+            "time": "2026-07-29 12:58:45",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "72847a71-567f-49c4-a45a-6e58211e55da",
+            "time": "2026-07-29 12:58:45",
+            "message": "Rotary Drum Filter TRIP - Spinning 1",
+            "code": "223",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:49"
+        },
+        {
+            "id": "e0515d68-ebc3-40da-8565-f930c1cf3702",
+            "time": "2026-07-29 12:58:45",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "f8c809fc-8c55-4072-9808-1c5aeb580535",
+            "time": "2026-07-29 12:58:45",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:51"
+        },
+        {
+            "id": "ae923425-57e0-4e89-9b88-3555b42c53c9",
+            "time": "2026-07-29 12:58:45",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "d938db3f-258f-456a-a379-b90f67bb8ba7",
+            "time": "2026-07-29 12:58:45",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "429b1341-b40a-48ab-b766-6a37c5109834",
+            "time": "2026-07-29 12:58:46",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:48"
+        },
+        {
+            "id": "82598531-7773-487d-82c7-3f6f51853ddc",
+            "time": "2026-07-29 12:58:46",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "d1e3bc35-3d14-4c03-a8a1-d930c9eac412",
+            "time": "2026-07-29 12:58:46",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:50"
+        },
+        {
+            "id": "6e0507ea-76d9-4328-8e2b-2bc728d9c3d3",
+            "time": "2026-07-29 12:58:46",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "c472d661-c768-431f-93ea-2413f48476ca",
+            "time": "2026-07-29 12:58:46",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:47"
+        },
+        {
+            "id": "62187599-84bc-4829-ba93-8e3f3b537c8f",
+            "time": "2026-07-29 12:58:47",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "cdeb9876-726e-443a-acb2-c4abc39a9404",
+            "time": "2026-07-29 12:58:47",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:48"
+        },
+        {
+            "id": "d58ad58d-1ee3-4155-b3da-157063d9db8a",
+            "time": "2026-07-29 12:58:47",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:50"
+        },
+        {
+            "id": "bc4b8e90-27d0-40e0-941e-77b9adaf204c",
+            "time": "2026-07-29 12:58:47",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:50"
+        },
+        {
+            "id": "76eb9916-d4e7-4726-9cd5-9f2f9bd41f6f",
+            "time": "2026-07-29 12:58:47",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:50"
+        },
+        {
+            "id": "400e88a7-7133-43c5-8fc1-ce16b3c2dd51",
+            "time": "2026-07-29 12:58:48",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:49"
+        },
+        {
+            "id": "df700157-5dd5-4fdf-ba5f-c9861d7008b0",
+            "time": "2026-07-29 12:58:48",
+            "message": "Return Air Fan VFD Fault - Weaving",
+            "code": "610",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "efc2ce9c-be04-4ddf-9396-b9e3919d43cc",
+            "time": "2026-07-29 12:58:48",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:49"
+        },
+        {
+            "id": "5fecf55b-3e7f-44a2-b0d2-ba2aa625e3ed",
+            "time": "2026-07-29 12:58:48",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "62e97c51-af0e-49a5-aee1-af9cfb084519",
+            "time": "2026-07-29 12:58:49",
+            "message": "Return Air Fan-2 VFD Fault - Spinning 1",
+            "code": "212",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "f14d77cb-f928-4bb4-9122-6eae5066a58f",
+            "time": "2026-07-29 12:58:49",
+            "message": "Supply Air Fan-1 VFD Fault - Spinning 1",
+            "code": "216",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:51"
+        },
+        {
+            "id": "eba5e100-a46d-40b8-adbc-448e43c55f0f",
+            "time": "2026-07-29 12:58:49",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "eb1c1ae2-6d2d-4415-9c1e-6b645bdc5b58",
+            "time": "2026-07-29 12:58:49",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "a4c43ab6-1c1c-4234-9064-914a56b0a909",
+            "time": "2026-07-29 12:58:49",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "b1338a8d-7b0c-4946-8091-1bead3e31ac1",
+            "time": "2026-07-29 12:58:49",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "9038fa0b-d59b-4478-9d6b-e7d31f997107",
+            "time": "2026-07-29 12:58:50",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "6c7c9b8c-44e0-4db3-a145-f70e78a557f0",
+            "time": "2026-07-29 12:58:50",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:51"
+        },
+        {
+            "id": "08a1e718-35de-45c6-ae1e-89420e9666f8",
+            "time": "2026-07-29 12:58:50",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "6e19e2bf-c11d-4a28-bc7b-796e5b4bc81c",
+            "time": "2026-07-29 12:58:50",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:51"
+        },
+        {
+            "id": "61acaf34-1569-46ef-89fc-b2d59f86214a",
+            "time": "2026-07-29 12:58:51",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:12"
+        },
+        {
+            "id": "0f0a8640-4611-47be-9f51-94ec656d3eff",
+            "time": "2026-07-29 12:58:51",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "263da2a0-7cdc-48fe-b907-db9b386c3d32",
+            "time": "2026-07-29 12:58:51",
+            "message": "Supply Air Fan-3 VFD Fault - Spinning 1",
+            "code": "218",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:13"
+        },
+        {
+            "id": "35982481-99bc-4c8f-887d-e1bba3621ea4",
+            "time": "2026-07-29 12:58:51",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "acf0a81b-b488-4d82-b95a-95d858eadfa8",
+            "time": "2026-07-29 12:58:51",
+            "message": "Return Air Fan-3 VFD Fault - Weaving",
+            "code": "613",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "de8cbaee-d494-4e18-9d3d-b15e53df6d35",
+            "time": "2026-07-29 12:58:51",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 12:58:52"
+        },
+        {
+            "id": "ac427860-a907-46c5-a9d2-f42d72b8f4ac",
+            "time": "2026-07-29 12:58:52",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "8bb93959-888f-46a0-abed-e73d5776fb7e",
+            "time": "2026-07-29 12:58:52",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "b3fafce4-36bb-4c54-adb9-0f6def5b2ca0",
+            "time": "2026-07-29 12:58:52",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "ec23c4c0-7644-4753-a6b6-58ddcc78b3ba",
+            "time": "2026-07-29 12:58:52",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:09"
+        },
+        {
+            "id": "2c8433d7-3af1-4afa-b83c-8fa6fc740474",
+            "time": "2026-07-29 12:58:52",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:11"
+        },
+        {
+            "id": "28f97697-45d9-4e5f-8beb-ad3e28a6397d",
+            "time": "2026-07-29 13:00:09",
+            "message": "Return Air Fan VFD Fault - Spinning 1",
+            "code": "210",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:13"
+        },
+        {
+            "id": "1b343638-99a8-45dd-91b1-2766cf550463",
+            "time": "2026-07-29 13:00:09",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:11"
+        },
+        {
+            "id": "fad4863e-64d5-499b-b28e-4c276d63ca54",
+            "time": "2026-07-29 13:00:09",
+            "message": "Cyclone with Screw Compactor TRIP - Spinning 1",
+            "code": "229",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "296f2439-4612-4664-a37c-f192cc7cc563",
+            "time": "2026-07-29 13:00:09",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:11"
+        },
+        {
+            "id": "656194d5-d837-4f70-a4d4-90fcef7e1e8d",
+            "time": "2026-07-29 13:00:09",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "4d477131-a6a3-4b05-9070-d85d7917cfc7",
+            "time": "2026-07-29 13:00:09",
+            "message": "Return Air Fan-2 VFD Fault - Weaving",
+            "code": "612",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:16"
+        },
+        {
+            "id": "ec2a0d48-b5ad-4e70-9353-cc2ad846121e",
+            "time": "2026-07-29 13:00:09",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "b48a4609-ff9a-4a9c-9e74-2c8933b4c078",
+            "time": "2026-07-29 13:00:09",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "382d4124-526b-4568-81b8-b4f0d9596cb5",
+            "time": "2026-07-29 13:00:09",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:10"
+        },
+        {
+            "id": "f78a3bb6-7dc0-4b07-acb9-4eec9a6100f6",
+            "time": "2026-07-29 13:00:10",
+            "message": "Washer Pump-2 VFD Fault - Spinning 1",
+            "code": "222",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:14"
+        },
+        {
+            "id": "756dfc4a-60ac-44af-98ca-3bfa4158162d",
+            "time": "2026-07-29 13:00:10",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:12"
+        },
+        {
+            "id": "ef395c86-1efc-45ba-8796-1b765f0c9a9a",
+            "time": "2026-07-29 13:00:10",
+            "message": "Dust Collector-1 TRIP - Spinning 1",
+            "code": "227",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:16"
+        },
+        {
+            "id": "aad6df36-6005-419c-98ad-078877a19f3e",
+            "time": "2026-07-29 13:00:10",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Spinning 1",
+            "code": "230",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:12"
+        },
+        {
+            "id": "c3be3c5d-b9f9-491e-8d25-27750aea471c",
+            "time": "2026-07-29 13:00:10",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:13"
+        },
+        {
+            "id": "f650caca-3dc2-400b-9b0b-a430e7e38465",
+            "time": "2026-07-29 13:00:11",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:12"
+        },
+        {
+            "id": "7eed7136-c2e2-4437-8f9f-c327172b0314",
+            "time": "2026-07-29 13:00:11",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:13"
+        },
+        {
+            "id": "705d4de0-f7df-4a73-ad08-cdd6117a6306",
+            "time": "2026-07-29 13:00:11",
+            "message": "Supply Air Fan-1 VFD Fault - Weaving",
+            "code": "616",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "acad853c-145d-43cf-bb6f-f729193f09df",
+            "time": "2026-07-29 13:00:11",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:12"
+        },
+        {
+            "id": "52617aa9-5538-4d83-9712-326621ae7ae3",
+            "time": "2026-07-29 13:00:11",
+            "message": "Cyclone with Screw Compactor TRIP - Weaving",
+            "code": "629",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:14"
+        },
+        {
+            "id": "8ae9c4e4-56ac-48a4-aa8f-7d47961898f7",
+            "time": "2026-07-29 13:00:12",
+            "message": "Return Air Fan-4 VFD Fault - Spinning 1",
+            "code": "214",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:14"
+        },
+        {
+            "id": "0eb5e696-5193-4705-a3b2-771b391065d0",
+            "time": "2026-07-29 13:00:12",
+            "message": "Supply Air Fan-4 VFD Fault - Spinning 1",
+            "code": "219",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "27e6b1ff-5820-4eff-8af3-357df55b59e6",
+            "time": "2026-07-29 13:00:12",
+            "message": "Dust Collector-2 TRIP - Spinning 1",
+            "code": "228",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "9b060fb3-f40f-4337-a480-83092c328994",
+            "time": "2026-07-29 13:00:12",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Spinning 1",
+            "code": "231",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:14"
+        },
+        {
+            "id": "2f0757dd-04ac-4934-bc79-c4a45cbfe71b",
+            "time": "2026-07-29 13:00:12",
+            "message": "Supply Air Fan-2 VFD Fault - Weaving",
+            "code": "617",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "60c47641-ef59-4e2c-856c-a9aab45a3885",
+            "time": "2026-07-29 13:00:12",
+            "message": "Washer Pump VFD Fault - Weaving",
+            "code": "620",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:16"
+        },
+        {
+            "id": "7edda7e8-06ef-41ff-985c-82d53251e433",
+            "time": "2026-07-29 13:00:12",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:13"
+        },
+        {
+            "id": "de3694c6-7a46-438a-9d1c-4cc2d5920e3b",
+            "time": "2026-07-29 13:00:12",
+            "message": "Cyclone with Screw Compactor-1 TRIP - Weaving",
+            "code": "630",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:15"
+        },
+        {
+            "id": "1528b9b7-511b-43be-9610-1f16bd368077",
+            "time": "2026-07-29 13:00:12",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:15"
+        },
+        {
+            "id": "e00e7f51-bd97-4fd7-b278-3cf9a43a42c3",
+            "time": "2026-07-29 13:00:13",
+            "message": "Dust Collector TRIP - Spinning 1",
+            "code": "226",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "d990c3be-2316-4f77-a4a9-1d8fc3eeef5f",
+            "time": "2026-07-29 13:00:13",
+            "message": "Washer Pump-1 VFD Fault - Weaving",
+            "code": "621",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "ad625f8f-eab7-4dfe-9021-bb1f900f74d7",
+            "time": "2026-07-29 13:00:14",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "34aa653e-2251-4f24-915d-7528d445b37b",
+            "time": "2026-07-29 13:00:14",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:14"
+        },
+        {
+            "id": "fa1f07d5-f085-4625-8f7e-092906457d62",
+            "time": "2026-07-29 13:00:14",
+            "message": "Rotary Drum Filter TRIP - Weaving",
+            "code": "623",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "241ee711-77f5-42d5-bb09-2a1dcb07ebc5",
+            "time": "2026-07-29 13:00:14",
+            "message": "Dust Collector TRIP - Weaving",
+            "code": "626",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:15"
+        },
+        {
+            "id": "9263c3b8-17e2-4ae7-912b-4f47b15f23b9",
+            "time": "2026-07-29 13:00:14",
+            "message": "Dust Collector-2 TRIP - Weaving",
+            "code": "628",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "5ec416ad-3204-4eef-becb-964fccfac839",
+            "time": "2026-07-29 13:00:14",
+            "message": "Washer Pump VFD Fault - Spinning 1",
+            "code": "220",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:16"
+        },
+        {
+            "id": "2dcf6fcf-ca69-4451-848c-bb131ca582c6",
+            "time": "2026-07-29 13:00:15",
+            "message": "Washer Pump-2 VFD Fault - Weaving",
+            "code": "622",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:16"
+        },
+        {
+            "id": "20e5f455-d96a-47ed-bc21-cc520826e17a",
+            "time": "2026-07-29 13:00:15",
+            "message": "Rotary Drum Filter-2 TRIP - Weaving",
+            "code": "625",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "b5d1e2bd-26b5-4ee8-bbc1-1dd6ecee2707",
+            "time": "2026-07-29 13:00:15",
+            "message": "Dust Collector-1 TRIP - Weaving",
+            "code": "627",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "269b280e-1ecb-41c5-b610-0bd01e7d66a6",
+            "time": "2026-07-29 13:00:16",
+            "message": "Rotary Drum Filter-2 TRIP - Spinning 1",
+            "code": "225",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "20f5847f-86ae-4f4b-a7e4-41585f67545b",
+            "time": "2026-07-29 13:00:16",
+            "message": "Return Air Fan-1 VFD Fault - Weaving",
+            "code": "611",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "221fa236-f246-4f96-91a3-89b2598646be",
+            "time": "2026-07-29 13:00:17",
+            "message": "Return Air Fan-1 VFD Fault - Spinning 1",
+            "code": "211",
+            "severity": 3,
+            "status": "Resolved",
+            "acknowledged": false,
+            "resolved_time": "2026-07-29 13:00:17"
+        },
+        {
+            "id": "53a701b5-9950-41c5-8d6d-37e5a200425b",
+            "time": "2026-07-29 13:00:17",
+            "message": "Supply Air Fan VFD Fault - Spinning 1",
+            "code": "215",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "cf41950f-24b6-4603-afc6-f66adf77ff3a",
+            "time": "2026-07-29 13:00:17",
+            "message": "Return Air Fan-4 VFD Fault - Weaving",
+            "code": "614",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "b91bf9ed-b732-4c82-b09f-285ef4331ed1",
+            "time": "2026-07-29 13:00:17",
+            "message": "Supply Air Fan VFD Fault - Weaving",
+            "code": "615",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "9d0de53e-c827-43b7-9a03-d8a82e81fd0b",
+            "time": "2026-07-29 13:00:17",
+            "message": "Supply Air Fan-3 VFD Fault - Weaving",
+            "code": "618",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "35405851-038c-445e-8cda-393bdb7b9370",
+            "time": "2026-07-29 13:00:17",
+            "message": "Supply Air Fan-4 VFD Fault - Weaving",
+            "code": "619",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "985972ba-143f-4109-a611-b3a3c1924d8b",
+            "time": "2026-07-29 13:00:17",
+            "message": "Rotary Drum Filter-1 TRIP - Weaving",
+            "code": "624",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "0bb51be3-481d-4704-a092-52c3eeb97749",
+            "time": "2026-07-29 13:00:17",
+            "message": "Cyclone with Screw Compactor-2 TRIP - Weaving",
+            "code": "631",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "0ead1107-950c-49bb-8f3e-c77c3abd1924",
+            "time": "2026-07-29 13:00:17",
+            "message": "Supply Air Fan-2 VFD Fault - Spinning 1",
+            "code": "217",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "668389e8-38d5-4d46-9879-7e0fe1561171",
+            "time": "2026-07-29 13:00:17",
+            "message": "Washer Pump-1 VFD Fault - Spinning 1",
+            "code": "221",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "32467563-a70a-43b6-89f8-be751454ea25",
+            "time": "2026-07-29 13:00:17",
+            "message": "Rotary Drum Filter-1 TRIP - Spinning 1",
+            "code": "224",
+            "severity": 3,
+            "status": "Not acknowledged",
+            "acknowledged": false
+        },
+        {
+            "id": "86969067-e99c-4806-a760-76f9b81c10ad",
+            "time": "2026-07-29 13:00:22",
+            "message": "Controller / OPC UA Server Disconnected",
+            "code": "SYS_OPC_DISCONNECT",
+            "severity": "0",
+            "status": "Not acknowledged",
+            "acknowledged": false
+        }
+    ],
+    "lastTripStates": {
+        "218": false,
+        "220": false,
+        "221": true,
+        "610": false,
+        "614": true,
+        "618": true,
+        "630": false,
+        "210": false,
+        "212": false,
+        "226": true,
+        "228": true,
+        "229": false,
+        "231": false,
+        "613": false,
+        "225": true,
+        "227": false,
+        "211": false,
+        "217": true,
+        "612": false,
+        "626": false,
+        "629": false,
+        "616": true,
+        "620": false,
+        "627": true,
+        "628": false,
+        "214": false,
+        "222": false,
+        "615": true,
+        "617": false,
+        "213": false,
+        "216": false,
+        "623": true,
+        "624": true,
+        "230": false,
+        "625": true,
+        "215": true,
+        "622": false,
+        "611": true,
+        "223": false,
+        "224": true,
+        "621": false,
+        "219": false,
+        "631": true,
+        "619": true
+    }
+}

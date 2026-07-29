@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analog Outputs Dialog</title>
+    <link rel="stylesheet" href="static\css\font.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <style>
+      .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        border-radius: 3px;
+        border-style: solid;
+        box-shadow: none;
+      }
+      .btn-success:focus,
+      .btn-success.focus {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #255625;
+      }
+      .btn-success:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439;
+      }
+
+      .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+        border-style: solid;
+        box-shadow: none;
+        border-radius: 3px;
+      }
+      .btn-danger:focus,
+      .btn-danger.focus {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #761c19;
+      }
+      .btn-danger:hover {
+        color: #fff;
+        background-color: #c9302c;
+        border-color: #ac2925;
+      }
+
+      .dialog-box {
+        width: 250px; /* MODIFIED: Narrower width for single component */
+        transform: translate(120%, 60%);
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #e3f4ff;
+        padding: 12px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .header {
+        background-color: #0c609d;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 6px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+
+      .row-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* MODIFIED: 2 columns */
+        gap: 5px;
+        margin-bottom: 5px;
+      }
+
+      .parameter {
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 10px;
+        font-weight: bold;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #c9f6ff;
+        color: black;
+      }
+
+      .value {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333;
+        border-radius: 4px;
+        line-height: 30px;
+      }
+
+      .m-value-row .value,
+      .set-box input {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .set-box input {
+        width: 100%;
+        height: 30px;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #333;
+        border-radius: 4px;
+        line-height: 30px;
+        box-sizing: border-box;
+      }
+
+      .set-box input:focus {
+        outline: none;
+        box-shadow: 0 0 3px rgba(76, 175, 80, 0.8);
+      }
+
+      .dialog-footer {
+        text-align: right;
+        padding-top: 10px;
+      }
+
+      .dialog-footer button {
+        margin-left: 6px;
+      }
+
+      .switch-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 34px;
+        height: 18px;
+        margin-right: 4px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #7dcbff;
+        transition: 0.3s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+      }
+
+      input:checked + .slider {
+        background-color: #0c609d;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(14px);
+      }
+
+      .mode-text {
+        font-size: 8px;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dialog-box mt-5">
+      <!-- Header -->
+      <div class="header">ANALOG OUTPUTS</div>
+
+      <!-- Row 1: Parameter Header -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          PARAMETER
+        </div>
+        <div
+          class="parameter"
+          style="background-color: rgb(0, 86, 128); color: white"
+        >
+          Radial Fan
+        </div>
+      </div>
+
+      <!-- Row 2: Value -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          VALUE
+        </div>
+        <div class="value" id="{{ prefix }}_iVa_Radial_Fan">
+          {{ msg.payload[prefix ~ '_iVa_Radial_Fan'] | default(0) | round(1) }}
+        </div>
+      </div>
+
+      <!-- Row 3: Min -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          Min
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iVa_Min_Radial_Fan"
+            value="{{ msg.payload[prefix ~ '_iVa_Min_Radial_Fan'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Min_Radial_Fan'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 4: Max -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          Max
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iVa_Max_Radial_Fan"
+            value="{{ msg.payload[prefix ~ '_iVa_Max_Radial_Fan'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iVa_Max_Radial_Fan'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 5: Manual Value -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          M VALUE
+        </div>
+        <div class="set-box">
+          <input
+            type="number"
+            class="setpoint-input"
+            id="{{ prefix }}_iMi_Radial_Fan_Output_Man_Ref"
+            value="{{ msg.payload[prefix ~ '_iMi_Radial_Fan_Output_Man_Ref'] | default(0) | round(1) }}"
+            data-nodeid="{{ msg.node_ids[prefix ~ '_iMi_Radial_Fan_Output_Man_Ref'] }}"
+          />
+        </div>
+      </div>
+
+      <!-- Row 6: Mode Switch -->
+      <div class="row-container">
+        <div
+          class="parameter"
+          style="background-color: rgb(20, 105, 46); color: white"
+        >
+          MODE
+        </div>
+        <div class="parameter">
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="{{ prefix
+              }}_iFl_RadialFan_Output_Man_B" {{ 'checked' if msg.payload[prefix
+              ~ '_iFl_RadialFan_Output_Man_B'] else '' }} data-nodeid="{{
+              msg.node_ids[prefix ~ '_iFl_RadialFan_Output_Man_B'] }}"
+              onchange="updateMode(this)">
+              <span class="slider"></span>
+            </label>
+            <span
+              id="{{ prefix }}_iFl_RadialFan_Output_Man_B-text"
+              class="mode-text"
+            >
+              {{ 'Manual' if msg.payload[prefix ~ '_iFl_RadialFan_Output_Man_B']
+              else 'Auto' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-footer">
+        <button class="btn btn-danger" onclick="closeDialog()">Close</button>
+        <button class="btn btn-success" onclick="updateSettings()">
+          Update
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const socket = io();
+
+      socket.on("update", function (data) {
+        Object.keys(data).forEach((key) => {
+          const element = document.getElementById(key);
+          if (!element) return;
+
+          if (element.classList.contains("value")) {
+            element.innerText = data[key];
+          } else if (element.tagName === "INPUT" && element.type === "number") {
+            if (document.activeElement !== element) {
+              element.value = data[key];
+            }
+          } else if (
+            element.tagName === "INPUT" &&
+            element.type === "checkbox"
+          ) {
+            element.checked = data[key];
+            const textElement = document.getElementById(element.id + "-text");
+            if (textElement) {
+              textElement.textContent = data[key] ? "Manual" : "Auto";
+            }
+          }
+        });
+      });
+
+      function updateMode(checkbox) {
+        const nodeId = checkbox.dataset.nodeid;
+        const isChecked = checkbox.checked;
+
+        if (!nodeId) {
+          console.error("No nodeid found for this switch:", checkbox.id);
+          return;
+        }
+
+        const payload = { [nodeId]: isChecked };
+
+        const textElement = document.getElementById(checkbox.id + "-text");
+        if (textElement) {
+          textElement.textContent = isChecked ? "Manual" : "Auto";
+        }
+
+        fetch("/write", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).catch((error) => console.error("Error updating mode:", error));
+      }
+
+      function updateSettings() {
+        const payload = {};
+        const inputs = document.querySelectorAll(".setpoint-input");
+
+        inputs.forEach((input) => {
+          const nodeId = input.dataset.nodeid;
+          if (nodeId) {
+            payload[nodeId] = input.value;
+          }
+        });
+
+        if (Object.keys(payload).length === 0) {
+          alert("No settings found to update.");
+          return;
+        }
+
+        fetch("/write", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Settings updated successfully!");
+            } else {
+              alert(
+                "Failed to update settings: " + (data.error || "Unknown error")
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred during the update.");
+          });
+      }
+
+      function closeDialog() {
+        const dialogBox = document.querySelector(".dialog-box");
+        if (dialogBox) {
+          dialogBox.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

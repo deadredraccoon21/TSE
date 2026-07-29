@@ -1,0 +1,184 @@
+{% extends "iot/tse.html" %} 
+{% block title %}Alarm History{% endblock %} 
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_style.css') }}" />
+
+<div class="page-wrapper">
+  <div class="config-card">
+    <h2>Alarm History Log</h2>
+
+    <table class="manage-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Date / Time</th>
+          <th style="width: 40%;">Message</th>
+          <th style="width: 10%;">Severity</th>
+          <th style="width: 15%;">Status</th>
+          <th style="width: 15%;">Resolved Time</th>
+        </tr>
+      </thead>
+      <tbody id="alarm-list-body"></tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="pagination" id="pagination-controls"></div>
+  <div class="page-info" id="page-info"></div>
+
+  <script>
+    const ITEMS_PER_PAGE = 20;
+    let currentPage = 1;
+    let alarmHistory = [];
+    let historyTotalPages = 1;
+    let historyTotalItems = 0;
+
+    function fetchHistoryAlarms() {
+      fetch(`/api/alarms/history?page=${currentPage}&limit=${ITEMS_PER_PAGE}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            alarmHistory = data.alarms;
+            historyTotalPages = Math.ceil(data.total / ITEMS_PER_PAGE);
+            historyTotalItems = data.total;
+            renderAlarmHistory();
+          }
+        });
+    }
+
+    function onPageChange(newPage) {
+      currentPage = newPage;
+      fetchHistoryAlarms();
+    }
+
+    function renderPagination() {
+      const paginationDiv = document.getElementById("pagination-controls");
+      paginationDiv.innerHTML = "";
+      const totalPages = historyTotalPages;
+
+      const updatePageInfo = () => {
+        const pageInfo = document.getElementById("page-info");
+        if (alarmHistory.length === 0) {
+          pageInfo.innerText = "No historical alarms found.";
+          return;
+        }
+        
+        let startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+        let endItem = Math.min(currentPage * ITEMS_PER_PAGE, historyTotalItems);
+        pageInfo.innerText = `Showing ${startItem} to ${endItem} of ${historyTotalItems} alarms`;
+      };
+
+      if (totalPages <= 1) {
+        updatePageInfo();
+        return;
+      }
+
+      const prevButton = document.createElement("button");
+      prevButton.innerText = "Previous";
+      prevButton.disabled = currentPage === 1;
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          onPageChange(currentPage - 1);
+        }
+      });
+      paginationDiv.appendChild(prevButton);
+
+      const pageNeighbours = 2;
+      const pagesToShow = [];
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (
+          i === 1 ||
+          i === totalPages ||
+          (i >= currentPage - pageNeighbours &&
+            i <= currentPage + pageNeighbours)
+        ) {
+          pagesToShow.push(i);
+        }
+      }
+
+      let lastPage = 0;
+      [...new Set(pagesToShow)].forEach((page) => {
+        if (lastPage !== 0 && page > lastPage + 1) {
+          const ellipsisSpan = document.createElement("span");
+          ellipsisSpan.innerText = "...";
+          ellipsisSpan.className = "ellipsis";
+          paginationDiv.appendChild(ellipsisSpan);
+        }
+
+        const pageButton = document.createElement("button");
+        pageButton.innerText = page;
+        if (page === currentPage) pageButton.classList.add("active");
+        pageButton.addEventListener("click", () => {
+          onPageChange(page);
+        });
+        paginationDiv.appendChild(pageButton);
+        lastPage = page;
+      });
+
+      const nextButton = document.createElement("button");
+      nextButton.innerText = "Next";
+      nextButton.disabled = currentPage === totalPages;
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          onPageChange(currentPage + 1);
+        }
+      });
+      paginationDiv.appendChild(nextButton);
+
+      updatePageInfo();
+    }
+
+    function renderAlarmHistory() {
+      const tbody = document.getElementById("alarm-list-body");
+      tbody.innerHTML = "";
+
+      if (alarmHistory.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: #6c757d; font-weight: 500;">No alarms found in history</td></tr>`;
+        document.getElementById("pagination-controls").innerHTML = "";
+        document.getElementById("page-info").innerText = "";
+        return;
+      }
+
+      alarmHistory.forEach((alarm) => {
+        const row = document.createElement("tr");
+
+        const status = alarm.status || "Unacknowledged";
+        let statusCellHtml;
+
+        if (status === "Resolved") {
+          statusCellHtml = '<span class="resolved-span">Resolved</span>';
+        } else if (status === "Acknowledged") {
+          statusCellHtml = '<span class="acknowledged-span">Acknowledged</span>';
+        } else {
+          statusCellHtml = '<span class="not-acknowledged-span">Not Acknowledged</span>';
+        }
+
+        const timeSplit = alarm.time ? alarm.time.split(',') : ["N/A", ""];
+        const formattedTime = `<span style="font-weight: 600; color: #495057;">${timeSplit[0]}</span><br><span style="font-size: 12px; color: #adb5bd;">${timeSplit[1] ? timeSplit[1].trim() : ''}</span>`;
+        
+        let resolvedTimeHtml = "";
+        if (alarm.resolved_time && alarm.resolved_time.trim() !== "None" && alarm.resolved_time.trim() !== "") {
+            const resTimeSplit = alarm.resolved_time.split(',');
+            resolvedTimeHtml = `<span style="font-weight: 600; color: #495057;">${resTimeSplit[0]}</span><br><span style="font-size: 12px; color: #adb5bd;">${resTimeSplit[1] ? resTimeSplit[1].trim() : ''}</span>`;
+        } else {
+            resolvedTimeHtml = '<span style="color: #adb5bd;">N/A</span>';
+        }
+
+        row.innerHTML = `
+                <td>${formattedTime}</td>
+                <td style="font-weight: 500; color: #212529;">${alarm.message}</td>
+                <td style="font-weight: 500; color: #212529;">${alarm.severity}</td>
+                <td>${statusCellHtml}</td>
+                <td>${resolvedTimeHtml}</td>
+            `;
+        tbody.appendChild(row);
+      });
+
+      renderPagination();
+    }
+
+    // Load alarms on initial page load
+    fetchHistoryAlarms();
+  </script>
+{% endblock %}

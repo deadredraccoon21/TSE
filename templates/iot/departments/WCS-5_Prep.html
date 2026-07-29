@@ -1,0 +1,1233 @@
+﻿{% extends "iot/tse.html" %} {% block title %}{{ dept_name }}{% endblock %} {% block
+content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <link rel="stylesheet" href="static\css\font.css" />
+
+    <style>
+      /* General page styles */
+      body {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-touch-callout: none;
+        context-menu: none;
+      }
+
+      /* --- CSS Classes for Button Status --- */
+      .status-button {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        outline: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease,
+          border 0.3s ease;
+        border: 1px solid black;
+      }
+
+      .status-on {
+        background-color: #28a745; /* Green */
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.8);
+      }
+
+      .status-off {
+        background-color: #dc3545; /* Red */
+      }
+
+      .status-trip {
+        background-color: #ffc107; /* Yellow */
+        box-shadow: 0 0 8px rgba(255, 193, 7, 0.8);
+      }
+
+      /* Normal state for trip buttons is now invisible */
+      .status-normal {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      /* Class for when neither ON nor OFF is active */
+      .status-indeterminate {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      /* Class to hide elements before the first data update */
+      .initially-hidden {
+        display: none;
+      }
+
+      /* Class for the Manual Mode 'M' Symbol */
+      .manual-mode-symbol {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #dc3545; /* Red */
+        color: white;
+        border: 1.5px solid black;
+        font-weight: bold;
+        font-size: 14px;
+           /* font-family: Arial, sans-serif; */
+        display: none; /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      id="{{ dept_name }}Div"
+      style="
+        transform: scale(0.8);
+        left: 30px;
+        margin-top: 20px;
+        top: 5px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 15px;
+          left: 130px;
+          width: 1600px;
+          height: 1050px;
+          border: 2px dotted #c5c6d0;
+          border-radius: 20px;
+          background-color: white;
+        "
+      ></div>
+
+      <!-- ===== Manual Mode 'M' Symbols (Realigned) ===== -->
+      <div
+        id="m-symbol-rdf"
+        class="manual-mode-symbol"
+        style="left: 1080px; top: 548px"
+      >
+        M
+      </div>
+      <div
+        id="m-symbol-pdf1"
+        class="manual-mode-symbol"
+        style="left: 575px; top: 448px"
+      >
+        M
+      </div>
+      <div
+        id="m-symbol-pdf2"
+        class="manual-mode-symbol"
+        style="left: 575px; top: 848px"
+      >
+        M
+      </div>
+
+      <!-- Static Images and Text -->
+      <img
+        src="{{ url_for('static', filename='images/rdf000.png') }}"
+        style="
+          position: absolute;
+          left: 1087px;
+          top: 578px;
+          width: 95px;
+          height: 60px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/sf000.png') }}"
+        style="
+          position: absolute;
+          left: 1207px;
+          top: 816px;
+          width: 51px;
+          height: 51px;
+          border-radius: 50px;
+          border: 1px solid black;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 1132px;
+          top: 638px;
+          width: 3px;
+          height: 203px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1134px;
+          top: 837px;
+          width: 73px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/cyclone00.png') }}"
+        style="
+          position: absolute;
+          left: 1329px;
+          top: 816px;
+          width: 93px;
+          height: 140px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1259px;
+          top: 837px;
+          width: 70px;
+          height: 3px;
+        "
+      />
+      <div>
+        <img
+          id="tf1"
+          src="{{ url_for('static', filename='images/tf0.jpg') }}"
+          style="
+            position: absolute;
+            left: 290px;
+            top: 150px;
+            width: 72px;
+            height: 62px;
+            padding: 8px;
+            z-index: 10;
+          "
+        />
+      </div>
+      <div>
+        <img
+          id="tf2"
+          src="{{ url_for('static', filename='images/tf2.png') }}"
+          style="
+            position: absolute;
+            left: 290px;
+            top: 550px;
+            width: 72px;
+            height: 62px;
+            padding: 8px;
+            z-index: 10;
+          "
+        />
+      </div>
+      <img
+        id="maf1"
+        src="{{ url_for('static', filename='images/maf1.png') }}"
+        style="
+          position: absolute;
+          left: 1342px;
+          top: 471px;
+          width: 72px;
+          height: 62px;
+          padding: 8px;
+        "
+      />
+      <img
+        id="maf2"
+        src="{{ url_for('static', filename='images/maf2.png') }}"
+        style="
+          position: absolute;
+          left: 1342px;
+          top: 671px;
+          width: 72px;
+          height: 62px;
+          padding: 8px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/pdf1.png') }}"
+        style="
+          position: absolute;
+          left: 540px;
+          top: 340px;
+          width: 180px;
+          height: 130px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/pdf2.png') }}"
+        style="
+          position: absolute;
+          left: 540px;
+          top: 740px;
+          width: 180px;
+          height: 130px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/compactor0.jpg') }}"
+        style="
+          position: absolute;
+          left: 402px;
+          top: 118px;
+          width: 63px;
+          height: 160px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/compactor0.jpg') }}"
+        style="
+          position: absolute;
+          left: 402px;
+          top: 518px;
+          width: 63px;
+          height: 160px;
+        "
+      />
+      <div
+          style="
+            position: absolute;
+            left: 1180px;
+            top: 50px;
+            color: #00508a;
+            font-size: 30px;
+          "
+        >
+          <b><u>{{ dept_name }}</u></b>
+        </div>
+      <p style="position: absolute; left: 390px; top: 70px; color: black">
+        <b>Compactor1</b>
+      </p>
+      <p style="position: absolute; left: 390px; top: 470px; color: black">
+        <b>Compactor2</b>
+      </p>
+      <p style="position: absolute; left: 1335px; top: 770px; color: black">
+        <b>Cyclones</b>
+      </p>
+      <!-- All Lines and Arrows -->
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 263px;
+          top: 170px;
+          width: 80px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 263px;
+          top: 570px;
+          width: 80px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 263px;
+          top: 320px;
+          width: 335px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 263px;
+          top: 720px;
+          width: 335px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 450px;
+          top: 130px;
+          width: 220px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 323px;
+          top: 185px;
+          width: 80px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 450px;
+          top: 530px;
+          width: 220px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 323px;
+          top: 585px;
+          width: 80px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 718px;
+          top: 405px;
+          width: 175px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 718px;
+          top: 805px;
+          width: 175px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 890px;
+          top: 605px;
+          width: 200px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1180px;
+          top: 605px;
+          width: 135px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1311px;
+          top: 505px;
+          width: 40px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1311px;
+          top: 705px;
+          width: 40px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1421px;
+          top: 490px;
+          width: 40px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1421px;
+          top: 690px;
+          width: 40px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_x.png') }}"
+        style="
+          position: absolute;
+          left: 1460px;
+          top: 605px;
+          width: 240px;
+          height: 3px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 260px;
+          top: 170px;
+          width: 3px;
+          height: 153px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 260px;
+          top: 570px;
+          width: 3px;
+          height: 153px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 595px;
+          top: 320px;
+          width: 3px;
+          height: 80px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 595px;
+          top: 720px;
+          width: 3px;
+          height: 80px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 670px;
+          top: 130px;
+          width: 3px;
+          height: 210px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 670px;
+          top: 530px;
+          width: 3px;
+          height: 210px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 1310px;
+          top: 505px;
+          width: 3px;
+          height: 202px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 1460px;
+          top: 490px;
+          width: 3px;
+          height: 204px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 890px;
+          top: 405px;
+          width: 3px;
+          height: 200px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redline00_y.png') }}"
+        style="
+          position: absolute;
+          left: 890px;
+          top: 605px;
+          width: 3px;
+          height: 200px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 970px;
+          top: 597px;
+          width: 18px;
+          height: 19px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 1689px;
+          top: 598px;
+          width: 16px;
+          height: 17px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 410px;
+          top: 313px;
+          width: 16px;
+          height: 17px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 410px;
+          top: 713px;
+          width: 16px;
+          height: 17px;
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 664px;
+          top: 299.5px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(-90deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 450px;
+          top: 523px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(180deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 380px;
+          top: 578px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(180deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 588px;
+          top: 765px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(90deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 664px;
+          top: 699.5px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(-90deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 450px;
+          top: 523px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(180deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 380px;
+          top: 578px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(180deg);
+        "
+      />
+      <img
+        src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+        style="
+          position: absolute;
+          left: 588px;
+          top: 765px;
+          width: 16px;
+          height: 17px;
+          transform: rotate(90deg);
+        "
+      />
+
+      <!-- ============================================= -->
+      <!-- === CORRECTED BUTTON CONTAINERS START HERE === -->
+      <!-- Note: `display: flex;` is removed from inline styles -->
+      <!-- ============================================= -->
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1145px;
+          top: 646px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="rdf-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1165px;
+          top: 646px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="rdf-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1245px;
+          top: 798px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="sf-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1265px;
+          top: 798px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="sf-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1402px;
+          top: 838px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="sc-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1422px;
+          top: 838px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="sc-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 318px;
+          top: 135px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="tf1-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 338px;
+          top: 135px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="tf1-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 318px;
+          top: 535px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="tf2-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 338px;
+          top: 535px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="tf2-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 470px;
+          top: 150px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="comp1-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 490px;
+          top: 150px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="comp1-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 470px;
+          top: 550px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="comp2-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 490px;
+          top: 550px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="comp2-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 725px;
+          top: 340px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="pdf1-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 745px;
+          top: 340px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="pdf1-trip" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 725px;
+          top: 740px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="pdf2-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 745px;
+          top: 740px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="pdf2-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1330px;
+          top: 453px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="maf1-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1350px;
+          top: 453px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="maf1-trip" class="status-button"></button>
+      </div>
+
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1330px;
+          top: 653px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="maf2-on-off" class="status-button"></button>
+      </div>
+      <div
+        class="initially-hidden"
+        style="
+          position: absolute;
+          left: 1350px;
+          top: 653px;
+          width: 17px;
+          height: 17px;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <button id="maf2-trip" class="status-button"></button>
+      </div>
+      <!-- === END OF CORRECTED BUTTON CONTAINERS === -->
+
+      <div
+        style="
+          position: absolute;
+          left: 1110px;
+          top: 548px;
+          border: 2px solid black;
+          padding: 0px 2px 0px 2px;
+          border-radius: 5px;
+        "
+      >
+        <span id="WCS_Prep_iVa_DPT_RDF">0</span> Pa
+      </div>
+      <div
+        style="
+          position: absolute;
+          left: 500px;
+          top: 448px;
+          border: 2px solid black;
+          padding: 0px 2px 0px 2px;
+          border-radius: 5px;
+        "
+      >
+        <span id="WCS_Prep_iVa_DPT_PDF1">0</span> Pa
+      </div>
+      <div
+        style="
+          position: absolute;
+          left: 500px;
+          top: 848px;
+          border: 2px solid black;
+          padding: 0px 2px 0px 2px;
+          border-radius: 5px;
+        "
+      >
+        <span id="WCS_Prep_iVa_DPT_PDF2">0</span> Pa
+      </div>
+      <div
+        style="
+          position: absolute;
+          left: 1350px;
+          top: 595px;
+          border: 2px solid black;
+          padding: 0px 2px 0px 2px;
+          border-radius: 5px;
+        "
+      >
+        <span id="WCS_Prep_iVa_Radial_Fan">0</span> %
+      </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- === CORRECTED JAVASCRIPT BLOCK STARTS HERE === -->
+    <!-- ============================================= -->
+    <script>
+      let isFirstUpdate = true;
+
+      const onOffNodePairs = {
+        "tf1-on-off": {
+          on: "DI_WCS_Prep_iFl_TR_Fan1_ON",
+          off: "DI_WCS_Prep_iFl_TR_Fan1_OFF",
+        },
+        "comp1-on-off": {
+          on: "DI_WCS_Prep_iFl_Compactor1_ON",
+          off: "DI_WCS_Prep_iFl_Compactor1_OFF",
+        },
+        "pdf1-on-off": {
+          on: "DI_WCS_Prep_iFl_PDF1_ON",
+          off: "DI_WCS_Prep_iFl_PDF1_OFF",
+        },
+        "tf2-on-off": {
+          on: "DI_WCS_Prep_iFl_TR_Fan2_ON",
+          off: "DI_WCS_Prep_iFl_TR_Fan2_OFF",
+        },
+        "comp2-on-off": {
+          on: "DI_WCS_Prep_iFl_Compactor2_ON",
+          off: "DI_WCS_Prep_iFl_Compactor2_OFF",
+        },
+        "pdf2-on-off": {
+          on: "DI_WCS_Prep_iFl_PDF2_ON",
+          off: "DI_WCS_Prep_iFl_PDF2_OFF",
+        },
+        "rdf-on-off": {
+          on: "DI_WCS_Prep_iFl_RDF_ON",
+          off: "DI_WCS_Prep_iFl_RDF_OFF",
+        },
+        "maf1-on-off": {
+          on: "DI_WCS_Prep_iFl_MainAirFan1_ON",
+          off: "DI_WCS_Prep_iFl_MainAirFan1_OFF",
+        },
+        "maf2-on-off": {
+          on: "DI_WCS_Prep_iFl_MainAirFan2_ON",
+          off: "DI_WCS_Prep_iFl_MainAirFan2_OFF",
+        },
+        "sf-on-off": {
+          on: "DI_WCS_Prep_iFl_DCF_ON",
+          off: "DI_WCS_Prep_iFl_DCF_OFF",
+        },
+        "sc-on-off": {
+          on: "DI_WCS_Prep_iFl_ScrewCompactor_ON",
+          off: "DI_WCS_Prep_iFl_ScrewCompactor_OFF",
+        },
+      };
+
+      const tripNodeMappings = {
+        DI_WCS_Prep_iFl_TR_Fan1_Trip: "tf1-trip",
+        DI_WCS_Prep_iFl_Compactor1_Trip: "comp1-trip",
+        DI_WCS_Prep_iFl_PDF1_Trip: "pdf1-trip",
+        DI_WCS_Prep_iFl_TR_Fan2_Trip: "tf2-trip",
+        DI_WCS_Prep_iFl_Compactor2_Trip: "comp2-trip",
+        DI_WCS_Prep_iFl_PDF2_Trip: "pdf2-trip",
+        DI_WCS_Prep_iFl_RDF_Trip: "rdf-trip",
+        DI_WCS_Prep_iFl_MainAirFan1_Trip: "maf1-trip",
+        DI_WCS_Prep_iFl_MainAirFan2_Trip: "maf2-trip",
+        DI_WCS_Prep_iFl_DCF_Trip: "sf-trip",
+        DI_WCS_Prep_iFl_ScrewCompactor_Trip: "sc-trip",
+      };
+
+      socket.on("update", function (data) {
+        if (isFirstUpdate) {
+          document.querySelectorAll(".initially-hidden").forEach((el) => {
+            el.style.display = "flex"; // Use flex to center the button inside
+            el.classList.remove("initially-hidden");
+          });
+          isFirstUpdate = false;
+        }
+
+        // --- Part 1: Update numerical values ---
+        document.getElementById("WCS_Prep_iVa_DPT_RDF").textContent =
+          data["WCS_Prep_iVa_DPT_RDF"] || "0";
+        document.getElementById("WCS_Prep_iVa_DPT_PDF1").textContent =
+          data["WCS_Prep_iVa_DPT_PDF1"] || "0";
+        document.getElementById("WCS_Prep_iVa_DPT_PDF2").textContent =
+          data["WCS_Prep_iVa_DPT_PDF2"] || "0";
+        document.getElementById("WCS_Prep_iVa_Radial_Fan").textContent =
+          data["WCS_Prep_iVa_Radial_Fan"] || "0";
+
+        // --- Part 2: Update button statuses ---
+        for (const buttonId in onOffNodePairs) {
+          const button = document.getElementById(buttonId);
+          if (button) {
+            const { on: onNode, off: offNode } = onOffNodePairs[buttonId];
+            button.classList.remove(
+              "status-on",
+              "status-off",
+              "status-indeterminate"
+            );
+
+            if (data[onNode]) {
+              // Value is 1 or true
+              button.classList.add("status-on");
+            } else if (data[offNode]) {
+              // Value is 1 or true
+              button.classList.add("status-off");
+            } else {
+              button.classList.add("status-indeterminate");
+            }
+          }
+        }
+
+        for (const nodeId in tripNodeMappings) {
+          const buttonId = tripNodeMappings[nodeId];
+          const button = document.getElementById(buttonId);
+          if (button) {
+            button.classList.remove("status-trip", "status-normal");
+            // If data[nodeId] is 1 or true, add 'status-trip', otherwise 'status-normal'
+            button.classList.add(
+              data[nodeId] ? "status-trip" : "status-normal"
+            );
+          }
+        }
+
+        // --- Part 3: Update Manual Mode 'M' Symbol Visibility ---
+        updateManualSymbolVisibility(
+          "m-symbol-rdf",
+          data["WCS_Prep_iFl_Set_DPT_RDF_Man_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-pdf1",
+          data["WCS_Prep_iFl_Set_DPT_PDF1_Man_B"]
+        );
+        updateManualSymbolVisibility(
+          "m-symbol-pdf2",
+          data["WCS_Prep_iFl_Set_DPT_PDF2_Man_B"]
+        );
+      });
+
+      function updateManualSymbolVisibility(elementId, isManual) {
+        const symbol = document.getElementById(elementId);
+        if (symbol) {
+          symbol.style.display = isManual ? "flex" : "none";
+        }
+      }
+
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+    </script>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "drivemapp/base.html" %}
+{% block title %}{{ dept.name }} — Drive Mapp{% endblock %}
+{% block page_heading %}{{ dept.name }}{% endblock %}
+
+{% block content %}
+<style>
+  .dm-breadcrumb {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 16px;
+  }
+  .dm-breadcrumb a { color: #0056b3; text-decoration: none; font-weight: 500; }
+  .dm-breadcrumb a:hover { text-decoration: underline; }
+  .dm-breadcrumb .sep { margin: 0 6px; }
+
+  .dm-dept-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #002a55;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 20px;
+  }
+
+  .equip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .equip-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    padding: 20px;
+    cursor: pointer;
+    transition: box-shadow 0.15s, transform 0.1s;
+    text-decoration: none;
+    display: block;
+  }
+  .equip-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+  .equip-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #e7f0fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #0056b3;
+  }
+  .equip-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #002a55;
+    margin-bottom: 6px;
+  }
+  .equip-card-meta {
+    font-size: 11px;
+    color: #6c757d;
+    line-height: 1.6;
+  }
+  .equip-card-meta span { display: block; }
+  .equip-card-footer {
+    margin-top: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0056b3;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .no-equip {
+    text-align: center;
+    padding: 48px;
+    color: #6c757d;
+    font-size: 14px;
+  }
+</style>
+
+<div class="dm-breadcrumb">
+  <a href="/drivemapp"><i class="fa-solid fa-gauge-high"></i> Drive Mapp</a>
+  <span class="sep">›</span>
+  <span>{{ dept.name }}</span>
+</div>
+
+<div class="dm-dept-title">{{ dept.name }}</div>
+
+{% if equipment %}
+<div class="equip-grid">
+  {% for equip in equipment %}
+  {% if 'fan' in equip.name|lower %}
+    {% set icon = 'fa-fan' %}
+  {% elif 'pump' in equip.name|lower %}
+    {% set icon = 'fa-droplet' %}
+  {% else %}
+    {% set icon = 'fa-bolt' %}
+  {% endif %}
+  <a class="equip-card" href="/drivemapp/{{ dept.slug }}/{{ equip.slug }}">
+    <div class="equip-card-icon"><i class="fa-solid {{ icon }}"></i></div>
+    <div class="equip-card-name">{{ equip.name }}</div>
+    <div class="equip-card-meta">
+      <span><i class="fa-solid fa-network-wired" style="width:12px;"></i> {{ equip.ip_address }}:{{ equip.tcp_port }}</span>
+      <span><i class="fa-solid fa-hashtag" style="width:12px;"></i> Slave {{ equip.slave_address }}</span>
+      {% if equip.vfd_number %}
+      <span><i class="fa-solid fa-tag" style="width:12px;"></i> VFD {{ equip.vfd_number }}</span>
+      {% endif %}
+    </div>
+    <div class="equip-card-footer">
+      View parameters <i class="fa-solid fa-arrow-right"></i>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="no-equip">
+  <i class="fa-solid fa-plug-circle-xmark" style="font-size:32px; display:block; margin-bottom:10px;"></i>
+  No equipment configured for this department.<br>
+  {% if session.get('role') == 'Tse' %}
+  <a href="/drivemapp/settings">Configure in Settings</a>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

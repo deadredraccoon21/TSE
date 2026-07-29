@@ -1,0 +1,80 @@
+DB_DATABASE: tse_data
+DB_PASSWORD: tse@123
+DB_SERVER: LAPTOP-K8AF3HGK\SQLEXPRESS01
+DB_USER: tse
+H-plant:
+- Set Point
+- Digital Input
+- Digital Output
+- Analog Input
+- Analog Output
+- Preset Values
+- Controllers
+- UPSS
+- Pump Min Set
+- Timer
+- DeHumidity
+OPC_UA_URL: opc.tcp://127.0.0.1:4840
+PHONE_NUMBER_ID: '1093397230521033'
+SENDER_EMAIL: reports@tsengg.com
+SENDER_PASSWORD: Tech$#22345
+SMTP_PORT: 587
+SMTP_SERVER: mail.tsengg.com
+TELEGRAM_BOT_TOKEN: 8651269310:AAFZ9wGMxXVlIf9y7OTQB_rhgLKITu4fxCI
+TELEGRAM_GROUP_ID: '-1003929320962'
+WCS:
+- Digital Input
+- Analog Input
+- Analog Output
+- Controllers
+alarm_severity_levels:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+client_name: Tech Sphere Engineering pvt ltd
+last_report_sent: DAILY_29-07-2026_11:04
+report_fields:
+- Set_RH
+- Act_RH
+- Set_Temp
+- Act_Temp
+roles:
+  Manager:
+  - Set Point
+  - Digital Input
+  - Digital Output
+  - Analog Input
+  - Analog Output
+  - Preset Values
+  - Timer
+  - Controllers
+  - UPSS
+  - DeHumidity
+  Operator:
+  - Set Point
+  - Digital Output
+  Tse:
+  - Set Point
+  - Digital Input
+  - Digital Output
+  - Analog Input
+  - Analog Output
+  - Preset Values
+  - Controllers
+  - UPSS
+  - Pump Min Set
+  - Timer
+  - DeHumidity
+show_outside_conditions: true
+submodules:
+- category: H-Plant-1
+  name: Spinning1
+  node_prefix: Spg1
+  template: H-Plant-1_Spg1.html
+- category: H-Plant-20
+  name: Weaving
+  node_prefix: Wvg
+  template: H-Plant-20_Wvg.html

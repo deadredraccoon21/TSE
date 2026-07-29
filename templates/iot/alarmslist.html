@@ -1,0 +1,223 @@
+{% extends "iot/tse.html" %} 
+{% block title %}Alarms{% endblock %} 
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_style.css') }}" />
+<div class="page-wrapper">
+  <div class="config-card">
+    <h2>
+      Active Alarms
+      <a href="/alarm_history" class="btn btn-primary" style="font-size: 13px; text-decoration: none;">View Full Alarm History</a>
+    </h2>
+
+    <table class="manage-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Date / Time</th>
+          <th style="width: 50%;">Message</th>
+          <th style="width: 15%;">Severity</th>
+          <th style="width: 20%;">Status</th>
+        </tr>
+      </thead>
+      <tbody id="alarm-list-body"></tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="pagination" id="pagination-controls"></div>
+  <div class="page-info" id="page-info"></div>
+
+  <script>
+    const ITEMS_PER_PAGE = 10;
+    let currentPage = 1;
+    let alarmHistory = [];
+
+    function fetchActiveAlarms() {
+      fetch("/notifyAlarms").then(res => res.json()).then(data => {
+          alarmHistory = sortAlarms(data);
+          renderAlarmHistory();
+      });
+    }
+
+    function getAlarmWeight(status) {
+      if (status === "Not acknowledged") return 0;
+      if (status === "Acknowledged") return 1;
+      return 2; 
+    }
+
+    function sortAlarms(alarms) {
+      return alarms.sort((a, b) => {
+        const weightA = getAlarmWeight(a.status || "Not acknowledged");
+        const weightB = getAlarmWeight(b.status || "Not acknowledged");
+
+        if (weightA !== weightB) {
+          return weightA - weightB; 
+        }
+
+        const dateA = new Date(a.time);
+        const dateB = new Date(b.time);
+        return dateB - dateA;
+      });
+    }
+
+    function renderPagination() {
+      const paginationDiv = document.getElementById("pagination-controls");
+      paginationDiv.innerHTML = "";
+      const totalPages = Math.ceil(alarmHistory.length / ITEMS_PER_PAGE);
+
+      const updatePageInfo = () => {
+        const pageInfo = document.getElementById("page-info");
+        if (alarmHistory.length === 0) {
+          pageInfo.innerText = "";
+          return;
+        }
+        
+        let startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+        let endItem = Math.min(currentPage * ITEMS_PER_PAGE, alarmHistory.length);
+        let totalItems = alarmHistory.length;
+        pageInfo.innerText = `Showing ${startItem} to ${endItem} of ${totalItems} alarms`;
+      };
+
+      if (totalPages <= 1) {
+        updatePageInfo();
+        return;
+      }
+
+      const prevButton = document.createElement("button");
+      prevButton.innerText = "Previous";
+      prevButton.disabled = currentPage === 1;
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderAlarmHistory();
+        }
+      });
+      paginationDiv.appendChild(prevButton);
+
+      const pageNeighbours = 1;
+      const pagesToShow = [];
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (
+          i === 1 ||
+          i === totalPages ||
+          (i >= currentPage - pageNeighbours &&
+            i <= currentPage + pageNeighbours)
+        ) {
+          pagesToShow.push(i);
+        }
+      }
+
+      let lastPage = 0;
+      [...new Set(pagesToShow)].forEach((page) => {
+        if (lastPage !== 0 && page > lastPage + 1) {
+          const ellipsisSpan = document.createElement("span");
+          ellipsisSpan.innerText = "...";
+          ellipsisSpan.className = "ellipsis";
+          paginationDiv.appendChild(ellipsisSpan);
+        }
+
+        const pageButton = document.createElement("button");
+        pageButton.innerText = page;
+        if (page === currentPage) pageButton.classList.add("active");
+        pageButton.addEventListener("click", () => {
+          currentPage = page;
+          renderAlarmHistory();
+        });
+        paginationDiv.appendChild(pageButton);
+        lastPage = page;
+      });
+
+      const nextButton = document.createElement("button");
+      nextButton.innerText = "Next";
+      nextButton.disabled = currentPage === totalPages;
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderAlarmHistory();
+        }
+      });
+      paginationDiv.appendChild(nextButton);
+
+      updatePageInfo();
+    }
+
+    function renderAlarmHistory() {
+      const tbody = document.getElementById("alarm-list-body");
+      tbody.innerHTML = "";
+
+      if (alarmHistory.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding: 30px; color: #6c757d; font-weight: 500;">No active alarms</td></tr>`;
+        document.getElementById("pagination-controls").innerHTML = "";
+        document.getElementById("page-info").innerText = "";
+        return;
+      }
+
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const currentPageAlarms = alarmHistory.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+      currentPageAlarms.forEach((alarm) => {
+        const row = document.createElement("tr");
+
+        const status = alarm.status || "Unacknowledged";
+        let statusCellHtml;
+
+        if (status === "Resolved") {
+          statusCellHtml = '<span class="resolved-span">Resolved</span>';
+        } else if (status === "Acknowledged") {
+          statusCellHtml = '<span class="acknowledged-span">Acknowledged</span>';
+        } else {
+          statusCellHtml = `<button onclick="acknowledgeAlarm('${alarm.id}')" class="acknowledge-button">Not acknowledged</button>`;
+        }
+
+        // Added styling to the time to make it look cleaner
+        const timeSplit = alarm.time ? alarm.time.split(',') : ["N/A", ""];
+        const formattedTime = `<span style="font-weight: 600; color: #495057;">${timeSplit[0]}</span><br><span style="font-size: 12px; color: #adb5bd;">${timeSplit[1] ? timeSplit[1].trim() : ''}</span>`;
+
+        row.innerHTML = `
+                <td>${formattedTime}</td>
+                <td style="font-weight: 500; color: #212529;">${alarm.message}</td>
+                <td style="font-weight: 500; color: #212529;">${alarm.severity}</td>
+                <td>${statusCellHtml}</td>
+            `;
+        tbody.appendChild(row);
+      });
+
+      renderPagination();
+    }
+
+    function acknowledgeAlarm(alarmId) {
+      // 1. OPTIMISTIC UI UPDATE: Instantly change the local data and re-render
+      // This makes the button instantly turn into the orange "Acknowledged" tag without waiting for the server
+      const alarmIndex = alarmHistory.findIndex(a => a.id === alarmId);
+      if (alarmIndex !== -1) {
+        alarmHistory[alarmIndex].status = "Acknowledged";
+        
+        // Re-sort and re-render instantly so the user feels zero lag
+        alarmHistory = sortAlarms(alarmHistory);
+        renderAlarmHistory(); 
+      }
+
+      // 2. BACKGROUND SERVER REQUEST: Tell the server to officially save it
+      fetch("/acknowledge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: alarmId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.success) {
+            alert("Failed to acknowledge on server: " + (data.error || "Unknown error"));
+            // (Optional) If it fails, the next socket 'alarm_update' will automatically revert the UI to match the server
+          }
+        })
+        .catch((error) => console.error("Error acknowledging alarm:", error));
+    }
+    socket.on("alarm_update", function (alarmsFromServer) {
+      alarmHistory = sortAlarms(alarmsFromServer);
+      renderAlarmHistory();
+    });
+    
+    // Load active alarms on initial page load
+    fetchActiveAlarms();
+  </script>
+{% endblock %}

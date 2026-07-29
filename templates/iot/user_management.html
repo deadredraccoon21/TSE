@@ -1,0 +1,252 @@
+{% extends "iot/tse.html" %}
+{% block title %}User Management{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_style.css') }}" />
+
+<style>
+    /* --- Modal Styling (to match tse.html theme) --- */
+    body.modal-open-custom::before {
+        content: '';
+        position: fixed;
+        top: 61px;
+        left: 167px;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 1050;
+        pointer-events: none;
+    }
+    .edit-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 420px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        z-index: 1051;
+        overflow: hidden;
+        border: 1px solid #0056b3;
+    }
+    .edit-modal-header {
+        background-color: #0056b3;
+        color: white;
+        padding: 15px 20px;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .edit-modal-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0.8;
+        padding: 0;
+        line-height: 1;
+    }
+    .edit-modal-close:hover { opacity: 1; }
+    .edit-modal-body { padding: 25px; }
+    .edit-modal-footer {
+        padding: 15px 25px;
+        background-color: #f7f7f7;
+        text-align: right;
+        border-top: 1px solid #e5e5e5;
+    }
+    /* form styles inside modal */
+    .edit-modal-body .form-group { margin-bottom: 20px; }
+    .edit-modal-body .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+    .edit-modal-body input[type="password"],
+    .edit-modal-body select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    .edit-modal-body input:focus, .edit-modal-body select:focus {
+        outline: none;
+        border-color: #0056b3;
+        box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.25);
+    }
+    .edit-modal-footer .btn {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+    .edit-modal-footer .btn-primary { background-color: #0056b3; color: white; }
+    .edit-modal-footer .btn-primary:hover { background-color: #003e6d; }
+    .edit-modal-footer .btn-secondary { background-color: #6c757d; color: white; margin-right: 10px; }
+    .edit-modal-footer .btn-secondary:hover { background-color: #5a6268; }
+</style>
+
+<div class="page-wrapper">
+  <div class="config-card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>User Management</h2>
+        <button class="btn btn-primary" onclick="openAddUserModal()">Add New User</button>
+    </div>
+    <hr style="border: 0; border-bottom: 2px solid #f0f4f8; margin-top: 15px; margin-bottom: 20px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <table class="manage-table">
+        <thead>
+            <tr>
+                <th style="width: 40%;">Username</th>
+                <th style="width: 45%;">Role</th>
+                <th style="width: 15%; text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td class="actions-cell">
+                    <button class="btn-icon edit" title="Edit User" onclick="openEditModal('{{ user.username }}', '{{ user.role }}')">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <form action="/delete_user" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        <input type="hidden" name="username" value="{{ user.username }}">
+                        <button class="btn-icon delete" type="submit" title="Delete User">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Add User Modal -->
+<div id="addUserModal" class="edit-modal">
+    <form action="/add_user" method="POST">
+        <div class="edit-modal-header">
+            <span>Add New User</span>
+        </div>
+        <div class="edit-modal-body">
+            <div class="form-group">
+                <label for="addUsername">Username</label>
+                <input type="text" id="addUsername" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+                <label for="addPassword">Password</label>
+                <input type="password" id="addPassword" name="password" placeholder="Enter password" required>
+            </div>
+            <div class="form-group">
+                <label for="addRole">Role</label>
+                <select id="addRole" name="role" required>
+                    <option value="Operator">Operator</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Tse">Tse</option>
+                </select>
+            </div>
+        </div>
+        <div class="edit-modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeAddUserModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </div>
+    </form>
+</div>
+
+<!-- Edit Modal -->
+<div id="editModal" class="edit-modal">
+    <form action="/edit_user" method="POST">
+        <div class="edit-modal-header">
+            <span>Edit User</span>
+        </div>
+        <div class="edit-modal-body">
+            <input type="hidden" id="editUsername" name="username">
+            <div class="form-group">
+                <label for="editPassword">New Password</label>
+                <input type="password" id="editPassword" name="password" placeholder="Leave blank to keep current">
+            </div>
+            <div class="form-group">
+                <label for="editRole">Role</label>
+                <select id="editRole" name="role" required>
+                    <option value="Operator">Operator</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Tse">Tse</option>
+                </select>
+            </div>
+        </div>
+        <div class="edit-modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function openEditModal(username, role) {
+        document.getElementById('editUsername').value = username;
+        // Clear password field every time for security
+        document.getElementById('editPassword').value = '';
+        document.getElementById('editRole').value = role;
+        document.getElementById('editModal').style.display = 'block';
+        // Add class to body to trigger blur effect
+        document.body.classList.add('modal-open-custom');
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+        if (document.getElementById('addUserModal').style.display !== 'block') {
+            document.body.classList.remove('modal-open-custom');
+        }
+    }
+
+    function openAddUserModal() {
+        document.getElementById('addUsername').value = '';
+        document.getElementById('addPassword').value = '';
+        document.getElementById('addRole').value = 'Operator';
+        document.getElementById('addUserModal').style.display = 'block';
+        document.body.classList.add('modal-open-custom');
+    }
+
+    function closeAddUserModal() {
+        document.getElementById('addUserModal').style.display = 'none';
+        // Only remove blur if edit modal is also closed
+        if (document.getElementById('editModal').style.display !== 'block') {
+            document.body.classList.remove('modal-open-custom');
+        }
+    }
+
+
+    // Optional: Close modal if user presses the 'Escape' key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeEditModal();
+            closeAddUserModal();
+        }
+    });
+</script>
+{% endblock %}

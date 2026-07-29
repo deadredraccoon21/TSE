@@ -1,0 +1,440 @@
+// Keep this variable definition at the top
+const userRole = USER_ROLE; 
+console.log("User role:", userRole);
+
+// =================================================================
+// ===   CORE APPLICATION LOGIC (REVISED AND UNIFIED)            ===
+// =================================================================
+
+function closeTemplate() {
+    document.body.classList.remove('blur-active');
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
+    if (window.socket && socket.off) {
+        socket.off('update');
+    }
+    fetch('/close_template', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    }).catch(error => console.error('Error notifying server about template closure:', error));
+    console.log('Template closed successfully');
+}
+
+function loadTemplate(parentSubmodule, settingOption) {
+    console.log(`Loading template: ${parentSubmodule}/${settingOption}`);
+    
+    // Ensure any previous socket listener is removed to prevent duplicates
+    if (window.socket && socket.off) {
+        socket.off('update');
+    }
+
+    socket.on('update', function (data) {
+        Object.keys(data).forEach((key) => {
+            const elements = document.querySelectorAll(`[id="${key}"]`); 
+            if (elements.length === 0) return;
+
+            elements.forEach(element => {
+                if (element.classList.contains('user-modified') || document.activeElement === element) {
+                    return; 
+                }
+
+                const value = data[key];
+                if (element.classList.contains('value')) {
+                    if (typeof value === 'number') {
+                        element.innerText = value.toFixed(1);
+                    } else {
+                        element.innerText = value ? '1' : '0';
+                    }
+                } else if (element.tagName === 'INPUT' && element.type === 'number') {
+                    if (typeof value === 'number') {
+                        element.value = value.toFixed(1);
+                    } else {
+                        element.value = value ? '1' : '0';
+                    }
+                } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
+                    element.checked = value;
+                    const textElement = document.getElementById(element.id + '-text');
+                    if (textElement) {
+                        textElement.textContent = value ? 'Manual' : 'Auto';
+                    }
+                } 
+                else if (element.tagName === 'SPAN') {
+                    if (typeof value === 'number') {
+                        element.textContent = value.toFixed(1);
+                    } else {
+                        element.textContent = (value !== null && value !== undefined) ? value : 'NA';
+                    }
+                }
+            });
+        });
+    });
+
+    fetch(`/load_template/${parentSubmodule}/${settingOption}`)
+    .then(response => response.text())
+    .then(data => {
+        const mainContent = document.getElementById('main-content');
+        mainContent.innerHTML = data;
+        document.body.classList.add('blur-active');
+        bindDynamicEvents(); // Bind events to the newly loaded content
+        const dialogBox = mainContent.querySelector('.dialog-box');
+        if (dialogBox) {
+            // Hide it initially to prevent any flash of layout before it's moved
+            dialogBox.style.opacity = '0';
+            
+            // Force synchronous layout and read the width the old CSS would have produced
+            const naturalWidth = dialogBox.offsetWidth;
+            
+            dialogBox.style.position = 'fixed';
+            dialogBox.style.transform = 'none';
+            dialogBox.style.margin = '0';
+            dialogBox.style.width = naturalWidth + 'px';
+            dialogBox.style.minWidth = '0';
+            dialogBox.style.maxWidth = 'none';
+            
+            // Calculate height and center
+            const rect = dialogBox.getBoundingClientRect();
+            dialogBox.style.top = (window.innerHeight - rect.height) / 2 + 'px';
+            dialogBox.style.left = (window.innerWidth - rect.width) / 2 + 'px';
+            
+            // Reveal it
+            dialogBox.style.opacity = '1';
+            
+            makeDraggable(dialogBox);
+        }
+    })
+    .catch(error => console.error('Error loading template:', error));
+}
+
+function bindDynamicEvents() {
+    const successButton = document.querySelector('.btn-success');
+    if (successButton) {
+        successButton.addEventListener('click', updateSettings);
+    }
+
+    const dangerButton = document.querySelector('.btn-danger');
+    if (dangerButton) {
+        dangerButton.addEventListener('click', closeDialog);
+    }
+
+    const modeInputs = document.querySelectorAll('input[type="checkbox"][data-nodeid]');
+    modeInputs.forEach(input => {
+        input.addEventListener('change', () => updateMode(input));
+    });
+
+    const numberInputs = document.querySelectorAll('input.setpoint-input');
+    numberInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            input.classList.add('user-modified');
+        });
+    });
+}
+
+function updateSettings(event) {
+    event.preventDefault();
+    const setpoints = {};
+    let isValid = true;
+    const inputsToUpdate = document.querySelectorAll("input.setpoint-input.user-modified[data-nodeid]");
+
+    if (inputsToUpdate.length === 0) {
+        return;
+    }
+
+    inputsToUpdate.forEach(input => {
+        if (!isValid) return; 
+
+        const nodeid = input.getAttribute("data-nodeid");
+        const datatype = input.getAttribute("data-datatype");
+        let value = input.value;
+        const row = input.closest('.row-container');
+        const parameterLabel = row?.querySelector('.parameter')?.innerText || 'Parameter';
+
+        if (parameterLabel.includes("Integration Time")) {
+            if (value < 0 || value > 1000) {
+                showErrorMessage(`❌ Invalid Integration Time! Please enter a value between 0 and 1000.`);
+                isValid = false;
+            }
+        }
+
+        if (nodeid && isValid) {
+            if (datatype === "boolean") {
+                if (value !== "0" && value !== "1") {
+                    showErrorMessage(`❌ Invalid boolean input for ${parameterLabel}! Must be 0 or 1.`);
+                    isValid = false;
+                    return;
+                }
+                value = (value === "1");
+            } else {
+                value = parseFloat(value);
+                if (isNaN(value)) {
+                    showErrorMessage(`❌ Invalid number for ${parameterLabel}.`);
+                    isValid = false;
+                    return;
+                }
+            }
+            setpoints[nodeid] = value;
+        }
+    });
+
+    if (!isValid) return;
+
+    fetch('/write', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(setpoints),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (!document.getElementById('update-popup')) {
+                const popup = document.createElement('div');
+                popup.id = 'update-popup';
+                popup.innerText = '✅ Updated Successfully!';
+                Object.assign(popup.style, {
+                    position: 'fixed', top: '13%', left: '55%', transform: 'translate(-50%, -50%)',
+                    background: '#0056b3', color: 'white', padding: '10px 30px', borderRadius: '6px',
+                    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15)', fontSize: '14px', fontWeight: 'bold',
+                    textAlign: 'center', zIndex: '10000', opacity: '0', transition: 'opacity 0.3s ease-in-out'
+                });
+                document.body.appendChild(popup);
+                setTimeout(() => { popup.style.opacity = '1'; }, 10);
+                setTimeout(() => {
+                    popup.style.opacity = '0';
+                    setTimeout(() => popup.remove(), 300);
+                }, 2000);
+            }
+            inputsToUpdate.forEach(input => input.classList.remove('user-modified'));
+        } else {
+            showErrorMessage(`❌ Failed to update settings: ${data.error || 'Unknown Error'}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error updating settings:', error);
+        showErrorMessage(`❌ Network Error: Could not update settings.`);
+    });
+}
+
+function showErrorMessage(message) {
+    if (document.getElementById('error-popup')) return;
+
+    const errorPopup = document.createElement('div');
+    errorPopup.id = 'error-popup';
+    errorPopup.innerText = message;
+    Object.assign(errorPopup.style, {
+        position: 'fixed', top: '13%', left: '55%', transform: 'translate(-50%, -50%)',
+        background: '#dc3545', color: 'white', padding: '10px 30px', borderRadius: '6px',
+        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15)', fontSize: '14px', fontWeight: 'bold',
+        textAlign: 'center', zIndex: '10000', opacity: '0', transition: 'opacity 0.3s ease-in-out'
+    });
+    document.body.appendChild(errorPopup);
+    setTimeout(() => { errorPopup.style.opacity = '1'; }, 10);
+    setTimeout(() => {
+        errorPopup.style.opacity = '0';
+        setTimeout(() => errorPopup.remove(), 300);
+    }, 3000);
+}
+
+function closeDialog() {
+    document.querySelectorAll('.user-modified').forEach(el => el.classList.remove('user-modified'));
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
+    document.body.classList.remove('blur-active');
+}
+
+function updateMode(checkbox) {
+    const nodeId = checkbox.dataset.nodeid;
+    const isManual = checkbox.checked;
+    if (!nodeId) return;
+
+    const textElement = document.getElementById(checkbox.id + '-text');
+    if (textElement) {
+        textElement.textContent = isManual ? 'Manual' : 'Auto';
+    }
+
+    const payload = { [nodeId]: isManual };
+    fetch('/write', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }).catch(error => {
+        console.error("Error in fetch:", error);
+        checkbox.checked = !isManual;
+        if (textElement) {
+            textElement.textContent = isManual ? 'Auto' : 'Manual';
+        }
+        showErrorMessage("Network error: Could not update mode.");
+    });
+}
+
+function makeDraggable(element) {
+    let offsetX = 0, offsetY = 0, isDragging = false;
+    const header = element.querySelector('.header');
+    if (!header) return;
+
+    header.style.cursor = 'move';
+    header.addEventListener('mousedown', function (e) {
+        if (e.target.tagName === 'BUTTON') return;
+        isDragging = true;
+        offsetX = e.clientX - element.offsetLeft;
+        offsetY = e.clientY - element.offsetTop;
+        document.body.style.userSelect = 'none';
+    });
+    document.addEventListener('mousemove', function (e) {
+        if (isDragging) {
+            element.style.left = `${e.clientX - offsetX}px`;
+            element.style.top = `${e.clientY - offsetY}px`;
+        }
+    });
+    document.addEventListener('mouseup', function () {
+        isDragging = false;
+        document.body.style.userSelect = '';
+    });
+}
+
+// =================================================================
+// ===       ALARM & IFRAME LOGIC                ===
+// =================================================================
+
+let alarmModalOpen = false;
+let alarmRefreshInterval = null;
+
+function refreshAlarmContent() {
+    fetch("/notifyAlarms").then(response => response.json()).then(data => {
+        let alarmMessage = "";
+        if (data.length === 0) {
+            alarmMessage = "<p class='no-alarms'>No active alarms.</p>";
+        } else {
+            // Crushed to a single line to prevent HTML text-node spacing gaps
+            alarmMessage = data.slice(0, 10).map(a => {
+                const dateStr = a.time.split(',')[0] || '';
+                const timeStr = (a.time.split(',')[1] || '').trim();
+                const statusClass = a.status.replace(/\s+/g, '-').toLowerCase();
+                return `<div class="alarm-row"><div class="alarm-time"><span class="d-date">${dateStr}</span><span class="d-time">${timeStr}</span></div><div class="alarm-message">${a.message}</div><div class="alarm-status status-${statusClass}">${a.status}</div></div>`;
+            }).join("");
+        }
+        const modalBody = document.getElementById("alarm-modal-body");
+        if (modalBody.innerHTML !== alarmMessage) {
+            modalBody.innerHTML = alarmMessage;
+        }
+    }).catch(error => {
+        const modalBody = document.getElementById("alarm-modal-body");
+        const errMsg = "<p class='no-alarms'>Error loading alarms.</p>";
+        if (modalBody.innerHTML !== errMsg) {
+            modalBody.innerHTML = errMsg;
+        }
+        console.error("Error fetching alarms:", error);
+    });
+}
+
+function showAlarmslist() {
+    if (alarmModalOpen) return;
+    alarmModalOpen = true;
+    document.getElementById("alarmModal").style.display = "flex";
+    document.body.classList.add("alarm-modal-active");
+    refreshAlarmContent();
+    if (!alarmRefreshInterval) {
+        alarmRefreshInterval = setInterval(refreshAlarmContent, 1000);
+    }
+}
+
+function closeModal() {
+    alarmModalOpen = false;
+    document.getElementById("alarmModal").style.display = "none";
+    document.body.classList.remove("alarm-modal-active");
+    if (alarmRefreshInterval) {
+        clearInterval(alarmRefreshInterval);
+        alarmRefreshInterval = null;
+    }
+}
+
+function fetchAlarmCount() {
+    fetch("/notifyAlarms").then(response => response.json()).then(data => {
+        const unacknowledgedCount = data.filter(a => a.status === "Not acknowledged" || a.status === "Acknowledged").length;
+        const alarmCountElement = document.getElementById("alarm-count");
+        if (unacknowledgedCount > 0) {
+            alarmCountElement.style.display = "inline-block";
+            alarmCountElement.innerText = unacknowledgedCount;
+        } else {
+            alarmCountElement.style.display = "none";
+        }
+    }).catch(error => console.error("Error fetching alarm count:", error));
+}
+
+function showIframe(iframeId) {
+    document.querySelectorAll('iframe').forEach(iframe => iframe.style.display = 'none');
+    document.getElementById(iframeId).style.display = 'block';
+}
+
+// =================================================================
+// ===   DOCUMENT READY - UNIFIED DROPDOWN AND NAVIGATION LOGIC  ===
+// =================================================================
+$(document).ready(function() {
+
+    // Initialize alarm count check
+    fetchAlarmCount();
+    setInterval(fetchAlarmCount, 2000);
+
+    // --- Sidebar Navigation and Dropdown Logic ---
+    $('#home').on('click', function() { window.location.href = '/dashboard'; });
+    $('#alarms').on('click', function() { window.location.href = '/alarmslist'; });
+    $('#inputs').on('click', function() { window.location.href = '/input'; });
+
+    // Drive Mapp: open its submodule accordion (department list stays visible)
+    // Clicking "All Drives" or a dept sub-button navigates via onclick on the button itself
+
+    $('.module-button').on('click', function(event) {
+        const id = $(this).attr('id');
+        if (id && !['home', 'alarms', 'inputs'].includes(id)) {
+            event.stopPropagation();
+            var $dropdown = $(this).next('.submodule-container');
+            $('.submodule-container').not($dropdown).slideUp(200); // Smoother slide
+            $dropdown.slideToggle(200);
+        }
+    });
+
+$('.department-link').on('click', function(event) {
+        event.preventDefault(); 
+        event.stopPropagation();
+
+        const url = $(this).data('url');
+        const submoduleId = $(this).data('submodule-id');
+        const $submoduleContainer = $('#' + submoduleId);
+
+        const targetPath = new URL(url, window.location.origin).pathname;
+        const isCurrentPage = window.location.pathname === targetPath;
+
+        if (isCurrentPage) {
+            $submoduleContainer.slideToggle(200);
+        } else {
+            sessionStorage.setItem('openSubmoduleOnLoad', submoduleId);
+            window.location.href = url;
+        }
+    });
+
+    const submoduleToOpen = sessionStorage.getItem('openSubmoduleOnLoad');
+
+    if (submoduleToOpen) {
+        $('#departmentsSubmodules').show();
+        const $submoduleContainer = $('#' + submoduleToOpen);
+        if ($submoduleContainer.length) {
+            $submoduleContainer.show();
+        }
+        sessionStorage.removeItem('openSubmoduleOnLoad');
+    }
+
+    // --- Profile Dropdown Logic (Unchanged) ---
+    $('.profile-icon').on('click', function(event) {
+        event.stopPropagation();
+        $('.dropdown-content').toggle();
+    });
+
+    // --- Tooltip Logic (Unchanged) ---
+    $('.profile-icon').hover(
+        function() { $('#profile-tooltip').fadeIn(150); },
+        function() { $('#profile-tooltip').fadeOut(150); }
+    );
+    
+    // Prevent dropdowns from closing when clicking inside them (Unchanged)
+    $('.submodule-container, .dropdown').on('click', function(event) {
+        event.stopPropagation();
+    });
+});

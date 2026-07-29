@@ -1,0 +1,554 @@
+{% extends "drivemapp/base.html" %}
+{% block title %}{{ equip.name }} — Drive Mapp{% endblock %}
+{% block page_heading %}{{ equip.name }}{% endblock %}
+
+{% block content %}
+<style>
+  /* breadcrumb */
+  .dm-breadcrumb {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 16px;
+  }
+
+  .dm-breadcrumb a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .dm-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .dm-breadcrumb .sep {
+    margin: 0 6px;
+  }
+
+  /* heading */
+  .dm-equip-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #002a55;
+    letter-spacing: 0.5px;
+    margin: 0 0 2px;
+    text-transform: uppercase;
+  }
+
+  .dm-dept-label {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 16px;
+  }
+
+  /* meta strip */
+  .vfd-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #e0e8f4;
+    border-radius: 6px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+  }
+
+  .vfd-meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vfd-meta-item label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #0056b3;
+    margin-bottom: 2px;
+  }
+
+  .vfd-meta-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: #212529;
+  }
+
+  .vfd-meta-edit {
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 2px 6px;
+    width: 130px;
+    color: #212529;
+  }
+
+  /* param cards */
+  .param-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .param-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0056b3;
+    color: #fff;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .param-refresh-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .param-refresh-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .param-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .param-table th {
+    background: #f8f9fa;
+    color: #495057;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .param-table td {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+  }
+
+  .param-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .param-id {
+    font-family: monospace;
+    font-weight: 700;
+    color: #002a55;
+    white-space: nowrap;
+  }
+
+  .param-name-sub {
+    font-size: 11px;
+    color: #6c757d;
+    margin-top: 2px;
+  }
+
+  .param-val {
+    font-family: monospace;
+    font-weight: 600;
+    color: #0056b3;
+    font-size: 14px;
+  }
+
+  .param-val.loading {
+    color: #adb5bd;
+  }
+
+  .param-val.error {
+    color: #dc3545;
+  }
+
+  .param-unit {
+    font-size: 11px;
+    color: #6c757d;
+    margin-left: 3px;
+  }
+
+  /* write controls */
+  .write-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .write-input {
+    width: 100px;
+    padding: 4px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .write-select {
+    padding: 4px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    max-width: 220px;
+  }
+
+  .write-btn {
+    padding: 4px 14px;
+    background: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .write-btn:hover {
+    background: #004494;
+  }
+
+  .write-btn:disabled {
+    background: #adb5bd;
+    cursor: not-allowed;
+  }
+
+  /* login notice */
+  .login-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #6d4c00;
+    margin-bottom: 20px;
+  }
+
+  .login-notice i {
+    font-size: 16px;
+    color: #f59e0b;
+  }
+
+  /* toast */
+  #dm-toast {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    z-index: 20000;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  #dm-toast.success {
+    background: #198754;
+  }
+
+  #dm-toast.error {
+    background: #dc3545;
+  }
+</style>
+
+<!-- breadcrumb -->
+<div class="dm-breadcrumb">
+  <a href="/drivemapp"><i class="fa-solid fa-gauge-high"></i> Drive Mapp</a>
+  <span class="sep">›</span>
+  <a href="/drivemapp/{{ dept.slug }}">{{ dept.name }}</a>
+  <span class="sep">›</span>
+  <span>{{ equip.name }}</span>
+</div>
+
+<!-- heading -->
+<div>
+  <h1 class="dm-equip-title">{{ equip.name }}</h1>
+  <div class="dm-dept-label">{{ dept.name }}</div>
+</div>
+
+<!-- VFD meta strip -->
+<div class="vfd-meta-strip">
+  <div class="vfd-meta-item">
+    <label>VFD Number</label>
+    {% if user_role == 'Tse' %}
+    <input type="text" class="vfd-meta-edit" id="vfd-number-input" value="{{ equip.vfd_number or '' }}" placeholder="—">
+    {% else %}
+    <span class="vfd-meta-val">{{ equip.vfd_number or '—' }}</span>
+    {% endif %}
+  </div>
+  <div class="vfd-meta-item">
+    <label>Serial Number</label>
+    {% if user_role == 'Tse' %}
+    <input type="text" class="vfd-meta-edit" id="serial-number-input" value="{{ equip.serial_number or '' }}"
+      placeholder="—">
+    {% else %}
+    <span class="vfd-meta-val">{{ equip.serial_number or '—' }}</span>
+    {% endif %}
+  </div>
+  <div class="vfd-meta-item">
+    <label>IP Address</label>
+    {% if user_role == 'Tse' %}
+    <input type="text" class="vfd-meta-edit" id="ip-address-input" value="{{ equip.ip_address }}"
+      placeholder="192.168.1.x" style="width:130px;">
+    {% else %}
+    <span class="vfd-meta-val">{{ equip.ip_address }}</span>
+    {% endif %}
+  </div>
+  <div class="vfd-meta-item">
+    <label>TCP Port</label>
+    {% if user_role == 'Tse' %}
+    <input type="number" class="vfd-meta-edit" id="tcp-port-input" value="{{ equip.tcp_port }}" style="width:70px;">
+    {% else %}
+    <span class="vfd-meta-val">{{ equip.tcp_port }}</span>
+    {% endif %}
+  </div>
+  <div class="vfd-meta-item">
+    <label>Slave ID</label>
+    {% if user_role == 'Tse' %}
+    <input type="text" class="vfd-meta-edit" id="slave-address-input" value="{{ equip.slave_address }}"
+      style="width:60px;">
+    {% else %}
+    <span class="vfd-meta-val">{{ equip.slave_address }}</span>
+    {% endif %}
+  </div>
+  {% if user_role == 'Tse' %}
+  <div class="vfd-meta-item">
+    <label>COM Port</label>
+    <input type="text" class="vfd-meta-edit" id="com-port-input" value="{{ equip.com_port }}" placeholder="COM1"
+      style="width:70px;">
+  </div>
+  <div class="vfd-meta-item">
+    <label>Baudrate</label>
+    <input type="number" class="vfd-meta-edit" id="baudrate-input" value="{{ equip.baudrate }}" style="width:80px;">
+  </div>
+  <div class="vfd-meta-item" style="justify-content:flex-end; margin-left:auto; align-self:flex-end;">
+    <button class="write-btn" onclick="saveMetaFields()">Save Info</button>
+  </div>
+  {% endif %}
+</div>
+
+<!-- ===== Monitor Parameters — all users, read-only (Page 3) ===== -->
+<div class="param-card">
+  <div class="param-card-header">
+    Monitor Parameters
+    <button class="param-refresh-btn" onclick="refreshMonitor()" id="refresh-btn">
+      <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> Refresh
+    </button>
+  </div>
+  <table class="param-table">
+    <thead>
+      <tr>
+        <th style="width:90px;">Para. No.</th>
+        <th>Name</th>
+        <th style="width:140px;">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in monitor_params %}
+      <tr>
+        <td><span class="param-id">{{ p.id }}</span></td>
+        <td>{{ p.name }}</td>
+        <td>
+          <span class="param-val loading" id="mv-{{ p.address_hex }}" data-addr="{{ p.address_hex }}">--</span>
+          <span class="param-unit">{{ p.unit or '' }}</span>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== Config Parameters — Manager / Tse role (Page 4 or 5) ===== -->
+{% if session.get('userloggedin') and config_params %}
+<div class="param-card">
+  <div class="param-card-header">
+    Configuration Parameters
+    <span style="font-size:11px; font-weight:400; opacity:0.85;">
+      {% if user_role == 'Tse' %}TSE Access (Page 5){% else %}Customer Access (Page 4){% endif %}
+    </span>
+  </div>
+  <table class="param-table">
+    <thead>
+      <tr>
+        <th style="width:90px;">Para. No.</th>
+        <th>Name</th>
+        <th style="width:130px;">Current Value</th>
+        <th>Set Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in config_params %}
+      <tr>
+        <td><span class="param-id">{{ p.id }}</span></td>
+        <td>
+          {{ p.name }}
+          {% if p.description %}
+          <div class="param-name-sub">{{ p.description | truncate(80) }}</div>
+          {% endif %}
+        </td>
+        <td>
+          <span class="param-val loading" id="cv-{{ p.address_hex }}" data-addr="{{ p.address_hex }}">--</span>
+          <span class="param-unit">{{ p.unit | default('') }}</span>
+        </td>
+        <td>
+          <div class="write-cell">
+            {% if p.type == 'select' %}
+            <select class="write-select" id="inp-{{ p.address_hex }}">
+              {% for val, label in p.options.items() %}
+              <option value="{{ val }}">{{ val }} — {{ label }}</option>
+              {% endfor %}
+            </select>
+            {% else %}
+            <input type="number" class="write-input" id="inp-{{ p.address_hex }}" min="{{ p.min | default('') }}"
+              max="{{ p.max | default('') }}" step="{{ p.scale | default(1) }}"
+              placeholder="{{ p.default | default('') }}">
+            {% endif %}
+            <button class="write-btn" onclick="writeParam('{{ p.address_hex }}', this)">Write</button>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% elif not session.get('userloggedin') %}
+<div class="login-notice">
+  <i class="fa-solid fa-lock"></i>
+  Configuration parameters require login.
+  <a href="{{ url_for('user_login') }}" style="color:#0056b3; font-weight:600; margin-left:4px;">Login</a>
+  to view and edit drive settings.
+</div>
+{% endif %}
+
+<div id="dm-toast"></div>
+
+<script>
+  const DEPT_SLUG = "{{ dept.slug }}";
+  const EQUIP_SLUG = "{{ equip.slug }}";
+
+  function showToast(msg, type) {
+    const t = document.getElementById('dm-toast');
+    t.textContent = msg;
+    t.className = type;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 2800);
+  }
+
+  async function fetchParam(addr) {
+    const resp = await fetch(`/api/drivemapp/get_value/${DEPT_SLUG}/${EQUIP_SLUG}/${addr}`);
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    return data.value;
+  }
+
+  async function refreshMonitor() {
+    const icon = document.getElementById('refresh-icon');
+    const btn = document.getElementById('refresh-btn');
+    icon.classList.add('fa-spin');
+    btn.disabled = true;
+    const spans = document.querySelectorAll('.param-val[id^="mv-"]');
+    for (const span of spans) {
+      try {
+        const val = await fetchParam(span.dataset.addr);
+        span.textContent = (val !== null && val !== undefined) ? val : 'Err';
+        span.className = (val !== null && val !== undefined) ? 'param-val' : 'param-val error';
+      } catch {
+        span.textContent = 'Err';
+        span.className = 'param-val error';
+      }
+    }
+    icon.classList.remove('fa-spin');
+    btn.disabled = false;
+  }
+
+  async function refreshConfig() {
+    const spans = document.querySelectorAll('.param-val[id^="cv-"]');
+    for (const span of spans) {
+      try {
+        const val = await fetchParam(span.dataset.addr);
+        span.textContent = (val !== null && val !== undefined) ? val : 'Err';
+        span.className = (val !== null && val !== undefined) ? 'param-val' : 'param-val error';
+      } catch {
+        span.textContent = 'Err';
+        span.className = 'param-val error';
+      }
+    }
+  }
+
+  async function writeParam(addr, btn) {
+    const inp = document.getElementById('inp-' + addr);
+    if (!inp) return;
+    const value = inp.value;
+    if (value === '' || value === null) { showToast('Enter a value first.', 'error'); return; }
+    btn.disabled = true; btn.textContent = '...';
+    try {
+      const resp = await fetch('/api/drivemapp/set_value', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dept_slug: DEPT_SLUG, equip_slug: EQUIP_SLUG, address: addr, value })
+      });
+      const data = await resp.json();
+      if (data.success) {
+        showToast('Written successfully.', 'success');
+        const newVal = await fetchParam(addr);
+        const valSpan = document.getElementById('cv-' + addr);
+        if (valSpan && newVal !== null) { valSpan.textContent = newVal; valSpan.className = 'param-val'; }
+      } else {
+        showToast('Write failed: ' + (data.error || 'Unknown'), 'error');
+      }
+    } catch {
+      showToast('Communication error.', 'error');
+    }
+    btn.disabled = false; btn.textContent = 'Write';
+  }
+
+  async function saveMetaFields() {
+    const payload = {
+      dept_slug: DEPT_SLUG,
+      equip_slug: EQUIP_SLUG,
+      vfd_number: document.getElementById('vfd-number-input')?.value || '',
+      serial_number: document.getElementById('serial-number-input')?.value || '',
+      ip_address: document.getElementById('ip-address-input')?.value || '',
+      tcp_port: parseInt(document.getElementById('tcp-port-input')?.value) || 502,
+      slave_address: document.getElementById('slave-address-input')?.value || "1",
+      com_port: document.getElementById('com-port-input')?.value || '',
+      baudrate: parseInt(document.getElementById('baudrate-input')?.value) || 9600,
+    };
+    try {
+      const resp = await fetch('/api/drivemapp/save_info', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await resp.json();
+      showToast(data.success ? 'Info saved.' : 'Save failed.', data.success ? 'success' : 'error');
+    } catch {
+      showToast('Communication error.', 'error');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    refreshMonitor();
+    refreshConfig();
+  });
+</script>
+{% endblock %}

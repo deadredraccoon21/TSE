@@ -1,0 +1,103 @@
+{% extends "drivemapp/base.html" %}
+{% block title %}Drive Mapp — All Drives{% endblock %}
+{% block page_heading %}All Drives{% endblock %}
+
+{% block content %}
+<style>
+  .dm-page-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #002a55;
+    margin: 0 0 6px;
+  }
+  .dm-page-sub {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 20px;
+  }
+  .dm-drives-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  .dm-drives-table th {
+    background: #002a55;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 11px 16px;
+    text-align: left;
+  }
+  .dm-drives-table td {
+    padding: 11px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+  }
+  .dm-drives-table tr:last-child td { border-bottom: none; }
+  .dm-drives-table tbody tr {
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .dm-drives-table tbody tr:hover { background: #eef4fb; }
+  .dept-tag {
+    display: inline-block;
+    background: #e7f0fb;
+    color: #0056b3;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .equip-name { font-weight: 600; color: #212529; }
+  .equip-meta { font-size: 11px; color: #6c757d; margin-top: 2px; }
+  .arrow-cell { color: #adb5bd; font-size: 14px; text-align: right; }
+  .no-drives {
+    text-align: center;
+    padding: 48px 16px;
+    color: #6c757d;
+    font-size: 14px;
+  }
+</style>
+
+<div class="dm-page-title">All Configured Drives</div>
+<div class="dm-page-sub">Click a row to view parameters for that drive.</div>
+
+{% if dept_rows %}
+<table class="dm-drives-table">
+  <thead>
+    <tr>
+      <th>Department</th>
+      <th>Equipment / Application</th>
+      <th>VFD No.</th>
+      <th>Serial No.</th>
+      <th style="width:30px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in dept_rows %}
+    <tr onclick="window.location.href='/drivemapp/{{ row.dept.slug }}/{{ row.equip.slug }}'">
+      <td><span class="dept-tag">{{ row.dept.name }}</span></td>
+      <td>
+        <div class="equip-name">{{ row.equip.name }}</div>
+        <div class="equip-meta">{{ row.equip.ip_address }}:{{ row.equip.tcp_port }} &bull; Slave {{ row.equip.slave_address }}</div>
+      </td>
+      <td>{{ row.equip.vfd_number or '—' }}</td>
+      <td>{{ row.equip.serial_number or '—' }}</td>
+      <td class="arrow-cell"><i class="fa-solid fa-chevron-right"></i></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="no-drives">
+  <i class="fa-solid fa-plug-circle-xmark" style="font-size:32px; margin-bottom:10px; display:block;"></i>
+  No drives configured. Go to <a href="/drivemapp/settings">Settings</a> to add equipment.
+</div>
+{% endif %}
+{% endblock %}

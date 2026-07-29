@@ -1,0 +1,926 @@
+{% extends "iot/tse.html" %} {% block title %}Edit & Manage Submodules -
+DigiMapp{% endblock %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/font.css') }}"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_style.css') }}" />
+
+<div class="page-wrapper">
+  <div class="config-card">
+    <h2>
+      <i class="fa-solid fa-server" style="margin-right: 8px"></i> System
+      Settings
+    </h2>
+
+    <div class="form-group">
+      <label>Client Name</label>
+      <div class="inline-form">
+        <div
+          style="
+            flex: 1;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #333;
+          "
+          id="client_name_display"
+        >
+          {{ client_name }}
+        </div>
+        <button
+          class="btn btn-secondary"
+          onclick="editClientName()"
+          title="Edit Client Name"
+        >
+          <i class="fas fa-edit"></i> Edit
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 30px">
+      <label>OPC UA Server URL</label>
+      <form id="opcUrlForm" method="post" class="inline-form">
+        <input
+          type="text"
+          id="opc_ua_url_input"
+          name="opc_ua_url"
+          value="{{ opc_ua_url }}"
+          placeholder="opc.tcp://10.91.0.18:4840"
+        />
+        <button type="submit" class="btn btn-primary">Save URL</button>
+      </form>
+    </div>
+
+    <div class="setting-row" style="border-top: 1px solid #f0f4f8">
+      <div class="setting-info">
+        <h4>Show Outside Conditions</h4>
+        <p>Display temperature and humidity widget in the sidebar.</p>
+      </div>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="outside_conditions_toggle"
+          onchange="toggleOutsideConditions(this)"
+          {%
+          if
+          show_outside_conditions
+          %}checked{%
+          endif
+          %}
+        />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <h4>Clear Alarm History</h4>
+        <p style="color: #dc3545">Permanently delete all past alarm records.</p>
+      </div>
+      <button class="btn btn-danger" onclick="clearAllAlarms()">
+        <i class="fa-solid fa-trash"></i> Delete Alarms
+      </button>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <h4>Restart Application</h4>
+        <p>Reboot the background services. Drops active connections.</p>
+      </div>
+      <button class="btn btn-warning" onclick="restartApp()">
+        <i class="fa-solid fa-power-off"></i> Restart
+      </button>
+    </div>
+  </div>
+
+  <div class="config-card">
+    <h2>
+      <span
+        ><i class="fa-solid fa-building" style="margin-right: 8px"></i>
+        Departments Setup</span
+      >
+      <div style="display: inline-block;">
+        <button
+          class="btn btn-primary"
+          onclick="openModal('addSubmoduleModal')"
+          style="margin: 0; padding: 8px 15px"
+        >
+          <i class="fas fa-plus"></i> Add New
+        </button>
+        <input type="file" id="deptFileInput" accept=".html" style="display:none;" onchange="uploadDeptFile(this)" />
+        <button
+          class="btn"
+          style="margin: 0; padding: 8px 15px; margin-left: 10px; background-color: #6c757d; color: white;"
+          onclick="document.getElementById('deptFileInput').click();"
+        >
+          <i class="fas fa-upload"></i> Upload HTML
+        </button>
+      </div>
+    </h2>
+
+    <table class="manage-table" id="submodule_table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Department Name</th>
+          <th>Template</th>
+          <th>Node Prefix</th>
+          <th style="text-align: right; padding-right: 20px">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="submodule_table_body">
+        {% for item in submodules %}
+        <tr
+          id="submodule_{{ item.name | slugify }}"
+          draggable="true"
+          ondragstart="dragStart(event)"
+          ondragover="dragOver(event)"
+          ondrop="drop(event)"
+        >
+          <td>{{ item.category }}</td>
+          <td style="font-weight: bold; color: #0056b3">{{ item.name }}</td>
+          <td>{{ item.template }}</td>
+          <td>
+            <code
+              style="
+                background: #f4f6f9;
+                padding: 2px 6px;
+                border-radius: 4px;
+                color: #d63384;
+              "
+              >{{ item.node_prefix }}</code
+            >
+          </td>
+          <td style="text-align: right; padding-right: 15px">
+            <button
+              class="btn-icon edit"
+              onclick="editSubmodule('{{ item.name }}', '{{ item.template }}', '{{ item.category }}', '{{ item.node_prefix }}')"
+              title="Edit"
+            >
+              <i class="fas fa-pen"></i>
+            </button>
+            <button
+              class="btn-icon delete"
+              onclick="removeSubmodule('{{ item.name }}')"
+              title="Remove"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div style="display: flex; justify-content: flex-end">
+      <button
+        class="btn btn-secondary"
+        id="updateOrderButton"
+        onclick="updateOrder()"
+      >
+        <i class="fa-solid fa-sort"></i> Save Display Order
+      </button>
+    </div>
+  </div>
+
+  <div class="config-card">
+    <h2>
+      <i class="fa-solid fa-user-lock" style="margin-right: 8px"></i> Role
+      Access Settings
+    </h2>
+
+    <table class="manage-table" id="roles_table">
+      <thead>
+        <tr>
+          <th style="width: 150px">Role</th>
+          <th>Allowed Settings Views</th>
+          <th style="text-align: right; padding-right: 20px; width: 100px">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for role, settings in roles.items() %}
+        <tr>
+          <td style="font-weight: bold">{{ role }}</td>
+          <td>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              {% for setting in settings %}
+              <span
+                style="
+                  background-color: #e8f4fd;
+                  color: #0056b3;
+                  border: 1px solid #b8daff;
+                  padding: 4px 10px;
+                  border-radius: 12px;
+                  font-size: 11px;
+                  font-weight: 600;
+                "
+                >{{ setting }}</span
+              >
+              {% endfor %}
+            </div>
+          </td>
+          <td style="text-align: right; padding-right: 15px">
+            <button
+              class="btn-icon edit"
+              onclick="openAddSettingModal('{{ role }}')"
+              title="Add Setting"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+            <button
+              class="btn-icon delete"
+              onclick="showDeletePopup('{{ role }}')"
+              title="Delete Settings"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="config-card" style="width: 100%;">
+    <h2>
+      <span><i class="fa-solid fa-paper-plane" style="margin-right:8px"></i> Report Sender Details</span>
+      <button class="btn btn-primary" style="margin:0;padding:8px 15px" onclick="openModal('senderConfigModal')">
+        <i class="fas fa-edit"></i> Edit Credentials
+      </button>
+    </h2>
+    <div class="sender-grid">
+      <div class="sender-tile">
+        <div class="sender-tile-header">
+          <div class="sender-tile-icon email"><i class="fa-solid fa-envelope"></i></div>
+          <div><div class="sender-tile-title">Email</div><div class="sender-tile-sub">SMTP</div></div>
+          <div style="margin-left:auto">
+            {% if sender_email %}<span class="sender-status ok"><i class="fa-solid fa-circle-check"></i> Set</span>
+            {% else %}<span class="sender-status err"><i class="fa-solid fa-circle-xmark"></i> Missing</span>{% endif %}
+          </div>
+        </div>
+        <div class="sender-rows">
+          <div><span>Server</span>{{ smtp_server or '—' }}</div>
+          <div><span>Port</span>{{ smtp_port or '—' }}</div>
+          <div><span>From</span>{{ sender_email or '—' }}</div>
+          <div><span>Password</span>{{ '••••••••' if sender_password else '—' }}</div>
+        </div>
+      </div>
+      <div class="sender-tile">
+        <div class="sender-tile-header">
+          <div class="sender-tile-icon tg"><i class="fa-brands fa-telegram"></i></div>
+          <div><div class="sender-tile-title">Telegram</div><div class="sender-tile-sub">Bot API</div></div>
+          <div style="margin-left:auto">
+            {% if telegram_bot_token %}<span class="sender-status ok"><i class="fa-solid fa-circle-check"></i> Set</span>
+            {% else %}<span class="sender-status err"><i class="fa-solid fa-circle-xmark"></i> Missing</span>{% endif %}
+          </div>
+        </div>
+        <div class="sender-rows">
+          <div><span>Bot Token</span>{{ telegram_bot_token[:22] + '…' if telegram_bot_token else '—' }}</div>
+        </div>
+      </div>
+      <div class="sender-tile">
+        <div class="sender-tile-header">
+          <div class="sender-tile-icon wa"><i class="fa-brands fa-whatsapp"></i></div>
+          <div><div class="sender-tile-title">WhatsApp</div><div class="sender-tile-sub">Meta Cloud API</div></div>
+          <div style="margin-left:auto">
+            {% if whatsapp_access_token and whatsapp_phone_number_id %}<span class="sender-status ok"><i class="fa-solid fa-circle-check"></i> Set</span>
+            {% else %}<span class="sender-status err"><i class="fa-solid fa-circle-xmark"></i> Missing</span>{% endif %}
+          </div>
+        </div>
+        <div class="sender-rows">
+          <div><span>Access Token</span>{{ '••••••••' if whatsapp_access_token else '—' }}</div>
+          <div><span>Phone Number ID</span>{{ whatsapp_phone_number_id or '—' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="editClientModal" class="custom-modal-overlay"></div>
+
+<div id="addSubmoduleModal" class="custom-modal-overlay">
+  <form class="custom-modal-content" onsubmit="saveNewSubmodule(event)">
+    <h3>Add Department</h3>
+    <div class="form-group">
+      <label for="new_submodule_category">Category:</label>
+      <select id="new_submodule_category">
+        {% for i in range(1, 22) %}
+        <option value="H-Plant-{{ i }}">H-Plant-{{ i }}</option>
+        {% endfor %} {% for i in range(1, 6) %}
+        <option value="WCS-{{ i }}">WCS-{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="new_submodule_file">Template File:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="new_submodule_file"
+          placeholder="Template file name"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="new_submodule_name">Department Name:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="new_submodule_name"
+          placeholder="Type or select a department"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="new_node_prefix">Node Prefix:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="new_node_prefix"
+          placeholder="e.g., Spg1, Prep2"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="closeAllModals()">
+        Cancel
+      </button>
+      <button type="submit" class="btn-save">Add Department</button>
+    </div>
+  </form>
+</div>
+
+<div id="editSubmoduleModal" class="custom-modal-overlay">
+  <form class="custom-modal-content" onsubmit="saveSubmoduleChanges(event)">
+    <h3>Edit Department</h3>
+    <input type="hidden" id="submodule_name_input" />
+    <div class="form-group">
+      <label for="edit_submodule_category">Category:</label>
+      <select id="edit_submodule_category">
+        {% for i in range(1, 22) %}
+        <option value="H-Plant-{{ i }}">H-Plant-{{ i }}</option>
+        {% endfor %} {% for i in range(1, 6) %}
+        <option value="WCS-{{ i }}">WCS-{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="submodule_file_input">Template File:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="submodule_file_input"
+          placeholder="Template file name"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="submodule_new_name_input">Department Name:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="submodule_new_name_input"
+          placeholder="Type or select a department"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="edit_node_prefix">Node Prefix:</label>
+      <div class="combobox-container">
+        <input
+          type="text"
+          id="edit_node_prefix"
+          placeholder="e.g., Spg1, Prep2"
+          class="combobox-input"
+          autocomplete="off"
+        />
+        <button type="button" class="combobox-arrow">&#9662;</button>
+        <div class="combobox-options"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="closeAllModals()">
+        Cancel
+      </button>
+      <button type="submit" class="btn-save">Save Changes</button>
+    </div>
+  </form>
+</div>
+
+<div id="addSettingModal" class="custom-modal-overlay">
+  <form class="custom-modal-content" onsubmit="saveAddSetting(event)">
+    <h3>Add Role Access</h3>
+    <input type="hidden" id="add_setting_role" />
+    <div class="form-group">
+      <label for="add_setting_select">Choose a setting view:</label>
+      <select id="add_setting_select">
+        <option value="">-- Select View --</option>
+        <option>Set Point</option>
+        <option>Digital Input</option>
+        <option>Digital Output</option>
+        <option>Analog Input</option>
+        <option>Analog Output</option>
+        <option>Preset Values</option>
+        <option>Timer</option>
+        <option>Controllers</option>
+        <option>UPSS</option>
+        <option>DeHumidity</option>
+        <option value="__custom__">Custom (enter manually)</option>
+      </select>
+    </div>
+    <div id="add_setting_custom_group" class="form-group" style="display: none">
+      <label>Custom Setting Name:</label>
+      <input
+        type="text"
+        id="add_setting_custom"
+        placeholder="e.g. Advanced View"
+      />
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="closeAllModals()">
+        Cancel
+      </button>
+      <button type="submit" class="btn-save">Add Access</button>
+    </div>
+  </form>
+</div>
+
+<div id="deleteModal" class="custom-modal-overlay"></div>
+
+<div id="senderConfigModal" class="custom-modal-overlay">
+  <div class="custom-modal-content" style="max-width: 520px; width: 100%;">
+    <h3 style="margin-bottom: 0">Report Sender Credentials</h3>
+    <form id="senderConfigForm">
+      <input type="hidden" name="update_sender_config" value="1" />
+
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab active" onclick="switchTab('tab-email', this)">
+          <i class="fa-solid fa-envelope"></i> Email
+        </button>
+        <button type="button" class="modal-tab" onclick="switchTab('tab-telegram', this)">
+          <i class="fa-brands fa-telegram" style="color:#229ed9"></i> Telegram
+        </button>
+        <button type="button" class="modal-tab" onclick="switchTab('tab-whatsapp', this)">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp
+        </button>
+      </div>
+
+      <div id="tab-email" class="tab-panel active">
+        <div class="field-row">
+          <div class="form-group">
+            <label>SMTP Server</label>
+            <input type="text" name="smtp_server" value="{{ smtp_server }}" placeholder="mail.example.com" />
+          </div>
+          <div class="form-group">
+            <label>Port</label>
+            <input type="number" name="smtp_port" value="{{ smtp_port }}" placeholder="587" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Sender Email</label>
+          <input type="email" name="sender_email" value="{{ sender_email }}" placeholder="reports@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Sender Password</label>
+          <div class="input-with-toggle">
+            <input type="password" id="cfg_pass" name="sender_password" value="{{ sender_password }}" placeholder="••••••••" />
+            <button type="button" class="toggle-vis" onclick="toggleVis('cfg_pass', this)"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-telegram" class="tab-panel">
+        <div class="form-group">
+          <label>Bot Token</label>
+          <div class="input-with-toggle">
+            <input type="password" id="cfg_bot" name="telegram_bot_token" value="{{ telegram_bot_token }}" placeholder="e.g. 8672304052:AAHH..." />
+            <button type="button" class="toggle-vis" onclick="toggleVis('cfg_bot', this)"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:#6c757d;margin:0">Enter your Telegram Bot token from @BotFather. The report will be sent to the configured group chat.</p>
+      </div>
+
+      <div id="tab-whatsapp" class="tab-panel">
+        <div class="form-group">
+          <label>Access Token</label>
+          <div class="input-with-toggle">
+            <input type="password" id="cfg_wa_token" name="whatsapp_access_token" value="{{ whatsapp_access_token }}" placeholder="Meta permanent / temporary access token" />
+            <button type="button" class="toggle-vis" onclick="toggleVis('cfg_wa_token', this)"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number ID</label>
+          <input type="text" name="whatsapp_phone_number_id" value="{{ whatsapp_phone_number_id }}" placeholder="e.g. 123456789012345" />
+        </div>
+        <p style="font-size:12px;color:#6c757d;margin:0">Get these from Meta for Developers → WhatsApp → API Setup.</p>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 24px">
+        <button type="button" class="btn-cancel" onclick="closeAllModals()">Cancel</button>
+        <button type="button" class="btn-save" onclick="submitSenderConfig()">Save Credentials</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function switchTab(panelId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById(panelId).classList.add('active');
+    btn.classList.add('active');
+  }
+  function toggleVis(inputId, btn) {
+    const inp = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
+    if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fa-solid fa-eye-slash'; }
+    else { inp.type = 'password'; icon.className = 'fa-solid fa-eye'; }
+  }
+  function submitSenderConfig() {
+    let formData = new FormData(document.getElementById("senderConfigForm"));
+    fetch("/input", { method: "POST", body: formData })
+      .then(r => r.json()).then(data => { if (data.success) { closeAllModals(); location.reload(); } });
+  }
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+  const predefinedDepartments = {{ predefined_departments | tojson }};
+
+  document.addEventListener("DOMContentLoaded", () => {
+      // --- COMBOBOX SETUP ---
+      function setupCombobox(inputElement, options) {
+          const container = inputElement.closest('.combobox-container');
+          if (!container) return;
+          const arrow = container.querySelector('.combobox-arrow');
+          const optionsPanel = container.querySelector('.combobox-options');
+
+          optionsPanel.innerHTML = '';
+          options.forEach(optionText => {
+              const optionEl = document.createElement('div');
+              optionEl.className = 'combobox-option';
+              optionEl.textContent = optionText;
+              optionEl.addEventListener('click', () => {
+                  inputElement.value = optionText;
+                  optionsPanel.style.display = 'none';
+                  inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+              });
+              optionsPanel.appendChild(optionEl);
+          });
+
+          const showOptions = () => {
+              document.querySelectorAll('.combobox-options').forEach(p => {
+                  if (p !== optionsPanel) p.style.display = 'none';
+              });
+              optionsPanel.style.display = 'block';
+          };
+
+          arrow.addEventListener('click', (e) => {
+              e.stopPropagation();
+              optionsPanel.style.display = optionsPanel.style.display === 'block' ? 'none' : 'block';
+          });
+          inputElement.addEventListener('focus', showOptions);
+      }
+
+      const addModal = document.getElementById('addSubmoduleModal');
+      const editModal = document.getElementById('editSubmoduleModal');
+
+      function updateComboboxes(modal, categoryDropdownId, nameInputId, fileInputId, prefixInputId) {
+          const category = document.getElementById(categoryDropdownId).value;
+          let filteredDepts = predefinedDepartments.filter(d => d.template && d.template.startsWith(category + '_'));
+          if (filteredDepts.length === 0) filteredDepts = predefinedDepartments;
+          
+          setupCombobox(modal.querySelector('#' + nameInputId), filteredDepts.map(d => d.name));
+          setupCombobox(modal.querySelector('#' + fileInputId), filteredDepts.map(d => d.template));
+          setupCombobox(modal.querySelector('#' + prefixInputId), filteredDepts.map(d => d.short_name));
+      }
+
+      // Initial setup
+      updateComboboxes(addModal, 'new_submodule_category', 'new_submodule_name', 'new_submodule_file', 'new_node_prefix');
+      updateComboboxes(editModal, 'edit_submodule_category', 'submodule_new_name_input', 'submodule_file_input', 'edit_node_prefix');
+
+      // Event listeners for category changes
+      document.getElementById('new_submodule_category').addEventListener('change', () => {
+          updateComboboxes(addModal, 'new_submodule_category', 'new_submodule_name', 'new_submodule_file', 'new_node_prefix');
+          // Clear current selection on category change to prevent mismatch
+          addModal.querySelector('#new_submodule_name').value = '';
+          addModal.querySelector('#new_submodule_file').value = '';
+          addModal.querySelector('#new_node_prefix').value = '';
+      });
+
+      document.getElementById('edit_submodule_category').addEventListener('change', () => {
+          updateComboboxes(editModal, 'edit_submodule_category', 'submodule_new_name_input', 'submodule_file_input', 'edit_node_prefix');
+      });
+
+      const setupAutoFill = (nameInput, templateInput, prefixInput) => {
+          templateInput.addEventListener('input', function() {
+              const selectedMatch = predefinedDepartments.find(d => d.template === this.value);
+              if (selectedMatch) {
+                  nameInput.value = selectedMatch.name;
+                  prefixInput.value = selectedMatch.short_name;
+              }
+          });
+          nameInput.addEventListener('input', function() {
+              const selectedMatch = predefinedDepartments.find(d => d.name === this.value);
+              if (selectedMatch && templateInput.value === '') {
+                  templateInput.value = selectedMatch.template;
+                  prefixInput.value = selectedMatch.short_name;
+              }
+          });
+      };
+
+      setupAutoFill(addModal.querySelector('#new_submodule_name'), addModal.querySelector('#new_submodule_file'), addModal.querySelector('#new_node_prefix'));
+      setupAutoFill(editModal.querySelector('#submodule_new_name_input'), editModal.querySelector('#submodule_file_input'), editModal.querySelector('#edit_node_prefix'));
+
+      document.addEventListener('click', function(e) {
+          if (!e.target.closest('.combobox-container')) {
+              document.querySelectorAll('.combobox-options').forEach(p => p.style.display = 'none');
+          }
+      });
+  });
+
+  // --- MODAL CONTROLLERS ---
+  function openModal(modalId) {
+      closeAllModals();
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = "flex"; // Changed to flex for center alignment
+  }
+
+  function closeAllModals() {
+      document.querySelectorAll(".custom-modal-overlay").forEach(modal => modal.style.display = "none");
+  }
+
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeAllModals(); });
+
+  // --- SYSTEM SETTINGS LOGIC ---
+  function editClientName() {
+      const clientName = document.getElementById("client_name_display").innerText.trim();
+      const modal = document.getElementById('editClientModal');
+      // Updated inner HTML to match new modal classes
+      modal.innerHTML = `
+          <form class="custom-modal-content" onsubmit="saveClientName(event)">
+              <h3>Edit Client Name</h3>
+              <div class="form-group">
+                  <label>Client Name:</label>
+                  <input type="text" id="client_name_input" value="${clientName}" />
+              </div>
+              <div class="modal-actions">
+                  <button type="button" class="btn-cancel" onclick="closeAllModals()">Cancel</button>
+                  <button type="submit" class="btn-save">Save</button>
+              </div>
+          </form>`;
+      openModal("editClientModal");
+  }
+
+  function saveClientName(event) {
+      event.preventDefault();
+      const clientName = document.getElementById("client_name_input").value;
+      fetch("/input", { method: "POST", body: new URLSearchParams({ client_name: clientName })})
+          .then(res => res.json()).then(data => { if(data.success) location.reload(); });
+  }
+
+  document.getElementById("opcUrlForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const opcUrl = document.getElementById("opc_ua_url_input").value;
+      fetch("/input", { method: "POST", body: new URLSearchParams({ opc_ua_url: opcUrl })})
+          .then(res => res.json()).then(data => { if(data.success) location.reload(); });
+  });
+
+  function toggleOutsideConditions(checkbox) {
+      const isChecked = checkbox.checked;
+      fetch("/input", { method: "POST", body: new URLSearchParams({ toggle_outside_conditions: isChecked }) })
+      .then(res => res.json())
+      .then(data => {
+          if(data.success) { location.reload(); } else {
+              alert("Failed to update setting");
+              checkbox.checked = !isChecked;
+          }
+      }).catch(err => { checkbox.checked = !isChecked; });
+  }
+
+  function clearAllAlarms() {
+      if (confirm("Are you sure you want to delete ALL previous alarms? This action cannot be undone.")) {
+          fetch("/clear_alarms", { method: "POST" }).then(res => res.json())
+          .then(data => {
+              if (data.success) { alert("Alarms deleted."); location.reload(); }
+              else { alert("Error: " + (data.error || "Unknown")); }
+          });
+      }
+  }
+
+  function restartApp() {
+      if (confirm("Are you sure you want to restart the application? Active connections will drop temporarily.")) {
+          fetch("/restart_server", { method: "POST" }).then(res => res.json())
+          .then(data => {
+              if (data.success) {
+                  alert(data.message);
+                  setTimeout(() => location.reload(), 3000);
+              } else { alert("Error: " + data.error); }
+          }).catch(err => {
+              alert("Server is restarting...");
+              setTimeout(() => location.reload(), 3000);
+          });
+      }
+  }
+
+  // --- DEPARTMENTS LOGIC ---
+  function uploadDeptFile(input) {
+      if (!input.files || input.files.length === 0) return;
+      const file = input.files[0];
+      if (!file.name.endsWith('.html')) {
+          alert('Please upload an HTML file.');
+          return;
+      }
+      const formData = new FormData();
+      formData.append('dept_file', file);
+      
+      fetch('/upload_dept', {
+          method: 'POST',
+          body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+          alert(data.message);
+          if (data.success) location.reload();
+      })
+      .catch(err => {
+          console.error(err);
+          alert('Failed to upload file.');
+      });
+  }
+  function editSubmodule(name, file, category, prefix) {
+      document.getElementById("submodule_name_input").value = name;
+      document.getElementById("submodule_new_name_input").value = name;
+      document.getElementById("submodule_file_input").value = file;
+      document.getElementById("edit_submodule_category").value = category;
+      document.getElementById("edit_node_prefix").value = prefix;
+      // Update comboboxes for this specific category
+      document.getElementById("edit_submodule_category").dispatchEvent(new Event('change'));
+      openModal("editSubmoduleModal");
+  }
+
+  function saveSubmoduleChanges(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("submodule_name_input").value,
+          new_submodule_name: document.getElementById("submodule_new_name_input").value,
+          submodule_file: document.getElementById("submodule_file_input").value,
+          submodule_category: document.getElementById("edit_submodule_category").value,
+          node_prefix: document.getElementById("edit_node_prefix").value,
+      };
+      fetch("/edit_submodule", { method: "POST", body: new URLSearchParams(payload) }).then(() => location.reload());
+  }
+
+  function removeSubmodule(name) {
+      if (confirm("Remove this department?")) {
+          fetch("/remove_submodule", { method: "POST", body: new URLSearchParams({ submodule_name: name })}).then(() => location.reload());
+      }
+  }
+
+  function saveNewSubmodule(event) {
+      event.preventDefault();
+      const payload = {
+          submodule_name: document.getElementById("new_submodule_name").value,
+          submodule_file: document.getElementById("new_submodule_file").value,
+          submodule_category: document.getElementById("new_submodule_category").value,
+          node_prefix: document.getElementById("new_node_prefix").value,
+      };
+      fetch("/input", { method: "POST", body: new URLSearchParams(payload) }).then(() => location.reload());
+  }
+
+  // --- DRAG AND DROP ---
+  let draggedRow = null;
+  function dragStart(event) { draggedRow = event.target; draggedRow.style.opacity = "0.4"; }
+  function dragOver(event) { event.preventDefault(); }
+  function drop(event) {
+      event.preventDefault();
+      draggedRow.style.opacity = "1";
+      const targetRow = event.target.closest("tr");
+      if (targetRow && draggedRow !== targetRow) {
+          const tableBody = document.getElementById("submodule_table_body");
+          const rect = targetRow.getBoundingClientRect();
+          const offsetY = event.clientY - rect.top;
+          tableBody.insertBefore(draggedRow, (offsetY > targetRow.offsetHeight / 2) ? targetRow.nextSibling : targetRow);
+      }
+  }
+
+  function updateOrder() {
+      const rows = document.querySelectorAll("#submodule_table_body tr");
+      const newOrder = Array.from(rows).map(row => ({
+          category: row.cells[0].innerText,
+          name: row.cells[1].innerText,
+          template: row.cells[2].innerText,
+          node_prefix: row.cells[3].innerText,
+      }));
+      fetch("/update-order", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ new_order: newOrder }),
+      }).then(res => { if (res.ok) alert("Order updated successfully!"); else alert("Failed to update."); });
+  }
+
+  // --- ROLE SETTINGS LOGIC ---
+  let currentRole = "";
+  function showDeletePopup(role) {
+      currentRole = role;
+      fetch(`/get_settings/${role}`).then((response) => response.json()).then((data) => {
+          if (data.success) {
+              const modal = document.getElementById('deleteModal');
+              // Updated HTML structure for the dynamic delete modal
+              let content = `
+                  <div class="custom-modal-content">
+                      <h3>Revoke Access for ${role}</h3>
+                      <p style="font-size: 13px; color: #6c757d; margin-top:-15px; margin-bottom:20px;">Select the views you want to remove from this role.</p>
+                      <div style="max-height: 200px; overflow-y: auto;">`;
+              data.settings.forEach((setting) => {
+                  content += `
+                      <div class="form-group" style="margin-bottom: 10px;">
+                          <label style="font-weight: normal; display: flex; align-items: center; gap: 10px; cursor: pointer; text-transform: none;">
+                              <input type="checkbox" value="${setting}" name="settings_to_delete" style="width: 16px; height: 16px; margin:0;">
+                              ${setting}
+                          </label>
+                      </div>`;
+              });
+              content += `
+                      </div>
+                      <div class="modal-actions">
+                          <button type="button" class="btn-cancel" onclick="closeAllModals()">Cancel</button>
+                          <button type="button" onclick="deleteSelectedSettings()" class="btn-danger btn">Revoke Selected</button>
+                      </div>
+                  </div>`;
+              modal.innerHTML = content;
+              openModal("deleteModal");
+          } else { alert("Error fetching settings"); }
+      });
+  }
+
+  function deleteSelectedSettings() {
+      const selectedSettings = Array.from(document.querySelectorAll('input[name="settings_to_delete"]:checked')).map((el) => el.value);
+      if (selectedSettings.length === 0) { alert("No settings selected"); return; }
+      fetch("/delete_settings", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ role: currentRole, settings: selectedSettings }),
+      }).then(() => location.reload());
+  }
+
+  function openAddSettingModal(role) {
+      document.getElementById("add_setting_role").value = role;
+      const select = document.getElementById("add_setting_select");
+      const customGroup = document.getElementById("add_setting_custom_group");
+      const customInput = document.getElementById("add_setting_custom");
+
+      select.value = "";
+      customGroup.style.display = "none";
+      customInput.value = "";
+
+      select.onchange = () => { customGroup.style.display = (select.value === "__custom__") ? "block" : "none"; };
+      openModal("addSettingModal");
+  }
+
+  function saveAddSetting(event) {
+      event.preventDefault();
+      const role = document.getElementById("add_setting_role").value;
+      const selected = document.getElementById("add_setting_select").value;
+      const custom = document.getElementById("add_setting_custom").value.trim();
+      let settingToAdd = "";
+
+      if (selected === "") { alert("Select a setting."); return; }
+      if (selected === "__custom__") {
+          if (custom === "") { alert("Enter custom setting name."); return; }
+          settingToAdd = custom;
+      } else { settingToAdd = selected; }
+
+      fetch("/add_setting", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ role: role, setting: settingToAdd })
+      }).then(() => { location.reload(); });
+  }
+</script>
+{% endblock %}

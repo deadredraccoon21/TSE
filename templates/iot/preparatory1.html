@@ -1,0 +1,443 @@
+{% extends "iot/tse.html" %}
+
+{% block title %}Preparatory 1{% endblock %}
+
+{% block content %}
+<html>
+
+<head>
+        <link rel="stylesheet" href="static\css\font.css">
+    <style>
+        /* Disable text selection */
+        body {
+            user-select: none;
+            /* Modern browsers */
+            -webkit-user-select: none;
+            /* Chrome/Safari */
+            -ms-user-select: none;
+            /* IE/Edge */
+            -moz-user-select: none;
+            /* Firefox */
+        }
+
+        /* Disable copying via keyboard and right-click */
+        body {
+            -webkit-touch-callout: none;
+            /* Disable callout menu on iOS */
+        }
+
+        /* Disable right-click context menu */
+        body {
+            context-menu: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <body>
+        <div id="preparatory1Div"
+            style="transform: scale(0.8); left:-50px; margin-top:20px; top: 5px; left:-60px; width: 100%; height: 100%; display: block; position: absolute;">
+
+            <div
+                style="position: absolute; top: 15px; left: 240px; width: 1280px; height: 645px; border: 2px dotted #C5C6D0; border-radius: 20px; background-color: white;">
+            </div>
+
+            <!-- Fan 1 -->
+            <!-- <img id="fan1" src="{{ url_for('static', filename='images/fan000.gif') }}"
+                style="position:absolute; left:511px; top:208px; width:42px; height:42px; border-radius: 60px; border: 2.5px solid black; padding:8px;">
+
+            <div
+                style="position: absolute; left: 576px; top: 208px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="fan1-on-off"
+                    style="width: 13px; height: 13px; background-color: green; border: none; border-radius: 50%; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);">
+                </button>
+            </div>
+
+            <div
+                style="position: absolute; left: 596px; top: 208px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="fan1-trip"
+                    style="width: 13px; height: 13px; background-color: white; border: 1px solid white; border-radius: 50%; outline: none;">
+                </button>
+            </div> -->
+
+            <!-- Fan 2 -->
+            <!-- <img id="fan2" src="{{ url_for('static', filename='images/fan000.gif') }}"
+                style="position:absolute; left:511px; top:320px; width:42px; height:42px; border-radius: 60px; border: 2.5px solid black; padding:8px;">
+
+            <div
+                style="position: absolute; left: 576px; top: 320px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="fan2-on-off"
+                    style="width: 13px; height: 13px; background-color: green; border: none; border-radius: 50%; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);">
+                </button>
+            </div>
+
+            <div
+                style="position: absolute; left: 596px; top: 320px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="fan2-trip"
+                    style="width: 13px; height: 13px; background-color: white; border: 1px solid white; border-radius: 50%; outline: none;">
+                </button>
+            </div> -->
+
+            <!-- Fan 3 -->
+            <img id="fan2" src="{{ url_for('static', filename='images/fan000.gif') }}"
+                style="position:absolute; left:1213px; top:391px; width:42px; height:42px; border-radius: 60px; border: 2.5px solid black; padding:8px;">
+
+            <div
+                style="position: absolute; left: 1205px; top: 455px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="fan2-on-off"
+                    style="width: 13px; height: 13px; background-color: green; border: none; border-radius: 50%; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);">
+                </button>
+            </div>
+
+            <div
+                style="position: absolute; left: 1225px; top: 455px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="fan3-trip"
+                    style="width: 13px; height: 13px; background-color: white; border: 1px solid white; border-radius: 50%; outline: none;">
+                </button>
+            </div>
+
+
+            <img id="fan3" src="{{ url_for('static', filename='images/fan000.gif') }}"
+                style="position:absolute; left:1330px; top:391px; width:42px; height:42px; border-radius: 60px; border: 2.5px solid black; padding:8px;">
+
+            <div
+                style="position: absolute; left: 1380px; top: 455px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="fan3-on-off"
+                    style="width: 13px; height: 13px; background-color: green; border: none; border-radius: 50%; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);">
+                </button>
+            </div>
+
+            <div
+                style="position: absolute; left: 1400px; top: 455px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="fan3-trip"
+                    style="width: 13px; height: 13px; background-color: white; border: 1px solid white; border-radius: 50%; outline: none;">
+                </button>
+            </div>
+
+
+            <!-- <img src="{{ url_for('static', filename='images/rdf000.png') }}"
+                style="position:absolute; left:260px; top:280px; width:95px; height:60px;">
+            <img src="{{ url_for('static', filename='images/redline00_x.png') }}"
+                style="position:absolute; left:195px; top:305px; width:65px; height:7px;">
+            <img src="{{ url_for('static', filename='images/sf000.png') }}"
+                style="position:absolute; left:380px; top:518px; width:51px; height:51px; border-radius: 50px; border: 1px solid black;">
+            <img src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+                style="position:absolute; left:305px; top:340px; width:3px; height:203px;">
+            <img src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+                style="position:absolute; left:307px; top:539px; width:73px; height:3px;">
+            <img src="{{ url_for('static', filename='images/cyclone00.png') }}"
+                style="position:absolute; left:502px; top:518px; width:93px; height:140px;">
+            <img src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+                style="position:absolute; left:432px; top:539px; width:70px; height:3px;"> -->
+            <img src="{{ url_for('static', filename='images/redline00_x.png') }}"
+                style="position:absolute; left:355px; top:305px; width:90px; height:3px;">
+            <img src="{{ url_for('static', filename='images/redline00_x.png') }}"
+                style="position:absolute; left:440px; top:305px; width:415px; height:3px;">
+            <img src="{{ url_for('static', filename='images/exhaust000.gif') }}"
+                style="position:absolute; left:657px; top:103px; width:45px; height:25px;">
+            <img src="{{ url_for('static', filename='images/intake000.gif') }}"
+                style="position:absolute; left:795px; top:95px; width:35px; height:30px;">
+            <img src="{{ url_for('static', filename='images/redline00_y.png') }}"
+                style="position:absolute; left:678px; top:129px; width:3px; height:175px;">
+            <img src="{{ url_for('static', filename='images/greenline00_y.png') }}"
+                style="position:absolute; left:809px; top:130px; width:3px; height:176px;">
+            <img src="{{ url_for('static', filename='images/airwasher000.png') }}"
+                style="position:absolute; left:900px; top:220px; width:300px; height:230px;">
+            <img src="{{ url_for('static', filename='images/greenline00_x.png') }}"
+                style="position:absolute; left:809px; top:305px; width:135px; height:3px;">
+            <img src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+                style="position:absolute; left:1200px; top:295px; width:104px; height:3px;">
+            <img src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+                style="position:absolute; left:1245px; top:370px; width:120px; height:3px;">
+            <img src="{{ url_for('static', filename='images/blueline00_x.png') }}"
+                style="position:absolute; left:1245px; top:470px; width:120px; height:3px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1302px; top:295px; width:3px; height:75px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1245px; top:370px; width:3px; height:23px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1245px; top:453px; width:3px; height:23px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1365px; top:370px; width:3px; height:23px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1365px; top:453px; width:3px; height:23px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1302px; top:476px; width:3px; height:50px;">
+            <img src="{{ url_for('static', filename='images/blueline00_y.png') }}"
+                style="position:absolute; left:1253px; top:238px; width:3px; height:63px;">
+            <img src="{{ url_for('static', filename='images/recirculation00.gif') }}"
+                style="position:absolute; left:715px; top:266px; width:78px; height:85px;">
+            <img src="{{ url_for('static', filename='images/circleline000_x.png') }}"
+                style="position:absolute; left:782px; top:130px; width:60px; height:27px; border: 1px solid black; padding: -2px;">
+            <img src="{{ url_for('static', filename='images/circleline000_x.png') }}"
+                style="position:absolute; left:652px; top:128px; width:60px; height:27px; border: 1px solid black; padding: -2px;">
+            <img src="{{ url_for('static', filename='images/circleline000_y.png') }}"
+                style="position:absolute; left:739.5px; top:286px; width:27px; height:44px; border: 1px solid black; padding: -2px;">
+
+            <div style="position:absolute; left:1180px; top:50px; color:#00508a; font-size:30px;">
+                <b><u>{{ dept_name }}</u></b>
+            </div>
+            <!-- <p style="position:absolute; left:527px; top:170px; color:black;">Fan</p>
+            <p style="position:absolute; left:529px; top:372px; color:black;">Fan</p> -->
+            <!-- <p style="position:absolute; left:1236px; top:398px; color:black;">Fan</p> -->
+            <p style="position:absolute; left:657px; top:65px; color:black;">Exhaust</p>
+            <p style="position:absolute; left:765px; top:62px; color:black;">Fresh Intake</p>
+            <p style="position:absolute; left:701px; top:230px; color:black;">Recirculation</p>
+            <p style="position:absolute; left:836px; top:362px; color:black;">Pump 1</p>
+            <p style="position:absolute; left:836px; top:398px; color:black;">Pump 2</p>
+            <p style="position:absolute; left:1152px; top:410px; color:black;">SAFan1</p>
+            <p style="position:absolute; left:1396px; top:410px; color:black;">SAFan2</p>
+            <p style="position:absolute; left:956px; top:447px; color:black;">Air Washer</p>
+
+            <!-- <img src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+                style="position:absolute; left:220px; top:299.5px; width:18px; height:19px;"> -->
+            <img src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+                style="position:absolute; left:520px; top:299.5px; width:16px; height:17px;">
+            <!-- <img src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+                    style="position:absolute; left:610px; top:299.5px; width:16px; height:17px;"> -->
+            <!-- <img src="{{ url_for('static', filename='images/redarrow00_r.png') }}"
+                style="position:absolute; left:695px; top:299.5px; width:16px; height:17px;">
+            <img src="{{ url_for('static', filename='images/greenarrow00_r.png') }}"
+                style="position:absolute; left:855px; top:299.5px; width:16px; height:17px;">
+            <img src="{{ url_for('static', filename='images/greenarrow00_b.png') }}"
+                style="position:absolute; left:300px; top:425px; width:16px; height:17px;">
+            <img src="{{ url_for('static', filename='images/greenarrow00_r.png') }}"
+                style="position:absolute; left:458px; top:534px; width:16px; height:17px;"> -->
+            <img src="{{ url_for('static', filename='images/bluearrow00_b.png')}}"
+                style="position:absolute; left:1297px; top:340px; width:16px; height:17px;">
+            <img src="{{ url_for('static', filename='images/bluearrow00_b.png') }}"
+                style="position:absolute; left:1297px; top:495px; width:16px; height:17px;">
+
+            <!-- <div
+                style="position: absolute; left: 318px; top: 348px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="rdf1-on-off"
+                    style="width: 13px; height: 13px; background-color: red; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 338px; top: 348px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="rdf1-trip"
+                    style="width: 13px; height: 13px; background-color: yellow; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 418px; top: 500px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="dcf1-on-off"
+                    style="width: 13px; height: 13px; background-color: red; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 438px; top: 500px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="dcf1-trip"
+                    style="width: 13px; height: 13px; background-color: yellow; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 575px; top: 540px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="screwcompactor1-on-off"
+                    style="width: 13px; height: 13px; background-color: red; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 595px; top: 540px; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center;">
+                <button id="screwcompactor1-trip"
+                    style="width: 13px; height: 13px; background-color: yellow; border-radius: 50%; border: none;"></button>
+            </div> -->
+
+            <div
+                style="position: absolute; left: 1030px; top: 353px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="washerpump1-on-off"
+                    style="width: 13px; height: 13px; background-color: red; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 1053px; top: 353px; width: 17px; height: 17px; border: transparent; display: flex; align-items: center; justify-content: center;">
+                <button id="washerpump1-trip"
+                    style="width: 13px; height: 13px; background-color: yellow; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 1030px; top: 400px; width: 17px; height: 17px; border: 1px solid black; display: flex; align-items: center; justify-content: center;">
+                <button id="washerpump1-on-off"
+                    style="width: 13px; height: 13px; background-color: red; border-radius: 50%; border: none;"></button>
+            </div>
+
+            <div
+                style="position: absolute; left: 1053px; top: 400px; width: 17px; height: 17px; border: transparent; display: flex; align-items: center; justify-content: center;">
+                <button id="washerpump1-trip"
+                    style="width: 13px; height: 13px; background-color: yellow; border-radius: 50%; border: none;"></button>
+            </div>
+
+
+            <div
+                style="position:absolute; left:1215px; top:526px; border:3px solid skyblue; width:150px; height:90px; border-radius:7px">
+            </div>
+
+            <!-- <div
+                style="position:absolute; left:268px; top:248px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_DPG_RDF">{{ msg.payload['Spg2_iVa_DPG_RDF'] }}</span> Pa
+            </div>
+
+            <div
+                style="position:absolute; left:500px; top:280px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_UPSS_Output_RAF">{{ msg.payload['Spg2_iVa_UPSS_Output_RAF'] }}</span> %
+            </div> -->
+
+            <div
+                style="position:absolute; left:1095px; top:355px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_WTC_Output">{{ msg.payload['Spg2_iVa_WTC_Output'] }}</span> %
+            </div>
+
+            <div
+                style="position:absolute; left:1095px; top:400px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_WTC_Output">{{ msg.payload['Spg2_iVa_WTC_Output'] }}</span> %
+            </div>
+
+            <div
+                style="position:absolute; left:1215px; top:215px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_Act_WoT">{{ msg.payload['Spg2_iVa_Act_WoT'] }}</span> °C
+            </div>
+
+            <div
+                style="position:absolute; left:1375px; top:360px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_UPSS_Output_SAF">{{ msg.payload['Spg2_iVa_UPSS_Output_SAF'] }}</span> %
+            </div>
+
+            <div
+                style="position:absolute; left:1122px; top:539px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_Act_RH">{{ msg.payload['Spg2_iVa_Act_RH'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:1122px; top:583px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_Act_Temp">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:1282px; top:539px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_Act_RH">{{ msg.payload['Spg2_iVa_Act_RH'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:1282px; top:583px; border:2px solid black; padding:0px 15px 0px 20px; border-radius:5px">
+                <span id="spg2_iVa_Act_Temp">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:630px; top:166px; border:2px solid black; padding: 4px; border-radius:5px">
+                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:823px; top:166px; border:2px solid black; padding: 4px; border-radius:5px">
+                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+            </div>
+
+            <div
+                style="position:absolute; left:736px; top:356px; border:2px solid black; padding: 4px; border-radius:5px">
+                <span id="random2">{{ msg.payload['Spg2_iVa_Act_Temp'] }}</span>
+            </div>
+
+            <p style="position:absolute; left:1037px; top:520px;">Set %RH</p>
+            <p style="position:absolute; left:1013px; top:566px;">Set Temp °C</p>
+
+            <p style="position:absolute; left:1224px; top:533px;">%R.H</p>
+            <p style="position:absolute; left:1238px; top:580px;">°C</p>
+
+        </div>
+        </div>
+
+        <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+        <script>
+            const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+            // Mapping Node IDs to button IDs
+            const nodeMappings = {
+                "DI_Spg2_iFl_RetAFan1_ON": "fan1-on-off",
+                "DI_Spg2_iFl_RetAFan1_OFF": "fan1-on-off",
+                "DI_Spg2_iFl_RetAFan1_TRIP": "fan1-trip",
+
+                "DI_Spg2_iFl_RetAFan2_ON": "fan2-on-off",
+                "DI_Spg2_iFl_RetAFan2_OFF": "fan2-on-off",
+                "DI_Spg2_iFl_RetAFan2_TRIP": "fan2-trip",
+
+                "DI_Spg2_iFl_SAFan1_ON": "fan3-on-off",
+                "DI_Spg2_iFl_SAFan1_OFF": "fan3-on-off",
+                "DI_Spg2_iFl_SAFan1_TRIP": "fan3-trip",
+
+                "DI_Spg2_iFl_RDF1_ON": "rdf1-on-off",
+                "DI_Spg2_iFl_RDF1_OFF": "rdf1-on-off",
+                "DI_Spg2_iFl_RDF1_TRIP": "rdf1-trip",
+
+                "DI_Spg2_iFl_DCF1_ON": "dcf1-on-off",
+                "DI_Spg2_iFl_DCF1_OFF": "dcf1-on-off",
+                "DI_Spg2_iFl_DCF1_TRIP": "dcf1-trip",
+
+                "DI_Spg2_iFl_ScrewCompactor1_ON": "screwcompactor1-on-off",
+                "DI_Spg2_iFl_ScrewCompactor1_OFF": "screwcompactor1-on-off",
+                "DI_Spg2_iFl_ScrewCompactor1_TRIP": "screwcompactor1-trip",
+
+                "DI_Spg2_iFl_WasherPump1_ON": "washerpump1-on-off",
+                "DI_Spg2_iFl_WasherPump1_OFF": "washerpump1-on-off",
+                "DI_Spg2_iFl_WasherPump1_TRIP": "washerpump1-trip",
+            };
+
+            // Helper function to update button colors
+            function updateButtonColors(nodeId, value) {
+                const buttonId = nodeMappings[nodeId];
+                const button = document.getElementById(buttonId);
+
+                if (!button) return;
+
+                if (nodeId.includes("ON")) {
+                    button.style.backgroundColor = value ? "green" : "red";
+                } else if (nodeId.includes("OFF")) {
+                    button.style.backgroundColor = value ? "red" : "green";
+                }
+                else if (nodeId.includes("TRIP")) {
+                    button.style.backgroundColor = value ? "yellow" : "white";
+                    button.style.border = value ? "2px solid black" : "1px solid white"; // Add this line for dynamic border change
+                }
+
+            }
+
+            // Helper function to update fan image based on button colors
+            function updateFanImage(fanId, onOffButton, tripButton) {
+                const fanImage = document.getElementById(fanId);
+                const onOffColor = document.getElementById(onOffButton).style.backgroundColor;
+                const tripColor = document.getElementById(tripButton).style.backgroundColor;
+
+                if (onOffColor === "red" || tripColor === "yellow") {
+                    fanImage.src = "{{ url_for('static', filename='images/fan_stopped.png') }}";
+                } else {
+                    fanImage.src = "{{ url_for('static', filename='images/fan000.gif') }}";
+                }
+            }
+
+            // Update fan image whenever data changes
+            socket.on('update', function (data) {
+                for (const nodeId in data) {
+                    if (nodeMappings[nodeId] !== undefined) {
+                        updateButtonColors(nodeId, data[nodeId]);
+
+                        // Update fan images dynamically
+                        updateFanImage("fan1", "fan1-on-off", "fan1-trip");
+                        updateFanImage("fan2", "fan2-on-off", "fan2-trip");
+                        updateFanImage("fan3", "fan3-on-off", "fan3-trip");
+                    }
+                }
+            });
+
+            document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+        </script>
+    </body>
+
+</html>
+
+{% endblock %}
